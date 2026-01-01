@@ -1,0 +1,17 @@
+# This file was generated from a template. Edit it to match your keyboard.
+# See https://docs.zephyrproject.org/3.5.0/develop/test/twister.html#board-configuration
+# for more information.
+
+identifier: corne
+name: corne
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+supported:
+  - usb_device
+#   - adc
+#   - ble
+#   - pwm
+#   - watchdog

@@ -1,0 +1,5 @@
+# This file was generated from a template. Edit it to match your keyboard.
+# See https://docs.zephyrproject.org/3.5.0/hardware/porting/board_porting.html#flash-and-debug-support
+# for more information.
+
+include(${ZEPHYR_BASE}/boards/common/uf2.board.cmake)
