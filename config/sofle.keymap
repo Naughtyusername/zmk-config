@@ -17,13 +17,12 @@
 
 // this / { is correct for zmk, confused the hell outta me for a minute tho lmao
 / {
-
+    // clang-format off
     // Activate ADJUST layer by pressing raise and lower
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if
-                -layers = <LOWER RAISE>;
+            if-layers = <LOWER RAISE>;
             then - layer = <ADJUST>;
         };
     };
