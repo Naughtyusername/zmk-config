@@ -112,6 +112,7 @@
         };
 
         adjust_layer {
+            display-name = "adjust";
             // ADJUST LAYER
 //  ╭─────┬─────┬─────┬─────┬─────┬─────╮                 ╭─────┬─────┬─────┬─────┬─────┬─────╮
 //  │BTCLR│ BT1 │ BT2 │ BT3 │ BT4 │ BT5 │                 │     │     │     │     │     │     │
@@ -124,7 +125,6 @@
 //  ╰─────┴─────┼─────┼─────┼─────┼─────┼─────┤     ├─────┼─────┼─────┼─────┼─────┴─────┴─────╯
 //              │     │     │     │     │     │     │     │     │     │     │     │
 //              ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
-            display-name = "adjust";
             bindings = <
 &bt BT_CLR        &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4                            &none &none &none &none &none &none
 &ext_power EP_TOG &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_ug RGB_SAD &rgb_ug RGB_SAI &rgb_ug RGB_EFF                         &none &none &none &none &none &none
@@ -164,5 +164,3 @@
                &none &none &none &none &none &none &none &none &none &none
 
  */
-
-// clang-format on
