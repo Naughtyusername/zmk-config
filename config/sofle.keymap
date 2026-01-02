@@ -269,3 +269,26 @@
                &none &none &none &none &none &none &none &none &none &none
 
  */
+
+
+/* Blank slates
+
+    ╭─────┬─────┬─────┬─────┬─────┬─────╮                 ╭─────┬─────┬─────┬─────┬─────┬─────╮
+    │     │     │     │     │     │     │                 │     │     │     │     │     │     │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
+    │     │     │     │     │     │     │                 │     │     │     │     │     │     │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
+    │     │     │     │     │     │     │                 │     │     │     │     │     │     │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────╮     ╭─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+    │     │     │     │     │     │     │     │     │     │     │     │     │     │     │     │
+    ╰─────┴─────┼─────┼─────┼─────┼─────┼─────┤     ├─────┼─────┼─────┼─────┼─────┴─────┴─────╯
+                │     │     │     │     │     │     │     │     │     │     │     │
+                ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
+
+   &none &none &none &none &none &none             &none &none &none &none &none &none
+   &none &none &none &none &none &none             &none &none &none &none &none &none
+   &none &none &none &none &none &none             &none &none &none &none &none &none
+   &none &none &none &none &none &none &none &none &none &none &none &none &none &none
+               &none &none &none &none &none &none &none &none &none &none
+
+ */
