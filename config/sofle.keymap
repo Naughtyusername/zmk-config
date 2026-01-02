@@ -15,6 +15,92 @@
 #define RAISE 2
 #define ADJUST 3
 
+// clang-format off
+// Keep clang format off, it breaks the weird syntax that zmk uses ie. if-layers
+// etc. they get seperated with clang and fail to build
+
+//Encoder Support
+//Alps Alpine EC11N1524402: 30 Detent, 15PPR, 2 Channel, Quadrature, 15000 Cycle
+/ {
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        label = "LEFT_ENCODER";
+        a-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <60>;
+    };
+    right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        label = "RIGHT_ENCODER";
+        a-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <60>;
+    };
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder &right_encoder>;
+        triggers-per-rotation = <30>;
+    };
+};
+
+/ {
+    macros {
+// System and Power
+        tm: tm {
+            label = "TASK_MANAGER";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL &kp LSHFT>
+                , <&macro_tap &kp ESC>
+                , <&macro_release &kp LCTRL &kp LSHFT>
+                ;
+        };
+        cad: cad{
+            label = "CTRL_ALT_DEL";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL &kp LALT &kp DEL>
+                , <&macro_release &kp LCTRL &kp LALT &kp DEL>
+                ;
+        };
+        slp: slp {
+            label = "SLEEP";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &kp X>
+                , <&macro_release &kp LGUI>
+                , <&macro_tap &kp U &kp S>
+                ;
+        };
+        rst: rst {
+            label = "RESTART";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &kp X>
+                , <&macro_release &kp LGUI>
+                , <&macro_tap &kp U &kp R>
+                ;
+        };
+        off: off {
+            label = "SHUTDOWN";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &kp X>
+                , <&macro_release &kp LGUI>
+                , <&macro_tap &kp U &kp U>
+                ;
+        };
+    };
+  };
+
 / {
     // clang-format off
     // Activate ADJUST layer by pressing raise and lower
@@ -36,12 +122,11 @@
         // base layer
         default_layer {
             display-name = "default";
-            // clang-format off
             // BASE LAYER
 //  ╭─────┬─────┬─────┬─────┬─────┬─────╮                 ╭─────┬─────┬─────┬─────┬─────┬─────╮
 //  │  `  │  1  │  2  │  3  │  4  │  5  │                 │  6  │  7  │  8  │  9  │  0  │     │
 //  ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
-//  │ ESC │  Q  │  W  │  E  │  R  │  T  │                 │  Y  │  U  │  I  │  O  │  P  │BKSPC│
+//  │ ESC │  Q  │  W  │  E  │  R  │  T  │                 │  Y  │  U  │  I  │  O  │  P  │     │
 //  ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
 //  │ TAB │  A  │  S  │  D  │  F  │  G  │                 │  H  │  J  │  K  │  L  │  ;  │  '  │
 //  ├─────┼─────┼─────┼─────┼─────┼─────┼─────╮     ╭─────┼─────┼─────┼─────┼─────┼─────┼─────┤
