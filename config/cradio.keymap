@@ -3,14 +3,12 @@
  * Sweep (Cradio) ZMK - Fresh Port from Mitosis QMK
  * Copyright (c) 2024 The ZMK Contributors
  * SPDX-License-Identifier: MIT
- *
- * Ported from Mitosis 46-key to Sweep 34-key
- * Philosophy: GACS home row mods, minimal base, symbol-heavy raise, numpad lower
  */
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #define BASE 0
 #define LOWER 1
@@ -73,28 +71,22 @@
             #binding-cells = <0>;
             bindings = <&kp COLON &kp COLON>;
         };
-
-        updir: up_dir_macro {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp DOT &kp DOT &kp FSLH>;
-        };
     };
 
     combos {
         compatible = "zmk,combos";
 
-        // J+K = Escape (classic vim)
+        // J+K = Escape (Indices: 16=J, 17=K)
         combo_esc {
-            timeout-ms = <50>;
-            key-positions = <17 18>;
+            timeout-ms = <70>;
+            key-positions = <16 17>;
             bindings = <&kp ESC>;
             layers = <BASE GAMING>;
         };
 
-        // Combo for Adjust layer (both raise and lower)
+        // Combo for Adjust layer (Left Inner Thumb + Right Inner Thumb)
         combo_adjust {
-            timeout-ms = <50>;
+            timeout-ms = <70>;
             key-positions = <30 33>;
             bindings = <&mo ADJUST>;
         };
@@ -103,129 +95,63 @@
     keymap {
         compatible = "zmk,keymap";
 
-        /* Sweep Base Layer (Mitosis style)
-         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
-         * │Q/ESC│  W  │  E  │  R  │  T  │       │  Y  │  U  │  I  │  O  │  P  │
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │GUI/A│ALT/S│CTL/D│SFT/F│  G  │       │  H  │SFT/J│CTL/K│ALT/L│GUI/;│
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │  Z  │  X  │  C  │  V  │  B  │       │  N  │  M  │  ,  │  .  │  /  │
-         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
-         *                   ┌─────┬─────┐       ┌─────┬─────┐
-         *                   │SPC/R│BSPC │       │ DEL │ENT/L│
-         *                   └─────┴─────┘       └─────┴─────┘
-         */
+        /* Sweep Base Layer (Mitosis style) */
         base_layer {
             bindings = <
-                &td_q_esc    &kp W         &kp E         &kp R         &kp T             &kp Y    &kp U         &kp I         &kp O         &kp P
-                &hm_l LGUI A &hm_l LALT S  &hm_l LCTRL D &hm_l LSHFT F &kp G             &kp H    &hm_r RSHFT J &hm_r RCTRL K &hm_r RALT L  &hm_r RGUI SEMI
-                &kp Z        &kp X         &kp C         &kp V         &kp B             &kp N    &kp M         &kp COMMA     &kp DOT       &kp FSLH
-                                                         &lt RAISE SPACE &kp BSPC        &kp DEL  &lt LOWER RET
+                &td_q_esc    &kp W        &kp E         &kp R         &kp T            &kp Y      &kp U         &kp I         &kp O        &kp P
+                &hm_l LGUI A &hm_l LALT S &hm_l LCTRL D &hm_l LSHFT F &kp G            &kp H      &hm_r RSHFT J &hm_r RCTRL K &hm_r RALT L &hm_r RGUI SEMI
+                &kp Z        &kp X        &kp C         &kp V         &kp B            &kp N      &kp M         &kp COMMA     &kp DOT      &kp FSLH
+                                                        &lt RAISE SPACE &kp BSPC       &kp DEL    &lt LOWER RET
             >;
         };
 
-        /* Lower Layer - Numbers & Numpad (Mitosis style)
-         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
-         * │  1  │  2  │  3  │  4  │  5  │       │  6  │  7  │  8  │  9  │  0  │
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │     │     │ VOL+│ VOL-│ MUTE│       │  .  │  4  │  5  │  6  │  0  │
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │     │     │PREV │PLAY │NEXT │       │     │  1  │  2  │  3  │     │
-         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
-         *                   ┌─────┬─────┐       ┌─────┬─────┐
-         *                   │     │ FN  │       │HOLD │     │
-         *                   └─────┴─────┘       └─────┴─────┘
-         */
+        /* Lower Layer - Numbers & Numpad */
         lower_layer {
             bindings = <
-                &kp N1    &kp N2    &kp N3       &kp N4       &kp N5            &kp N6    &kp N7  &kp N8  &kp N9  &kp N0
-                &trans    &trans    &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE        &kp DOT   &kp N4  &kp N5  &kp N6  &kp N0
-                &trans    &trans    &kp C_PREV   &kp C_PP     &kp C_NEXT        &trans    &kp N1  &kp N2  &kp N3  &trans
-                                                 &trans       &mo FUNCTION      &trans    &trans
+                &kp N1     &kp N2     &kp N3       &kp N4       &kp N5             &kp N6     &kp N7  &kp N8  &kp N9  &kp N0
+                &trans     &trans     &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE         &kp DOT    &kp N4  &kp N5  &kp N6  &kp N0
+                &trans     &trans     &kp C_PREV   &kp C_PP     &kp C_NEXT         &trans     &kp N1  &kp N2  &kp N3  &trans
+                                                   &trans       &mo FUNCTION       &trans     &trans
             >;
         };
 
-        /* Raise Layer - Symbols (Mitosis Odin Programming)
-         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
-         * │  \  │  $  │  |  │  -  │  [  │       │  ]  │  +  │  #  │  <  │  >  │
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │  !  │  &  │  *  │  =  │  (  │       │  )  │  ^  │  _  │  "  │ ::  │
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │  `  │  !  │ ->  │ :=  │  {  │       │  }  │  @  │  ,  │  .  │  /  │
-         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
-         *                   ┌─────┬─────┐       ┌─────┬─────┐
-         *                   │ ../ │HOLD │       │ SPC │  ~  │
-         *                   └─────┴─────┘       └─────┴─────┘
-         */
+        /* Raise Layer - Symbols (Fixed keycodes) */
         raise_layer {
             bindings = <
-                &kp BSLH   &kp DLLR  &kp PIPE   &kp MINS   &kp LBKT          &kp RBKT  &kp PLUS   &kp HASH   &kp LT     &kp GT
-                &kp EXCL   &kp AMPS  &kp STAR   &kp EQUAL  &kp LPAR          &kp RPAR  &kp CARET  &kp UNDER  &kp DQT    &double_colon
-                &kp GRAVE  &kp EXCL  &arrow     &assign    &kp LBRC          &kp RBRC  &kp AT     &kp COMMA  &kp DOT    &kp FSLH
-                                                &updir     &trans            &kp SPACE &kp TILDE
+                &kp BSLH   &kp DLLR   &kp PIPE   &kp MINUS  &kp LBKT           &kp RBKT   &kp PLUS   &kp HASH   &kp LESS_THAN    &kp GREATER_THAN
+                &kp EXCL   &kp AMPS   &kp STAR   &kp EQUAL  &kp LPAR           &kp RPAR   &kp CARET  &kp UNDER  &kp DQT          &double_colon
+                &kp GRAVE  &kp EXCL   &arrow     &assign    &kp LBRC           &kp RBRC   &kp AT     &kp COMMA  &kp DOT          &kp FSLH
+                                                 &trans     &trans             &kp SPACE  &kp TILDE
             >;
         };
 
-        /* Function Layer - F-keys & Navigation
-         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
-         * │ F9  │ F10 │ F11 │ F12 │     │       │PGUP │HOME │ END │ INS │     │
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │ F5  │ F6  │ F7  │ F8  │     │       │LEFT │DOWN │ UP  │RIGHT│     │
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │ F1  │ F2  │ F3  │ F4  │     │       │PGDN │     │     │     │     │
-         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
-         *                   ┌─────┬─────┐       ┌─────┬─────┐
-         *                   │     │HOLD │       │     │ DEL │
-         *                   └─────┴─────┘       └─────┴─────┘
-         */
+        /* Function Layer */
         function_layer {
             bindings = <
-                &kp F9    &kp F10   &kp F11   &kp F12   &trans            &kp PG_UP  &kp HOME  &kp END   &kp INSERT &trans
-                &kp F5    &kp F6    &kp F7    &kp F8    &trans            &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT  &trans
-                &kp F1    &kp F2    &kp F3    &kp F4    &trans            &kp PG_DN  &trans    &trans    &trans     &trans
-                                              &trans    &trans            &trans     &kp DEL
+                &kp F9     &kp F10    &kp F11    &kp F12    &trans             &kp PG_UP  &kp HOME  &kp END   &kp INS  &trans
+                &kp F5     &kp F6     &kp F7     &kp F8     &trans             &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT &trans
+                &kp F1     &kp F2     &kp F3     &kp F4     &trans             &kp PG_DN  &trans    &trans    &trans    &trans
+                                                 &trans     &trans             &trans     &kp DEL
             >;
         };
 
-        /* Adjust Layer - System & Bluetooth
-         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
-         * │BTCLR│ BT1 │ BT2 │ BT3 │ BT4 │       │     │     │     │     │GAMIN│
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │     │     │     │     │     │       │     │     │     │     │     │
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │RESET│BOOT │     │     │     │       │     │     │     │BOOT │RESET│
-         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
-         *                   ┌─────┬─────┐       ┌─────┬─────┐
-         *                   │     │     │       │     │     │
-         *                   └─────┴─────┘       └─────┴─────┘
-         */
+        /* Adjust Layer */
         adjust_layer {
             bindings = <
-                &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3      &trans  &trans  &trans  &trans      &tog GAMING
-                &trans      &trans        &trans        &trans        &trans            &trans  &trans  &trans  &trans      &trans
-                &sys_reset  &bootloader   &trans        &trans        &trans            &trans  &trans  &trans  &bootloader &sys_reset
-                                                        &trans        &trans            &trans  &trans
+                &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &trans  &trans  &trans  &trans      &tog GAMING
+                &trans      &trans        &trans        &trans        &trans             &trans  &trans  &trans  &trans      &trans
+                &sys_reset  &bootloader   &trans        &trans        &trans             &trans  &trans  &trans  &bootloader &sys_reset
+                                                        &trans        &trans             &trans  &trans
             >;
         };
 
-        /* Gaming Layer - No Home Row Mods
-         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
-         * │Q/ESC│  W  │  E  │  R  │  T  │       │  Y  │  U  │  I  │  O  │  P  │
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │  A  │  S  │  D  │  F  │  G  │       │  H  │  J  │  K  │  L  │  ;  │
-         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │  Z  │  X  │  C  │  V  │  B  │       │  N  │  M  │  ,  │  .  │ BASE│
-         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
-         *                   ┌─────┬─────┐       ┌─────┬─────┐
-         *                   │ TAB │SPACE│       │ENTER│ BSPC│
-         *                   └─────┴─────┘       └─────┴─────┘
-         */
+        /* Gaming Layer */
         gaming_layer {
             bindings = <
-                &kp Q     &kp W     &kp E      &kp R      &kp T             &kp Y     &kp U     &kp I      &kp O      &kp P
-                &kp A     &kp S     &kp D      &kp F      &kp G             &kp H     &kp J     &kp K      &kp L      &kp SEMI
-                &kp Z     &kp X     &kp C      &kp V      &kp B             &kp N     &kp M     &kp COMMA  &kp DOT    &to BASE
-                                               &kp TAB    &kp SPACE         &kp RET   &kp BSPC
+                &kp Q     &kp W     &kp E     &kp R     &kp T              &kp Y      &kp U     &kp I      &kp O     &kp P
+                &kp A     &kp S     &kp D     &kp F     &kp G              &kp H      &kp J     &kp K      &kp L     &kp SEMI
+                &kp Z     &kp X     &kp C     &kp V     &kp B              &kp N      &kp M     &kp COMMA  &kp DOT   &to BASE
+                                              &kp TAB   &kp SPACE          &kp RET    &kp BSPC
             >;
         };
     };
