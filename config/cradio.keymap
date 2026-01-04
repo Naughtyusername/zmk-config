@@ -1,8 +1,7 @@
 // clang-format off
 /*
- * Sweep (Cradio) ZMK - Fresh Port from Mitosis QMK
- * Copyright (c) 2024 The ZMK Contributors
- * SPDX-License-Identifier: MIT
+ * Sweep (Cradio) ZMK - Master Config
+ * Features: GACS HRM, Tri-Layer Adjust, Mod-Morph BSPC/DEL, Caps Word, Dev Macros
  */
 
 #include <behaviors.dtsi>
@@ -44,14 +43,7 @@
             hold-trigger-on-release;
         };
 
-        // Tap dance for Q/ESC
-        td_q_esc: tap_dance_q_esc {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp Q>, <&kp ESC>;
-        };
-        // shift+backspace = delete
+        // Tap for BSPC, Shift+Tap for DEL
         bs_del: backspace_delete {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -59,6 +51,13 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        // Tap for Q, Double Tap for ESC
+        td_q_esc: tap_dance_q_esc {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp Q>, <&kp ESC>;
+        };
     };
 
     macros {
@@ -85,22 +84,9 @@
             #binding-cells = <0>;
             bindings = <&kp DOT &kp DOT &kp FSLH>;
         };
-
     };
 
-    combos {
-        compatible = "zmk,combos";
-
-        // J+K = Escape (Indices: 16=J, 17=K)
-        combo_esc {
-            timeout-ms = <70>;
-            key-positions = <16 17>;
-            bindings = <&kp ESC>;
-            layers = <BASE GAMING>;
-        };
-    };
-
-     conditional_layers {
+    conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
             if-layers = <LOWER RAISE>;
@@ -108,66 +94,155 @@
         };
     };
 
+    combos {
+        compatible = "zmk,combos";
+        // J + K = ESC
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <16 17>;
+            bindings = <&kp ESC>;
+            layers = <BASE GAMING>;
+        };
+        // HRM F + J = Caps Word
+        combo_caps_word {
+            timeout-ms = <50>;
+            key-positions = <13 16>;
+            bindings = <&caps_word>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
-        /* Sweep Base Layer (Mitosis style) */
+        /* BASE
+         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
+         * │Q/ESC│  W  │  E  │  R  │  T  │       │  Y  │  U  │  I  │  O  │  P  │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │GUI/A│ALT/S│CTL/D│SFT/F│  G  │       │  H  │SFT/J│CTL/K│ALT/L│GUI/;│
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │  Z  │  X  │  C  │  V  │  B  │       │  N  │  M  │  ,  │  .  │  /  │
+         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
+         * ┌─────┬─────┐       ┌─────┬─────┐
+         * │SPC/R│BS/DE│       │ DEL │ENT/L│
+         * └─────┴─────┘       └─────┴─────┘
+         */
         base_layer {
+            display-name = "BASE";
             bindings = <
                 &td_q_esc    &kp W        &kp E         &kp R         &kp T            &kp Y      &kp U         &kp I         &kp O        &kp P
                 &hm_l LGUI A &hm_l LALT S &hm_l LCTRL D &hm_l LSHFT F &kp G            &kp H      &hm_r RSHFT J &hm_r RCTRL K &hm_r RALT L &hm_r RGUI SEMI
                 &kp Z        &kp X        &kp C         &kp V         &kp B            &kp N      &kp M         &kp COMMA     &kp DOT      &kp FSLH
-                                                         &lt RAISE SPACE &bs_del     &kp TAB    &lt LOWER RET
+                                                        &lt RAISE SPACE &bs_del        &kp DEL    &lt LOWER RET
             >;
         };
 
-        /* Lower Layer - Numbers & Numpad */
+        /* LOWER - Numbers & Media
+         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
+         * │  1  │  2  │  3  │  4  │  5  │       │  6  │  7  │  8  │  9  │  0  │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │     │     │ VOL+│ VOL-│ MUTE│       │  .  │  4  │  5  │  6  │  0  │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │     │     │PREV │PLAY │NEXT │       │     │  1  │  2  │  3  │     │
+         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
+         * ┌─────┬─────┐       ┌─────┬─────┐
+         * │     │ FN  │       │     │     │
+         * └─────┴─────┘       └─────┴─────┘
+         */
         lower_layer {
+            display-name = "NUMPAD";
             bindings = <
-                &kp N1     &kp N2     &kp N3       &kp N4       &kp N5             &kp N6     &kp N7  &kp N8  &kp N9  &kp N0
-                &trans     &trans     &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE         &kp DOT    &kp N4  &kp N5  &kp N6  &kp N0
-                &trans     &trans     &kp C_PREV   &kp C_PP     &kp C_NEXT         &trans     &kp N1  &kp N2  &kp N3  &trans
-                                                   &trans       &mo FUNCTION       &trans     &trans
+                &kp N1    &kp N2    &kp N3       &kp N4       &kp N5            &kp N6    &kp N7  &kp N8  &kp N9  &kp N0
+                &trans    &trans    &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE        &kp DOT   &kp N4  &kp N5  &kp N6  &kp N0
+                &trans    &trans    &kp C_PREV   &kp C_PP     &kp C_NEXT        &trans    &kp N1  &kp N2  &kp N3  &trans
+                                                 &trans       &mo FUNCTION      &trans    &trans
             >;
         };
 
-        /* Raise Layer - Symbols (Fixed keycodes) */
+        /* RAISE - Symbols
+         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
+         * │  \  │  $  │  |  │  -  │  [  │       │  ]  │  +  │  #  │  <  │  >  │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │  !  │  &  │  * │  =  │  (  │       │  )  │  ^  │  _  │  "  │ ::  │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │  `  │  !  │ ->  │ :=  │  {  │       │  }  │  @  │  ,  │  .  │  /  │
+         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
+         * ┌─────┬─────┐       ┌─────┬─────┐
+         * │     │ ../ │       │ SPC │  ~  │
+         * └─────┴─────┘       └─────┴─────┘
+         */
         raise_layer {
+            display-name = "SYMBOLS";
             bindings = <
-                &kp BSLH   &kp DLLR   &kp PIPE   &kp MINUS  &kp LBKT           &kp RBKT   &kp PLUS   &kp HASH   &kp LESS_THAN    &kp GREATER_THAN
-                &kp EXCL   &kp AMPS   &kp STAR   &kp EQUAL  &kp LPAR           &kp RPAR   &kp CARET  &kp UNDER  &kp DQT          &double_colon
-                &kp GRAVE  &kp EXCL   &arrow     &assign    &kp LBRC           &kp RBRC   &kp AT     &kp COMMA  &kp DOT          &kp FSLH
-                                              &trans     &dotdot             &kp SPACE  &kp TILDE
+                &kp BSLH   &kp DLLR   &kp PIPE   &kp MINUS  &kp LBKT          &kp RBKT   &kp PLUS   &kp HASH   &kp LESS_THAN    &kp GREATER_THAN
+                &kp EXCL   &kp AMPS   &kp STAR   &kp EQUAL  &kp LPAR          &kp RPAR   &kp CARET  &kp UNDER  &kp DQT          &double_colon
+                &kp GRAVE  &kp EXCL   &arrow     &assign    &kp LBRC          &kp RBRC   &kp AT     &kp COMMA  &kp DOT          &kp FSLH
+                                                 &trans     &dotdot           &kp SPACE  &kp TILDE
             >;
         };
 
-        /* Function Layer */
+        /* FUNCTION - Nav & F-Keys
+         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
+         * │ F9  │ F10 │ F11 │ F12 │     │       │PGUP │ HOME│ END │ INS │     │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │ F5  │ F6  │ F7  │ F8  │     │       │ LEFT│ DOWN│  UP │RIGHT│     │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │ F1  │ F2  │ F3  │ F4  │     │       │PGDN │     │     │     │     │
+         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
+         * ┌─────┬─────┐       ┌─────┬─────┐
+         * │     │     │       │     │ DEL │
+         * └─────┴─────┘       └─────┴─────┘
+         */
         function_layer {
+            display-name = "NAV";
             bindings = <
-                &kp F9     &kp F10    &kp F11    &kp F12    &trans             &kp PG_UP  &kp HOME  &kp END   &kp INS  &trans
-                &kp F5     &kp F6     &kp F7     &kp F8     &trans             &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT &trans
-                &kp F1     &kp F2     &kp F3     &kp F4     &trans             &kp PG_DN  &trans    &trans    &trans    &trans
-                                                 &trans     &trans             &trans     &kp DEL
+                &kp F9     &kp F10    &kp F11    &kp F12    &trans            &kp PG_UP  &kp HOME  &kp END   &kp INS   &trans
+                &kp F5     &kp F6     &kp F7     &kp F8     &trans            &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT  &trans
+                &kp F1     &kp F2     &kp F3     &kp F4     &trans            &kp PG_DN  &trans    &trans    &trans     &trans
+                                                 &trans     &trans            &trans     &kp DEL
             >;
         };
 
-        /* Adjust Layer */
+        /* ADJUST - System & Bluetooth
+         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
+         * │BTCLR│ BT0 │ BT1 │ BT2 │ BT3 │       │     │     │     │     │GAME │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │     │     │     │     │     │       │     │     │     │     │     │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │RESET│ BOOT│     │     │     │       │     │     │     │ BOOT│RESET│
+         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
+         * ┌─────┬─────┐       ┌─────┬─────┐
+         * │     │     │       │     │     │
+         * └─────┴─────┘       └─────┴─────┘
+         */
         adjust_layer {
+            display-name = "SYSTEM";
             bindings = <
-                &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &trans  &trans  &trans  &trans      &tog GAMING
-                &trans      &trans        &trans        &trans        &trans             &trans  &trans  &trans  &trans      &trans
-                &sys_reset  &bootloader   &trans        &trans        &trans             &trans  &trans  &trans  &bootloader &sys_reset
-                                                        &trans        &trans             &trans  &trans
+                &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3      &trans  &trans  &trans  &trans      &tog GAMING
+                &trans      &trans        &trans        &trans        &trans            &trans  &trans  &trans  &trans      &trans
+                &sys_reset  &bootloader   &trans        &trans        &trans            &trans  &trans  &trans  &bootloader &sys_reset
+                                                        &trans        &trans            &trans  &trans
             >;
         };
 
-        /* Gaming Layer */
+        /* GAMING - No Mods
+         * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
+         * │  Q  │  W  │  E  │  R  │  T  │       │  Y  │  U  │  I  │  O  │  P  │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │  A  │  S  │  D  │  F  │  G  │       │  H  │  J  │  K  │  L  │  ;  │
+         * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
+         * │  Z  │  X  │  C  │  V  │  B  │       │  N  │  M  │  ,  │  .  │ BASE│
+         * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
+         * ┌─────┬─────┐       ┌─────┬─────┐
+         * │ TAB │ SPC │       │ ENT │ BSPC│
+         * └─────┴─────┘       └─────┴─────┘
+         */
         gaming_layer {
+            display-name = "GAMING";
             bindings = <
-                &kp Q     &kp W     &kp E     &kp R     &kp T              &kp Y      &kp U     &kp I      &kp O     &kp P
-                &kp A     &kp S     &kp D     &kp F     &kp G              &kp H      &kp J     &kp K      &kp L     &kp SEMI
-                &kp Z     &kp X     &kp C     &kp V     &kp B              &kp N      &kp M     &kp COMMA  &kp DOT   &to BASE
-                                              &kp TAB   &kp SPACE          &kp RET    &kp BSPC
+                &kp Q     &kp W     &kp E     &kp R     &kp T             &kp Y      &kp U     &kp I      &kp O     &kp P
+                &kp A     &kp S     &kp D     &kp F     &kp G             &kp H      &kp J     &kp K      &kp L     &kp SEMI
+                &kp Z     &kp X     &kp C     &kp V     &kp B             &kp N      &kp M     &kp COMMA  &kp DOT   &to BASE
+                                              &kp TAB   &kp SPACE         &kp RET    &kp BSPC
             >;
         };
     };
