@@ -46,15 +46,9 @@
             hold-trigger-on-release;
         };
 
-        // Tap dance for Q/ESC
-        td_q_esc: tap_dance_q_esc {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp Q>, <&kp ESC>;
-        };
+/ {
 
-        // Macros for Odin programming
+    macros {
         assign: assign_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -78,6 +72,8 @@
             #binding-cells = <0>;
             bindings = <&kp DOT &kp DOT &kp FSLH>;
         };
+    };
+
     };
 
     combos {
