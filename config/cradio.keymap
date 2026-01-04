@@ -54,14 +54,6 @@
             bindings = <&kp Q>, <&kp ESC>;
         };
 
-        // Tap dance for Toggling to the base layer from the gaming layer - hopefully works
-        td_tog_base: tap_dance_z_tog_base {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp Z>, <&tog 5>;
-        };
-
         // Macros for Odin programming
         assign: assign_macro {
             compatible = "zmk,behavior-macro";
@@ -229,9 +221,9 @@
          */
         gaming_layer {
             bindings = <
-                &td_q_esc   &kp W     &kp E      &kp R      &kp T         &kp Y     &kp U     &kp I      &kp O      &kp P
+                &td_q_esc &kp W     &kp E      &kp R      &kp T         &kp Y     &kp U     &kp I      &kp O      &kp P
                 &kp A     &kp S     &kp D      &kp F      &kp G         &kp H     &kp J     &kp K      &kp L      &kp SEMI
-      &td_tog_base     &kp X     &kp C      &kp V      &kp B         &kp N     &kp M     &kp COMMA  &kp DOT    &kp FSLH
+                &kp Z     &kp X     &kp C      &kp V      &kp B         &kp N     &kp M     &kp COMMA  &kp DOT    &tog BASE
                                                &kp TAB    &kp SPACE     &kp RET   &kp BSPC
             >;
         };
