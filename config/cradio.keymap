@@ -51,6 +51,14 @@
             tapping-term-ms = <200>;
             bindings = <&kp Q>, <&kp ESC>;
         };
+        // shift+backspace = delete
+        bs_del: backspace_delete {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BSPC>, <&kp DEL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
     };
 
     macros {
@@ -71,6 +79,13 @@
             #binding-cells = <0>;
             bindings = <&kp COLON &kp COLON>;
         };
+
+        dotdot: dotdot_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DOT &kp DOT &kp FSLH>;
+        };
+
     };
 
     combos {
@@ -83,12 +98,13 @@
             bindings = <&kp ESC>;
             layers = <BASE GAMING>;
         };
+    };
 
-        // Combo for Adjust layer (Left Inner Thumb + Right Inner Thumb)
-        combo_adjust {
-            timeout-ms = <70>;
-            key-positions = <30 33>;
-            bindings = <&mo ADJUST>;
+     conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <LOWER RAISE>;
+            then-layer = <ADJUST>;
         };
     };
 
@@ -101,7 +117,7 @@
                 &td_q_esc    &kp W        &kp E         &kp R         &kp T            &kp Y      &kp U         &kp I         &kp O        &kp P
                 &hm_l LGUI A &hm_l LALT S &hm_l LCTRL D &hm_l LSHFT F &kp G            &kp H      &hm_r RSHFT J &hm_r RCTRL K &hm_r RALT L &hm_r RGUI SEMI
                 &kp Z        &kp X        &kp C         &kp V         &kp B            &kp N      &kp M         &kp COMMA     &kp DOT      &kp FSLH
-                                                        &lt RAISE SPACE &kp BSPC       &kp DEL    &lt LOWER RET
+                                                         &lt RAISE SPACE &bs_del     &kp TAB    &lt LOWER RET
             >;
         };
 
