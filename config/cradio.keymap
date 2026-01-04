@@ -137,7 +137,7 @@
                 &kp BSLH   &kp DLLR   &kp PIPE   &kp MINUS  &kp LBKT           &kp RBKT   &kp PLUS   &kp HASH   &kp LESS_THAN    &kp GREATER_THAN
                 &kp EXCL   &kp AMPS   &kp STAR   &kp EQUAL  &kp LPAR           &kp RPAR   &kp CARET  &kp UNDER  &kp DQT          &double_colon
                 &kp GRAVE  &kp EXCL   &arrow     &assign    &kp LBRC           &kp RBRC   &kp AT     &kp COMMA  &kp DOT          &kp FSLH
-                                                 &trans     &trans             &kp SPACE  &kp TILDE
+                                              &trans     &dotdot             &kp SPACE  &kp TILDE
             >;
         };
 
