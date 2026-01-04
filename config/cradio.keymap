@@ -169,7 +169,7 @@
                 &kp BSLH   &kp DLLR  &kp PIPE   &kp MINS   &kp LBKT     &kp RBKT  &kp PLUS   &kp HASH   &kp LT     &kp GT
                 &kp EXCL   &kp AMPS  &kp STAR   &kp EQUAL  &kp LPAR     &kp RPAR  &kp CARET  &kp UNDER  &kp DQT    &double_colon
                 &kp GRAVE  &kp EXCL  &arrow     &assign    &kp LBRC     &kp RBRC  &kp AT     &kp COMMA  &kp DOT    &kp FSLH
-                                                &updir     &trans       &kp SPACE &kp LS(GRAVE)
+                                                &updir     &trans       &kp SPACE &trans
             >;
         };
 
