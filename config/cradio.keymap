@@ -80,6 +80,12 @@
             #binding-cells = <0>;
             bindings = <&kp COLON &kp COLON>;
         };
+
+        updir: up_dir_cli {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DOT &kp DOT &kp FSLH>;
+        };
     };
 
     combos {
