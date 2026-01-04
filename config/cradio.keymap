@@ -1,5 +1,8 @@
 // clang-format off
 /*
+ * Sweep (Cradio) ZMK - Fresh Port from Mitosis QMK
+ * Copyright (c) 2024 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
  * Sweep (Cradio) ZMK - Master Config
  * Features: GACS HRM, Tri-Layer Adjust, Mod-Morph BSPC/DEL, Caps Word, Dev Macros
  */
@@ -18,7 +21,6 @@
 
 / {
     behaviors {
-        // Home row mods - GACS (GUI, Alt, Ctrl, Shift)
         hm_l: homerow_mods_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -43,7 +45,6 @@
             hold-trigger-on-release;
         };
 
-        // Tap for BSPC, Shift+Tap for DEL
         bs_del: backspace_delete {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -51,7 +52,6 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        // Tap for Q, Double Tap for ESC
         td_q_esc: tap_dance_q_esc {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -66,19 +66,16 @@
             #binding-cells = <0>;
             bindings = <&kp COLON &kp EQUAL>;
         };
-
         arrow: arrow_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp MINUS &kp GT>;
         };
-
         double_colon: double_colon_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp COLON &kp COLON>;
         };
-
         dotdot: dotdot_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -96,14 +93,12 @@
 
     combos {
         compatible = "zmk,combos";
-        // J + K = ESC
         combo_esc {
             timeout-ms = <50>;
             key-positions = <16 17>;
             bindings = <&kp ESC>;
             layers = <BASE GAMING>;
         };
-        // HRM F + J = Caps Word
         combo_caps_word {
             timeout-ms = <50>;
             key-positions = <13 16>;
@@ -162,7 +157,7 @@
          * ┌─────┬─────┬─────┬─────┬─────┐       ┌─────┬─────┬─────┬─────┬─────┐
          * │  \  │  $  │  |  │  -  │  [  │       │  ]  │  +  │  #  │  <  │  >  │
          * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
-         * │  !  │  &  │  * │  =  │  (  │       │  )  │  ^  │  _  │  "  │ ::  │
+         * │  !  │  &  │  *  │  =  │  (  │       │  )  │  ^  │  _  │  "  │ ::  │
          * ├─────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┤
          * │  `  │  !  │ ->  │ :=  │  {  │       │  }  │  @  │  ,  │  .  │  /  │
          * └─────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘
