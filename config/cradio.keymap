@@ -74,8 +74,8 @@
         };
     };
 
-    };
-
+};
+        / {
     combos {
         compatible = "zmk,combos";
 
@@ -94,7 +94,9 @@
             bindings = <&mo ADJUST>;
         };
     };
+        };
 
+        / {
     keymap {
         compatible = "zmk,keymap";
 
