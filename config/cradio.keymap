@@ -81,7 +81,7 @@
             bindings = <&kp COLON &kp COLON>;
         };
 
-        updir: up_dir_cli {
+        updir: up_dir_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp DOT &kp DOT &kp FSLH>;
@@ -169,7 +169,7 @@
                 &kp BSLH   &kp DLLR  &kp PIPE   &kp MINS   &kp LBKT     &kp RBKT  &kp PLUS   &kp HASH   &kp LT     &kp GT
                 &kp EXCL   &kp AMPS  &kp STAR   &kp EQUAL  &kp LPAR     &kp RPAR  &kp CARET  &kp UNDER  &kp DQT    &double_colon
                 &kp GRAVE  &kp EXCL  &arrow     &assign    &kp LBRC     &kp RBRC  &kp AT     &kp COMMA  &kp DOT    &kp FSLH
-                                                &updir     &trans       &kp SPACE &kp TILDE
+                                                &updir     &trans       &kp SPACE &kp LS(GRAVE)
             >;
         };
 
