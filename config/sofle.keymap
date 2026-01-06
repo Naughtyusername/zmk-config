@@ -135,7 +135,7 @@ chosen {
                     &none  &none &none     &lt RAISE SPACE &kp BSPC    &kp DEL  &lt LOWER RET &none &none    &none
             >;
 
-            /* sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>; */
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         // LOWER LAYER - Numbers and Media
@@ -160,7 +160,7 @@ chosen {
               &none     &none     &none     &trans &none        &kp RET &trans   &none  &none  &none
             >;
 
-            /* sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>; */
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         // RAISE LAYER - Symbols
@@ -185,7 +185,7 @@ chosen {
                    &none    &none    &none     &trans   &none      &kp SPACE &trans  &none    &none    &none
             >;
 
-            /* sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>; */
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         // FUNCTION LAYER - F-keys and Navigation
@@ -210,7 +210,7 @@ chosen {
               &none  &none     &none  &none   &none      &none   &none     &none     &none   &none
             >;
 
-            /* sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>; */
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         // ADJUST LAYER - System controls and RGB
@@ -235,7 +235,7 @@ chosen {
                             &none        &none        &none        &none &none       &none &none           &none           &none           &none
             >;
 
-            /* sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>; */
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
     };
 };
