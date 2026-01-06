@@ -2,7 +2,7 @@
 
 # --- 1. Configuration ---
 ZMK_PATH="$HOME/zmk"
-CONFIG_PATH="$HOME/qmk/zmk/zmk-config.git"
+CONFIG_PATH="$HOME/qmk/zmk/zmk-config.git/config"
 BOARD="nice_nano"
 DATE_STR=$(date +%Y-%m-%d_%H-%M)
 BASE_DEST="$HOME/Downloads/zmk_builds/$DATE_STR"

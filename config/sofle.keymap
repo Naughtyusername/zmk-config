@@ -90,8 +90,8 @@ chosen {
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <LOWER RAISE>;
-            then-layer = <ADJUST>;
+            if-layers = <1 2>; // lower and raise
+            then-layer = <4>;
         };
     };
 
@@ -129,10 +129,10 @@ chosen {
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
 &kp GRAVE &kp N1 &kp N2 &kp N3    &kp N4    &kp N5                                &kp N6    &kp N7           &kp N8   &kp N9   &kp N0   &kp BSPC
-&trans    &kp Q  &kp W  &kp E     &kp R     &kp T                                 &kp Y     &kp U            &kp I    &kp O    &kp P    &kp DEL
-&trans    &kp A  &kp S  &kp D     &kp F     &kp G                                 &kp H     &kp J            &kp K    &kp L    &kp SEMI &kp SQT
-&trans    &kp Z  &kp X  &kp C     &kp V     &kp B  &kp C_MUTE           &none     &kp N     &kp M            &kp DOT  &kp COMMA &kp FSLH &none
-                    &none  &none     &trans &lt RAISE SPACE &kp BSPC    &kp DEL   &lt LOWER RET &none        &none    &none
+&none    &kp Q  &kp W  &kp E     &kp R     &kp T                                 &kp Y     &kp U            &kp I    &kp O    &kp P    &kp DEL
+&none    &kp A  &kp S  &kp D     &kp F     &kp G                                 &kp H     &kp J            &kp K    &kp L    &kp SEMI &kp SQT
+&none    &kp Z  &kp X  &kp C     &kp V     &kp B  &kp C_MUTE            &none     &kp N     &kp M            &kp DOT  &kp COMMA &kp FSLH &none
+                    &none  &none     &none &lt 2 SPACE &kp BSPC    &kp DEL   &lt 1 RET &none        &none    &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -153,11 +153,11 @@ chosen {
 //             │     │     │     │SPACE│     │     │ENTER│HOLD │     │     │     │
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
-&none  &none  &none     &none     &none     &none                        &none    &none  &none  &none  &none &none
-&kp N1 &kp N2 &kp N3    &kp N4    &kp N5    &none                        &kp N6   &kp N7 &kp N8 &kp N9 &kp N0 &none
+&none  &none  &none     &none     &none     &none                       &none    &none  &none  &none  &none &none
+&none  &none  &none     &none     &none     &none                       &none    &kp N7 &kp N8 &kp N9 &kp N0 &none
 &none  &none  &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE &none                &kp DOT  &kp N4 &kp N5 &kp N6 &kp N0 &none
 &none  &none  &kp C_PREV &kp C_PP  &kp C_NEXT &none  &none      &none   &none    &kp N1 &kp N2 &kp N3 &none  &none
-              &none     &none     &none     &kp SPACE &none     &kp RET &trans   &none  &none  &none
+              &none     &none     &none     &trans &none        &kp RET &trans   &none  &none  &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -206,7 +206,7 @@ chosen {
 &none  &none  &none  &none     &none  &none                      &none     &none     &none   &none      &none &none
 &kp F9 &kp F10 &kp F11 &kp F12 &none &none                       &kp PG_UP &kp HOME  &kp END &kp INS    &none &none
 &kp F5 &kp F6 &kp F7 &kp F8    &none  &none                      &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &none &none
-&kp F1 &kp F2 &kp F3 &kp F4    &none  &trans  &none      &none   &kp PG_DN &none     &none   &none      &none &none
+&kp F1 &kp F2 &kp F3 &kp F4    &none  &none   &none      &none   &kp PG_DN &none     &none   &none      &none &none
               &none  &none     &none  &none   &none      &none   &none     &none     &none   &none
             >;
 
@@ -228,11 +228,11 @@ chosen {
 //             │     │     │     │     │     │     │     │     │     │     │     │
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
-&bt BT_CLR     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                 &rgb_ug RGB_TOG &rgb_ug RGB_HUI &rgb_ug RGB_HUD &rgb_ug RGB_SAI &rgb_ug RGB_SAD &none
-&to_base       &none        &none        &none        &none        &none                        &rgb_ug RGB_EFF &rgb_ug RGB_BRI &rgb_ug RGB_BRD &none           &none           &none
-&none          &none        &none        &none        &none        &none                        &none           &none           &none           &none           &none           &none
-&bootloader    &sys_reset        &none        &none        &none        &none &none       &none      &none           &none           &none           &none           &none           &none
-                            &none        &none        &none        &none &none       &none      &none           &none           &none           &none
+&bt BT_CLR     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4            &rgb_ug RGB_TOG &rgb_ug RGB_HUI &rgb_ug RGB_HUD &rgb_ug RGB_SAI &rgb_ug RGB_SAD &none
+&to_base       &none        &none        &none        &none        &none                   &rgb_ug RGB_EFF &rgb_ug RGB_BRI &rgb_ug RGB_BRD &none           &none           &none
+&none          &none        &none        &none        &none        &none                   &none           &none           &none           &none           &none           &none
+&bootloader    &sys_reset   &none        &none        &none        &none &none       &none &none           &none           &none           &none           &none           &none
+                            &none        &none        &none        &none &none       &none &none           &none           &none           &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
