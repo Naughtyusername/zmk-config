@@ -9,13 +9,18 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/rgb.h>
-#include <dt-bindings/zmk/ext_power.h> // <--- Add this if missing
+#include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/pointing.h>
 
 #define BASE 0
 #define LOWER 1
 #define RAISE 2
 #define FUNCTION 3
 #define ADJUST 4
+#define GAMING 5
+#define GAMING2 6
+#define MOUSE 7
 
 / {
 
@@ -85,6 +90,16 @@ chosen {
             #binding-cells = <0>;
             bindings = <&kp DOT &kp DOT &kp FSLH>;
         };
+        range: range_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DOT &kp DOT &kp EQUAL>;
+        };
+        hmdr: hmdr_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp TILDE &kp FSLH>;
+        };
     };
 
     conditional_layers {
@@ -129,10 +144,10 @@ chosen {
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
 &kp GRAVE &kp N1 &kp N2 &kp N3    &kp N4    &kp N5                               &kp N6       &kp N7    &kp N8   &kp N9   &kp N0   &kp BSPC
-&none    &td_q_esc  &kp W  &kp E     &kp R     &kp T                                 &kp Y        &kp U     &kp I    &kp O    &kp P    &kp DEL
+&none     &td_q_esc     &kp W     &kp E     &kp R &kp T                          &kp Y        &kp U     &kp I    &kp O    &kp P    &kp DEL
 &none    &hm_l LGUI A &hm_l LALT S &hm_l LCTRL D &hm_l LSHFT F &kp G            &kp H      &hm_r RSHFT J &hm_r RCTRL K &hm_r RALT L &hm_r RGUI SEMI
 &none    &kp Z  &kp X  &kp C     &kp V     &kp B     &kp C_MUTE        &rgb_ug RGB_TOG    &kp N         &kp M     &kp DOT  &kp COMMA &kp FSLH &none
-                    &none  &none &none     &lt RAISE SPACE &bs_del    &kp DEL  &lt LOWER RET &none &none    &none
+                    &sk LSHFT &sk LCTRL &sk LALT &lt RAISE SPACE &bs_del    &kp DEL  &lt LOWER RET &none &none    &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -154,7 +169,7 @@ chosen {
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
 &none  &none  &none     &none     &none     &none                       &none    &none  &none  &none  &none &none
-&none  &none  &none     &none     &none     &none                       &none    &kp N7 &kp N8 &kp N9 &kp N0 &none
+&none  &kp N1 &kp N2    &kp N3    &kp N4    &kp N5                      &kp N6   &kp N7 &kp N8 &kp N9 &kp N0 &none
 &none  &none  &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE &none                &kp DOT  &kp N4 &kp N5 &kp N6 &kp N0 &none
 &none  &none  &kp C_PREV &kp C_PP  &kp C_NEXT &none  &none      &none   &none    &kp N1 &kp N2 &kp N3 &none  &none
               &none     &none     &none     &trans &none        &kp RET &trans   &none  &none  &none
@@ -179,10 +194,10 @@ chosen {
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
 &none     &none    &none    &none    &none     &none                       &none     &none     &none    &none   &none  &none
-&kp PRCNT &kp DLLR &kp MINUS &kp PIPE &kp LBKT  &none                      &kp RBKT  &kp PLUS  &kp HASH &kp LT  &kp GT &none
-&kp EXCL  &kp STAR &kp EQUAL &kp AMPS &kp LPAR  &none                      &kp RPAR  &kp CARET &kp UNDER &kp DQT &double_colon  &none
-&none     &none    &arrow   &assign  &kp LBRC  &none    &none      &none   &kp RBRC  &kp AT    &kp COMMA &kp DOT &kp FSLH &none
-                   &none    &none    &none     &trans   &none      &kp SPACE &trans  &none    &none    &none
+&kp BSLH &kp DLLR &kp PIPE &kp MINUS &kp LBKT  &none                      &kp RBKT  &kp PLUS  &kp HASH &kp LT  &kp GT &none
+&kp TILDE &kp AMPS &kp CARET &kp EQUAL &kp LPAR  &none                      &kp RPAR  &kp CARET &kp UNDER &kp DQT &double_colon  &none
+&range    &kp EXCL &arrow   &assign  &kp LBRC  &none    &none      &none   &kp RBRC  &kp AT    &kp COMMA &kp DOT &kp FSLH &none
+                   &none    &none    &hmdr     &trans   &kp GRAVE  &kp SPACE &trans  &kp QMARK &none    &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -207,7 +222,7 @@ chosen {
 &kp F9 &kp F10 &kp F11 &kp F12 &none &none                       &kp PG_UP &kp HOME  &kp END &kp INS    &none &none
 &kp F5 &kp F6 &kp F7 &kp F8    &none  &none                      &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &none &none
 &kp F1 &kp F2 &kp F3 &kp F4    &none  &none   &none      &none   &kp PG_DN &none     &none   &none      &none &none
-              &none  &none     &none  &none   &none      &none   &none     &none     &none   &none
+              &none  &none     &none  &none   &none      &none   &none     &mo MOUSE &none   &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -229,10 +244,85 @@ chosen {
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
 &bt BT_CLR     &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4            &rgb_ug RGB_TOG &rgb_ug RGB_HUI &rgb_ug RGB_HUD &rgb_ug RGB_SAI &rgb_ug RGB_SAD &none
-&to BASE       &none        &none        &none        &none        &none                   &rgb_ug RGB_EFF &rgb_ug RGB_BRI &rgb_ug RGB_BRD &none           &none           &none
+&to BASE       &tog GAMING  &none        &none        &none        &none                   &rgb_ug RGB_EFF &rgb_ug RGB_BRI &rgb_ug RGB_BRD &none           &none           &none
 &none          &none        &none        &none        &none        &none                   &none           &none           &none           &none           &none           &none
 &bootloader    &sys_reset   &none        &none        &none        &none &none       &none &none           &none           &none           &none           &none           &none
                             &none        &none        &none        &none &none       &none &none           &none           &none           &none
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        // GAMING LAYER - No home row mods for gaming
+        gaming_layer {
+            display-name = "GAMING";
+// ╭─────┬─────┬─────┬─────┬─────┬─────╮                 ╭─────┬─────┬─────┬─────┬─────┬─────╮
+// │  `  │  1  │  2  │  3  │  4  │  5  │                 │  6  │  7  │  8  │  9  │  0  │BKSPC│
+// ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
+// │ ESC │  Q  │  W  │  E  │  R  │  T  │                 │  Y  │  U  │  I  │  O  │  P  │     │
+// ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
+// │ TAB │  A  │  S  │  D  │  F  │  G  │                 │  H  │  J  │  K  │  L  │  ;  │     │
+// ├─────┼─────┼─────┼─────┼─────┼─────┼─────╮     ╭─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+// │     │  Z  │  X  |  C  │  V  │  B  │     │     │     │  N  │  M  │  ,  │  .  │  /  │     │
+// ╰─────┴─────┼─────┼─────┼─────┼─────┼─────┤     ├─────┼─────┼─────┼─────┼─────┴─────┴─────╯
+//             │SHIFT│ CTRL│ ALT │SPACE│BKSPC│     │ DEL │ENTER│ FN  │TOGGL│     │
+//             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
+            bindings = <
+&kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4 &kp N5                          &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &kp BSPC
+&kp ESC &kp Q &kp W &kp E &kp R &kp T                                 &kp Y &kp U &kp I &kp O &kp P &kp F12
+&kp TAB &kp A &kp S &kp D &kp F &kp G                                 &kp H &kp J &kp K &kp L &kp SEMI &none
+&none &kp Z &kp X &kp C &kp V &kp B &none                  &none      &kp N &kp M &kp COMMA &kp DOT &kp FSLH &none
+            &kp LSHFT &kp LCTRL &kp LALT &kp SPACE &kp BSPC           &kp DEL &kp RET &mo FUNCTION &tog GAMING2 &none
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        // GAMING2 LAYER - Numpad for roguelikes
+        gaming2_layer {
+            display-name = "GAMING2";
+// ╭─────┬─────┬─────┬─────┬─────┬─────╮                 ╭─────┬─────┬─────┬─────┬─────┬─────╮
+// │  `  │  1  │  2  │  3  │  4  │  5  │                 │  6  │  7  │  8  │  9  │  0  │BKSPC│
+// ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
+// │ ESC │  Q  │  W  │  E  │  R  │  T  │                 │  Y  │  U  │ KP7 │ KP8 │ KP9 │ F12 │
+// ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
+// │ TAB │  A  │  S  │  D  │  F  │  G  │                 │  H  │  J  │ KP4 │ KP5 │ KP6 │ENTER│
+// ├─────┼─────┼─────┼─────┼─────┼─────┼─────╮     ╭─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+// │SHIFT│  Z  │  X  |  C  │  V  │  B  │     │     │     │  N  │  M  │ KP1 │ KP2 │ KP3 │PRTSC│
+// ╰─────┴─────┼─────┼─────┼─────┼─────┼─────┤     ├─────┼─────┼─────┼─────┼─────┴─────┴─────╯
+//             │SHIFT│ CTRL│ ALT │SPACE│BKSPC│     │ DEL │ KP0 │ KP. │TOGGL│     │
+//             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
+            bindings = <
+&kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4 &kp N5                          &kp N6 &kp N7 &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp BSPC
+&kp ESC &kp Q &kp W &kp E &kp R &kp T                                 &kp Y &kp U &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp F12
+&kp TAB &kp A &kp S &kp D &kp F &kp G                                 &kp H &kp J &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp RET
+&kp LSHFT &kp Z &kp X &kp C &kp V &kp B &none              &none      &kp N &kp M &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp PSCRN
+            &kp LSHFT &kp LCTRL &kp LALT &kp SPACE &kp BSPC           &kp DEL &kp KP_N0 &kp KP_DOT &tog GAMING2 &none
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        // MOUSE LAYER - Vim-style mouse control
+        mouse_layer {
+            display-name = "MOUSE";
+// ╭─────┬─────┬─────┬─────┬─────┬─────╮                 ╭─────┬─────┬─────┬─────┬─────┬─────╮
+// │     │     │     │     │     │     │                 │     │     │     │     │     │     │
+// ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
+// │     │     │     │     │     │     │                 │RCLK │MCLK │     │     │     │     │
+// ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
+// │     │     │     │SCR↓ │SCR↑ │     │                 │  ←  │  ↓  │  ↑  │  →  │     │     │
+// ├─────┼─────┼─────┼─────┼─────┼─────┼─────╮     ╭─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+// │     │     │     │     │     │     │     │     │     │LCLK │     │     │     │     │     │
+// ╰─────┴─────┼─────┼─────┼─────┼─────┼─────┤     ├─────┼─────┼─────┼─────┼─────┴─────┴─────╯
+//             │     │     │     │     │     │     │     │     │MOUSE│     │     │
+//             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
+            bindings = <
+&none &none &none &none &none &none                                           &none &none &none &none &none &none
+&none &none &none &none &none &none                                           &mkp RCLK &mkp MCLK &none &none &none &none
+&none &none &none &msc SCRL_DOWN &msc SCRL_UP &none                           &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &none &none
+&none &none &none &none &none &none &none                          &none      &mkp LCLK &none &none &none &none &none
+            &none &none &none &none &none                                     &none &trans &none &none &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
