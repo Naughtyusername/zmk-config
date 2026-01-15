@@ -194,9 +194,9 @@ chosen {
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
 &none &none    &none    &none    &none     &none                       &none     &none     &none    &none           &none
-&none &kp BSLH  &kp DLLR &kp PIPE &kp MINUS  &kp LBKT                  &kp RBKT  &kp PLUS  &kp HASH  &kp SEMI &kp DCLN        &none
-&none &kp TILDE &kp AMPS &kp ASTR &kp EQUAL &kp LPAR                  &kp RPAR  &kp CIRC &kp UNDER &kp PERC &kp COLN        &none
-&none &range    &kp EXCL &kp QUOT &kp DQT   &kp LBRC &none      &none &kp RBRC  &kp AT    &kp LT   &kp GT  &kp QUES       &none
+&none &kp BSLH  &kp DLLR   &kp PIPE   &kp MINUS  &kp LBKT                  &kp RBKT  &kp PLUS  &kp HASH  &kp SEMICOLON &double_colon        &none
+&none &kp TILDE &kp AMPS   &kp STAR   &kp EQUAL  &kp LPAR                  &kp RPAR  &kp CARET  &kp UNDER  &kp PERCENT &kp COLON        &none
+&none &kp GRAVE  &kp EXCL   &arrow     &assign    &kp LBRC &none      &none &kp RBRC  &kp AT    &kp LESS_THAN   &kp GREATER_THAN  &kp QUESTION       &none
                    &none    &none    &hmdr     &trans &kp GRAVE  &kp SPACE &trans  &kp QMARK &none    &none
             >;
 
