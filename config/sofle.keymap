@@ -26,6 +26,7 @@
 
 chosen {
         zmk,underglow = &led_strip;
+        zephyr,display = &oled; // <--- This is the "Handshake" line!
     };
 
     behaviors {
@@ -192,8 +193,8 @@ chosen {
 //             │     │     │     │HOLD │     │     │SPACE│LOWER│     │     │     │
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
-&none     &none    &none    &none    &none     &none                       &none     &none     &none    &none   &none  &none
-&kp BSLH &kp DLLR &kp PIPE &kp MINUS &kp LBKT  &none                      &kp RBKT  &kp PLUS  &kp HASH &kp LT  &kp GT &none
+&none     &none    &none    &none    &none     &none                        &none     &none     &none    &none   &none  &none
+&kp BSLH &kp DLLR &kp PIPE &kp MINUS &kp LBKT  &none                        &kp RBKT  &kp PLUS  &kp HASH &kp LT  &kp GT &none
 &kp TILDE &kp AMPS &kp CARET &kp EQUAL &kp LPAR  &none                      &kp RPAR  &kp CARET &kp UNDER &kp DQT &double_colon  &none
 &range    &kp EXCL &arrow   &assign  &kp LBRC  &none    &none      &none   &kp RBRC  &kp AT    &kp COMMA &kp DOT &kp FSLH &none
                    &none    &none    &hmdr     &trans   &kp GRAVE  &kp SPACE &trans  &kp QMARK &none    &none
