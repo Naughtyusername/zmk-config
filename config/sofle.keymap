@@ -26,7 +26,6 @@
 
 chosen {
         zmk,underglow = &led_strip;
-        zephyr,display = &oled; // <--- This is the "Handshake" line!
     };
 
     behaviors {
@@ -140,14 +139,14 @@ chosen {
 // ├─────┼─────┼─────┼─────┼─────┼─────┼─────╮     ╭─────┼─────┼─────┼─────┼─────┼─────┼─────┤
 // │     │  Z  │  X  |  C  │  V  │  B  │ ENC │     │ ENC │  N  │  M  │  .  │  ,  │  /  │     │
 // ╰─────┴─────┼─────┼─────┼─────┼─────┼─────┤     ├─────┼─────┼─────┼─────┼─────┴─────┴─────╯
-//             │     │     │     │SP/RA│BKSPC│     │ DEL │EN/LO│     │     │     │
+//             │     │     │     │BKSPC|SP/RA│     │EN/LO│     │     │     │     │
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
-&kp GRAVE &kp N1 &kp N2 &kp N3    &kp N4    &kp N5                               &kp N6       &kp N7    &kp N8   &kp N9   &kp N0   &kp BSPC
-&none     &td_q_esc     &kp W     &kp E     &kp R &kp T                          &kp Y        &kp U     &kp I    &kp O    &kp P    &kp DEL
-&none    &hm_l LGUI A &hm_l LALT S &hm_l LCTRL D &hm_l LSHFT F &kp G            &kp H      &hm_r RSHFT J &hm_r RCTRL K &hm_r RALT L &hm_r RGUI SEMI
-&none    &kp Z  &kp X  &kp C     &kp V     &kp B     &kp C_MUTE        &rgb_ug RGB_TOG    &kp N         &kp M     &kp DOT  &kp COMMA &kp FSLH &none
-                    &sk LSHFT &sk LCTRL &sk LALT &lt RAISE SPACE &bs_del    &kp DEL  &lt LOWER RET &none &none    &none
+&kp GRAVE &kp N1 &kp N2 &kp N3    &kp N4    &kp N5                                             &kp N6       &kp N7    &kp N8   &kp N9   &kp N0   &kp BSPC
+&none     &td_q_esc     &kp W     &kp E     &kp R &kp T                                        &kp Y        &kp U     &kp I    &kp O    &kp P    &kp DEL
+&none    &hm_l LGUI A &hm_l LALT S &hm_l LCTRL D &hm_l LSHFT F &kp G                           &kp H  &hm_r RSHFT J &hm_r RCTRL K &hm_r RALT L &hm_r RGUI SEMI &none
+&none    &kp Z  &kp X  &kp C     &kp V     &kp B     &kp C_MUTE             &rgb_ug RGB_TOG    &kp N         &kp M     &kp DOT    &kp COMMA    &kp FSLH        &none
+                    &sk LSHFT &sk LCTRL &sk LALT &bs_del &lt RAISE SPACE    &lt LOWER RET &trans &mo FUNCTION &none    &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -159,20 +158,20 @@ chosen {
 // ╭─────┬─────┬─────┬─────┬─────┬─────╮                 ╭─────┬─────┬─────┬─────┬─────┬─────╮
 // │     │     │     │     │     │     │                 │     │     │     │     │     │     │
 // ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
-// │     │     │     │     │     │     │                 │  6  │  7  │  8  │  9  │  0  │     │
+// │     │  1  │  2  │  3  │  4  │  5  │                 │  6  │  7  │  8  │  9  │  0  │     │
 // ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
-// │     │     │VOLUP│VOLDN│ MUTE│     │                 │  .  │  4  │  5  │  6  │  0  │     │
+// │     │     │     │VOLUP│VOLDN│MUTE |                 │  .  │  4  │  5  │  6  │  0  │     │
 // ├─────┼─────┼─────┼─────┼─────┼─────┼─────╮     ╭─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-// │     │     │ PREV│PLYPS│ NEXT│     │     │     │     │     │  1  │  2  │  3  │     │     │
+// │     │     │     │ PREV│PLYPS│NEXT │     │     │     │     │  1  │  2  │  3  │     │     │
 // ╰─────┴─────┼─────┼─────┼─────┼─────┼─────┤     ├─────┼─────┼─────┼─────┼─────┴─────┴─────╯
-//             │     │     │     │SPACE│     │     │ENTER│HOLD │     │     │     │
+//             │     │     │     │     │     │     │     │     │     │     │     │
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
 &none  &none  &none     &none     &none     &none                       &none    &none  &none  &none  &none &none
 &none  &kp N1 &kp N2    &kp N3    &kp N4    &kp N5                      &kp N6   &kp N7 &kp N8 &kp N9 &kp N0 &none
-&none  &none  &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE &none                &kp DOT  &kp N4 &kp N5 &kp N6 &kp N0 &none
-&none  &none  &kp C_PREV &kp C_PP  &kp C_NEXT &none  &none      &none   &none    &kp N1 &kp N2 &kp N3 &none  &none
-              &none     &none     &none     &trans &none        &kp RET &trans   &none  &none  &none
+&none  &none &none  &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE                &kp DOT  &kp N4 &kp N5 &kp N6 &kp N0 &none
+&none  &none &none  &kp C_PREV   &kp C_PP  &kp C_NEXT   &none    &none  &none    &kp N1 &kp N2 &kp N3 &none  &none
+              &none     &none     &none     &trans      &trans   &trans &trans   &none  &none  &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -184,20 +183,20 @@ chosen {
 // ╭─────┬─────┬─────┬─────┬─────┬─────╮                 ╭─────┬─────┬─────┬─────┬─────┬─────╮
 // │     │     │     │     │     │     │                 │     │     │     │     │     │     │
 // ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
-// │     │  $  │  -  │  |  │  [  │     │                 │  ]  │  +  │  #  │  <  │  >  │     │
+// │     │  \  │  $  │  |  │  -  │  [  │                 │  ]  │  +  │  #  │  ;  │ ::  │     │
 // ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
-// │     │  *  │  =  │  &  │  (  │     │                 │  )  │  ^  │  _  │  "  │ ::  │     │
+// │     │  ~  │  &  │  *  │  =  │  (  │                 │  )  │  ^  │  _  │  %  │  :  │     │
 // ├─────┼─────┼─────┼─────┼─────┼─────┼─────╮     ╭─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-// │     │     │ ->  │ :=  │  {  │     │     │     │     │  }  │  @  │  ,  │  .  │  /  │     │
+// │     │ ..= │  !  │  '  │  "  │  {  │     │     │     │  }  │  @  │  <  │  >  │  ?  │     │
 // ╰─────┴─────┼─────┼─────┼─────┼─────┼─────┤     ├─────┼─────┼─────┼─────┼─────┴─────┴─────╯
 //             │     │     │     │HOLD │     │     │SPACE│LOWER│     │     │     │
 //             ╰─────┴─────┴─────┴─────┴─────╯     ╰─────┴─────┴─────┴─────┴─────╯
             bindings = <
 &none     &none    &none    &none    &none     &none                        &none     &none     &none    &none   &none  &none
-&kp BSLH &kp DLLR &kp PIPE &kp MINUS &kp LBKT  &none                        &kp RBKT  &kp PLUS  &kp HASH &kp LT  &kp GT &none
-&kp TILDE &kp AMPS &kp CARET &kp EQUAL &kp LPAR  &none                      &kp RPAR  &kp CARET &kp UNDER &kp DQT &double_colon  &none
-&range    &kp EXCL &arrow   &assign  &kp LBRC  &none    &none      &none   &kp RBRC  &kp AT    &kp COMMA &kp DOT &kp FSLH &none
-                   &none    &none    &hmdr     &trans   &kp GRAVE  &kp SPACE &trans  &kp QMARK &none    &none
+&none &kp BSLH &kp DLLR &kp PIPE &kp MINUS &kp LBKT                          &kp RBKT  &kp PLUS  &kp HASH &kp LT  &kp GT &none
+&none &kp TILDE &kp AMPS &kp CARET &kp EQUAL &kp LPAR                        &kp RPAR  &kp CARET &kp UNDER &kp DQT &double_colon  &none
+&none &range    &kp EXCL &arrow   &assign  &kp LBRC      &none      &none   &kp RBRC  &kp AT    &kp COMMA &kp DOT &kp FSLH &none
+                   &none    &none    &hmdr     &trans   &trans      &trans &trans  &trans &none &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -222,7 +221,7 @@ chosen {
 &kp F9 &kp F10 &kp F11 &kp F12 &none &none                       &kp PG_UP &kp HOME  &kp END &kp INS    &none &none
 &kp F5 &kp F6 &kp F7 &kp F8    &none  &none                      &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &none &none
 &kp F1 &kp F2 &kp F3 &kp F4    &none  &none   &none      &none   &kp PG_DN &none     &none   &none      &none &none
-              &none  &none     &none  &none   &none      &none   &none     &mo MOUSE &none   &none
+              &none  &none     &none  &none   &none      &none   &none     &none &none   &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -234,7 +233,7 @@ chosen {
 // ╭─────┬─────┬─────┬─────┬─────┬─────╮                 ╭─────┬─────┬─────┬─────┬─────┬─────╮
 // │BTCLR│ BT0 │ BT1 │ BT2 │ BT3 │ BT4 │                 │RGBTG│RGBH+│RGBH-│RGBS+│RGBS-│     │
 // ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
-// │BASE │     │     │     │     │     │                 │RGBEF│RGBB+│RGBB-│     │     │     │
+// │BASE │GAMIN│     │     │     │     │                 │RGBEF│RGBB+│RGBB-│     │     │     │
 // ├─────┼─────┼─────┼─────┼─────┼─────┤                 ├─────┼─────┼─────┼─────┼─────┼─────┤
 // │     │     │     │     │     │     │                 │     │     │     │     │     │     │
 // ├─────┼─────┼─────┼─────┼─────┼─────┼─────╮     ╭─────┼─────┼─────┼─────┼─────┼─────┼─────┤
