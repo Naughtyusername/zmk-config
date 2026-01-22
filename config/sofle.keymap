@@ -7,3 +7,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+
+// include zmk submodules
+#include "zmk-helpers/include/zmk-helpers/helper.h"
