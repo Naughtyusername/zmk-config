@@ -1,0 +1,10 @@
+#include "layouts.h"
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+#include "keymaps.dtsi"
+    };
+};
