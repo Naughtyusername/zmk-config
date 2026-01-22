@@ -1,10 +1,6 @@
-#include "layouts.h"
+// clang-format off
+// never remove this clang format, zmk is fucking dumb and clang is fucking dumb and everything breaks if we let clang reorder everything
+// c preprocessor macros are so finicky
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-
-/ {
-    keymap {
-        compatible = "zmk,keymap";
 #include "keymaps.dtsi"
-    };
-};
