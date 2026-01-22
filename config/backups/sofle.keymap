@@ -18,6 +18,11 @@
 #include "shared/combos.dtsi"
 #include "shared/macros.dtsi"
 
+// zmk-helper stuff
+#include "zmk-helpers/helper.h"
+
+// Source desired key-position labels
+#include "zmk-helpers/key-labels/sofle.h"
 
 #define BASE 0
 #define LOWER 1
@@ -27,6 +32,11 @@
 #define GAMING 5
 #define GAMING2 6
 #define MOUSE 7
+
+#define ZMK_LAYER(name, layout) \
+    name { \
+        bindings = <layout>; \
+    };
 
 / {
 
