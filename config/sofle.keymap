@@ -7,8 +7,47 @@
 #include <dt-bindings/zmk/bt.h>
 #include "zmk-helpers/helper.h"
 
-// Sofle usually has ~60 keys, so we would define the core 34 here.
-// For now, let's just include the base to get you compiling.
 #include "base.keymap"
 
-// You can add Sofle-specific features (encoders, extra keys) below.
+/* Sofle Key Indices */
+// Left hand: Rows 0-3 (0-5, 12-17, 24-29, 36-42) + Thumbs (50-54)
+#define KEYS_L \
+    0  1  2  3  4  5  \
+    12 13 14 15 16 17 \
+    24 25 26 27 28 29 \
+    36 37 38 39 40 41 42 \
+    50 51 52 53 54
+
+// Right hand: Rows 0-3 (6-11, 18-23, 30-35, 43-49) + Thumbs (55-59)
+#define KEYS_R \
+    6  7  8  9  10 11 \
+    18 19 20 21 22 23 \
+    30 31 32 33 34 35 \
+    43 44 45 46 47 48 49 \
+    55 56 57 58 59
+
+// Thumb keys for the hand doing the holding (used to allow thumb+alpha chording)
+#define THUMBS_L 50 51 52 53 54
+#define THUMBS_R 55 56 57 58 59
+
+/* Apply the triggers */
+// For Left-hand mods: triggered by Right-hand keys + Right-side thumbs
+&hml { hold-trigger-key-positions = <KEYS_R THUMBS_R>; };
+
+// For Right-hand mods: triggered by Left-hand keys + Left-side thumbs
+&hmr { hold-trigger-key-positions = <KEYS_L THUMBS_L>; };
+
+// Define how the 34 keys "float" inside the Sofle's ~60 keys
+#define LAYOUT( \
+    k01, k02, k03, k04, k05,   k06, k07, k08, k09, k10, \
+    k11, k12, k13, k14, k15,   k16, k17, k18, k19, k20, \
+    k21, k22, k23, k24, k25,   k26, k27, k28, k29, k30, \
+              t01, t02,        t03, t04 \
+) \
+&kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4 &kp N5                        &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &kp MINUS \
+&kp TAB   k01    k02    k03    k04    k05                           k06    k07    k08    k09    k10    &kp EQUAL \
+&kp LCTRL k11    k12    k13    k14    k15                           k16    k17    k18    k19    k20    &kp BSLH \
+&kp LSHFT k21    k22    k23    k24    k25    &none         &none    k26    k27    k28    k29    k30    &kp RSHFT \
+                 &none  &none  t01    t02    &kp ESC       &kp RET  t03    t04    &none  &none
+
+
