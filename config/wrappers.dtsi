@@ -1,26 +1,189 @@
 // config/wrappers.dtsi
-
 // clang-format off
+
+/* Copyright 2025 naughtyusername
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ *
+ * wrappers.h - Layout wrapper macros
+ * COPIED from qmk - most the comments are qmk related. will update over time
+ * This file defines reusable layout "building blocks" that can be combined
+ * differently for each keyboard. The idea is:
+ *
+ *   1. Define your CORE layout (the 3x5 alpha grid) once
+ *   2. Define keyboard-specific "wrappers" that add thumb keys
+ *   3. Each keymap.c just assembles the pieces
+ *
+ * HOW IT WORKS:
+ * -------------
+ * C preprocessor macros are expanded in multiple passes. This lets us do:
+ *
+ *   LAYOUT_mitosis_wrapper(
+ *       ___BASE_L1___, ___BASE_R1___,   // Expands to: TD(TD_Q_ESC), KC_W, ...
+ *       ...
+ *   )
+ *
+ * The wrapper macro passes everything to the real LAYOUT() macro.
+ */
+
+
+#define BASE 0
+#define LOWER 1
+#define RAISE 2
+#define FUNCTION 3
+#define ADJUST 4
+#define GAMING 5
+#define GAMING2 6
+#define MOUSE 7
+
+// alias
+#define ___ &trans
+#define XXX &none
+
+// --- Home Row Mod Aliases ---
+// Format: &hm <Modifier> <Key>
+#define HM_A &hml LGUI A
+#define HM_S &hml LALT S
+#define HM_D &hml LCTRL D
+#define HM_F &hml LSHFT F
+
+#define HM_J &hml RSHFT J
+#define HM_K &hml RCTRL K
+#define HM_L &hml RALT L
+#define HM_SCLN &hml RGUI SEMI
+
+
+/* ==========================================================================
+ * 5-COLUMN MACROS (for 3x5 splits like the core of your layout)
+ * ==========================================================================
+ * These are your BASE rows - the 3x5 grid that's common to all boards.
+ * Each macro is ONE ROW (5 keys) for either left (L) or right (R) hand.
+ *
+ * Naming convention: ___LAYER_ROW_SIDE___
+ *   - Layer: BASE, LOWER, RAISE, etc.
+ *   - Row: 1 (top), 2 (home), 3 (bottom)
+ *   - Side: L (left), R (right)
+ *
+ * The triple underscores are just a visual convention (from Drashna) to make
+ * it obvious these are wrapper macros, not regular defines.
+ */
+
+/* --------------------------------------------------------------------------
+ * BASE LAYER - QWERTY with Home Row Mods
+ * --------------------------------------------------------------------------
+ *  Q     W     E     R     T          Y     U     I     O     P
+ * A/Gui S/Alt D/Ctl F/Sft  G          H    J/Sft K/Ctl L/Alt ;/Gui
+ *  Z     X     C     V     B          N     M     ,     .     /
+ */
+
 // Alphas
 #define ___BASE_L1___ &kp Q &kp W &kp E &kp R &kp T
-// #define ___BASE_L2___ &hm LGUI A &hm LALT S &hm LCTRL D &hm LSHFT F &kp G
-#define ___BASE_L2___ &kp A &kp S &kp D &kp F &kp G
+#define ___BASE_L2___ HM_A HM_S HM_D HM_F &kp G
 #define ___BASE_L3___ &kp Z &kp X &kp C &kp V &kp B
 
 #define ___BASE_R1___ &kp Y &kp U &kp I &kp O &kp P
-// #define ___BASE_R2___ &kp H &hm RSHFT J &hm RCTRL K &hm RALT L &hm RGUI SEMI
-#define ___BASE_R2___ &kp H &kp J &kp K &kp L &kp SEMI
+#define ___BASE_R2___ &kp H HM_J HM_K HM_L HM_SCLN
 #define ___BASE_R3___ &kp N &kp M &kp COMMA &kp DOT &kp SLASH
 
-// Lower (Numbers)
-#define ___LOWER_L1___ &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
-#define ___LOWER_R1___ &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
+/* --------------------------------------------------------------------------
+ * RAISE LAYER - Symbols (Odin/Programming focused)
+ * --------------------------------------------------------------------------
+ *  \     $     |     -     [          ]     +     #     ;     ::
+ *  ~     &     *     =     (          )     ^     _     %     :
+ * ..=    !     '     "     {          }     @     <     >     ?
+ */
+#define ___RAISE_L1___ &kp BSLS &kp DLR &kp PIPE &kp MINS &kp LBRC
+#define ___RAISE_L2___ &kp TILD &kp AMPR &kp ASTR &kp EQL &kp LPRN
+#define ___RAISE_L3___ &kp RANGE &kp EXLM &kp QUOT &kp DQT &kp LCBR
 
+#define ___RAISE_R1___ &kp RBRC &kp PLUS &kp HASH &kp SCLN &kp DCLN
+#define ___RAISE_R2___ &kp RPRN &kp CIRC &kp UNDS &kp PERC &kp COLN
+#define ___RAISE_R3___ &kp RCBR &kp AT &kp LT &kp GT &kp QUES
+
+/* --------------------------------------------------------------------------
+ * LOWER LAYER - Numbers and Media
+ * --------------------------------------------------------------------------
+ *  1     2     3     4     5          6     7     8     9     0
+ *  _     _    Vol+  Vol-  Mute        .     4     5     6     0
+ *  _     _    Prev  Play  Next        _     1     2     3     _
+ */
+#define ___LOWER_L1___ &kp 1 &kp 2 &kp 3 &kp 4 &kp 5
+#define ___LOWER_L2___ _______ _______ &kp VOLU &kp VOLD &kp MUTE
+#define ___LOWER_L3___ _______ _______ &kp MPRV &kp MPLY &kp MNXT
+
+#define ___LOWER_R1___ &kp 6 &kp 7 &kp 8 &kp 9 &kp 0
+#define ___LOWER_R2___ &kp DOT &kp 4 &kp 5 &kp 6 &kp 0
+#define ___LOWER_R3___ _______ &kp 1 &kp 2 &kp 3 _______
+
+/* --------------------------------------------------------------------------
+ * FUNCTION LAYER - F-keys and Navigation
+ * --------------------------------------------------------------------------
+ *  F9   F10   F11   F12   PrtSc       PgUp  Home  End   Ins    _
+ *  F5   F6    F7    F8     _          Left  Down  Up    Right  _
+ *  F1   F2    F3    F4     _          PgDn   _     _     _      _
+ */
+#define ___FUNC_L1___ &kp F9 &kp F10 &kp F11 &kp F12 &kp PSCR
+#define ___FUNC_L2___ &kp F5 &kp F6 &kp F7 &kp F8 _______
+#define ___FUNC_L3___ &kp F1 &kp F2 &kp F3 &kp F4 _______
+
+#define ___FUNC_R1___ &kp PGUP &kp HOME &kp END &kp INS _______
+#define ___FUNC_R2___ &kp LEFT &kp DOWN &kp UP &kp RGHT _______
+#define ___FUNC_R3___ &kp PGDN _______ _______ _______ _______
+
+/* --------------------------------------------------------------------------
+ * ADJUST LAYER - System (Tri-layer: LOWER + RAISE) TODO: tweak this removed
+ * mouse keys from here dont care for them anwyways. probably do something with
+ * NK tog we need the bootmagic shit to use kb in bootloaders too on the list.
+ * --------------------------------------------------------------------------
+ * Base  Game   _     _     _            _     _     _     _    _
+ *  _     _     _     _     _            _     _     _     _    _
+ *  _     _     _     _     _            _     _     _     _    _
+ */
+#define ___ADJUST_L1___ _______ _______ _______ _______ _______
+#define ___ADJUST_L2___ _______ _______ _______ _______ _______
+#define ___ADJUST_L3___ _______ _______ _______ _______ _______
+
+#define ___ADJUST_R1___ _______ _______ _______ _______ _______
+#define ___ADJUST_R2___ _______ _______ _______ _______ _______
+#define ___ADJUST_R3___ _______ _______ _______ _______ _______
+
+/* --------------------------------------------------------------------------
+ * GAMING LAYER - No home row mods standard QWERTY
+ * --------------------------------------------------------------------------
+ *  Q     W     E     R     T          Y     U     I     O     P
+ *  A     S     D     F     G          H     J     K     L     ;
+ *  Z     X     C     V     B          N     M     ,     .     /
+ */
+#define ___GAMING_L1___ &kp Q &kp W &kp E &kp R &kp T
+#define ___GAMING_L2___ &kp A &kp S &kp D &kp F &kp G
+#define ___GAMING_L3___ &kp Z &kp X &kp C &kp V &kp B
+
+#define ___GAMING_R1___ &kp Y &kp U &kp I &kp O &kp P
+#define ___GAMING_R2___ &kp H &kp J &kp K &kp L &kp SCLN
+#define ___GAMING_R3___ &kp N &kp M &kp COMM &kp DOT &kp SLSH
+
+/* --------------------------------------------------------------------------
+ * BLANK TEMPLATE - For new layers TODO in zmk this needs to be changed. we aliased trans or none to ___ and XXX
+ * --------------------------------------------------------------------------
+ *  _     _     _     _     _          _     _     _     _     _
+ *  _     _     _     _     _          _     _     _     _     _
+ *  _     _     _     _     _          _     _     _     _     _
+ */
+#define ___BLANK_L1___ _______ _______ _______ _______ _______
+#define ___BLANK_L2___ _______ _______ _______ _______ _______
+#define ___BLANK_L3___ _______ _______ _______ _______ _______
+
+#define ___BLANK_R1___ _______ _______ _______ _______ _______
+#define ___BLANK_R2___ _______ _______ _______ _______ _______
+#define ___BLANK_R3___ _______ _______ _______ _______ _______
+
+// non HMR rows
+#define ___BASE_NO_HRM_L2___ &kp A &kp S &kp D &kp F &kp G
+#define ___BASE_NO_HRM_R2___ &kp H &kp J &kp K &kp L &kp SEMI
 
 /* ==========================================================================
  * 6-COLUMN EXPANSION MACROS
  * ==========================================================================
- * For keyboards with 6 columns per side (like Corne), we add an outer column.
+ * For keyboards with 6 columns per side (like Corne) we add an outer column.
  * These take the 5-column macros and add a key on each edge.
  *
  * Format: OUTER_LEFT, <5 col macro>, OUTER_RIGHT
@@ -28,58 +191,71 @@
 
 // Base layer with outer columns: Tab on left, Backspace on right
 // used on corne and kyria
-#define ___BASE_L1_6___ &kp_TAB, ___BASE_L1___
-#define ___BASE_L2_6___ &kp_ESC, ___BASE_L2___
-#define ___BASE_L3_6___ &kp_ESC, ___BASE_L3___
+#define ___BASE_L1_6___ &kp_TAB ___BASE_L1___
+#define ___BASE_L2_6___ &kp_ESC ___BASE_L2___
+#define ___BASE_L3_6___ &kp_ESC ___BASE_L3___
 
-#define ___BASE_R1_6___ ___BASE_R1___, KC_BSPC
-#define ___BASE_R2_6___ ___BASE_R2___, KC_QUOT
-#define ___BASE_R3_6___ ___BASE_R3___, KC_RSFT
+#define ___BASE_R1_6___ ___BASE_R1___ &kp BSPC
+#define ___BASE_R2_6___ ___BASE_R2___ &kp QUOT
+#define ___BASE_R3_6___ ___BASE_R3___ &kp RSFT
 
 // Raise layer with outer columns
-#define ___RAISE_L1_6___ KC_GRV, ___RAISE_L1___
-#define ___RAISE_L2_6___ _______, ___RAISE_L2___
-#define ___RAISE_L3_6___ _______, ___RAISE_L3___
+#define ___RAISE_L1_6___ &kp GRV ___RAISE_L1___
+#define ___RAISE_L2_6___ _______ ___RAISE_L2___
+#define ___RAISE_L3_6___ _______ ___RAISE_L3___
 
-#define ___RAISE_R1_6___ ___RAISE_R1___, KC_BSPC
-#define ___RAISE_R2_6___ ___RAISE_R2___, _______
-#define ___RAISE_R3_6___ ___RAISE_R3___, _______
+#define ___RAISE_R1_6___ ___RAISE_R1___ &kp BSPC
+#define ___RAISE_R2_6___ ___RAISE_R2___ _______
+#define ___RAISE_R3_6___ ___RAISE_R3___ _______
 
 // Lower layer with outer columns
-#define ___LOWER_L1_6___ KC_GRV, ___LOWER_L1___
-#define ___LOWER_L2_6___ _______, ___LOWER_L2___
-#define ___LOWER_L3_6___ _______, ___LOWER_L3___
+#define ___LOWER_L1_6___ &kp GRV ___LOWER_L1___
+#define ___LOWER_L2_6___ _______ ___LOWER_L2___
+#define ___LOWER_L3_6___ _______ ___LOWER_L3___
 
-#define ___LOWER_R1_6___ ___LOWER_R1___, KC_BSPC
-#define ___LOWER_R2_6___ ___LOWER_R2___, _______
-#define ___LOWER_R3_6___ ___LOWER_R3___, _______
+#define ___LOWER_R1_6___ ___LOWER_R1___ &kp BSPC
+#define ___LOWER_R2_6___ ___LOWER_R2___ _______
+#define ___LOWER_R3_6___ ___LOWER_R3___ _______
 
 // Function layer with outer columns
-#define ___FUNC_L1_6___ _______, ___FUNC_L1___
-#define ___FUNC_L2_6___ _______, ___FUNC_L2___
-#define ___FUNC_L3_6___ _______, ___FUNC_L3___
+#define ___FUNC_L1_6___ _______ ___FUNC_L1___
+#define ___FUNC_L2_6___ _______ ___FUNC_L2___
+#define ___FUNC_L3_6___ _______ ___FUNC_L3___
 
-#define ___FUNC_R1_6___ ___FUNC_R1___, _______
-#define ___FUNC_R2_6___ ___FUNC_R2___, _______
-#define ___FUNC_R3_6___ ___FUNC_R3___, _______
+#define ___FUNC_R1_6___ ___FUNC_R1___ _______
+#define ___FUNC_R2_6___ ___FUNC_R2___ _______
+#define ___FUNC_R3_6___ ___FUNC_R3___ _______
 
 // Adjust layer with outer columns
-#define ___ADJUST_L1_6___ _______, ___ADJUST_L1___
-#define ___ADJUST_L2_6___ _______, ___ADJUST_L2___
-#define ___ADJUST_L3_6___ _______, ___ADJUST_L3___
+#define ___ADJUST_L1_6___ _______ ___ADJUST_L1___
+#define ___ADJUST_L2_6___ _______ ___ADJUST_L2___
+#define ___ADJUST_L3_6___ _______ ___ADJUST_L3___
 
-#define ___ADJUST_R1_6___ ___ADJUST_R1___, _______
-#define ___ADJUST_R2_6___ ___ADJUST_R2___, _______
-#define ___ADJUST_R3_6___ ___ADJUST_R3___, _______
+#define ___ADJUST_R1_6___ ___ADJUST_R1___ _______
+#define ___ADJUST_R2_6___ ___ADJUST_R2___ _______
+#define ___ADJUST_R3_6___ ___ADJUST_R3___ _______
 
 // Gaming layer with outer columns
-#define ___GAMING_L1_6___ KC_TAB, ___GAMING_L1___
-#define ___GAMING_L2_6___ KC_ESC, ___GAMING_L2___
-#define ___GAMING_L3_6___ KC_LSFT, ___GAMING_L3___
+#define ___GAMING_L1_6___ &kp TAB ___GAMING_L1___
+#define ___GAMING_L2_6___ &kp ESC ___GAMING_L2___
+#define ___GAMING_L3_6___ &kp LSFT ___GAMING_L3___
 
-#define ___GAMING_R1_6___ ___GAMING_R1___, KC_BSPC
-#define ___GAMING_R2_6___ ___GAMING_R2___, KC_QUOT
-#define ___GAMING_R3_6___ ___GAMING_R3___, KC_ENT
-/* qmk wrappers
+#define ___GAMING_R1_6___ ___GAMING_R1___ &kp BSPC
+#define ___GAMING_R2_6___ ___GAMING_R2___ &kp QUOT
+#define ___GAMING_R3_6___ ___GAMING_R3___ &kp ENT
 
-*/
+// Sofle thumbs
+#define ___SOFLE_THUMBS_L_BASE___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_R_BASE___ &none  &none  &none  &none  &none
+
+#define ___SOFLE_THUMBS_L_LOWER___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_R_LOWER___ &none  &none  &none  &none  &none
+
+#define ___SOFLE_THUMBS_L_RAISE___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_R_RAISE___ &none  &none  &none  &none  &none
+
+#define ___SOFLE_THUMBS_L_FUNCTION___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_R_FUNCTION___ &none  &none  &none  &none  &none
+
+#define ___SOFLE_THUMBS_L_ADJUST___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_R_ADJUST___ &none  &none  &none  &none  &none

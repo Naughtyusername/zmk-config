@@ -1,25 +1,28 @@
 // clang-format off
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include "wrappers.dtsi"
+#include "behaviors.dtsi" // before wrappers because .dtsi are fucking dumb
+#include "wrappers.dtsi" // qmk logic. has to come after the zmk headers
 
+/*
 // The Cradio "Wrapper" - It just takes the rows and lists them
 #define LAYOUT_cradio_wrapper(L1, R1, L2, R2, L3, R3, LH, RH) \
     L1 R1 \
     L2 R2 \
     L3 R3 \
        LH RH
+*/
 
 / {
     keymap {
         compatible = "zmk,keymap";
-        default_layer {
-            bindings = <LAYOUT_cradio_wrapper(
-                ___BASE_L1___, ___BASE_R1___,
-                ___BASE_L2___, ___BASE_R2___,
-                ___BASE_L3___, ___BASE_R3___,
-                &kp LGUI, &mo 1,    &kp SPC, &kp RALT // Thumbs
-            )>;
+        base_layer {
+            bindings = <
+                ___BASE_L1___ ___BASE_R1___
+                ___BASE_L2___ ___BASE_R2___
+                ___BASE_L3___ ___BASE_R3___
+                &kp LGUI &mo 1    &kp SPC &kp RALT // Thumbs
+            >;
         };
     };
 };
