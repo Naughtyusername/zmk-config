@@ -29,14 +29,14 @@
 #define BASE 0
 #define LOWER 1
 #define RAISE 2
-#define FUNCTION 3
+#define FUNC 3
 #define ADJUST 4
 #define GAMING 5
 #define GAMING2 6
 #define MOUSE 7
 
 // alias
-#define ___ &trans
+#define _______ &trans
 #define XXX &none
 
 // --- Home Row Mod Aliases ---
@@ -91,13 +91,13 @@
  *  ~     &     *     =     (          )     ^     _     %     :
  * ..=    !     '     "     {          }     @     <     >     ?
  */
-#define ___RAISE_L1___ &kp BSLS &kp DLR &kp PIPE &kp MINS &kp LBRC
-#define ___RAISE_L2___ &kp TILD &kp AMPR &kp ASTR &kp EQL &kp LPRN
-#define ___RAISE_L3___ &kp RANGE &kp EXLM &kp QUOT &kp DQT &kp LCBR
+#define ___RAISE_L1___ &kp BSLH &kp DLLR &kp PIPE &kp MINUS &kp LBKT
+#define ___RAISE_L2___ &kp TILDE &kp AMPS &kp STAR &kp EQUAL &kp LPAR
+#define ___RAISE_L3___ &none &kp EXCL &kp SQT &kp DQT &kp LBRC
 
-#define ___RAISE_R1___ &kp RBRC &kp PLUS &kp HASH &kp SCLN &kp DCLN
-#define ___RAISE_R2___ &kp RPRN &kp CIRC &kp UNDS &kp PERC &kp COLN
-#define ___RAISE_R3___ &kp RCBR &kp AT &kp LT &kp GT &kp QUES
+#define ___RAISE_R1___ &kp RBKT &kp PLUS &kp HASH &kp SEMI &none
+#define ___RAISE_R2___ &kp RPAR &kp CARET &kp UNDER &kp PRCNT &kp COLON
+#define ___RAISE_R3___ &kp RBRC &kp AT &kp LT &kp GT &kp QMARK
 
 /* --------------------------------------------------------------------------
  * LOWER LAYER - Numbers and Media
@@ -106,28 +106,28 @@
  *  _     _    Vol+  Vol-  Mute        .     4     5     6     0
  *  _     _    Prev  Play  Next        _     1     2     3     _
  */
-#define ___LOWER_L1___ &kp 1 &kp 2 &kp 3 &kp 4 &kp 5
-#define ___LOWER_L2___ _______ _______ &kp VOLU &kp VOLD &kp MUTE
-#define ___LOWER_L3___ _______ _______ &kp MPRV &kp MPLY &kp MNXT
+#define ___LOWER_L1___ &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
+#define ___LOWER_L2___ _______ _______ _______ _______ _______
+#define ___LOWER_L3___ _______ _______ _______ _______ _______
 
-#define ___LOWER_R1___ &kp 6 &kp 7 &kp 8 &kp 9 &kp 0
-#define ___LOWER_R2___ &kp DOT &kp 4 &kp 5 &kp 6 &kp 0
-#define ___LOWER_R3___ _______ &kp 1 &kp 2 &kp 3 _______
+#define ___LOWER_R1___ &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
+#define ___LOWER_R2___ &kp DOT &kp N4 &kp N5 &kp N6 &kp N0
+#define ___LOWER_R3___ _______ &kp N1 &kp N2 &kp N3 _______
 
 /* --------------------------------------------------------------------------
- * FUNCTION LAYER - F-keys and Navigation
+ * FUNC LAYER - F-keys and Navigation
  * --------------------------------------------------------------------------
  *  F9   F10   F11   F12   PrtSc       PgUp  Home  End   Ins    _
  *  F5   F6    F7    F8     _          Left  Down  Up    Right  _
  *  F1   F2    F3    F4     _          PgDn   _     _     _      _
  */
-#define ___FUNC_L1___ &kp F9 &kp F10 &kp F11 &kp F12 &kp PSCR
+#define ___FUNC_L1___ &kp F9 &kp F10 &kp F11 &kp F12 &kp PSCRN
 #define ___FUNC_L2___ &kp F5 &kp F6 &kp F7 &kp F8 _______
 #define ___FUNC_L3___ &kp F1 &kp F2 &kp F3 &kp F4 _______
 
-#define ___FUNC_R1___ &kp PGUP &kp HOME &kp END &kp INS _______
-#define ___FUNC_R2___ &kp LEFT &kp DOWN &kp UP &kp RGHT _______
-#define ___FUNC_R3___ &kp PGDN _______ _______ _______ _______
+#define ___FUNC_R1___ &kp PG_UP &kp HOME &kp END &kp INS _______
+#define ___FUNC_R2___ &kp LEFT &kp DOWN &kp UP &kp RIGHT _______
+#define ___FUNC_R3___ &kp PG_DN _______ _______ _______ _______
 
 /* --------------------------------------------------------------------------
  * ADJUST LAYER - System (Tri-layer: LOWER + RAISE) TODO: tweak this removed
@@ -158,8 +158,8 @@
 #define ___GAMING_L3___ &kp Z &kp X &kp C &kp V &kp B
 
 #define ___GAMING_R1___ &kp Y &kp U &kp I &kp O &kp P
-#define ___GAMING_R2___ &kp H &kp J &kp K &kp L &kp SCLN
-#define ___GAMING_R3___ &kp N &kp M &kp COMM &kp DOT &kp SLSH
+#define ___GAMING_R2___ &kp H &kp J &kp K &kp L &kp SEMI
+#define ___GAMING_R3___ &kp N &kp M &kp COMMA &kp DOT &kp FSLH
 
 /* --------------------------------------------------------------------------
  * BLANK TEMPLATE - For new layers TODO in zmk this needs to be changed. we aliased trans or none to ___ and XXX
@@ -191,33 +191,33 @@
 
 // Base layer with outer columns: Tab on left, Backspace on right
 // used on corne and kyria
-#define ___BASE_L1_6___ &kp_TAB ___BASE_L1___
-#define ___BASE_L2_6___ &kp_ESC ___BASE_L2___
-#define ___BASE_L3_6___ &kp_ESC ___BASE_L3___
+#define ___BASE_L1_6___ &kp TAB ___BASE_L1___
+#define ___BASE_L2_6___ &kp ESC ___BASE_L2___
+#define ___BASE_L3_6___ &kp ESC ___BASE_L3___
 
-#define ___BASE_R1_6___ ___BASE_R1___ &kp BSPC
-#define ___BASE_R2_6___ ___BASE_R2___ &kp QUOT
-#define ___BASE_R3_6___ ___BASE_R3___ &kp RSFT
+#define ___BASE_R1_6___ ___BASE_R1___ &kp BSLH
+#define ___BASE_R2_6___ ___BASE_R2___ &kp SQT
+#define ___BASE_R3_6___ ___BASE_R3___ &none
 
 // Raise layer with outer columns
-#define ___RAISE_L1_6___ &kp GRV ___RAISE_L1___
+#define ___RAISE_L1_6___ _______ ___RAISE_L1___
 #define ___RAISE_L2_6___ _______ ___RAISE_L2___
 #define ___RAISE_L3_6___ _______ ___RAISE_L3___
 
-#define ___RAISE_R1_6___ ___RAISE_R1___ &kp BSPC
+#define ___RAISE_R1_6___ ___RAISE_R1___ &kp BSLH
 #define ___RAISE_R2_6___ ___RAISE_R2___ _______
 #define ___RAISE_R3_6___ ___RAISE_R3___ _______
 
 // Lower layer with outer columns
-#define ___LOWER_L1_6___ &kp GRV ___LOWER_L1___
+#define ___LOWER_L1_6___ &none ___LOWER_L1___
 #define ___LOWER_L2_6___ _______ ___LOWER_L2___
 #define ___LOWER_L3_6___ _______ ___LOWER_L3___
 
-#define ___LOWER_R1_6___ ___LOWER_R1___ &kp BSPC
+#define ___LOWER_R1_6___ ___LOWER_R1___ &kp BSLH
 #define ___LOWER_R2_6___ ___LOWER_R2___ _______
 #define ___LOWER_R3_6___ ___LOWER_R3___ _______
 
-// Function layer with outer columns
+// Func layer with outer columns
 #define ___FUNC_L1_6___ _______ ___FUNC_L1___
 #define ___FUNC_L2_6___ _______ ___FUNC_L2___
 #define ___FUNC_L3_6___ _______ ___FUNC_L3___
@@ -238,11 +238,11 @@
 // Gaming layer with outer columns
 #define ___GAMING_L1_6___ &kp TAB ___GAMING_L1___
 #define ___GAMING_L2_6___ &kp ESC ___GAMING_L2___
-#define ___GAMING_L3_6___ &kp LSFT ___GAMING_L3___
+#define ___GAMING_L3_6___ &none ___GAMING_L3___
 
-#define ___GAMING_R1_6___ ___GAMING_R1___ &kp BSPC
-#define ___GAMING_R2_6___ ___GAMING_R2___ &kp QUOT
-#define ___GAMING_R3_6___ ___GAMING_R3___ &kp ENT
+#define ___GAMING_R1_6___ ___GAMING_R1___ &kp BSLH
+#define ___GAMING_R2_6___ ___GAMING_R2___ &kp SQT
+#define ___GAMING_R3_6___ ___GAMING_R3___ &kp RET
 
 // Sofle thumbs
 #define ___SOFLE_THUMBS_L_BASE___ &none  &none  &none  &none  &none
@@ -254,8 +254,27 @@
 #define ___SOFLE_THUMBS_L_RAISE___ &none  &none  &none  &none  &none
 #define ___SOFLE_THUMBS_R_RAISE___ &none  &none  &none  &none  &none
 
-#define ___SOFLE_THUMBS_L_FUNCTION___ &none  &none  &none  &none  &none
-#define ___SOFLE_THUMBS_R_FUNCTION___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_FUNC___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_R_FUNC___ &none  &none  &none  &none  &none
 
 #define ___SOFLE_THUMBS_L_ADJUST___ &none  &none  &none  &none  &none
 #define ___SOFLE_THUMBS_R_ADJUST___ &none  &none  &none  &none  &none
+
+#define ___SOFLE_THUMBS_L_GAMING___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_R_GAMING___ &none  &none  &none  &none  &none
+
+// Sofle encoder bindings
+#define ___ENC_BASE___         &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
+#define ___ENC_LOWER___        &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
+#define ___ENC_RAISE___        &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
+#define ___ENC_FUNC___     &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
+#define ___ENC_ADJUST___       &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
+#define ___ENC_GAMING___       &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
+
+// Sweep / Cradio Thumbs
+#define ___SWEEP_THUMBS_BASE___         &none  &none  &none  &none
+#define ___SWEEP_THUMBS_LOWER___        &none  &none  &none  &none
+#define ___SWEEP_THUMBS_RAISE___        &none  &none  &none  &none
+#define ___SWEEP_THUMBS_FUNC___     &none  &none  &none  &none
+#define ___SWEEP_THUMBS_ADJUST___       &none  &none  &none  &none
+#define ___SWEEP_THUMBS_GAMING___       &none  &none  &none  &none

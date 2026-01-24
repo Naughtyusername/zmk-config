@@ -4,15 +4,6 @@
 #include "behaviors.dtsi" // before wrappers because .dtsi are fucking dumb
 #include "wrappers.dtsi" // qmk logic. has to come after the zmk headers
 
-/*
-// The Cradio "Wrapper" - It just takes the rows and lists them
-#define LAYOUT_cradio_wrapper(L1, R1, L2, R2, L3, R3, LH, RH) \
-    L1 R1 \
-    L2 R2 \
-    L3 R3 \
-       LH RH
-*/
-
 / {
     keymap {
         compatible = "zmk,keymap";
@@ -21,7 +12,52 @@
                 ___BASE_L1___ ___BASE_R1___
                 ___BASE_L2___ ___BASE_R2___
                 ___BASE_L3___ ___BASE_R3___
-                &kp LGUI &mo 1    &kp SPC &kp RALT // Thumbs
+                  ___SWEEP_THUMBS_BASE___
+            >;
+        };
+
+        lower_layer {
+            bindings = <
+                ___LOWER_L1___ ___LOWER_R1___
+                ___LOWER_L2___ ___LOWER_R2___
+                ___LOWER_L3___ ___LOWER_R3___
+                  ___SWEEP_THUMBS_LOWER___
+            >;
+        };
+
+        raise_layer {
+            bindings = <
+                ___RAISE_L1___ ___RAISE_R1___
+                ___RAISE_L2___ ___RAISE_R2___
+                ___RAISE_L3___ ___RAISE_R3___
+                  ___SWEEP_THUMBS_RAISE___
+            >;
+        };
+
+        func_layer {
+            bindings = <
+                ___FUNC_L1___ ___FUNC_R1___
+                ___FUNC_L2___ ___FUNC_R2___
+                ___FUNC_L3___ ___FUNC_R3___
+                  ___SWEEP_THUMBS_FUNC___
+            >;
+        };
+
+        adjust_layer {
+            bindings = <
+                ___ADJUST_L1___ ___ADJUST_R1___
+                ___ADJUST_L2___ ___ADJUST_R2___
+                ___ADJUST_L3___ ___ADJUST_R3___
+                  ___SWEEP_THUMBS_ADJUST___
+            >;
+        };
+
+        gaming_layer {
+            bindings = <
+                ___GAMING_L1___ ___GAMING_R1___
+                ___GAMING_L2___ ___GAMING_R2___
+                ___GAMING_L3___ ___GAMING_R3___
+                  ___SWEEP_THUMBS_GAMING___
             >;
         };
     };

@@ -8,21 +8,68 @@
     keymap {
         compatible = "zmk,keymap";
         base {
+            display-name = "BASE";
             bindings = <
-                 &kp TAB ___BASE_L1___ ___BASE_R1___ &kp TAB
-                 &kp TAB ___BASE_L2___ ___BASE_R2___ &kp TAB
-                 &kp TAB ___BASE_L3___ ___BASE_R3___ &kp TAB
-                &kp LGUI &mo 1  &mo 1  &kp SPC &kp RALT &kp TAB &kp LGUI &mo 1    &kp SPC &kp RALT // Thumbs
+                  ___BASE_L1_6___ ___BASE_R1_6___
+                  ___BASE_L2_6___ ___BASE_R2_6___
+                  ___BASE_L3_6___ ___BASE_R3_6___
+                ___SOFLE_THUMBS_L_BASE___ ___SOFLE_THUMBS_R_BASE___
             >;
+                 sensor-bindings = <___ENC_BASE___>;
         };
 
         lower {
+            display-name = "LOWER";
             bindings = <
-                 &kp TAB ___BASE_L1___ ___BASE_R1___ &kp TAB
-                 &kp TAB ___BASE_L2___ ___BASE_R2___ &kp TAB
-                 &kp TAB ___BASE_L3___ ___BASE_R3___ &kp TAB
-                &kp LGUI &mo 1  &mo 1  &kp SPC &kp RALT &kp TAB &kp LGUI &mo 1    &kp SPC &kp RALT // Thumbs
+                  ___LOWER_L1_6___ ___LOWER_R1_6___
+                  ___LOWER_L2_6___ ___LOWER_R2_6___
+                  ___LOWER_L3_6___ ___LOWER_R3_6___
+                ___SOFLE_THUMBS_L_LOWER___ ___SOFLE_THUMBS_R_LOWER___
             >;
+                 sensor-bindings = <___ENC_LOWER___>;
+        };
+
+        raise {
+            display-name = "RAISE";
+            bindings = <
+                  ___RAISE_L1_6___ ___RAISE_R1_6___
+                  ___RAISE_L2_6___ ___RAISE_R2_6___
+                  ___RAISE_L3_6___ ___RAISE_R3_6___
+                ___SOFLE_THUMBS_L_RAISE___ ___SOFLE_THUMBS_R_RAISE___
+            >;
+                 sensor-bindings = <___ENC_RAISE___>;
+        };
+
+        func {
+            display-name = "FUNC";
+            bindings = <
+                  ___FUNC_L1_6___ ___FUNC_R1_6___
+                  ___FUNC_L2_6___ ___FUNC_R2_6___
+                  ___FUNC_L3_6___ ___FUNC_R3_6___
+                ___SOFLE_THUMBS_L_FUNC___ ___SOFLE_THUMBS_R_FUNC___
+            >;
+                 sensor-bindings = <___ENC_FUNC___>;
+        };
+        adjust {
+            display-name = "ADJUST";
+            bindings = <
+                  ___ADJUST_L1_6___ ___ADJUST_R1_6___
+                  ___ADJUST_L2_6___ ___ADJUST_R2_6___
+                  ___ADJUST_L3_6___ ___ADJUST_R3_6___
+                ___SOFLE_THUMBS_L_ADJUST___ ___SOFLE_THUMBS_R_ADJUST___
+            >;
+                 sensor-bindings = <___ENC_ADJUST___>;
+        };
+
+        gaming {
+            display-name = "GAMING";
+            bindings = <
+                  ___GAMING_L1_6___ ___GAMING_R1_6___
+                  ___GAMING_L2_6___ ___GAMING_R2_6___
+                  ___GAMING_L3_6___ ___GAMING_R3_6___
+                ___SOFLE_THUMBS_L_GAMING___ ___SOFLE_THUMBS_R_GAMING___
+            >;
+                 sensor-bindings = <___ENC_GAMING___>;
         };
     };
 };
