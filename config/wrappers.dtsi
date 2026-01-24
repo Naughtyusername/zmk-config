@@ -1,0 +1,85 @@
+// config/wrappers.dtsi
+
+// clang-format off
+// Alphas
+#define ___BASE_L1___ &kp Q &kp W &kp E &kp R &kp T
+// #define ___BASE_L2___ &hm LGUI A &hm LALT S &hm LCTRL D &hm LSHFT F &kp G
+#define ___BASE_L2___ &kp A &kp S &kp D &kp F &kp G
+#define ___BASE_L3___ &kp Z &kp X &kp C &kp V &kp B
+
+#define ___BASE_R1___ &kp Y &kp U &kp I &kp O &kp P
+// #define ___BASE_R2___ &kp H &hm RSHFT J &hm RCTRL K &hm RALT L &hm RGUI SEMI
+#define ___BASE_R2___ &kp H &kp J &kp K &kp L &kp SEMI
+#define ___BASE_R3___ &kp N &kp M &kp COMMA &kp DOT &kp SLASH
+
+// Lower (Numbers)
+#define ___LOWER_L1___ &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
+#define ___LOWER_R1___ &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
+
+
+/* ==========================================================================
+ * 6-COLUMN EXPANSION MACROS
+ * ==========================================================================
+ * For keyboards with 6 columns per side (like Corne), we add an outer column.
+ * These take the 5-column macros and add a key on each edge.
+ *
+ * Format: OUTER_LEFT, <5 col macro>, OUTER_RIGHT
+ */
+
+// Base layer with outer columns: Tab on left, Backspace on right
+// used on corne and kyria
+#define ___BASE_L1_6___ &kp_TAB, ___BASE_L1___
+#define ___BASE_L2_6___ &kp_ESC, ___BASE_L2___
+#define ___BASE_L3_6___ &kp_ESC, ___BASE_L3___
+
+#define ___BASE_R1_6___ ___BASE_R1___, KC_BSPC
+#define ___BASE_R2_6___ ___BASE_R2___, KC_QUOT
+#define ___BASE_R3_6___ ___BASE_R3___, KC_RSFT
+
+// Raise layer with outer columns
+#define ___RAISE_L1_6___ KC_GRV, ___RAISE_L1___
+#define ___RAISE_L2_6___ _______, ___RAISE_L2___
+#define ___RAISE_L3_6___ _______, ___RAISE_L3___
+
+#define ___RAISE_R1_6___ ___RAISE_R1___, KC_BSPC
+#define ___RAISE_R2_6___ ___RAISE_R2___, _______
+#define ___RAISE_R3_6___ ___RAISE_R3___, _______
+
+// Lower layer with outer columns
+#define ___LOWER_L1_6___ KC_GRV, ___LOWER_L1___
+#define ___LOWER_L2_6___ _______, ___LOWER_L2___
+#define ___LOWER_L3_6___ _______, ___LOWER_L3___
+
+#define ___LOWER_R1_6___ ___LOWER_R1___, KC_BSPC
+#define ___LOWER_R2_6___ ___LOWER_R2___, _______
+#define ___LOWER_R3_6___ ___LOWER_R3___, _______
+
+// Function layer with outer columns
+#define ___FUNC_L1_6___ _______, ___FUNC_L1___
+#define ___FUNC_L2_6___ _______, ___FUNC_L2___
+#define ___FUNC_L3_6___ _______, ___FUNC_L3___
+
+#define ___FUNC_R1_6___ ___FUNC_R1___, _______
+#define ___FUNC_R2_6___ ___FUNC_R2___, _______
+#define ___FUNC_R3_6___ ___FUNC_R3___, _______
+
+// Adjust layer with outer columns
+#define ___ADJUST_L1_6___ _______, ___ADJUST_L1___
+#define ___ADJUST_L2_6___ _______, ___ADJUST_L2___
+#define ___ADJUST_L3_6___ _______, ___ADJUST_L3___
+
+#define ___ADJUST_R1_6___ ___ADJUST_R1___, _______
+#define ___ADJUST_R2_6___ ___ADJUST_R2___, _______
+#define ___ADJUST_R3_6___ ___ADJUST_R3___, _______
+
+// Gaming layer with outer columns
+#define ___GAMING_L1_6___ KC_TAB, ___GAMING_L1___
+#define ___GAMING_L2_6___ KC_ESC, ___GAMING_L2___
+#define ___GAMING_L3_6___ KC_LSFT, ___GAMING_L3___
+
+#define ___GAMING_R1_6___ ___GAMING_R1___, KC_BSPC
+#define ___GAMING_R2_6___ ___GAMING_R2___, KC_QUOT
+#define ___GAMING_R3_6___ ___GAMING_R3___, KC_ENT
+/* qmk wrappers
+
+*/

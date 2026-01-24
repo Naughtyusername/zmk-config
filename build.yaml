@@ -27,10 +27,10 @@ include:
     shield: cradio_left
   - board: nice_nano
     shield: cradio_right
-  - board: nice_nano
-    shield: halcyon_corne_left
-  - board: nice_nano
-    shield: halcyon_corne_right
+#these dont exist yet  - board: nice_nano
+#these dont exist yet    shield: halcyon_corne_left
+#these dont exist yet  - board: nice_nano
+#these dont exist yet    shield: halcyon_corne_right
 
 # this is handy for Sub half to connect to Dom half - syncing issues - works on GH Actions, idk about locally, need different build flag not in my script
   - board: nice_nano
