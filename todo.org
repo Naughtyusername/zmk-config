@@ -1,0 +1,78 @@
+* TODO Tasks
+
+** [ ] Finalize QMK wrapper porting
+   - [ ] Review and update comments in `config/wrappers.dtsi` to be ZMK-specific.
+   - [ ] Implement `ADJUST` layer functionality.
+   - [ ] Adapt the `BLANK_TEMPLATE` to ZMK conventions.
+
+** [ ] Define thumb key layouts
+   - [ ] Populate `___SWEEP_THUMBS_...___` macros for cradio/sweep keyboard.
+   - [ ] Populate `___SOFLE_THUMBS_...___` macros for sofle keyboard.
+
+** [ ] Define encoder behavior
+   - [ ] Investigate migrating from `&inc_dec_kp` to the more flexible `&sensor_rotate` behavior.
+   - [ ] Customize encoder behavior for each layer.
+
+** [ ] Implement advanced layer management
+   - [ ] **Sticky Layers (&sk):** Configure sticky layers for momentary layer access.
+   - [ ] **Conditional/Tri-Layers:** Set up a "tri-layer" that activates when both `LOWER` and `RAISE` layers are active.
+   - [ ] **Long-press for ADJUST layer:**
+     - [ ] Create a `hold-tap` behavior for 'Z' with a 2-second hold to activate `&mo ADJUST`.
+     - [ ] Create a `hold-tap` behavior for '/' with a 2-second hold to activate `&mo ADJUST`.
+
+** [ ] Add new combos and tap-dances
+   - [ ] **Combos (QMK's "Chordal"):**
+     - [ ] `Q`+`W` for `Esc`.
+     - [ ] `J`+`K` for `Enter`.
+     - [ ] `S`+`D` for `Tab`.
+     - [ ] Home row combos for cut/copy/paste.
+   - [ ] **Tap-Dances:**
+     - [ ] A key for brackets: `(` on tap, `[` on double-tap, `{` on hold.
+     - [ ] A key for navigation: `Up` on tap, `Page Up` on double-tap.
+
+** [ ] Port OLED and RGB support for Sofle from backup
+   - [ ] Add OLED display support to the Sofle to show layer status, WPM, etc.
+   - [ ] Add RGB underglow support to indicate the current layer.
+
+** [ ] Integrate external modules
+   - [ ] **`zmk-tri-state`:**
+     - [ ] Add the module to `west.yml`.
+     - [ ] Implement a one-handed Alt-Tab "swapper".
+     - [ ] Use it to create the `ADJUST` tri-layer.
+   - [ ] **`zmk-antecedent-morph`:**
+     - [ ] Find and add `urob`'s module to `west.yml`.
+     - [ ] Implement adaptive behaviors for common programming ligatures like `=>`, `!=`, `->`.
+
+** [ ] Explore advanced ZMK behaviors (QMK Equivalents)
+    - [ ] **`CAPS WORD`:** Add `CONFIG_ZMK_CAPS_WORD=y` and a keybinding for it.
+    - [ ] **Dynamic Macros:** Investigate and enable `CONFIG_ZMK_MACRO_DYNAMIC=y` for on-the-fly macro recording.
+    - [ ] **Speculative Hold:** Use the `hold-while-undecided` property in hold-tap behaviors to reduce modifier lag.
+    - [ ] **Permissive Hold:** Use the `"balanced"` flavor for hold-tap behaviors for a more responsive feel for fast typists.
+    - [ ] **Per-key Tapping Term:** Use the `tapping-term-ms` property on specific hold-tap bindings that need a custom value.
+
+** [ ] Merge `wrappertest` branch
+
+* Kconfig Reference
+  A reference of common Kconfig options to add to your `.conf` files.
+
+*** General
+    - `CONFIG_ZMK_KEYBOARD_NAME`: Sets the name your keyboard advertises.
+    - `CONFIG_ZMK_WPM`: Enables words-per-minute calculation.
+
+*** Behavior
+    - `CONFIG_ZMK_COMBOS`: Enables combos.
+    - `CONFIG_ZMK_MACROS`: Enables macros.
+    - `CONFIG_ZMK_TAP_DANCE`: Enables tap-dance behaviors.
+    - `CONFIG_ZMK_STICKY_KEYS`: Enables sticky keys/layers (`&sk`).
+    - `CONFIG_ZMK_HOLD_TAP`: Enables hold-tap behaviors.
+    - `CONFIG_ZMK_HOLD_TAP_INTERRUPTIBLE`: Makes hold-taps interruptible.
+
+*** Hardware & Features
+    - `CONFIG_BT`: Enables Bluetooth.
+    - `CONFIG_BT_MAX_PAIRED`: Sets the max number of paired Bluetooth devices.
+    - `CONFIG_USB_DEVICE_PRODUCT`: Sets the product name for USB.
+    - `CONFIG_ZMK_USB_BOOT`: Enables a more compatible USB mode for BIOS/UEFI.
+    - `CONFIG_ZMK_DISPLAY`: Enables support for OLED/LCD screens.
+    - `CONFIG_ZMK_RGB_UNDERGLOW`: Enables RGB underglow.
+    - `CONFIG_ZMK_BACKLIGHT`: Enables single-color backlighting.
+    - `CONFIG_EC11`: Enables support for EC11-style rotary encoders.
