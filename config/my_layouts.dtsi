@@ -1,0 +1,43 @@
+// config/master_layout.dtsi
+// clang-format off
+
+// Use defines to make keymap readable
+#define BASE 0
+#define NAV  1
+
+/ {
+    // You define your behaviors (hold-taps, etc.) here ONCE
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    // This is the modular keymap
+    // We use a macro "MY_KEYMAP" that takes 34 (or 42, etc.) arguments
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <MY_KEYMAP(
+                &kp Q,    &kp W,    &kp E,    &kp R,    &kp T,      &kp Y,    &kp U,    &kp I,    &kp O,    &kp P,
+                &hm LGUI A, &hm LALT S, &hm LCTRL D, &hm LSHFT F, &kp G,   &kp H, &hm RSHFT J, &hm RCTRL K, &hm RALT L, &hm RGUI SEMI,
+                &kp Z,    &kp X,    &kp C,    &kp V,    &kp B,      &kp N,    &kp M,    &kp COMMA, &kp DOT, &kp SLASH,
+                                    &kp ESC,  &mo NAV,  &kp SPACE,  &kp RET,  &kp BSPC, &kp TAB
+            )>;
+        };
+
+        nav_layer {
+            bindings = <MY_KEYMAP(
+                &none,    &none,    &kp UP,   &none,    &none,      &none,    &none,    &none,    &none,    &none,
+                &none,    &kp LEFT, &kp DOWN, &kp RIGHT, &none,     &none,    &none,    &none,    &none,    &none,
+                &none,    &none,    &none,    &none,    &none,      &none,    &none,    &none,    &none,    &none,
+                                    &trans,   &trans,   &trans,     &trans,   &trans,   &trans
+            )>;
+        };
+    };
+};
