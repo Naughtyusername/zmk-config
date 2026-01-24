@@ -1,0 +1,3 @@
+// syntax: NAME, BINDING, KEY_POSITIONS
+ZMK_COMBO(combo_esc, &kp ESC, RM1 RM2)
+// caps word combo?

@@ -1,31 +1,45 @@
-// cradio.keymap
-// clang-format off
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
-#include "zmk-helpers/helper.h"
-#include "zmk-helpers/key-labels/34.h" // Labels for a 34-key board
 
-#include "base.keymap"
 
-// Tell hml/hmr which keys are on the opposite hand for the "Timeless" effect
-#define THUMBS LH1 LH0 RH0 RH1
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
 
-// Apply the trigger positions to the behaviors defined in base.keymap
-&hml { hold-trigger-key-positions = <KEYS_R THUMBS>; };
-&hmr { hold-trigger-key-positions = <KEYS_L THUMBS>; };
-
-// Define how the 34 keys from base.keymap map to the Cradio
-#define LAYOUT( \
-    k01, k02, k03, k04, k05,   k06, k07, k08, k09, k10, \
-    k11, k12, k13, k14, k15,   k16, k17, k18, k19, k20, \
-    k21, k22, k23, k24, k25,   k26, k27, k28, k29, k30, \
-              t01, t02,        t03, t04 \
-) \
-k01 k02 k03 k04 k05   k06 k07 k08 k09 k10 \
-k11 k12 k13 k14 k15   k16 k17 k18 k19 k20 \
-k21 k22 k23 k24 k25   k26 k27 k28 k29 k30 \
-          t01 t02       t03 t04
-
-/* ... (Keep your &hml/&hmr overrides from the previous step) ... */
+// we dont need much of this
+/*********************************************************************************/
+/* // cradio.keymap */
+/* // clang-format off */
+/* #include <behaviors.dtsi> */
+/* #include <dt-bindings/zmk/keys.h> */
+/* #include "zmk-helpers/helper.h" */
+/* #include "zmk-helpers/key-labels/34.h" // Labels for a 34-key board */
+/*                                                                               */
+/* #include "base.keymap" */
+/*                                                                               */
+/* // Tell hml/hmr which keys are on the opposite hand for the "Timeless" effect
+ */
+/* #define THUMBS LH1 LH0 RH0 RH1 */
+/* #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4 */
+/* #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4 */
+/*                                                                               */
+/* // Apply the trigger positions to the behaviors defined in base.keymap */
+/* &hml { hold-trigger-key-positions = <KEYS_R THUMBS>; }; */
+/* &hmr { hold-trigger-key-positions = <KEYS_L THUMBS>; }; */
+/*                                                                               */
+/* // Define how the 34 keys from base.keymap map to the Cradio */
+/* #define LAYOUT(
+ * \                                                             */
+/*     k01, k02, k03, k04, k05,   k06, k07, k08, k09, k10,
+ * \                     */
+/*     k11, k12, k13, k14, k15,   k16, k17, k18, k19, k20,
+ * \                     */
+/*     k21, k22, k23, k24, k25,   k26, k27, k28, k29, k30,
+ * \                     */
+/*               t01, t02,        t03, t04
+ * \                                     */
+/* )
+ * \                                                                           */
+/* k01 k02 k03 k04 k05   k06 k07 k08 k09 k10
+ * \                                   */
+/* k11 k12 k13 k14 k15   k16 k17 k18 k19 k20
+ * \                                   */
+/* k21 k22 k23 k24 k25   k26 k27 k28 k29 k30
+ * \                                   */
+/*           t01 t02       t03 t04 */
+/*********************************************************************************/
