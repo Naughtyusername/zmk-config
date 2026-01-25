@@ -50,6 +50,12 @@
     - [ ] **Permissive Hold:** Use the `"balanced"` flavor for hold-tap behaviors for a more responsive feel for fast typists.
     - [ ] **Per-key Tapping Term:** Use the `tapping-term-ms` property on specific hold-tap bindings that need a custom value.
 
+** [ ] Configure BIOS/Bootloader Compatibility (NKRO)
+   - [ ] NOTE: ZMK defaults to 6KRO, which is safe for BIOS. Enabling NKRO (`CONFIG_ZMK_HID_REPORT_TYPE_NKRO=y`) improves OS performance but may break BIOS compatibility.
+   - [ ] NOTE: Unlike QMK, there is no runtime keybinding to toggle between 6KRO and NKRO. The mode is set at compile time.
+   - [ ] DECISION: Decide whether to enable NKRO by default and test for BIOS compatibility.
+   - [ ] ACTION: Add `CONFIG_ZMK_HID_REPORT_TYPE_NKRO=y` to the `.conf` files if NKRO is desired.
+
 ** [ ] Merge `wrappertest` branch
 
 * Kconfig Reference
