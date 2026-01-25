@@ -271,10 +271,12 @@
 #define ___ENC_ADJUST___       &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
 #define ___ENC_GAMING___       &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
 
+// clang-format off
+// TODO sweep thumbs, set up he bs_del thing and trans on raise and lower to push to adjust. the macro to space raise
 // Sweep / Cradio Thumbs
-#define ___SWEEP_THUMBS_BASE___         &none  &none  &none  &none
-#define ___SWEEP_THUMBS_LOWER___        &none  &none  &none  &none
-#define ___SWEEP_THUMBS_RAISE___        &none  &none  &none  &none
-#define ___SWEEP_THUMBS_FUNC___     &none  &none  &none  &none
-#define ___SWEEP_THUMBS_ADJUST___       &none  &none  &none  &none
-#define ___SWEEP_THUMBS_GAMING___       &none  &none  &none  &none
+#define ___SWEEP_THUMBS_BASE___         &none  &none          &none  &none
+#define ___SWEEP_THUMBS_LOWER___        &none  &none          &none  &none
+#define ___SWEEP_THUMBS_RAISE___        &none  &none          &none  &none
+#define ___SWEEP_THUMBS_FUNC___         &none  &none          &none  &none
+#define ___SWEEP_THUMBS_ADJUST___       &none  &none          &none  &none
+#define ___SWEEP_THUMBS_GAMING___       &none  &none          &none  &none
