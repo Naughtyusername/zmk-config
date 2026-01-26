@@ -30,10 +30,10 @@
         base {
             display-name = "BASE";
             bindings = <
-                // number row ding dong
-                  ___BASE_L1_6___                ___BASE_R1_6___
-                  ___BASE_L2_6___                ___BASE_R2_6___
-                  ___BASE_L3_6___/*enc buttons*/ ___BASE_R3_6___
+                  ___NUM_BASE_L___                   ___NUM_BASE_L___
+                  ___BASE_L1_6___                    ___BASE_R1_6___
+                  ___BASE_L2_6___                    ___BASE_R2_6___
+                  ___BASE_L3_6___ ___ENC_KEY_BASE___ ___BASE_R3_6___
                 ___SOFLE_THUMBS_L_BASE___ ___SOFLE_THUMBS_R_BASE___
             >;
                  sensor-bindings = <___ENC_BASE___>;
@@ -42,9 +42,10 @@
         lower {
             display-name = "LOWER";
             bindings = <
-                  ___LOWER_L1_6___ ___LOWER_R1_6___
-                  ___LOWER_L2_6___ ___LOWER_R2_6___
-                  ___LOWER_L3_6___ ___LOWER_R3_6___
+                  ___NUM_LOWER_L___                   ___NUM_LOWER_L___
+                  ___LOWER_L1_6___                    ___LOWER_R1_6___
+                  ___LOWER_L2_6___                    ___LOWER_R2_6___
+                  ___LOWER_L3_6___ ___ENC_KEY_LOWER___ ___LOWER_R3_6___
                 ___SOFLE_THUMBS_L_LOWER___ ___SOFLE_THUMBS_R_LOWER___
             >;
                  sensor-bindings = <___ENC_LOWER___>;
@@ -53,9 +54,10 @@
         raise {
             display-name = "RAISE";
             bindings = <
-                  ___RAISE_L1_6___ ___RAISE_R1_6___
-                  ___RAISE_L2_6___ ___RAISE_R2_6___
-                  ___RAISE_L3_6___ ___RAISE_R3_6___
+                  ___NUM_RAISE_L___                   ___NUM_RAISE_L___
+                  ___RAISE_L1_6___                    ___RAISE_R1_6___
+                  ___RAISE_L2_6___                    ___RAISE_R2_6___
+                  ___RAISE_L3_6___ ___ENC_KEY_RAISE___ ___RAISE_R3_6___
                 ___SOFLE_THUMBS_L_RAISE___ ___SOFLE_THUMBS_R_RAISE___
             >;
                  sensor-bindings = <___ENC_RAISE___>;
@@ -64,9 +66,10 @@
         func {
             display-name = "FUNC";
             bindings = <
-                  ___FUNC_L1_6___ ___FUNC_R1_6___
-                  ___FUNC_L2_6___ ___FUNC_R2_6___
-                  ___FUNC_L3_6___ ___FUNC_R3_6___
+                  ___NUM_FUNC_L___                   ___NUM_FUNC_L___
+                  ___FUNC_L1_6___                    ___FUNC_R1_6___
+                  ___FUNC_L2_6___                    ___FUNC_R2_6___
+                  ___FUNC_L3_6___ ___ENC_KEY_FUNC___ ___FUNC_R3_6___
                 ___SOFLE_THUMBS_L_FUNC___ ___SOFLE_THUMBS_R_FUNC___
             >;
                  sensor-bindings = <___ENC_FUNC___>;
@@ -74,9 +77,10 @@
         adjust {
             display-name = "ADJUST";
             bindings = <
-                  ___ADJUST_L1_6___ ___ADJUST_R1_6___
-                  ___ADJUST_L2_6___ ___ADJUST_R2_6___
-                  ___ADJUST_L3_6___ ___ADJUST_R3_6___
+                  ___NUM_ADJUST_L___                   ___NUM_ADJUST_L___
+                  ___ADJUST_L1_6___                    ___ADJUST_R1_6___
+                  ___ADJUST_L2_6___                    ___ADJUST_R2_6___
+                  ___ADJUST_L3_6___ ___ENC_KEY_ADJUST___ ___ADJUST_R3_6___
                 ___SOFLE_THUMBS_L_ADJUST___ ___SOFLE_THUMBS_R_ADJUST___
             >;
                  sensor-bindings = <___ENC_ADJUST___>;
@@ -85,9 +89,10 @@
         gaming {
             display-name = "GAMING";
             bindings = <
-                  ___GAMING_L1_6___ ___GAMING_R1_6___
-                  ___GAMING_L2_6___ ___GAMING_R2_6___
-                  ___GAMING_L3_6___ ___GAMING_R3_6___
+                  ___NUM_GAMING_L___                   ___NUM_GAMING_L___
+                  ___GAMING_L1_6___                    ___GAMING_R1_6___
+                  ___GAMING_L2_6___                    ___GAMING_R2_6___
+                  ___GAMING_L3_6___ ___ENC_KEY_GAMING___ ___GAMING_R3_6___
                 ___SOFLE_THUMBS_L_GAMING___ ___SOFLE_THUMBS_R_GAMING___
             >;
                  sensor-bindings = <___ENC_GAMING___>;

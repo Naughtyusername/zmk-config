@@ -9,6 +9,23 @@
    - [ ] Populate `___SWEEP_THUMBS_...___` macros for cradio/sweep keyboard.
    - [ ] Populate `___SOFLE_THUMBS_...___` macros for sofle keyboard.
 
+** [ ] Map All Physical Keys on Sofle Keymap (60 keys) - HIGH PRIORITY
+   - **The Discrepancy:** Your `sofle.keymap` currently explicitly binds 46 key positions, but your Sofle has a 60-key physical matrix (as per `sofle.h`). The remaining 14 keys are implicitly `&none`.
+   - **Goal:** Explicitly map all 60 physical key positions in `config/sofle.keymap` to have full control over your layout.
+   - **Your Desired Layout:**
+     - Row 1 (physical top row): Number Row (1-0)
+     - Row 2 (physical next row): Top row (QWERTY)
+     - Row 3 (physical home row): Home row (ASDFG)
+     - Row 4 (physical bottom row): Bottom row (ZXCVB)
+     - Row 5 (physical thumb cluster): Thumb row
+   - **Action Steps:**
+     - **Review `sofle.h`:** Understand the matrix positions (0-59) for each physical key.
+     - **Update `config/wrappers.dtsi`:** Create/adjust macros (e.g., `___BASE_L1___`, `___BASE_R1___`, etc.) to match your desired layout (e.g., first row macros output `&kp N1 &kp N2 ...`). You may need new macros for the physical bottom row.
+     - **Update `config/sofle.keymap`:** Ensure the `bindings` array for each layer in your `sofle.keymap` explicitly lists 60 key entries using your wrapper macros or direct bindings.
+       - Include bindings for the physical bottom row (e.g., `LB0-LB5`, `RB0-RB5`).
+       - Include bindings for the encoder push buttons (`LEC` at 42, `REC` at 43). Assign `&none` to unused positions.
+     - **Verify:** After changes, the `bindings` array should have exactly 60 entries.
+
 ** [ ] Port Missing QMK Features
    - [ ] **Per-Key Tapping Term:** Your QMK config uses a longer tapping term for weaker pinky fingers.
      - To port this, create new `hold-tap` behaviors in `config/behaviors.dtsi` (e.g., `hml_pinky`) with a longer `tapping-term-ms` (e.g., 185).

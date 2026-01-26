@@ -46,10 +46,10 @@
 #define HM_D &hml LCTRL D
 #define HM_F &hml LSHFT F
 
-#define HM_J &hml RSHFT J
-#define HM_K &hml RCTRL K
-#define HM_L &hml RALT L
-#define HM_SCLN &hml RGUI SEMI
+#define HM_J &hmr RSHFT J
+#define HM_K &hmr RCTRL K
+#define HM_L &hmr RALT L
+#define HM_SCLN &hmr RGUI SEMI
 
 
 /* ==========================================================================
@@ -180,6 +180,28 @@
 #define ___BASE_NO_HRM_L2___ &kp A &kp S &kp D &kp F &kp G
 #define ___BASE_NO_HRM_R2___ &kp H &kp J &kp K &kp L &kp SEMI
 
+// --------------------------------------------------------------------------
+// Top row or number row, not sure what to call it TODO decide
+// --------------------------------------------------------------------------
+#define ___NUM_BASE_L___   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
+#define ___NUM_BASE_R___   &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
+
+#define ___NUM_LOWER_L___  &trans &trans &trans &trans &trans
+#define ___NUM_LOWER_R___  &trans &trans &trans &trans &trans
+
+#define ___NUM_RAISE_L___  &trans &trans &trans &trans &trans
+#define ___NUM_RAISE_R___  &trans &trans &trans &trans &trans
+
+#define ___NUM_FUNC_L___   &trans &trans &trans &trans &trans
+#define ___NUM_FUNC_R___   &trans &trans &trans &trans &trans
+
+#define ___NUM_ADJUST_L___ &trans &trans &trans &trans &trans
+#define ___NUM_ADJUST_R___ &trans &trans &trans &trans &trans
+
+#define ___NUM_GAMING_L___ &trans &trans &trans &trans &trans
+#define ___NUM_GAMING_R___ &trans &trans &trans &trans &trans
+
+
 /* ==========================================================================
  * 6-COLUMN EXPANSION MACROS
  * ==========================================================================
@@ -287,16 +309,14 @@
 #define ___ENC_ADJUST___       &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
 #define ___ENC_GAMING___       &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
 
-// hmm we could in theory define this as a wrapper between the left and
-// right of each layer and then just use this as the entire row 4.
-// ill leve that as a potential TODO for now. ^
-#define ___ENC_KEY_BASE___   &kp trans &kp trans
-#define ___ENC_KEY_LOWER___  &kp trans &kp trans
-#define ___ENC_KEY_RAISE___  &kp trans &kp trans
-#define ___ENC_KEY_FUNC___   &kp trans &kp trans
-#define ___ENC_KEY_ADJUST___ &kp trans &kp trans
-#define ___ENC_KEY_GAMING___ &kp trans &kp trans
-// should just be able to sneak this inbetween base_l3_6
+// Encoder Button bindings - this particular setup works for any keyboard where they are paralel
+// on the same row.
+#define ___ENC_KEY_BASE___   _______ _______
+#define ___ENC_KEY_LOWER___  _______ _______
+#define ___ENC_KEY_RAISE___  _______ _______
+#define ___ENC_KEY_FUNC___   _______ _______
+#define ___ENC_KEY_ADJUST___ _______ _______
+#define ___ENC_KEY_GAMING___ _______ _______
 
 /* --------------------------------------------------------------------------
  * Sweep thumb layers // TODO no idea if we should add anythign on the adjust layer, but its an option
