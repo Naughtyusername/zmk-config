@@ -244,6 +244,22 @@
 #define ___GAMING_R2_6___ ___GAMING_R2___ &kp SQT
 #define ___GAMING_R3_6___ ___GAMING_R3___ &kp RET
 
+/* --------------------------------------------------------------------------
+ * Sofle thumb layers
+ * --------------------------------------------------------------------------
+ *  _     _     _     _     _  BASE    _     _     _     _     _
+
+ *  _     _     _     _     _  LOWER   _     _     _     _     _
+
+ *  _     _     _     _     _  RAISE   _     _     _     _     _
+
+ *  _     _     _     _     _  FUNC    _     _     _     _     _
+
+ *  _     _     _     _     _  ADJUST  _     _     _     _     _
+
+ *  _     _     _     _     _  GAMING  _     _     _     _     _
+ */
+
 // Sofle thumbs
 #define ___SOFLE_THUMBS_L_BASE___ &none  &none  &none  &none  &none
 #define ___SOFLE_THUMBS_R_BASE___ &none  &none  &none  &none  &none
@@ -267,16 +283,29 @@
 #define ___ENC_BASE___         &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
 #define ___ENC_LOWER___        &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
 #define ___ENC_RAISE___        &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
-#define ___ENC_FUNC___     &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
+#define ___ENC_FUNC___         &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
 #define ___ENC_ADJUST___       &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
 #define ___ENC_GAMING___       &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
 
-// clang-format off
-// TODO sweep thumbs, set up he bs_del thing and trans on raise and lower to push to adjust. the macro to space raise
+/* --------------------------------------------------------------------------
+ * Sofle thumb layers
+ * --------------------------------------------------------------------------
+ *  _     _     _     _     _  BASE    _     _     _     _     _
+
+ *  _     _     _     _     _  LOWER   _     _     _     _     _
+
+ *  _     _     _     _     _  RAISE   _     _     _     _     _
+
+ *  _     _     _     _     _  FUNC    _     _     _     _     _
+
+ *  _     _     _     _     _  ADJUST  _     _     _     _     _
+
+ *  _     _     _     _     _  GAMING  _     _     _     _     _
+ */
 // Sweep / Cradio Thumbs
-#define ___SWEEP_THUMBS_BASE___         &none  &none          &none  &none
-#define ___SWEEP_THUMBS_LOWER___        &none  &none          &none  &none
-#define ___SWEEP_THUMBS_RAISE___        &none  &none          &none  &none
-#define ___SWEEP_THUMBS_FUNC___         &none  &none          &none  &none
-#define ___SWEEP_THUMBS_ADJUST___       &none  &none          &none  &none
-#define ___SWEEP_THUMBS_GAMING___       &none  &none          &none  &none
+#define ___SWEEP_THUMBS_BASE___     &bs_del  &lt RAISE SPACE      &lt LOWER RETURN  &lt FUNC SQT
+#define ___SWEEP_THUMBS_LOWER___    &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_RAISE___    &trans  &trans                &trans  &kp SQT
+#define ___SWEEP_THUMBS_FUNC___     &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_ADJUST___   &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_GAMING___   &kp BSPC  &kp SPACE           &kp RETURN  &kp TAB

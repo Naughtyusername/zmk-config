@@ -1,3 +1,5 @@
+#include "wrappers.dtsi"
+
 / {
     behaviors {
         hml: homerow_mods_left {
@@ -69,6 +71,14 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp TILDE &kp FSLH>;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <LOWER RAISE>;
+            then-layer = <ADJUST>;
         };
     };
 };
