@@ -283,23 +283,23 @@
  */
 
 // Sofle thumbs
-#define ___SOFLE_THUMBS_L_BASE___ &none  &none  &none  &none  &lt RAISE SPACE
-#define ___SOFLE_THUMBS_R_BASE___ &lt LOWER RETURN  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_BASE___ &sk LSHFT &sk LCTRL &sk LALT &bs_del &lt RAISE SPACE
+#define ___SOFLE_THUMBS_R_BASE___ &lt LOWER RETURN  &lt FUNC TAB  &none  &none  &none
 
-#define ___SOFLE_THUMBS_L_LOWER___ &none  &none  &none  &none  &none
-#define ___SOFLE_THUMBS_R_LOWER___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_LOWER___ &none  &none  &none  &none  &trans
+#define ___SOFLE_THUMBS_R_LOWER___ &trans  &none  &none  &none  &none
 
-#define ___SOFLE_THUMBS_L_RAISE___ &none  &none  &none  &none  &none
-#define ___SOFLE_THUMBS_R_RAISE___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_RAISE___ &none  &none  &none  &none  &trans
+#define ___SOFLE_THUMBS_R_RAISE___ &trans  &none  &none  &none  &none
 
-#define ___SOFLE_THUMBS_L_FUNC___ &none  &none  &none  &none  &none
-#define ___SOFLE_THUMBS_R_FUNC___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_FUNC___ &none  &none  &none  &none  &trans
+#define ___SOFLE_THUMBS_R_FUNC___ &trans  &none  &none  &none  &none
 
-#define ___SOFLE_THUMBS_L_ADJUST___ &none  &none  &none  &none  &none
-#define ___SOFLE_THUMBS_R_ADJUST___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_ADJUST___ &none  &none  &none  &none  &trans
+#define ___SOFLE_THUMBS_R_ADJUST___ &trans  &none  &none  &none  &none
 
-#define ___SOFLE_THUMBS_L_GAMING___ &none  &none  &none  &none  &none
-#define ___SOFLE_THUMBS_R_GAMING___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_GAMING___ &none  &none  &none  &kp BSPC  &kp SPACE
+#define ___SOFLE_THUMBS_R_GAMING___ &kp RET  &kp TAB  &none  &none  &none
 
 // Sofle encoder rotation bindings
 #define ___ENC_BASE___         &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN

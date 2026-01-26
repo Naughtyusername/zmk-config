@@ -23,6 +23,10 @@
             // Cradio-specific key positions for F (LM1) and G (LM0) from 34.h
             key-positions = <13 14>;
         };
+        combo_sd_tab {
+            // Cradio-specific key positions for S (LM2) and D (LM1) from 34.h
+            key-positions = <12 13>;
+        };
     };
 
     keymap {

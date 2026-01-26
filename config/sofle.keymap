@@ -23,6 +23,10 @@
             // Sofle-specific key positions for F (LM1) and G (LM0) from sofle.h
             key-positions = <28 29>;
         };
+        combo_sd_tab {
+            // Sofle-specific key positions for S (LM3) and D (LM2) from sofle.h
+            key-positions = <26 27>;
+        };
     };
 
     keymap {
@@ -30,7 +34,7 @@
         base {
             display-name = "BASE";
             bindings = <
-                  ___NUM_BASE_L___                   ___NUM_BASE_L___
+                  ___NUM_BASE_L___                   ___NUM_BASE_R___
                   ___BASE_L1_6___                    ___BASE_R1_6___
                   ___BASE_L2_6___                    ___BASE_R2_6___
                   ___BASE_L3_6___ ___ENC_KEY_BASE___ ___BASE_R3_6___
@@ -42,7 +46,7 @@
         lower {
             display-name = "LOWER";
             bindings = <
-                  ___NUM_LOWER_L___                   ___NUM_LOWER_L___
+                  ___NUM_LOWER_L___                   ___NUM_LOWER_R___
                   ___LOWER_L1_6___                    ___LOWER_R1_6___
                   ___LOWER_L2_6___                    ___LOWER_R2_6___
                   ___LOWER_L3_6___ ___ENC_KEY_LOWER___ ___LOWER_R3_6___
@@ -54,7 +58,7 @@
         raise {
             display-name = "RAISE";
             bindings = <
-                  ___NUM_RAISE_L___                   ___NUM_RAISE_L___
+                  ___NUM_RAISE_L___                   ___NUM_RAISE_R___
                   ___RAISE_L1_6___                    ___RAISE_R1_6___
                   ___RAISE_L2_6___                    ___RAISE_R2_6___
                   ___RAISE_L3_6___ ___ENC_KEY_RAISE___ ___RAISE_R3_6___
@@ -66,7 +70,7 @@
         func {
             display-name = "FUNC";
             bindings = <
-                  ___NUM_FUNC_L___                   ___NUM_FUNC_L___
+                  ___NUM_FUNC_L___                   ___NUM_FUNC_R___
                   ___FUNC_L1_6___                    ___FUNC_R1_6___
                   ___FUNC_L2_6___                    ___FUNC_R2_6___
                   ___FUNC_L3_6___ ___ENC_KEY_FUNC___ ___FUNC_R3_6___
@@ -77,7 +81,7 @@
         adjust {
             display-name = "ADJUST";
             bindings = <
-                  ___NUM_ADJUST_L___                   ___NUM_ADJUST_L___
+                  ___NUM_ADJUST_L___                   ___NUM_ADJUST_R___
                   ___ADJUST_L1_6___                    ___ADJUST_R1_6___
                   ___ADJUST_L2_6___                    ___ADJUST_R2_6___
                   ___ADJUST_L3_6___ ___ENC_KEY_ADJUST___ ___ADJUST_R3_6___
@@ -89,7 +93,7 @@
         gaming {
             display-name = "GAMING";
             bindings = <
-                  ___NUM_GAMING_L___                   ___NUM_GAMING_L___
+                  ___NUM_GAMING_L___                   ___NUM_GAMING_R___
                   ___GAMING_L1_6___                    ___GAMING_R1_6___
                   ___GAMING_L2_6___                    ___GAMING_R2_6___
                   ___GAMING_L3_6___ ___ENC_KEY_GAMING___ ___GAMING_R3_6___

@@ -36,5 +36,13 @@
             bindings = <&kp UNDERSCORE>;
             layers = <BASE>;
         };
+
+        combo_sd_tab: combo_sd_tab {
+            timeout-ms = <50>;
+            // Generic default. MUST be overridden. Example: Sofle <26 27> (S+D)
+            key-positions = <0 1>;
+            bindings = <&kp TAB>;
+            layers = <BASE>;
+        };
     };
 };

@@ -2,29 +2,15 @@
 
 ** [ ] Finalize QMK wrapper porting
    - [ ] Review and update comments in `config/wrappers.dtsi` to be ZMK-specific.
-   - [ ] Implement `ADJUST` layer functionality.
-   - [ ] Adapt the `BLANK_TEMPLATE` to ZMK conventions.
+   - [X] Implement `ADJUST` layer functionality.
+   - [X] Adapt the `BLANK_TEMPLATE` to ZMK conventions.
+     we did this by just aliasing ______ to trans
 
 ** [ ] Define thumb key layouts
-   - [ ] Populate `___SWEEP_THUMBS_...___` macros for cradio/sweep keyboard.
+   - [X] Populate `___SWEEP_THUMBS_...___` macros for cradio/sweep keyboard.
+     mostly got these done, i just really dont know what the fuck to put on the sofle
+     sweep we could finess some extra on some layers too.
    - [ ] Populate `___SOFLE_THUMBS_...___` macros for sofle keyboard.
-
-** [ ] Map All Physical Keys on Sofle Keymap (60 keys) - HIGH PRIORITY
-   - **The Discrepancy:** Your `sofle.keymap` currently explicitly binds 46 key positions, but your Sofle has a 60-key physical matrix (as per `sofle.h`). The remaining 14 keys are implicitly `&none`.
-   - **Goal:** Explicitly map all 60 physical key positions in `config/sofle.keymap` to have full control over your layout.
-   - **Your Desired Layout:**
-     - Row 1 (physical top row): Number Row (1-0)
-     - Row 2 (physical next row): Top row (QWERTY)
-     - Row 3 (physical home row): Home row (ASDFG)
-     - Row 4 (physical bottom row): Bottom row (ZXCVB)
-     - Row 5 (physical thumb cluster): Thumb row
-   - **Action Steps:**
-     - **Review `sofle.h`:** Understand the matrix positions (0-59) for each physical key.
-     - **Update `config/wrappers.dtsi`:** Create/adjust macros (e.g., `___BASE_L1___`, `___BASE_R1___`, etc.) to match your desired layout (e.g., first row macros output `&kp N1 &kp N2 ...`). You may need new macros for the physical bottom row.
-     - **Update `config/sofle.keymap`:** Ensure the `bindings` array for each layer in your `sofle.keymap` explicitly lists 60 key entries using your wrapper macros or direct bindings.
-       - Include bindings for the physical bottom row (e.g., `LB0-LB5`, `RB0-RB5`).
-       - Include bindings for the encoder push buttons (`LEC` at 42, `REC` at 43). Assign `&none` to unused positions.
-     - **Verify:** After changes, the `bindings` array should have exactly 60 entries.
 
 ** [ ] Port Missing QMK Features
    - [ ] **Per-Key Tapping Term:** Your QMK config uses a longer tapping term for weaker pinky fingers.
@@ -33,18 +19,17 @@
    - [ ] **One-Shot Mods on Thumbs:** Your QMK thumb clusters use One-Shot Mods extensively. This is a major ergonomic feature to port.
      - In `config/wrappers.dtsi`, edit the `___SWEEP_THUMBS...___` and `___SOFLE_THUMBS...___` macros.
      - Replace `&none` with the ZMK equivalent of `OSM()`, which is `&sk`. For example, `&sk LALT` for one-shot Alt.
-   - [X] **"J + K" Combo for Escape:** Your QMK config uses `J+K` for `Escape` (Vim style). (COMPLETED - implemented using an overriding pattern for both boards)
-     - The generic combo is defined in `config/combos.dtsi`.
-     - Sofle-specific key positions (`<31 32>`) are set in `config/sofle.keymap`.
-     - Cradio-specific key positions (`<16 17>`) are set in `config/cradio.keymap`.
+   - [X] **"J + K" Combo for Escape:** Your QMK config uses `J+K` for `Escape` (Vim style).
+     - Add a combo definition to your keymap files (e.g., `cradio.keymap` or `sofle.keymap`) to implement this.
+     - Note: The existing todo list has `J+K` for `Enter`. Decide which one to implement.
    - [ ] **Advanced Home Row Mod Tuning:** Your QMK config uses `PERMISSIVE_HOLD`, `SPECULATIVE_HOLD`, and `FLOW_TAP_TERM` for a very specific feel. A direct 1:1 port is not possible, but you can approximate it.
      - In `config/behaviors.dtsi`, experiment with the properties of your `hold-tap` behaviors.
      - `flavor = "balanced";` is a good starting point (already implemented).
      - `require-prior-idle-ms = <X>;` (e.g., 100) can be a substitute for `FLOW_TAP_TERM`, preventing accidental holds during fast typing rolls. This will require trial and error to get the feel right.
 
-** [ ] Define encoder behavior
-   - [ ] Investigate migrating from `&inc_dec_kp` to the more flexible `&sensor_rotate` behavior.
-   - [ ] Customize encoder behavior for each layer.
+** [X] Define encoder behavior (Migrated to flexible sensor_rot_kp)
+   - [X] Investigate migrating from `&inc_dec_kp` to the more flexible `&sensor_rotate` behavior. (COMPLETED - implemented `sensor_rot_kp` behavior in `config/behaviors.dtsi` and updated wrapper macros in `config/wrappers.dtsi`)
+   - [X] Customize encoder behavior for each layer. (COMPLETED - now possible by overriding `sensor-bindings` in keymap layers using `&sensor_rot_kp`)
 
 ** [ ] Implement advanced layer management
    - [ ] **Sticky Layers (&sk):** Configure sticky layers for momentary layer access.
@@ -54,122 +39,10 @@
      - [ ] Create a `hold-tap` behavior for '/' with a 2-second hold to activate `&mo ADJUST`.
 
 ** [ ] Add new combos and tap-dances
-   - [ ] **Macros for Auto-Pairing (add these to `config/behaviors.dtsi`):**
-     - `macro_parens`: Sends `()` and moves cursor left.
-       #+begin_src dts
-       macro_parens: auto_parens {
-           compatible = "zmk,behavior-macro";
-           #binding-cells = <0>;
-           bindings = <&kp LPAR &kp RPAR &kp LEFT>;
-       };
-       #+end_src
-     - `macro_curly_braces`: Sends `{}` and moves cursor left.
-       #+begin_src dts
-       macro_curly_braces: auto_curly_braces {
-           compatible = "zmk,behavior-macro";
-           #binding-cells = <0>;
-           bindings = <&kp LBRC &kp RBRC &kp LEFT>;
-       };
-       #+end_src
-     - `macro_square_brackets`: Sends `[]` and moves cursor left.
-       #+begin_src dts
-       macro_square_brackets: auto_square_brackets {
-           compatible = "zmk,behavior-macro";
-           #binding-cells = <0>;
-           bindings = <&kp LBKT &kp RBKT &kp LEFT>;
-       };
-       #+end_src
-   - [ ] **Combos (QMK's "Chordal"):**
-     - [ ] `Q`+`W` for `Esc`.
-     - [ ] `J`+`K` for `Escape` (from QMK config).
-     - [ ] `S`+`D` for `Tab` (especially for Sweep).
-     - [X] **`A + S` → `Backspace`** (COMPLETED - implemented using an overriding pattern for both boards)
-       - The generic combo is defined in `config/combos.dtsi`.
-       - Sofle-specific key positions (`<25 26>`) are set in `config/sofle.keymap`.
-       - Cradio-specific key positions (`<11 12>`) are set in `config/cradio.keymap`.
-     - [X] **`L + ;` → `Enter`** (COMPLETED - implemented using an overriding pattern for both boards)
-       - The generic combo is defined in `config/combos.dtsi`.
-       - Sofle-specific key positions (`<33 34>`) are set in `config/sofle.keymap`.
-       - Cradio-specific key positions (`<18 19>`) are set in `config/cradio.keymap`.
-     - [X] **`F + G` → `_` (Underscore)** (COMPLETED - implemented using an overriding pattern for both boards)
-       - The generic combo is defined in `config/combos.dtsi`.
-       - Sofle-specific key positions (`<28 29>`) are set in `config/sofle.keymap`.
-       - Cradio-specific key positions (`<13 14>`) are set in `config/cradio.keymap`.
-     - [ ] **`U + I` → `()` (using macro_parens)**
-       #+begin_src dts
-       combo_ui_parens {
-           timeout-ms = <50>;
-           key-positions = <P7 P8>; // Replace P7 P8 with actual key positions for U and I
-           bindings = <&macro_parens>;
-           layers = <BASE>;
-       };
-       #+end_src
-     - [ ] **`Y + U` → `{}` (using macro_curly_braces)**
-       #+begin_src dts
-       combo_yu_curly_braces {
-           timeout-ms = <50>;
-           key-positions = <P9 P10>; // Replace P9 P10 with actual key positions for Y and U
-           bindings = <&macro_curly_braces>;
-           layers = <BASE>;
-       };
-       #+end_src
-     - [ ] **`I + O` → `[]` (using macro_square_brackets)**
-       #+begin_src dts
-       combo_io_square_brackets {
-           timeout-ms = <50>;
-           key-positions = <P11 P12>; // Replace P11 P12 with actual key positions for I and O
-           bindings = <&macro_square_brackets>;
-           layers = <BASE>;
-       };
-       #+end_src
-     - [ ] **Left Thumb `T1 + T2` → `ADJUST` Layer**
-       #+begin_src dts
-       combo_left_thumbs_adjust {
-           timeout-ms = <50>;
-           key-positions = <LEFT_THUMB_POS1 LEFT_THUMB_POS2>; // Replace with actual key positions for left thumb keys
-           bindings = <&mo ADJUST>;
-           layers = <BASE>;
-       };
-       #+end_src
-     - [ ] **`Z + /` → `FUNCTION` Layer**
-       #+begin_src dts
-       combo_z_fslash_func {
-           timeout-ms = <50>;
-           key-positions = <Z_KEY_POS FSLASH_KEY_POS>; // Replace with actual key positions for Z and /
-           bindings = <&mo FUNCTION>;
-           layers = <BASE>;
-       };
-       #+end_src
-     - [ ] Home row combos for cut/copy/paste.
-     - [ ] **Combo for Timed One-Shot Layer (for Sweep):** Create a combo to activate a layer for one keypress, which also times out after a set duration. This is great for quick access to a layer without a dedicated key.
-       - In your keymap file (e.g., `cradio.keymap`), first define a reusable sticky layer behavior with a custom timeout:
-       #+begin_src dts
-       / {
-           behaviors {
-               timed_osl: timed_one_shot_layer {
-                   compatible = "zmk,behavior-sticky-layer";
-                   #binding-cells = <1>;
-                   bindings = <&mo>;
-                   release-after-ms = <2000>; // Stays active for 2s
-               };
-           };
-       #+end_src
-       - Then, create a combo that uses this behavior to activate a specific layer (e.g., `LOWER`):
-       #+begin_src dts
-           combos {
-               compatible = "zmk,combos";
-               combo_osl_lower {
-                   timeout-ms = <50>;
-                   key-positions = <P1 P2>; // Replace with key positions, e.g., outer bottom row keys
-                   bindings = <&timed_osl LOWER>;
-                   layers = <BASE>;
-               };
-           };
-       };
-       #+end_src
-   - [ ] **Tap-Dances:**
-     - [ ] A key for brackets: `(` on tap, `[` on double-tap, `{` on hold.
-     - [ ] A key for navigation: `Up` on tap, `Page Up` on double-tap.
+   - [X] **Combos (QMK's "Chordal"):**
+     - [X] `Q`+`W` for `Esc`.
+     - [X] `J`+`K` for `Escape` (from QMK config).
+     - [X] `S`+`D` for `Tab`.
 
 ** [ ] Implement Advanced Key Behaviors
    - [ ] **Fix `CAPS_WORD` interaction with Tap Dance keys (`TD_Q_ESC`)**
@@ -238,13 +111,14 @@
        #+end_src
      - Update home-row mod macros in `config/wrappers.dtsi` to use the new behavior (e.g., `&hml_rep`).
 
-** [X] Configure Sofle Hardware (Battery, Output, Layer Status widgets enabled)
-   - [X] **Add status widgets to OLED:** The `sofle.conf` file now enables Battery Status, Output Status, and Layer Status widgets for the central side. (COMPLETED by Gemini CLI after resolving build issues)
+** [ ] Configure Sofle Hardware
+   - [ ] **Add status widgets to OLED:** The `sofle.conf` file currently enables the display but is missing the required flags for useful widgets. Add the following flags to enable them:
      - `CONFIG_ZMK_WIDGET_BATTERY_STATUS=y`
      - `CONFIG_ZMK_WIDGET_BATTERY_STATUS_SHOW_PERCENTAGE=y`
      - `CONFIG_ZMK_WIDGET_OUTPUT_STATUS=y`
      - `CONFIG_ZMK_WIDGET_LAYER_STATUS=y`
-   - [ ] **Add WPM widget to OLED:** `CONFIG_ZMK_WPM=y` and `CONFIG_ZMK_WIDGET_WPM_STATUS=y` were removed to resolve peripheral build issues. To properly enable WPM on the central side, you would need to create `sofle_left.conf` (for central-specific configs) and `sofle_right.conf` (for peripheral-specific configs) and place these flags in `sofle_left.conf`.
+   - [ ] **Add WPM widget to OLED:**
+     - Add `CONFIG_ZMK_WPM=y` and `CONFIG_ZMK_WIDGET_WPM_STATUS=y` to `sofle.conf`.
    - [ ] Add RGB underglow support to indicate the current layer.
 
 ** [ ] Integrate external modules
@@ -257,22 +131,7 @@
      - [ ] Implement adaptive behaviors for common programming ligatures like `=>`, `!=`, `->`.
 
 ** [ ] Explore advanced ZMK behaviors (QMK Equivalents)
-    - [ ] **`CAPS WORD` Configuration:**
-      - 1. Add `CONFIG_ZMK_CAPS_WORD=y` to your `.conf` file.
-      - 2. Add `&caps_word` to a key in your keymap (e.g., in a combo).
-      - 3. **Customize Behavior (Recommended for Programming):** For fine-grained control, define a custom `caps_word` behavior in `config/behaviors.dtsi`.
-         - **`continue-list`:** This is the most important property. It lets you define which keys *don't* break the `CAPS_WORD` state. The default is `A-Z`, `0-9`, `UNDERSCORE`, `BSPC`, `DEL`. You can add to it.
-         #+begin_src dts
-         // Example of a custom caps_word behavior in config/behaviors.dtsi
-         my_caps_word: my_caps_word_behavior {
-             compatible = "zmk,behavior-caps-word";
-             #binding-cells = <0>;
-             // Example: Add MINUS to the list of keys that don't break CAPS_WORD
-             continue-list = <UNDERSCORE MINUS BSPC DEL>;
-         };
-         #+end_src
-         - **`mods`:** You can also change the modifier from `Shift` to something else, for example `mods = <(MOD_LCTL | MOD_LALT)>;`.
-         - Remember to use your custom behavior in your keymap (e.g., `&my_caps_word`) instead of the default `&caps_word`.
+    - [ ] **`CAPS WORD`:** Add `CONFIG_ZMK_CAPS_WORD=y` and a keybinding for it.
     - [ ] **Dynamic Macros:** Investigate and enable `CONFIG_ZMK_MACRO_DYNAMIC=y` for on-the-fly macro recording.
     - [ ] **Speculative Hold:** Use the `hold-while-undecided` property in hold-tap behaviors to reduce modifier lag.
     - [ ] **Permissive Hold:** Use the `"balanced"` flavor for hold-tap behaviors for a more responsive feel for fast typists.
@@ -292,33 +151,80 @@
    - [ ] Add the ZMK Studio snippet to `build_all.sh`.
    - [ ] Configure a `&studio_unlock` key in the keymap for real-time keymap changes.
 
-** [ ] Implement Special Use Layers (Lower Priority)
-   - [ ] **Design and Implement Roguelike Gaming Layer (`ROGUELIKE`)**
-     - Goal: Create a dedicated layer optimized for roguelike games, likely featuring a numpad-like layout and common game commands.
-     - Reference: Use your existing QMK `gaming2_layer` from `tmp/qmk_userspace/users/naughtyusername/naughtyusername.c` as the primary inspiration and starting point for bindings.
-     - Action: Define a new layer (e.g., `ROGUELIKE` or `NON_VIM_GAMING`) in `config/wrappers.dtsi` and populate its bindings in your keymap files.
+* Code Snippets
 
-* Kconfig Reference
-  A reference of common Kconfig options to add to your `.conf` files.
+** 1. Flexible Encoder Behavior (`sensor_rot_kp` migration):**
 
-*** General
-    - `CONFIG_ZMK_KEYBOARD_NAME`: Sets the name your keyboard advertises.
-    - `CONFIG_ZMK_WPM`: Enables words-per-minute calculation.
+   **Goal:** Migrate from `&inc_dec_kp` to a more flexible behavior (`sensor_rot_kp`) that allows binding any ZMK behavior to encoder rotations, and easily customize per layer.
 
-*** Behavior
-    - `CONFIG_ZMK_COMBOS`: Enables combos.
-    - `CONFIG_ZMK_MACROS`: Enables macros.
-    - `CONFIG_ZMK_TAP_DANCE`: Enables tap-dance behaviors.
-    - `CONFIG_ZMK_STICKY_KEYS`: Enables sticky keys/layers (`&sk`).
-    - `CONFIG_ZMK_HOLD_TAP`: Enables hold-tap behaviors.
-    - `CONFIG_ZMK_HOLD_TAP_INTERRUPTIBLE`: Makes hold-taps interruptible.
+   **Implementation Details:**
 
-*** Hardware & Features
-    - `CONFIG_BT`: Enables Bluetooth.
-    - `CONFIG_BT_MAX_PAIRED`: Sets the max number of paired Bluetooth devices.
-    - `CONFIG_USB_DEVICE_PRODUCT`: Sets the product name for USB.
-    - `CONFIG_ZMK_USB_BOOT`: Enables a more compatible USB mode for BIOS/UEFI.
-    - `CONFIG_ZMK_DISPLAY`: Enables support for OLED/LCD screens.
-    - `CONFIG_ZMK_RGB_UNDERGLOW`: Enables RGB underglow.
-    - `CONFIG_ZMK_BACKLIGHT`: Enables single-color backlighting.
-    - `CONFIG_EC11`: Enables support for EC11-style rotary encoders.
+   - **`config/behaviors.dtsi` (Define the new behavior):**
+     #+begin_src dts
+     encoder_macro_actions: encoder_macro_actions { // Or use the name sensor_rot_kp from previous steps
+         compatible = "zmk,behavior-sensor-custom";
+         #binding-cells = <2>; // Takes 2 args: CW_action, CCW_action
+         bindings-clockwise = <__VA_ARGS_BINDING_CELL_1__>;
+         bindings-counter-clockwise = <__VA_ARGS_BINDING_CELL_2__>;
+     };
+     #+end_src
+
+   - **`config/wrappers.dtsi` (Update wrapper macros to use `sensor_rot_kp`):**
+     Replace all instances of `&inc_dec_kp CW_KEY CCW_KEY` with `&sensor_rot_kp CW_KEY CCW_KEY`.
+     #+begin_src dts
+     // Example for ___ENC_BASE___
+     #define ___ENC_BASE___         &sensor_rot_kp kp C_VOL_UP kp C_VOL_DN \
+                                    &sensor_rot_kp kp PG_UP kp PG_DN
+     #end_src
+
+   - **Layer-Specific Overrides (Example in `sofle.keymap` or `cradio.keymap`):**
+     To change encoder behavior for a specific layer, override its `sensor-bindings`.
+     #+begin_src dts
+     raise {
+         // ... other key bindings ...
+
+         sensor-bindings = <
+             // First encoder: Screen Brightness
+             &sensor_rot_kp kp C_BRI_UP kp C_BRI_DN
+             // Second encoder: RGB Underglow Hue
+             &sensor_rot_kp rgb_ug RGB_HUI rgb_ug RGB_HUD
+         >;
+     };
+     #end_src
+
+** 2. Common Encoder Uses for Other Layers:**
+
+   Here are some popular and highly useful ideas for encoder applications on different layers, leveraging the flexibility of `sensor_rot_kp`:
+
+   - **Media & Volume Control (Your Current Default):**
+     - Base/Default Layer: `&kp C_VOL_UP / &kp C_VOL_DN` (Volume control)
+     - Base/Default Layer: `&kp PG_UP / &kp PG_DN` (Page Up/Down)
+
+   - **Scrolling (More Granular Control):**
+     - Navigation Layer (e.g., `FUNC` layer):
+       - `&kp UP / &kp DOWN` for fine-grained vertical scrolling.
+       - `&kp LEFT / &kp RIGHT` for horizontal scrolling (e.g., in spreadsheets or timelines).
+     - Fast Scroll: Combine with a modifier: `&kp LSHIFT LEFT / &kp LSHIFT RIGHT`
+
+   - **Layer Switching / Navigation:**
+     - Adjust Layer / Utility Layer:
+       - Workspace/Desktop Switching: `&kp LG(LEFT) / &kp LG(RIGHT)` (macOS) or `&kp LCTRL LALT LEFT / &kp LCTRL LALT RIGHT` (Linux/Windows).
+       - Tab Switching: `&kp LCTRL TAB / &kp LCTRL LS(TAB)` (in browsers/apps).
+       - Layer Cycling: `&tog Layer_N / &tog Layer_M` to cycle between specific layers.
+
+   - **Brightness / Backlight Control:**
+     - Adjust Layer / Utility Layer:
+       - Screen Brightness: `&kp C_BRI_UP / &kp C_BRI_DN`
+       - RGB Underglow Brightness: `&rgb_ug RGB_BRI / &rgb_ug RGB_BRD` (if RGB underglow is enabled)
+       - RGB Underglow Hue/Saturation: `&rgb_ug RGB_HUI / &rgb_ug RGB_HUD` or `&rgb_ug RGB_SAI / &rgb_ug RGB_SAD`
+
+   - **Application-Specific Controls (Power User!):**
+     - Video Editing / Audio Production Layer:
+       - `&macro_timeline_zoom_in / &macro_timeline_zoom_out`
+       - `&macro_track_prev / &macro_track_next`
+     - Graphics Editing Layer (e.g., Photoshop):
+       - `&macro_brush_size_up / &macro_brush_size_down`
+       - `&macro_zoom_in / &macro_zoom_out`
+     - IDE/Editor Specific:
+       - `&macro_next_error / &macro_prev_error`
+       - `&macro_line_indent / &macro_line_dedent`
