@@ -247,22 +247,22 @@
 /* --------------------------------------------------------------------------
  * Sofle thumb layers
  * --------------------------------------------------------------------------
- *  _     _     _     _     _  BASE    _     _     _     _     _
-
- *  _     _     _     _     _  LOWER   _     _     _     _     _
-
- *  _     _     _     _     _  RAISE   _     _     _     _     _
-
- *  _     _     _     _     _  FUNC    _     _     _     _     _
-
- *  _     _     _     _     _  ADJUST  _     _     _     _     _
-
- *  _     _     _     _     _  GAMING  _     _     _     _     _
+ * |BASE  | TRANS     TRANS     TRANS     TRANS RAISE+SPACE |    LOWER+RETURN     TRANS     TRANS     TRANS     TRANS
+                                                            |
+ * |LOWER | TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
+                                                            |
+ * |RAISE | TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
+                                                            |
+ * |FUNC  | TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
+                                                            |
+ * |ADJUST| TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
+                                                            |
+ * |GAMING| TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
  */
 
 // Sofle thumbs
-#define ___SOFLE_THUMBS_L_BASE___ &none  &none  &none  &none  &none
-#define ___SOFLE_THUMBS_R_BASE___ &none  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_BASE___ &none  &none  &none  &none  &lt RAISE SPACE
+#define ___SOFLE_THUMBS_R_BASE___ &lt LOWER RETURN  &none  &none  &none  &none
 
 #define ___SOFLE_THUMBS_L_LOWER___ &none  &none  &none  &none  &none
 #define ___SOFLE_THUMBS_R_LOWER___ &none  &none  &none  &none  &none
@@ -279,33 +279,39 @@
 #define ___SOFLE_THUMBS_L_GAMING___ &none  &none  &none  &none  &none
 #define ___SOFLE_THUMBS_R_GAMING___ &none  &none  &none  &none  &none
 
-// Sofle encoder bindings
-#define ___ENC_BASE___         &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
-#define ___ENC_LOWER___        &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
-#define ___ENC_RAISE___        &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
-#define ___ENC_FUNC___         &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
-#define ___ENC_ADJUST___       &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
-#define ___ENC_GAMING___       &inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN
+// Sofle encoder rotation bindings
+#define ___ENC_BASE___         &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+#define ___ENC_LOWER___        &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+#define ___ENC_RAISE___        &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+#define ___ENC_FUNC___         &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+#define ___ENC_ADJUST___       &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+#define ___ENC_GAMING___       &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+
+// hmm we could in theory define this as a wrapper between the left and
+// right of each layer and then just use this as the entire row 4.
+// ill leve that as a potential TODO for now. ^
+#define ___ENC_KEY_BASE___   &kp trans &kp trans
+#define ___ENC_KEY_LOWER___  &kp trans &kp trans
+#define ___ENC_KEY_RAISE___  &kp trans &kp trans
+#define ___ENC_KEY_FUNC___   &kp trans &kp trans
+#define ___ENC_KEY_ADJUST___ &kp trans &kp trans
+#define ___ENC_KEY_GAMING___ &kp trans &kp trans
+// should just be able to sneak this inbetween base_l3_6
 
 /* --------------------------------------------------------------------------
- * Sofle thumb layers
+ * Sweep thumb layers // TODO no idea if we should add anythign on the adjust layer, but its an option
  * --------------------------------------------------------------------------
- *  _     _     _     _     _  BASE    _     _     _     _     _
-
- *  _     _     _     _     _  LOWER   _     _     _     _     _
-
- *  _     _     _     _     _  RAISE   _     _     _     _     _
-
- *  _     _     _     _     _  FUNC    _     _     _     _     _
-
- *  _     _     _     _     _  ADJUST  _     _     _     _     _
-
- *  _     _     _     _     _  GAMING  _     _     _     _     _
+ *  BACKSPACE+DELETE     RAISE+SPACE  |BASE  |   LOWER+RETURN    FUNC+TAB
+ *  -----------          -----------  |LOWER |   HOLDING         -----------
+ *  -----------          HOLDING      |RAISE |   -----------     -----------
+ *  TAB                  SPACE        |FUNC  |   RETURN          HOLDING
+ *  -----------          HOLDING      |ADJUST|   HOLDING         -----------
+ *  BACKSPACE            SPACE        |GAMING|   RETURN          TAB
  */
 // Sweep / Cradio Thumbs
-#define ___SWEEP_THUMBS_BASE___     &bs_del  &lt RAISE SPACE      &lt LOWER RETURN  &lt FUNC SQT
+#define ___SWEEP_THUMBS_BASE___     &bs_del  &lt RAISE SPACE      &lt LOWER RETURN  &lt FUNC TAB
 #define ___SWEEP_THUMBS_LOWER___    &trans  &trans                &trans  &trans
-#define ___SWEEP_THUMBS_RAISE___    &trans  &trans                &trans  &kp SQT
-#define ___SWEEP_THUMBS_FUNC___     &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_RAISE___    &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_FUNC___     &kp TAB  &kp SPACE            &kp RETURN  &trans
 #define ___SWEEP_THUMBS_ADJUST___   &trans  &trans                &trans  &trans
 #define ___SWEEP_THUMBS_GAMING___   &kp BSPC  &kp SPACE           &kp RETURN  &kp TAB

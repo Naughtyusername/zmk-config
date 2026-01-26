@@ -16,9 +16,10 @@
    - [ ] **One-Shot Mods on Thumbs:** Your QMK thumb clusters use One-Shot Mods extensively. This is a major ergonomic feature to port.
      - In `config/wrappers.dtsi`, edit the `___SWEEP_THUMBS...___` and `___SOFLE_THUMBS...___` macros.
      - Replace `&none` with the ZMK equivalent of `OSM()`, which is `&sk`. For example, `&sk LALT` for one-shot Alt.
-   - [ ] **"J + K" Combo for Escape:** Your QMK config uses `J+K` for `Escape` (Vim style).
-     - Add a combo definition to your keymap files (e.g., `cradio.keymap` or `sofle.keymap`) to implement this.
-     - Note: The existing todo list has `J+K` for `Enter`. Decide which one to implement.
+   - [X] **"J + K" Combo for Escape:** Your QMK config uses `J+K` for `Escape` (Vim style). (COMPLETED - implemented using an overriding pattern for both boards)
+     - The generic combo is defined in `config/combos.dtsi`.
+     - Sofle-specific key positions (`<31 32>`) are set in `config/sofle.keymap`.
+     - Cradio-specific key positions (`<16 17>`) are set in `config/cradio.keymap`.
    - [ ] **Advanced Home Row Mod Tuning:** Your QMK config uses `PERMISSIVE_HOLD`, `SPECULATIVE_HOLD`, and `FLOW_TAP_TERM` for a very specific feel. A direct 1:1 port is not possible, but you can approximate it.
      - In `config/behaviors.dtsi`, experiment with the properties of your `hold-tap` behaviors.
      - `flavor = "balanced";` is a good starting point (already implemented).
@@ -65,33 +66,18 @@
      - [ ] `Q`+`W` for `Esc`.
      - [ ] `J`+`K` for `Escape` (from QMK config).
      - [ ] `S`+`D` for `Tab` (especially for Sweep).
-     - [ ] **`A + S` → `Backspace`**
-       #+begin_src dts
-       combo_as_bspc {
-           timeout-ms = <50>;
-           key-positions = <P1 P2>; // Replace P1 P2 with actual key positions for A and S
-           bindings = <&kp BSPC>;
-           layers = <BASE>;
-       };
-       #+end_src
-     - [ ] **`L + ;` → `Enter`**
-       #+begin_src dts
-       combo_lscln_ent {
-           timeout-ms = <50>;
-           key-positions = <P3 P4>; // Replace P3 P4 with actual key positions for L and ;
-           bindings = <&kp RET>;
-           layers = <BASE>;
-       };
-       #+end_src
-     - [ ] **`F + G` → `_` (Underscore)**
-       #+begin_src dts
-       combo_fg_underscore {
-           timeout-ms = <50>;
-           key-positions = <P5 P6>; // Replace P5 P6 with actual key positions for F and G
-           bindings = <&kp UNDERSCORE>;
-           layers = <BASE>;
-       };
-       #+end_src
+     - [X] **`A + S` → `Backspace`** (COMPLETED - implemented using an overriding pattern for both boards)
+       - The generic combo is defined in `config/combos.dtsi`.
+       - Sofle-specific key positions (`<25 26>`) are set in `config/sofle.keymap`.
+       - Cradio-specific key positions (`<11 12>`) are set in `config/cradio.keymap`.
+     - [X] **`L + ;` → `Enter`** (COMPLETED - implemented using an overriding pattern for both boards)
+       - The generic combo is defined in `config/combos.dtsi`.
+       - Sofle-specific key positions (`<33 34>`) are set in `config/sofle.keymap`.
+       - Cradio-specific key positions (`<18 19>`) are set in `config/cradio.keymap`.
+     - [X] **`F + G` → `_` (Underscore)** (COMPLETED - implemented using an overriding pattern for both boards)
+       - The generic combo is defined in `config/combos.dtsi`.
+       - Sofle-specific key positions (`<28 29>`) are set in `config/sofle.keymap`.
+       - Cradio-specific key positions (`<13 14>`) are set in `config/cradio.keymap`.
      - [ ] **`U + I` → `()` (using macro_parens)**
        #+begin_src dts
        combo_ui_parens {
@@ -235,14 +221,13 @@
        #+end_src
      - Update home-row mod macros in `config/wrappers.dtsi` to use the new behavior (e.g., `&hml_rep`).
 
-** [ ] Configure Sofle Hardware
-   - [ ] **Add status widgets to OLED:** The `sofle.conf` file currently enables the display but is missing the required flags for useful widgets. Add the following flags to enable them:
+** [X] Configure Sofle Hardware (Battery, Output, Layer Status widgets enabled)
+   - [X] **Add status widgets to OLED:** The `sofle.conf` file now enables Battery Status, Output Status, and Layer Status widgets for the central side. (COMPLETED by Gemini CLI after resolving build issues)
      - `CONFIG_ZMK_WIDGET_BATTERY_STATUS=y`
      - `CONFIG_ZMK_WIDGET_BATTERY_STATUS_SHOW_PERCENTAGE=y`
      - `CONFIG_ZMK_WIDGET_OUTPUT_STATUS=y`
      - `CONFIG_ZMK_WIDGET_LAYER_STATUS=y`
-   - [ ] **Add WPM widget to OLED:**
-     - Add `CONFIG_ZMK_WPM=y` and `CONFIG_ZMK_WIDGET_WPM_STATUS=y` to `sofle.conf`.
+   - [ ] **Add WPM widget to OLED:** `CONFIG_ZMK_WPM=y` and `CONFIG_ZMK_WIDGET_WPM_STATUS=y` were removed to resolve peripheral build issues. To properly enable WPM on the central side, you would need to create `sofle_left.conf` (for central-specific configs) and `sofle_right.conf` (for peripheral-specific configs) and place these flags in `sofle_left.conf`.
    - [ ] Add RGB underglow support to indicate the current layer.
 
 ** [ ] Integrate external modules

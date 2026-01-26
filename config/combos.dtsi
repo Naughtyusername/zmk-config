@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: MIT
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        jk_esc_combo: jk_esc_combo {
+            timeout-ms = <50>;
+            // This is a generic default. It MUST be overridden by board-specific keymaps.
+            // Example: For J and K on Sofle, this might be <31 32>.
+            key-positions = <0 1>;
+            bindings = <&kp ESC>;
+            layers = <BASE>; // Combo active only on BASE layer. Adjust as needed.
+        };
+
+        combo_as_bspc: combo_as_bspc {
+            timeout-ms = <50>;
+            // Generic default. MUST be overridden. Example: Sofle <25 26> (A+S)
+            key-positions = <0 1>;
+            bindings = <&kp BSPC>;
+            layers = <BASE>;
+        };
+
+        combo_lscln_ent: combo_lscln_ent {
+            timeout-ms = <50>;
+            // Generic default. MUST be overridden. Example: Sofle <33 34> (L+;)
+            key-positions = <0 1>;
+            bindings = <&kp RET>;
+            layers = <BASE>;
+        };
+
+        combo_fg_underscore: combo_fg_underscore {
+            timeout-ms = <50>;
+            // Generic default. MUST be overridden. Example: Sofle <28 29> (F+G)
+            key-positions = <0 1>;
+            bindings = <&kp UNDERSCORE>;
+            layers = <BASE>;
+        };
+    };
+};

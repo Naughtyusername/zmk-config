@@ -3,8 +3,28 @@
 #include <dt-bindings/zmk/keys.h>
 #include "behaviors.dtsi" // before wrappers because .dtsi are fucking dumb
 #include "wrappers.dtsi" // qmk logic. has to come after the zmk headers
+#include "combos.dtsi" // Shared combo definitions
 
 / {
+    combos {
+        jk_esc_combo {
+            // Cradio-specific key positions for J (RM1) and K (RM2) from 34.h
+            key-positions = <16 17>;
+        };
+        combo_as_bspc {
+            // Cradio-specific key positions for A (LM3) and S (LM2) from 34.h
+            key-positions = <11 12>;
+        };
+        combo_lscln_ent {
+            // Cradio-specific key positions for L (RM3) and ; (RM4) from 34.h
+            key-positions = <18 19>;
+        };
+        combo_fg_underscore {
+            // Cradio-specific key positions for F (LM1) and G (LM0) from 34.h
+            key-positions = <13 14>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
         base_layer {

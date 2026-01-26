@@ -3,16 +3,37 @@
 #include <dt-bindings/zmk/keys.h>
 #include "behaviors.dtsi" // before wrappers because .dtsi are fucking dumb
 #include "wrappers.dtsi" // after behaviors
+#include "combos.dtsi" // Shared combo definitions
 
 / {
+    combos {
+        jk_esc_combo {
+            // Sofle-specific key positions for J (RM1) and K (RM2) from sofle.h
+            key-positions = <31 32>;
+        };
+        combo_as_bspc {
+            // Sofle-specific key positions for A (LM4) and S (LM3) from sofle.h
+            key-positions = <25 26>;
+        };
+        combo_lscln_ent {
+            // Sofle-specific key positions for L (RM3) and ; (RM4) from sofle.h
+            key-positions = <33 34>;
+        };
+        combo_fg_underscore {
+            // Sofle-specific key positions for F (LM1) and G (LM0) from sofle.h
+            key-positions = <28 29>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
         base {
             display-name = "BASE";
             bindings = <
-                  ___BASE_L1_6___ ___BASE_R1_6___
-                  ___BASE_L2_6___ ___BASE_R2_6___
-                  ___BASE_L3_6___ ___BASE_R3_6___
+                // number row ding dong
+                  ___BASE_L1_6___                ___BASE_R1_6___
+                  ___BASE_L2_6___                ___BASE_R2_6___
+                  ___BASE_L3_6___/*enc buttons*/ ___BASE_R3_6___
                 ___SOFLE_THUMBS_L_BASE___ ___SOFLE_THUMBS_R_BASE___
             >;
                  sensor-bindings = <___ENC_BASE___>;
