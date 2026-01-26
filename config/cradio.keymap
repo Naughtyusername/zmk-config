@@ -5,16 +5,22 @@
 #include "wrappers.dtsi" // qmk logic. has to come after the zmk headers
 #include "combos.dtsi" // Shared combo definitions
 
+/*                              34 KEY MATRIX / LAYOUT MAPPING
+
+  ╭────────────────────┬────────────────────╮ ╭─────────────────────┬─────────────────────╮
+  │  0   1   2   3   4 │  5   6   7   8   9 │ │ LT4 LT3 LT2 LT1 LT0 │ RT0 RT1 RT2 RT3 RT4 │
+  │ 10  11  12  13  14 │ 15  16  17  18  19 │ │ LM4 LM3 LM2 LM1 LM0 │ RM0 RM1 RM2 RM3 RM4 │
+  │ 20  21  22  23  24 │ 25  26  27  28  29 │ │ LB4 LB3 LB2 LB1 LB0 │ RB0 RB1 RB2 RB3 RB4 │
+  ╰───────────╮ 30  31 │ 32  33 ╭───────────╯ ╰───────────╮ LH1 LH0 │ RH0 RH1 ╭───────────╯
+              ╰────────┴────────╯                         ╰─────────┴─────────╯             */
+
 / {
     combos {
         jk_esc_combo {
             // Cradio-specific key positions for J (RM1) and K (RM2) from 34.h
             key-positions = <16 17>;
         };
-        combo_as_bspc {
-            // Cradio-specific key positions for A (LM3) and S (LM2) from 34.h
-            key-positions = <11 12>;
-        };
+        // combo_as_bspc removed as per user's request.
         combo_lscln_ent {
             // Cradio-specific key positions for L (RM3) and ; (RM4) from 34.h
             key-positions = <18 19>;
@@ -26,6 +32,12 @@
         combo_sd_tab {
             // Cradio-specific key positions for S (LM2) and D (LM1) from 34.h
             key-positions = <12 13>;
+        };
+        combo_caps_word {
+            key-positions = <15 16>; // H and J for Cradio
+        };
+        combo_df_tab {
+            key-positions = <13 14>; // D and F for Cradio
         };
     };
 
@@ -82,6 +94,23 @@
                 ___GAMING_L2___ ___GAMING_R2___
                 ___GAMING_L3___ ___GAMING_R3___
                   ___SWEEP_THUMBS_GAMING___
+            >;
+        };
+        roguelike_layer {
+            bindings = <
+                ___BASE_L1___ ___BASE_R1___ // Assuming base row layout initially
+                ___ROGUELIKE_L2___ ___ROGUELIKE_R2___
+                ___ROGUELIKE_L3___ ___ROGUELIKE_R3___
+                  ___SWEEP_THUMBS_ROGUELIKE___
+            >;
+        };
+
+        sys_layer {
+            bindings = <
+                ___BASE_L1___ ___BASE_R1___ // Assuming base row layout initially
+                ___SYS_L2___ ___SYS_R2___
+                ___SYS_L3___ ___SYS_R3___
+                  ___SWEEP_THUMBS_SYS___
             >;
         };
     };

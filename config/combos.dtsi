@@ -13,13 +13,7 @@
             layers = <BASE>; // Combo active only on BASE layer. Adjust as needed.
         };
 
-        combo_as_bspc: combo_as_bspc {
-            timeout-ms = <50>;
-            // Generic default. MUST be overridden. Example: Sofle <25 26> (A+S)
-            key-positions = <0 1>;
-            bindings = <&kp BSPC>;
-            layers = <BASE>;
-        };
+        // combo_as_bspc removed as per user's request.
 
         combo_lscln_ent: combo_lscln_ent {
             timeout-ms = <50>;
@@ -41,8 +35,24 @@
             timeout-ms = <50>;
             // Generic default. MUST be overridden. Example: Sofle <26 27> (S+D)
             key-positions = <0 1>;
+            bindings = <&kp BSPC>; // Changed from &kp TAB to &kp BSPC
+            layers = <BASE>;
+        };
+
+        combo_df_tab: combo_df_tab {
+            timeout-ms = <50>;
+            // Generic default. MUST be overridden. Example: Sofle <27 28> (D+F)
+            key-positions = <0 1>; // Placeholder
             bindings = <&kp TAB>;
             layers = <BASE>;
+        };
+
+        combo_caps_word: combo_caps_word {
+            timeout-ms = <50>;
+            // Generic default. MUST be overridden.
+            key-positions = <0 1>; // Placeholder
+            bindings = <&caps_word>;
+            layers = <BASE>; // Combo active only on BASE layer. Adjust as needed.
         };
     };
 };

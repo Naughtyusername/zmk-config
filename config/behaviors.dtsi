@@ -9,6 +9,7 @@
             quick-tap-ms = <175>;
             require-prior-idle-ms = <150>;
             flavor = "balanced";
+            hold-while-undecided;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33>;
             hold-trigger-on-release;
@@ -21,6 +22,7 @@
             quick-tap-ms = <175>;
             require-prior-idle-ms = <150>;
             flavor = "balanced";
+            hold-while-undecided;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33>;
             hold-trigger-on-release;
@@ -38,6 +40,14 @@
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp Q>, <&kp ESC>;
+        };
+
+        lt_1s_mo: layer_toggle_1s_momentary {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>; // For Layer and Keycode
+            tapping-term-ms = <1000>; // 1 second hold
+            flavor = "tap-preferred"; // Tap for keycode, hold for layer
+            bindings = <&mo>, <&kp>; // Hold binding (&mo) and Tap binding (&kp)
         };
     };
 

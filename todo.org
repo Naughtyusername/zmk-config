@@ -16,13 +16,14 @@
    - [ ] **Per-Key Tapping Term:** Your QMK config uses a longer tapping term for weaker pinky fingers.
      - To port this, create new `hold-tap` behaviors in `config/behaviors.dtsi` (e.g., `hml_pinky`) with a longer `tapping-term-ms` (e.g., 185).
      - Apply this new behavior to the pinky home-row keys (`A`, `;`) in `config/wrappers.dtsi`.
-   - [ ] **One-Shot Mods on Thumbs:** Your QMK thumb clusters use One-Shot Mods extensively. This is a major ergonomic feature to port.
+   - [X] **One-Shot Mods on Thumbs:** Your QMK thumb clusters use One-Shot Mods extensively. This is a major ergonomic feature to port.
+     we want osm as a combo i think, not on thumbs. sofle can use them on thumbs, to many keys for it to matter anyway.
      - In `config/wrappers.dtsi`, edit the `___SWEEP_THUMBS...___` and `___SOFLE_THUMBS...___` macros.
      - Replace `&none` with the ZMK equivalent of `OSM()`, which is `&sk`. For example, `&sk LALT` for one-shot Alt.
    - [X] **"J + K" Combo for Escape:** Your QMK config uses `J+K` for `Escape` (Vim style).
      - Add a combo definition to your keymap files (e.g., `cradio.keymap` or `sofle.keymap`) to implement this.
      - Note: The existing todo list has `J+K` for `Enter`. Decide which one to implement.
-   - [ ] **Advanced Home Row Mod Tuning:** Your QMK config uses `PERMISSIVE_HOLD`, `SPECULATIVE_HOLD`, and `FLOW_TAP_TERM` for a very specific feel. A direct 1:1 port is not possible, but you can approximate it.
+   - [X] **Advanced Home Row Mod Tuning:** Your QMK config uses `PERMISSIVE_HOLD`, `SPECULATIVE_HOLD`, and `FLOW_TAP_TERM` for a very specific feel. A direct 1:1 port is not possible, but you can approximate it.
      - In `config/behaviors.dtsi`, experiment with the properties of your `hold-tap` behaviors.
      - `flavor = "balanced";` is a good starting point (already implemented).
      - `require-prior-idle-ms = <X>;` (e.g., 100) can be a substitute for `FLOW_TAP_TERM`, preventing accidental holds during fast typing rolls. This will require trial and error to get the feel right.
@@ -96,7 +97,9 @@
          #+begin_src c
          #define ___BASE_L1___ &q_esc_ht ...
          #+end_src
-   - [ ] **Smart Key Repeat:** Add key repeat to home-row mods. This allows a letter to repeat on a double-tap-and-hold, which is not possible with a standard hold-tap.
+   - [X] **Smart Key Repeat:** Add key repeat to home-row mods. This allows a letter to repeat on a double-tap-and-hold, which is not possible with a standard hold-tap.
+     this does work the timing is just really tight, i think the ai suggestions got this confused with the repeat last key function that is useful on smaller boards
+     for number of reasons
      - Add this behavior to `config/behaviors.dtsi`:
        #+begin_src dts
        hml_rep: homerow_mods_left_with_repeat {
@@ -112,7 +115,7 @@
      - Update home-row mod macros in `config/wrappers.dtsi` to use the new behavior (e.g., `&hml_rep`).
 
 ** [ ] Configure Sofle Hardware
-   - [ ] **Add status widgets to OLED:** The `sofle.conf` file currently enables the display but is missing the required flags for useful widgets. Add the following flags to enable them:
+   - [X] **Add status widgets to OLED:** The `sofle.conf` file currently enables the display but is missing the required flags for useful widgets. Add the following flags to enable them:
      - `CONFIG_ZMK_WIDGET_BATTERY_STATUS=y`
      - `CONFIG_ZMK_WIDGET_BATTERY_STATUS_SHOW_PERCENTAGE=y`
      - `CONFIG_ZMK_WIDGET_OUTPUT_STATUS=y`
@@ -120,36 +123,38 @@
    - [ ] **Add WPM widget to OLED:**
      - Add `CONFIG_ZMK_WPM=y` and `CONFIG_ZMK_WIDGET_WPM_STATUS=y` to `sofle.conf`.
    - [ ] Add RGB underglow support to indicate the current layer.
+     rgb code is in /backups/ that was working.
 
 ** [ ] Integrate external modules
    - [ ] **`zmk-tri-state`:**
+     this can be done in base zmk now, not sure if this module is important?
+     maybe it adds other features.
      - [ ] Add the module to `west.yml`.
      - [ ] Implement a one-handed Alt-Tab "swapper" (Swapper).
      - [ ] Use it to create the `ADJUST` tri-layer.
-   - [ ] **`zmk-antecedent-morph`:**
-     - [ ] Find and add `urob`'s module to `west.yml`.
-     - [ ] Implement adaptive behaviors for common programming ligatures like `=>`, `!=`, `->`.
 
 ** [ ] Explore advanced ZMK behaviors (QMK Equivalents)
-    - [ ] **`CAPS WORD`:** Add `CONFIG_ZMK_CAPS_WORD=y` and a keybinding for it.
+    - [X] **`CAPS WORD`:** Add `CONFIG_ZMK_CAPS_WORD=y` and a keybinding for it.
     - [ ] **Dynamic Macros:** Investigate and enable `CONFIG_ZMK_MACRO_DYNAMIC=y` for on-the-fly macro recording.
-    - [ ] **Speculative Hold:** Use the `hold-while-undecided` property in hold-tap behaviors to reduce modifier lag.
-    - [ ] **Permissive Hold:** Use the `"balanced"` flavor for hold-tap behaviors for a more responsive feel for fast typists.
+    - [X] **Speculative Hold:** Use the `hold-while-undecided` property in hold-tap behaviors to reduce modifier lag.
+    - [X] **Permissive Hold:** Use the `"balanced"` flavor for hold-tap behaviors for a more responsive feel for fast typists.
     - [ ] **Per-key Tapping Term:** Use the `tapping-term-ms` property on specific hold-tap bindings that need a custom value.
     - [ ] **Numword (Smart Layers):** Implement behavior where the layer stays active only while typing numbers, deactivating on space/letter.
     - [ ] **Mod-Morphs (Contextual Keys):** Expand usage beyond `bs_del`, e.g., smart dot ('.', '..', '/'), grave escape ('Esc' to '`' when GUI is held).
 
 ** [ ] Configure BIOS/Bootloader Compatibility (NKRO)
-   - [ ] NOTE: ZMK defaults to 6KRO, which is safe for BIOS. Enabling NKRO (`CONFIG_ZMK_HID_REPORT_TYPE_NKRO=y`) improves OS performance but may break BIOS compatibility.
-   - [ ] NOTE: Unlike QMK, there is no runtime keybinding to toggle between 6KRO and NKRO. The mode is set at compile time. QMK's `NK_TOGG` keycode is not directly portable.
-   - [ ] DECISION: Decide whether to enable NKRO by default and test for BIOS compatibility.
-   - [ ] ACTION: Add `CONFIG_ZMK_HID_REPORT_TYPE_NKRO=y` to the `.conf` files if NKRO is desired.
+   - [X] NOTE: ZMK defaults to 6KRO, which is safe for BIOS. Enabling NKRO (`CONFIG_ZMK_HID_REPORT_TYPE_NKRO=y`) improves OS performance but may break BIOS compatibility.
+   - [X] NOTE: Unlike QMK, there is no runtime keybinding to toggle between 6KRO and NKRO. The mode is set at compile time. QMK's `NK_TOGG` keycode is not directly portable.
+   - [X] DECISION: Decide whether to enable NKRO by default and test for BIOS compatibility.
+   - [X] ACTION: Add `CONFIG_ZMK_HID_REPORT_TYPE_NKRO=y` to the `.conf` files if NKRO is desired.
+     in this case... i thinhk we concede to the almight bios and just keep a spare keyboard around (oh heavens no how would we do that...) and have nkro kuz its overall better to have.
 
-** [ ] Merge `wrappertest` branch
+** [X] Merge `wrappertest` branch
 
-** [ ] ZMK Studio Integration
-   - [ ] Add the ZMK Studio snippet to `build_all.sh`.
-   - [ ] Configure a `&studio_unlock` key in the keymap for real-time keymap changes.
+** [X] ZMK Studio Integration
+i wont be using studio ever so dont need it
+   - [X] Add the ZMK Studio snippet to `build_all.sh`.
+   - [X] Configure a `&studio_unlock` key in the keymap for real-time keymap changes.
 
 * Code Snippets
 

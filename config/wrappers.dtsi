@@ -34,6 +34,8 @@
 #define GAMING 5
 #define GAMING2 6
 #define MOUSE 7
+#define ROGUELIKE 8
+#define SYS 9
 
 // alias
 #define _______ &trans
@@ -78,11 +80,11 @@
 // Alphas
 #define ___BASE_L1___ &kp Q &kp W &kp E &kp R &kp T
 #define ___BASE_L2___ HM_A HM_S HM_D HM_F &kp G
-#define ___BASE_L3___ &kp Z &kp X &kp C &kp V &kp B
+#define ___BASE_L3___ &lt_1s_mo SYS Z &kp X &kp C &kp V &kp B
 
 #define ___BASE_R1___ &kp Y &kp U &kp I &kp O &kp P
 #define ___BASE_R2___ &kp H HM_J HM_K HM_L HM_SCLN
-#define ___BASE_R3___ &kp N &kp M &kp COMMA &kp DOT &kp SLASH
+#define ___BASE_R3___ &kp N &kp M &kp COMMA &kp DOT &lt_1s_mo SYS SLASH
 
 /* --------------------------------------------------------------------------
  * RAISE LAYER - Symbols (Odin/Programming focused)
@@ -160,6 +162,37 @@
 #define ___GAMING_R1___ &kp Y &kp U &kp I &kp O &kp P
 #define ___GAMING_R2___ &kp H &kp J &kp K &kp L &kp SEMI
 #define ___GAMING_R3___ &kp N &kp M &kp COMMA &kp DOT &kp FSLH
+
+/* --------------------------------------------------------------------------
+ * ROGUELIKE LAYER - Extension of Gaming layer
+ * --------------------------------------------------------------------------
+ *  _     _     _     _     _          _     _     _     _     _
+ *  _     _     _     _     _          _     _     _     _     _
+ *  _     _     _     _     _          _     _     _     _     _
+ */
+#define ___ROGUELIKE_L1___ _______ _______ _______ _______ _______
+#define ___ROGUELIKE_L2___ _______ _______ _______ _______ _______
+#define ___ROGUELIKE_L3___ _______ _______ _______ _______ _______
+
+#define ___ROGUELIKE_R1___ _______ _______ _______ _______ _______
+#define ___ROGUELIKE_R2___ _______ _______ _______ _______ _______
+#define ___ROGUELIKE_R3___ _______ _______ _______ _______ _______
+
+/* --------------------------------------------------------------------------
+ * SYS LAYER - Bluetooth connections, clearing, reboot bootloader
+ * --------------------------------------------------------------------------
+ *  _     _     _     _     _          _     _     _     _     _
+ *  _     _     _     _     _          _     _     _     _     _
+ *  _     _     _     _     _          _     _     _     _     _
+ */
+#define ___SYS_L1___ _______ _______ _______ _______ _______
+#define ___SYS_L2___ _______ _______ _______ _______ _______
+#define ___SYS_L3___ _______ _______ _______ _______ _______
+
+#define ___SYS_R1___ _______ _______ _______ _______ _______
+#define ___SYS_R2___ _______ _______ _______ _______ _______
+#define ___SYS_R3___ _______ _______ _______ _______ _______
+
 
 /* --------------------------------------------------------------------------
  * BLANK TEMPLATE - For new layers TODO in zmk this needs to be changed. we aliased trans or none to ___ and XXX
@@ -257,6 +290,24 @@
 #define ___ADJUST_R2_6___ ___ADJUST_R2___ _______
 #define ___ADJUST_R3_6___ ___ADJUST_R3___ _______
 
+// Roguelike layer with outer columns
+#define ___ROGUELIKE_L1_6___ _______ ___ROGUELIKE_L1___
+#define ___ROGUELIKE_L2_6___ _______ ___ROGUELIKE_L2___
+#define ___ROGUELIKE_L3_6___ _______ ___ROGUELIKE_L3___
+
+#define ___ROGUELIKE_R1_6___ ___ROGUELIKE_R1___ _______
+#define ___ROGUELIKE_R2_6___ ___ROGUELIKE_R2___ _______
+#define ___ROGUELIKE_R3_6___ ___ROGUELIKE_R3___ _______
+
+// Sys layer with outer columns
+#define ___SYS_L1_6___ _______ ___SYS_L1___
+#define ___SYS_L2_6___ _______ ___SYS_L2___
+#define ___SYS_L3_6___ _______ ___SYS_L3___
+
+#define ___SYS_R1_6___ ___SYS_R1___ _______
+#define ___SYS_R2_6___ ___SYS_R2___ _______
+#define ___SYS_R3_6___ ___SYS_R3___ _______
+
 // Gaming layer with outer columns
 #define ___GAMING_L1_6___ &kp TAB ___GAMING_L1___
 #define ___GAMING_L2_6___ &kp ESC ___GAMING_L2___
@@ -279,6 +330,10 @@
                                                             |
  * |ADJUST| TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
                                                             |
+ * |ROGUELIKE| TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
+                                                            |
+ * |SYS   | TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
+                                                            |
  * |GAMING| TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
  */
 
@@ -297,6 +352,12 @@
 
 #define ___SOFLE_THUMBS_L_ADJUST___ &none  &none  &none  &none  &trans
 #define ___SOFLE_THUMBS_R_ADJUST___ &trans  &none  &none  &none  &none
+
+#define ___SOFLE_THUMBS_L_ROGUELIKE___ &none  &none  &none  &none  &trans
+#define ___SOFLE_THUMBS_R_ROGUELIKE___ &trans  &none  &none  &none  &none
+
+#define ___SOFLE_THUMBS_L_SYS___ &none  &none  &none  &none  &trans
+#define ___SOFLE_THUMBS_R_SYS___ &trans  &none  &none  &none  &none
 
 #define ___SOFLE_THUMBS_L_GAMING___ &none  &none  &none  &kp BSPC  &kp SPACE
 #define ___SOFLE_THUMBS_R_GAMING___ &kp RET  &kp TAB  &none  &none  &none
@@ -334,4 +395,6 @@
 #define ___SWEEP_THUMBS_RAISE___    &trans  &trans                &trans  &trans
 #define ___SWEEP_THUMBS_FUNC___     &kp TAB  &kp SPACE            &kp RETURN  &trans
 #define ___SWEEP_THUMBS_ADJUST___   &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_ROGUELIKE___ &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_SYS___ &trans  &trans                &trans  &trans
 #define ___SWEEP_THUMBS_GAMING___   &kp BSPC  &kp SPACE           &kp RETURN  &kp TAB
