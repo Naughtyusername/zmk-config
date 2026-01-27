@@ -33,11 +33,11 @@
    - [X] Customize encoder behavior for each layer. (COMPLETED - now possible by overriding `sensor-bindings` in keymap layers using `&sensor_rot_kp`)
 
 ** [ ] Implement advanced layer management
-   - [ ] **Sticky Layers (&sk):** Configure sticky layers for momentary layer access.
+   - [X] **Sticky Layers (&sk):** Configure sticky layers for momentary layer access.
    - [X] Conditional/Tri-Layers: Set up a "tri-layer" that activates when both `LOWER` and `RAISE` layers are active. (COMPLETED by Gemini CLI)
-   - [ ] **Long-press for ADJUST layer:**
-     - [ ] Create a `hold-tap` behavior for 'Z' with a 2-second hold to activate `&mo ADJUST`.
-     - [ ] Create a `hold-tap` behavior for '/' with a 2-second hold to activate `&mo ADJUST`.
+   - [X] **Long-press for ADJUST layer:**
+     - [X] Create a `hold-tap` behavior for 'Z' with a 2-second hold to activate `&mo ADJUST`.
+     - [X] Create a `hold-tap` behavior for '/' with a 2-second hold to activate `&mo ADJUST`.
 
 ** [ ] Add new combos and tap-dances
    - [X] **Combos (QMK's "Chordal"):**
@@ -45,7 +45,7 @@
      - [X] `J`+`K` for `Escape` (from QMK config).
      - [X] `S`+`D` for `Tab`.
 
-** [ ] Implement Advanced Key Behaviors
+** [] Implement Advanced Key Behaviors
    - [ ] **Fix `CAPS_WORD` interaction with Tap Dance keys (`TD_Q_ESC`)**
      - **The Problem:** `CAPS_WORD` only capitalizes basic key presses. It does not see the `Q` being sent from a complex tap-dance behavior in either QMK or ZMK.
      -
@@ -125,24 +125,25 @@
    - [ ] Add RGB underglow support to indicate the current layer.
      rgb code is in /backups/ that was working.
 
-** [ ] Integrate external modules
-   - [ ] **`zmk-tri-state`:**
+** [X] Integrate external modules
+   - [-] **`zmk-tri-state`:**
      this can be done in base zmk now, not sure if this module is important?
      maybe it adds other features.
      - [ ] Add the module to `west.yml`.
      - [ ] Implement a one-handed Alt-Tab "swapper" (Swapper).
-     - [ ] Use it to create the `ADJUST` tri-layer.
+     - [X] Use it to create the `ADJUST` tri-layer.
 
 ** [ ] Explore advanced ZMK behaviors (QMK Equivalents)
     - [X] **`CAPS WORD`:** Add `CONFIG_ZMK_CAPS_WORD=y` and a keybinding for it.
-    - [ ] **Dynamic Macros:** Investigate and enable `CONFIG_ZMK_MACRO_DYNAMIC=y` for on-the-fly macro recording.
+    - [X] **Dynamic Macros:** Investigate and enable `CONFIG_ZMK_MACRO_DYNAMIC=y` for on-the-fly macro recording.
+      these are not implemented in this version, wait for update then we can do them
     - [X] **Speculative Hold:** Use the `hold-while-undecided` property in hold-tap behaviors to reduce modifier lag.
     - [X] **Permissive Hold:** Use the `"balanced"` flavor for hold-tap behaviors for a more responsive feel for fast typists.
-    - [ ] **Per-key Tapping Term:** Use the `tapping-term-ms` property on specific hold-tap bindings that need a custom value.
-    - [ ] **Numword (Smart Layers):** Implement behavior where the layer stays active only while typing numbers, deactivating on space/letter.
-    - [ ] **Mod-Morphs (Contextual Keys):** Expand usage beyond `bs_del`, e.g., smart dot ('.', '..', '/'), grave escape ('Esc' to '`' when GUI is held).
+    - [X] **Per-key Tapping Term:** Use the `tapping-term-ms` property on specific hold-tap bindings that need a custom value.
+    - [X] **Numword (Smart Layers):** Implement behavior where the layer stays active only while typing numbers, deactivating on space/letter.
+    - [X] **Mod-Morphs (Contextual Keys):** Expand usage beyond `bs_del`, e.g., smart dot ('.', '..', '/'), grave escape ('Esc' to '`' when GUI is held).
 
-** [ ] Configure BIOS/Bootloader Compatibility (NKRO)
+** [X] Configure BIOS/Bootloader Compatibility (NKRO)
    - [X] NOTE: ZMK defaults to 6KRO, which is safe for BIOS. Enabling NKRO (`CONFIG_ZMK_HID_REPORT_TYPE_NKRO=y`) improves OS performance but may break BIOS compatibility.
    - [X] NOTE: Unlike QMK, there is no runtime keybinding to toggle between 6KRO and NKRO. The mode is set at compile time. QMK's `NK_TOGG` keycode is not directly portable.
    - [X] DECISION: Decide whether to enable NKRO by default and test for BIOS compatibility.

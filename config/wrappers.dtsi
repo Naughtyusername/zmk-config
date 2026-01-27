@@ -74,7 +74,7 @@
  * --------------------------------------------------------------------------
  *  Q     W     E     R     T          Y     U     I     O     P
  * A/Gui S/Alt D/Ctl F/Sft  G          H    J/Sft K/Ctl L/Alt ;/Gui
- *  Z     X     C     V     B          N     M     ,     .     /
+ * Z/sys X     C     V      B          N     M     ,     .     /
  */
 
 // Alphas
@@ -109,8 +109,8 @@
  *  _     _    Prev  Play  Next        _     1     2     3     _
  */
 #define ___LOWER_L1___ &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
-#define ___LOWER_L2___ _______ _______ _______ _______ _______
-#define ___LOWER_L3___ _______ _______ _______ _______ _______
+#define ___LOWER_L2___ _______ _______ &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE
+#define ___LOWER_L3___ _______ _______ &kp C_PREV &kp C_PP &kp C_NEXT
 
 #define ___LOWER_R1___ &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
 #define ___LOWER_R2___ &kp DOT &kp N4 &kp N5 &kp N6 &kp N0
@@ -135,13 +135,15 @@
  * ADJUST LAYER - System (Tri-layer: LOWER + RAISE) TODO: tweak this removed
  * mouse keys from here dont care for them anwyways. probably do something with
  * NK tog we need the bootmagic shit to use kb in bootloaders too on the list.
+ // now that this is usable safely due to the sys layer, we can put misc keyboard tools
+ // here, like rgb stuff or audio or num and caps lock etc. TODO
  * --------------------------------------------------------------------------
- * Base  Game   _     _     _            _     _     _     _    _
- *  _     _     _     _     _            _     _     _     _    _
+ * Base  Game   _     _     capslock            _     _     _     _    _
+ *  _     _     _     _     numlock             _     _     _     _    _
  *  _     _     _     _     _            _     _     _     _    _
  */
-#define ___ADJUST_L1___ _______ _______ _______ _______ _______
-#define ___ADJUST_L2___ _______ _______ _______ _______ _______
+#define ___ADJUST_L1___ &tog BASE &tog GAMING _______ _______ &CAPS
+#define ___ADJUST_L2___ _______ _______ _______ _______ &KP_NUM
 #define ___ADJUST_L3___ _______ _______ _______ _______ _______
 
 #define ___ADJUST_R1___ _______ _______ _______ _______ _______
@@ -181,13 +183,13 @@
 /* --------------------------------------------------------------------------
  * SYS LAYER - Bluetooth connections, clearing, reboot bootloader
  * --------------------------------------------------------------------------
- *  _     _     _     _     _          _     _     _     _     _
- *  _     _     _     _     _          _     _     _     _     _
- *  _     _     _     _     _          _     _     _     _     _
+ *  btCLEAR btONE btTWO btTHREE btFOUR            _     _     _     _     _
+ *  bootloader system reset                       system reset bootloader
+ *  holding  tog-base  _     _     _        _     _     _     _    holding
  */
 #define ___SYS_L1___ _______ _______ _______ _______ _______
 #define ___SYS_L2___ _______ _______ _______ _______ _______
-#define ___SYS_L3___ _______ _______ _______ _______ _______
+#define ___SYS_L3___ &tog BASE  _______ _______ _______ _______
 
 #define ___SYS_R1___ _______ _______ _______ _______ _______
 #define ___SYS_R2___ _______ _______ _______ _______ _______
