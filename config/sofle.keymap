@@ -30,11 +30,11 @@
             // Sofle-specific key positions for F (LM1) and G (LM0) from sofle.h
             key-positions = <28 29>;
         };
-        combo_sd_tab {
+        combo_sd_bspc {
             // Sofle-specific key positions for S (LM3) and D (LM2) from sofle.h
             key-positions = <26 27>;
         };
-        combo_caps_word {
+        combo_hj_caps_word {
             key-positions = <30 31>; // H and J for Sofle
         };
         combo_df_tab {

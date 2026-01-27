@@ -1,13 +1,15 @@
 // SPDX-License-Identifier: MIT
 
 / {
+    // clang-format off
     combos {
         compatible = "zmk,combos";
 
-        jk_esc_combo: jk_esc_combo {
+        jk_esc_combo {
             timeout-ms = <50>;
-            // This is a generic default. It MUST be overridden by board-specific keymaps.
-            // Example: For J and K on Sofle, this might be <31 32>.
+            // This is a generic default. It MUST be overridden by
+            // board-specific keymaps. Example: For J and K on Sofle, this might
+            // be <31 32>.
             key-positions = <0 1>;
             bindings = <&kp ESC>;
             layers = <BASE>; // Combo active only on BASE layer. Adjust as needed.
@@ -15,7 +17,7 @@
 
         // combo_as_bspc removed as per user's request.
 
-        combo_lscln_ent: combo_lscln_ent {
+        combo_lscln_ent {
             timeout-ms = <50>;
             // Generic default. MUST be overridden. Example: Sofle <33 34> (L+;)
             key-positions = <0 1>;
@@ -23,7 +25,7 @@
             layers = <BASE>;
         };
 
-        combo_fg_underscore: combo_fg_underscore {
+        combo_fg_underscore {
             timeout-ms = <50>;
             // Generic default. MUST be overridden. Example: Sofle <28 29> (F+G)
             key-positions = <0 1>;
@@ -31,7 +33,7 @@
             layers = <BASE>;
         };
 
-        combo_sd_tab: combo_sd_tab {
+        combo_sd_bspc {
             timeout-ms = <50>;
             // Generic default. MUST be overridden. Example: Sofle <26 27> (S+D)
             key-positions = <0 1>;
@@ -39,7 +41,7 @@
             layers = <BASE>;
         };
 
-        combo_df_tab: combo_df_tab {
+        combo_df_tab {
             timeout-ms = <50>;
             // Generic default. MUST be overridden. Example: Sofle <27 28> (D+F)
             key-positions = <0 1>; // Placeholder
@@ -47,7 +49,8 @@
             layers = <BASE>;
         };
 
-        combo_caps_word: combo_caps_word {
+        // hj
+        combo_hj_caps_word {
             timeout-ms = <50>;
             // Generic default. MUST be overridden.
             key-positions = <0 1>; // Placeholder
@@ -55,4 +58,5 @@
             layers = <BASE>; // Combo active only on BASE layer. Adjust as needed.
         };
     };
+    // clang-format on
 };

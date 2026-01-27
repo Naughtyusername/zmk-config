@@ -142,8 +142,8 @@
  *  _     _     _     _     numlock             _     _     _     _    _
  *  _     _     _     _     _            _     _     _     _    _
  */
-#define ___ADJUST_L1___ &tog BASE &tog GAMING _______ _______ &CAPS
-#define ___ADJUST_L2___ _______ _______ _______ _______ &KP_NUM
+#define ___ADJUST_L1___ &tog BASE &tog GAMING _______ _______ &kp CAPS
+#define ___ADJUST_L2___ _______ _______ _______ _______ &kp KP_NUM
 #define ___ADJUST_L3___ _______ _______ _______ _______ _______
 
 #define ___ADJUST_R1___ _______ _______ _______ _______ _______
