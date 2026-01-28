@@ -37,6 +37,7 @@
      - To port this, create new `hold-tap` behaviors in `config/behaviors.dtsi` (e.g., `hml_pinky`) with a longer `tapping-term-ms` (e.g., 185).
      - Apply this new behavior to the pinky home-row keys (`A`, `;`) in `config/wrappers.dtsi`.
    - [ ] Add '.' key to LOWER layer for easier numeric input (e.g., "2.5").
+   - [ ] Ensure '::' and '->' macros are accessible/used in wrappers; remove '..=' macro.
    - [X] **One-Shot Mods on Thumbs:** Your QMK thumb clusters use One-Shot Mods extensively. This is a major ergonomic feature to port.
      we want osm as a combo i think, not on thumbs. sofle can use them on thumbs, to many keys for it to matter anyway.
      - In `config/wrappers.dtsi`, edit the `___SWEEP_THUMBS...___` and `___SOFLE_THUMBS...___` macros.
@@ -68,6 +69,7 @@
      - [X] `J`+`K` for `Escape` (from QMK config).
      - [X] `S`+`D` for `Tab`.
    - [ ] Implement top-row mirrored GACS one-shot modifier combos (e.g., QW for GUI, WE for Alt, ER for Ctrl, RT for Shift on left hand, mirrored on right).
+   - [ ] Add combo for single quote (e.g., 'nm') for faster comment/sentence writing.
 
 ** [X] Implement Advanced Key Behaviors
    - [X] **Fix `CAPS_WORD` interaction with Tap Dance keys (`TD_Q_ESC`)**
