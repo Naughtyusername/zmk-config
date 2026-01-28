@@ -1,5 +1,22 @@
 * TODO Tasks
 
+** [ ] Explore One-Shot Mods (`&sk`) in Combos
+   - **Goal:** Allow easy access to modifiers on layers where Home Row Mods are deactivated (e.g., gaming layers).
+   - **Details:** Investigate binding `&sk <modifier>` (e.g., `&sk LSHFT`) to a combo. This enables a "one-shot" modifier effect without dedicating a full key or relying on HRMs.
+
+** [ ] Implement Combo for Layer Toggling (`&tg`) or Turning On (`&to`)
+   - **Goal:** Enable semi-permanent layer switching using key combos, similar to QMK's `TO()` or `TG()`.
+   - **Details:** Define a combo (e.g., `ZA`) that, when pressed, switches to a specific layer (e.g., `GAMING`) until explicitly exited.
+   - **Example Combo Structure:**
+     #+begin_src dts
+     combo_za_gaming_toggle: {
+         timeout-ms = <50>;
+         key-positions = <POS_Z> <POS_A>; // Replace with actual key positions for Z and A
+         bindings = <&tg GAMING>;
+         layers = <BASE>; // Only active on the base layer
+     };
+     #+end_src
+
 ** [ ] Finalize QMK wrapper porting
    - [ ] Review and update comments in `config/wrappers.dtsi` to be ZMK-specific.
    - [X] Implement `ADJUST` layer functionality.
@@ -11,11 +28,15 @@
      mostly got these done, i just really dont know what the fuck to put on the sofle
      sweep we could finess some extra on some layers too.
    - [ ] Populate `___SOFLE_THUMBS_...___` macros for sofle keyboard.
+     this is so low priority for me because ill never use the majority of keys, however
+     i think i will set the sofle up as the main gaming keyboard, might as well,
+     so with that in mind we can put the extra keys to better use, probably add a second gaming layer too (not just the roguelike layer, but something different like i used to have. as well as full mod keys available)
 
 ** [ ] Port Missing QMK Features
    - [ ] **Per-Key Tapping Term:** Your QMK config uses a longer tapping term for weaker pinky fingers.
      - To port this, create new `hold-tap` behaviors in `config/behaviors.dtsi` (e.g., `hml_pinky`) with a longer `tapping-term-ms` (e.g., 185).
      - Apply this new behavior to the pinky home-row keys (`A`, `;`) in `config/wrappers.dtsi`.
+   - [ ] Add '.' key to LOWER layer for easier numeric input (e.g., "2.5").
    - [X] **One-Shot Mods on Thumbs:** Your QMK thumb clusters use One-Shot Mods extensively. This is a major ergonomic feature to port.
      we want osm as a combo i think, not on thumbs. sofle can use them on thumbs, to many keys for it to matter anyway.
      - In `config/wrappers.dtsi`, edit the `___SWEEP_THUMBS...___` and `___SOFLE_THUMBS...___` macros.
@@ -32,23 +53,25 @@
    - [X] Investigate migrating from `&inc_dec_kp` to the more flexible `&sensor_rotate` behavior. (COMPLETED - implemented `sensor_rot_kp` behavior in `config/behaviors.dtsi` and updated wrapper macros in `config/wrappers.dtsi`)
    - [X] Customize encoder behavior for each layer. (COMPLETED - now possible by overriding `sensor-bindings` in keymap layers using `&sensor_rot_kp`)
 
-** [ ] Implement advanced layer management
+** [X] Implement advanced layer management
    - [X] **Sticky Layers (&sk):** Configure sticky layers for momentary layer access.
    - [X] Conditional/Tri-Layers: Set up a "tri-layer" that activates when both `LOWER` and `RAISE` layers are active. (COMPLETED by Gemini CLI)
    - [X] **Long-press for ADJUST layer:**
      - [X] Create a `hold-tap` behavior for 'Z' with a 2-second hold to activate `&mo ADJUST`.
      - [X] Create a `hold-tap` behavior for '/' with a 2-second hold to activate `&mo ADJUST`.
+   - [ ] Add combo to return to BASE layer (on second gaming layer and roguelike layer).
+   - [ ] Utilize One-Shot Key Modifier Combos on the ROGUELIKE layer.
 
-** [ ] Add new combos and tap-dances
+** [X] Add new combos and tap-dances
    - [X] **Combos (QMK's "Chordal"):**
      - [X] `Q`+`W` for `Esc`.
      - [X] `J`+`K` for `Escape` (from QMK config).
      - [X] `S`+`D` for `Tab`.
+   - [ ] Implement top-row mirrored GACS one-shot modifier combos (e.g., QW for GUI, WE for Alt, ER for Ctrl, RT for Shift on left hand, mirrored on right).
 
-** [] Implement Advanced Key Behaviors
-   - [ ] **Fix `CAPS_WORD` interaction with Tap Dance keys (`TD_Q_ESC`)**
+** [X] Implement Advanced Key Behaviors
+   - [X] **Fix `CAPS_WORD` interaction with Tap Dance keys (`TD_Q_ESC`)**
      - **The Problem:** `CAPS_WORD` only capitalizes basic key presses. It does not see the `Q` being sent from a complex tap-dance behavior in either QMK or ZMK.
-     -
      - **QMK Fix:** Convert the simple tap-dance to an advanced one with a handler function that manually checks if `CAPS_WORD` is active.
        - 1. In `keyrecords.c`, change the `tap_dance_actions` definition:
          #+begin_src c
@@ -120,9 +143,9 @@
      - `CONFIG_ZMK_WIDGET_BATTERY_STATUS_SHOW_PERCENTAGE=y`
      - `CONFIG_ZMK_WIDGET_OUTPUT_STATUS=y`
      - `CONFIG_ZMK_WIDGET_LAYER_STATUS=y`
-   - [ ] **Add WPM widget to OLED:**
+   - [X] **Add WPM widget to OLED:**
      - Add `CONFIG_ZMK_WPM=y` and `CONFIG_ZMK_WIDGET_WPM_STATUS=y` to `sofle.conf`.
-   - [ ] Add RGB underglow support to indicate the current layer.
+   - [X] Add RGB underglow support to indicate the current layer.
      rgb code is in /backups/ that was working.
 
 ** [X] Integrate external modules
@@ -133,7 +156,7 @@
      - [ ] Implement a one-handed Alt-Tab "swapper" (Swapper).
      - [X] Use it to create the `ADJUST` tri-layer.
 
-** [ ] Explore advanced ZMK behaviors (QMK Equivalents)
+** [X] Explore advanced ZMK behaviors (QMK Equivalents)
     - [X] **`CAPS WORD`:** Add `CONFIG_ZMK_CAPS_WORD=y` and a keybinding for it.
     - [X] **Dynamic Macros:** Investigate and enable `CONFIG_ZMK_MACRO_DYNAMIC=y` for on-the-fly macro recording.
       these are not implemented in this version, wait for update then we can do them

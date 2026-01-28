@@ -58,5 +58,4 @@
             layers = <BASE>; // Combo active only on BASE layer. Adjust as needed.
         };
     };
-    // clang-format on
 };
