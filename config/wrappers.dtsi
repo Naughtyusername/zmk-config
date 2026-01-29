@@ -106,7 +106,7 @@
  * --------------------------------------------------------------------------
  *  1     2     3     4     5          6     7     8     9     0
  *  _     _    Vol+  Vol-  Mute        .     4     5     6     0
- *  _     _    Prev  Play  Next        _     1     2     3     _
+ *  _     _    Prev  Play  Next        +     1     2     3     -
  */
 #define ___LOWER_L1___ &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
 #define ___LOWER_L2___ _______ _______ &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE
@@ -114,7 +114,7 @@
 
 #define ___LOWER_R1___ &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
 #define ___LOWER_R2___ &kp DOT &kp N4 &kp N5 &kp N6 &kp N0
-#define ___LOWER_R3___ _______ &kp N1 &kp N2 &kp N3 _______
+#define ___LOWER_R3___ &kp PLUS &kp N1 &kp N2 &kp N3 &kp MINUS
 
 /* --------------------------------------------------------------------------
  * FUNC LAYER - F-keys and Navigation
@@ -216,7 +216,7 @@
 #define ___BASE_NO_HRM_R2___ &kp H &kp J &kp K &kp L &kp SEMI
 
 // --------------------------------------------------------------------------
-// Top row or number row, not sure what to call it TODO decide
+// TOP ROW NUMBER ROW - sofle - any huge keyboard.
 // --------------------------------------------------------------------------
 #define ___NUM_BASE_L___   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
 #define ___NUM_BASE_R___   &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
@@ -266,7 +266,7 @@
 #define ___RAISE_R3_6___ ___RAISE_R3___ _______
 
 // Lower layer with outer columns
-#define ___LOWER_L1_6___ &none ___LOWER_L1___
+#define ___LOWER_L1_6___ &none   ___LOWER_L1___
 #define ___LOWER_L2_6___ _______ ___LOWER_L2___
 #define ___LOWER_L3_6___ _______ ___LOWER_L3___
 
@@ -332,7 +332,7 @@
                                                             |
  * |ADJUST| TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
                                                             |
- * |ROGUELIKE| TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
+ * |ROGUE|  TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
                                                             |
  * |SYS   | TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
                                                             |
@@ -392,11 +392,11 @@
  *  BACKSPACE            SPACE        |GAMING|   RETURN          TAB
  */
 // Sweep / Cradio Thumbs
-#define ___SWEEP_THUMBS_BASE___     &bs_del  &lt RAISE SPACE      &lt LOWER RETURN  &lt FUNC TAB
-#define ___SWEEP_THUMBS_LOWER___    &trans  &trans                &trans  &trans
-#define ___SWEEP_THUMBS_RAISE___    &trans  &trans                &trans  &trans
-#define ___SWEEP_THUMBS_FUNC___     &kp TAB  &kp SPACE            &kp RETURN  &trans
-#define ___SWEEP_THUMBS_ADJUST___   &trans  &trans                &trans  &trans
-#define ___SWEEP_THUMBS_ROGUELIKE___ &trans  &trans                &trans  &trans
-#define ___SWEEP_THUMBS_SYS___ &trans  &trans                &trans  &trans
-#define ___SWEEP_THUMBS_GAMING___   &kp BSPC  &kp SPACE           &kp RETURN  &kp TAB
+#define ___SWEEP_THUMBS_BASE___        &bs_del  &lt RAISE SPACE      &lt LOWER RETURN  &lt FUNC TAB
+#define ___SWEEP_THUMBS_LOWER___       &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_RAISE___       &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_FUNC___        &kp TAB  &kp SPACE            &kp RETURN  &trans
+#define ___SWEEP_THUMBS_ADJUST___      &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_ROGUELIKE___   &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_SYS___         &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_GAMING___      &kp BSPC  &kp SPACE           &kp RETURN  &kp TAB
