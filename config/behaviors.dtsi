@@ -3,6 +3,9 @@
 
 / {
     behaviors {
+// =====================================================================================
+// HOME_ROW_MODS
+// =====================================================================================
         hml: homerow_mods_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -51,7 +54,9 @@
             bindings = <&mo>, <&kp>; // Hold binding (&mo) and Tap binding (&kp)
         };
     };
-
+// =====================================================================================
+// MACROS
+// =====================================================================================
     macros {
         assign: assign_macro {
             compatible = "zmk,behavior-macro";
@@ -83,32 +88,34 @@
            compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
           bindings = <&kp LPAR &kp RPAR &kp LEFT>;
-      };
-      // Types "[]" and places cursor in the middle
-      macro_brackets: macro_brackets {
-          compatible = "zmk,behavior-macro";
-          #binding-cells = <0>;
-          bindings = <&kp LBKT &kp RBKT &kp LEFT>;
-      };
-      // Types "{}" and places cursor in the middle
-      macro_braces: macro_braces {
+        };
+        // Types "[]" and places cursor in the middle
+        macro_brackets: macro_brackets {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LBKT &kp RBKT &kp LEFT>;
+        };
+        // Types "{}" and places cursor in the middle
+        macro_braces: macro_braces {
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
           bindings = <&kp LBRC &kp RBRC &kp LEFT>;
         };
-
-      macro_dquotes: macro_dquotes {
-          compatible = "zmk,behavior-macro";
-          #binding-cells = <0>;
-          bindings = <&kp DQT &kp DQT &kp LEFT>;
-      };
-      macro_squotes: macro_squotes {
-          compatible = "zmk,behavior-macro";
-          #binding-cells = <0>;
-          bindings = <&kp SQT &kp SQT &kp LEFT>;
-      };
+        macro_dquotes: macro_dquotes {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DQT &kp DQT &kp LEFT>;
+        };
+        macro_squotes: macro_squotes {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SQT &kp SQT &kp LEFT>;
+        };
 };
 
+// =====================================================================================
+// TRI_LAYER_STUFF
+// =====================================================================================
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {

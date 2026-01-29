@@ -114,56 +114,53 @@
             layers = <BASE>;
         };
 // Left-hand Control (E+R)
-        combo_er_lshift: combo_er_lshift {
+        combo_er_lctrl: combo_er_lctrl {
             timeout-ms = <50>;
             key-positions = <0 1>; // U + Y
-            bindings = <&sk LSHFT>;
+            bindings = <&sk LCTRL>;
             layers = <BASE>;
         };
 // Left-hand Alt (W+E)
-        combo_we_lshift: combo_we_lshift {
+        combo_we_lalt: combo_we_lalt {
             timeout-ms = <50>;
             key-positions = <0 1>; // U + Y
-            bindings = <&sk LSHFT>;
+            bindings = <&sk LALT>;
             layers = <BASE>;
         };
 // Left-hand Super (Q+W)
-        combo_qw_lshift: combo_qw_lshift {
+        combo_qw_lgui: combo_qw_lgui {
             timeout-ms = <50>;
             key-positions = <0 1>; // U + Y
-            bindings = <&sk LSHFT>;
+            bindings = <&sk LGUI>;
             layers = <BASE>;
         };
-
-// =====================================================================================
-// Right hand one shot mods / sticky keys
 // =====================================================================================
 // Right-hand Shift (Y+U])
-        combo_yu_lshift: combo_yu_lshift {
+        combo_yu_rshift: combo_yu_rshift {
             timeout-ms = <50>;
             key-positions = <0 1>; // placeholder values
-            bindings = <&sk LSHFT>; // test this, i thought it was sk in zmk
+            bindings = <&sk RSHFT>; // test this, i thought it was sk in zmk
             layers = <BASE>;
         };
 // Right-hand Control (U+I)
-        combo_ui_lshift: combo_ui_lshift {
+        combo_ui_rctrl: combo_ui_rctrl {
             timeout-ms = <50>;
             key-positions = <0 1>; // U + Y
-            bindings = <&sk LSHFT>;
+            bindings = <&sk RCTRL>;
             layers = <BASE>;
         };
 // Right-hand Alt (I+O)
-        combo_io_lshift: combo_io_lshift {
+        combo_io_ralt: combo_io_ralt {
             timeout-ms = <50>;
             key-positions = <0 1>; // U + Y
-            bindings = <&sk LSHFT>;
+            bindings = <&sk RALT>;
             layers = <BASE>;
         };
 // Right-hand Super (O+P)
-        combo_op_lshift: combo_op_lshift {
+        combo_op_rgui: combo_op_rgui {
             timeout-ms = <50>;
             key-positions = <0 1>; // U + Y
-            bindings = <&sk LSHFT>;
+            bindings = <&sk RGUI>;
             layers = <BASE>;
         };
 // =====================================================================================

@@ -1,261 +1,75 @@
 * TODO Tasks
 
+** [ ] Set up 'B' and 'N' as tap-preferred layer keys for LOWER and RAISE (Opposite-Hands Rule)
+** [ ] Implement 'sticky layer' that is active until a specific key (e.g., Space) is pressed
+** [ ] Implement a combo for one-shot layers (&osl) to improve layer access
 ** [ ] Explore One-Shot Mods (`&sk`) in Combos
    - **Goal:** Allow easy access to modifiers on layers where Home Row Mods are deactivated (e.g., gaming layers).
    - **Details:** Investigate binding `&sk <modifier>` (e.g., `&sk LSHFT`) to a combo. This enables a "one-shot" modifier effect without dedicating a full key or relying on HRMs.
-
 ** [ ] Implement Combo for Layer Toggling (`&tg`) or Turning On (`&to`)
    - **Goal:** Enable semi-permanent layer switching using key combos, similar to QMK's `TO()` or `TG()`.
    - **Details:** Define a combo (e.g., `ZA`) that, when pressed, switches to a specific layer (e.g., `GAMING`) until explicitly exited.
-   - **Example Combo Structure:**
-     #+begin_src dts
-     combo_za_gaming_toggle: {
-         timeout-ms = <50>;
-         key-positions = <POS_Z> <POS_A>; // Replace with actual key positions for Z and A
-         bindings = <&tg GAMING>;
-         layers = <BASE>; // Only active on the base layer
-     };
-     #+end_src
-
 ** [ ] Finalize QMK wrapper porting
    - [ ] Review and update comments in `config/wrappers.dtsi` to be ZMK-specific.
-   - [X] Implement `ADJUST` layer functionality.
-   - [X] Adapt the `BLANK_TEMPLATE` to ZMK conventions.
-     we did this by just aliasing ______ to trans
-
-** [ ] Define thumb key layouts
-   - [X] Populate `___SWEEP_THUMBS_...___` macros for cradio/sweep keyboard.
-     mostly got these done, i just really dont know what the fuck to put on the sofle
-     sweep we could finess some extra on some layers too.
-   - [ ] Populate `___SOFLE_THUMBS_...___` macros for sofle keyboard.
+** [ ] Populate `___SOFLE_THUMBS_...___` macros for sofle keyboard
      this is so low priority for me because ill never use the majority of keys, however
      i think i will set the sofle up as the main gaming keyboard, might as well,
      so with that in mind we can put the extra keys to better use, probably add a second gaming layer too (not just the roguelike layer, but something different like i used to have. as well as full mod keys available)
-
 ** [ ] Port Missing QMK Features
    - [ ] **Per-Key Tapping Term:** Your QMK config uses a longer tapping term for weaker pinky fingers.
      - To port this, create new `hold-tap` behaviors in `config/behaviors.dtsi` (e.g., `hml_pinky`) with a longer `tapping-term-ms` (e.g., 185).
      - Apply this new behavior to the pinky home-row keys (`A`, `;`) in `config/wrappers.dtsi`.
    - [ ] Add '.' key to LOWER layer for easier numeric input (e.g., "2.5").
    - [ ] Ensure '::' and '->' macros are accessible/used in wrappers; remove '..=' macro.
-   - [X] **One-Shot Mods on Thumbs:** Your QMK thumb clusters use One-Shot Mods extensively. This is a major ergonomic feature to port.
-     we want osm as a combo i think, not on thumbs. sofle can use them on thumbs, to many keys for it to matter anyway.
-     - In `config/wrappers.dtsi`, edit the `___SWEEP_THUMBS...___` and `___SOFLE_THUMBS...___` macros.
-     - Replace `&none` with the ZMK equivalent of `OSM()`, which is `&sk`. For example, `&sk LALT` for one-shot Alt.
-   - [X] **"J + K" Combo for Escape:** Your QMK config uses `J+K` for `Escape` (Vim style).
-     - Add a combo definition to your keymap files (e.g., `cradio.keymap` or `sofle.keymap`) to implement this.
-     - Note: The existing todo list has `J+K` for `Enter`. Decide which one to implement.
-   - [X] **Advanced Home Row Mod Tuning:** Your QMK config uses `PERMISSIVE_HOLD`, `SPECULATIVE_HOLD`, and `FLOW_TAP_TERM` for a very specific feel. A direct 1:1 port is not possible, but you can approximate it.
-     - In `config/behaviors.dtsi`, experiment with the properties of your `hold-tap` behaviors.
-     - `flavor = "balanced";` is a good starting point (already implemented).
-     - `require-prior-idle-ms = <X>;` (e.g., 100) can be a substitute for `FLOW_TAP_TERM`, preventing accidental holds during fast typing rolls. This will require trial and error to get the feel right.
+** [ ] Add combo to return to BASE layer (on second gaming layer and roguelike layer).
+** [ ] Utilize One-Shot Key Modifier Combos on the ROGUELIKE layer.
+** [ ] Implement top-row mirrored GACS one-shot modifier combos (e.g., QW for GUI, WE for Alt, ER for Ctrl, RT for Shift on left hand, mirrored on right).
+** [ ] Add combo for single quote (e.g., 'nm') for faster comment/sentence writing.
 
+* DONE Tasks
+
+** [X] Fix timing values to match QMK configuration.
+** [X] Implement programming combos for auto-pairing brackets and operators.
+** [X] Fix Sofle display widgets build error for the right-hand side.
+** [X] Finalize QMK wrapper porting
+   - [X] Implement `ADJUST` layer functionality.
+   - [X] Adapt the `BLANK_TEMPLATE` to ZMK conventions.
+** [X] Define thumb key layouts
+   - [X] Populate `___SWEEP_THUMBS_...___` macros for cradio/sweep keyboard.
+** [X] Port Missing QMK Features
+   - [X] **One-Shot Mods on Thumbs:** Your QMK thumb clusters use One-Shot Mods extensively. This is a major ergonomic feature to port.
+   - [X] **"J + K" Combo for Escape:** Your QMK config uses `J+K` for `Escape` (Vim style).
+   - [X] **Advanced Home Row Mod Tuning:** Your QMK config uses `PERMISSIVE_HOLD`, `SPECULATIVE_HOLD`, and `FLOW_TAP_TERM` for a very specific feel. A direct 1:1 port is not possible, but you can approximate it.
 ** [X] Define encoder behavior (Migrated to flexible sensor_rot_kp)
    - [X] Investigate migrating from `&inc_dec_kp` to the more flexible `&sensor_rotate` behavior. (COMPLETED - implemented `sensor_rot_kp` behavior in `config/behaviors.dtsi` and updated wrapper macros in `config/wrappers.dtsi`)
    - [X] Customize encoder behavior for each layer. (COMPLETED - now possible by overriding `sensor-bindings` in keymap layers using `&sensor_rot_kp`)
-
 ** [X] Implement advanced layer management
    - [X] **Sticky Layers (&sk):** Configure sticky layers for momentary layer access.
    - [X] Conditional/Tri-Layers: Set up a "tri-layer" that activates when both `LOWER` and `RAISE` layers are active. (COMPLETED by Gemini CLI)
    - [X] **Long-press for ADJUST layer:**
-     - [X] Create a `hold-tap` behavior for 'Z' with a 2-second hold to activate `&mo ADJUST`.
-     - [X] Create a `hold-tap` behavior for '/' with a 2-second hold to activate `&mo ADJUST`.
-   - [ ] Add combo to return to BASE layer (on second gaming layer and roguelike layer).
-   - [ ] Utilize One-Shot Key Modifier Combos on the ROGUELIKE layer.
-
 ** [X] Add new combos and tap-dances
    - [X] **Combos (QMK's "Chordal"):**
-     - [X] `Q`+`W` for `Esc`.
-     - [X] `J`+`K` for `Escape` (from QMK config).
-     - [X] `S`+`D` for `Tab`.
-   - [ ] Implement top-row mirrored GACS one-shot modifier combos (e.g., QW for GUI, WE for Alt, ER for Ctrl, RT for Shift on left hand, mirrored on right).
-   - [ ] Add combo for single quote (e.g., 'nm') for faster comment/sentence writing.
-
 ** [X] Implement Advanced Key Behaviors
    - [X] **Fix `CAPS_WORD` interaction with Tap Dance keys (`TD_Q_ESC`)**
-     - **The Problem:** `CAPS_WORD` only capitalizes basic key presses. It does not see the `Q` being sent from a complex tap-dance behavior in either QMK or ZMK.
-     - **QMK Fix:** Convert the simple tap-dance to an advanced one with a handler function that manually checks if `CAPS_WORD` is active.
-       - 1. In `keyrecords.c`, change the `tap_dance_actions` definition:
-         #+begin_src c
-         // Forward-declare the handler function
-         void q_esc_dance_finished(qk_tap_dance_state_t *state, void *user_data);
-
-         tap_dance_action_t tap_dance_actions[] = {
-             [TD_Q_ESC] = ACTION_TAP_DANCE_FN(q_esc_dance_finished),
-         };
-         #+end_src
-       - 2. In `naughtyusername.c`, add the handler function itself:
-         #+begin_src c
-         #include "features/caps_word.h" // Add this at the top
-
-         void q_esc_dance_finished(qk_tap_dance_state_t *state, void *user_data) {
-           if (state->count == 1) { // Single tap
-             if (caps_word_is_active()) {
-               register_code(KC_LSFT);
-               register_code(KC_Q);
-               unregister_code(KC_Q);
-               unregister_code(KC_LSFT);
-             } else {
-               register_code(KC_Q);
-               unregister_code(KC_Q);
-             }
-           } else { // Double tap
-             register_code(KC_ESC);
-             unregister_code(KC_ESC);
-           }
-         }
-         #+end_src
-     -
-     - **ZMK Fix (Workaround):** A direct fix requires writing custom C code. The pragmatic workaround is to use a `hold-tap` behavior, where tapping gives you the character (which `&caps_word` can see) and holding gives you the function.
-       - 1. In `config/behaviors.dtsi`, define a new `hold-tap` behavior:
-         #+begin_src dts
-         q_esc_ht: q_escape_hold_tap {
-             compatible = "zmk,behavior-hold-tap";
-             label = "Q_ESC_HT";
-             #binding-cells = <0>;
-             tapping-term-ms = <220>; // A little longer for a primary key
-             flavor = "tap-preferred";
-             bindings = <&kp Q>, <&kp ESC>;
-         };
-         #+end_src
-       - 2. In `config/wrappers.dtsi`, update the `___BASE_L1___` macro to use the new behavior instead of `&td_q_esc`:
-         #+begin_src c
-         #define ___BASE_L1___ &q_esc_ht ...
-         #+end_src
    - [X] **Smart Key Repeat:** Add key repeat to home-row mods. This allows a letter to repeat on a double-tap-and-hold, which is not possible with a standard hold-tap.
-     this does work the timing is just really tight, i think the ai suggestions got this confused with the repeat last key function that is useful on smaller boards
-     for number of reasons
-     - Add this behavior to `config/behaviors.dtsi`:
-       #+begin_src dts
-       hml_rep: homerow_mods_left_with_repeat {
-           compatible = "zmk,behavior-hold-tap";
-           label = "HML_REPEAT";
-           #binding-cells = <2>;
-           tapping-term-ms = <200>;
-           flavor = "balanced";
-           bindings = <&kp>, <&kp>;
-           hold-bindings = <&kp>, <&key_repeat>;
-       };
-       #+end_src
-     - Update home-row mod macros in `config/wrappers.dtsi` to use the new behavior (e.g., `&hml_rep`).
-
-** [ ] Configure Sofle Hardware
+** [X] Configure Sofle Hardware
    - [X] **Add status widgets to OLED:** The `sofle.conf` file currently enables the display but is missing the required flags for useful widgets. Add the following flags to enable them:
-     - `CONFIG_ZMK_WIDGET_BATTERY_STATUS=y`
-     - `CONFIG_ZMK_WIDGET_BATTERY_STATUS_SHOW_PERCENTAGE=y`
-     - `CONFIG_ZMK_WIDGET_OUTPUT_STATUS=y`
-     - `CONFIG_ZMK_WIDGET_LAYER_STATUS=y`
    - [X] **Add WPM widget to OLED:**
-     - Add `CONFIG_ZMK_WPM=y` and `CONFIG_ZMK_WIDGET_WPM_STATUS=y` to `sofle.conf`.
    - [X] Add RGB underglow support to indicate the current layer.
-     rgb code is in /backups/ that was working.
-
 ** [X] Integrate external modules
    - [-] **`zmk-tri-state`:**
-     this can be done in base zmk now, not sure if this module is important?
-     maybe it adds other features.
-     - [ ] Add the module to `west.yml`.
-     - [ ] Implement a one-handed Alt-Tab "swapper" (Swapper).
-     - [X] Use it to create the `ADJUST` tri-layer.
-
 ** [X] Explore advanced ZMK behaviors (QMK Equivalents)
     - [X] **`CAPS WORD`:** Add `CONFIG_ZMK_CAPS_WORD=y` and a keybinding for it.
     - [X] **Dynamic Macros:** Investigate and enable `CONFIG_ZMK_MACRO_DYNAMIC=y` for on-the-fly macro recording.
-      these are not implemented in this version, wait for update then we can do them
     - [X] **Speculative Hold:** Use the `hold-while-undecided` property in hold-tap behaviors to reduce modifier lag.
     - [X] **Permissive Hold:** Use the `"balanced"` flavor for hold-tap behaviors for a more responsive feel for fast typists.
     - [X] **Per-key Tapping Term:** Use the `tapping-term-ms` property on specific hold-tap bindings that need a custom value.
     - [X] **Numword (Smart Layers):** Implement behavior where the layer stays active only while typing numbers, deactivating on space/letter.
     - [X] **Mod-Morphs (Contextual Keys):** Expand usage beyond `bs_del`, e.g., smart dot ('.', '..', '/'), grave escape ('Esc' to '`' when GUI is held).
-
 ** [X] Configure BIOS/Bootloader Compatibility (NKRO)
    - [X] NOTE: ZMK defaults to 6KRO, which is safe for BIOS. Enabling NKRO (`CONFIG_ZMK_HID_REPORT_TYPE_NKRO=y`) improves OS performance but may break BIOS compatibility.
    - [X] NOTE: Unlike QMK, there is no runtime keybinding to toggle between 6KRO and NKRO. The mode is set at compile time. QMK's `NK_TOGG` keycode is not directly portable.
    - [X] DECISION: Decide whether to enable NKRO by default and test for BIOS compatibility.
    - [X] ACTION: Add `CONFIG_ZMK_HID_REPORT_TYPE_NKRO=y` to the `.conf` files if NKRO is desired.
-     in this case... i thinhk we concede to the almight bios and just keep a spare keyboard around (oh heavens no how would we do that...) and have nkro kuz its overall better to have.
-
 ** [X] Merge `wrappertest` branch
-
 ** [X] ZMK Studio Integration
-i wont be using studio ever so dont need it
-   - [X] Add the ZMK Studio snippet to `build_all.sh`.
-   - [X] Configure a `&studio_unlock` key in the keymap for real-time keymap changes.
-
-* Code Snippets
-
-** 1. Flexible Encoder Behavior (`sensor_rot_kp` migration):**
-
-   **Goal:** Migrate from `&inc_dec_kp` to a more flexible behavior (`sensor_rot_kp`) that allows binding any ZMK behavior to encoder rotations, and easily customize per layer.
-
-   **Implementation Details:**
-
-   - **`config/behaviors.dtsi` (Define the new behavior):**
-     #+begin_src dts
-     encoder_macro_actions: encoder_macro_actions { // Or use the name sensor_rot_kp from previous steps
-         compatible = "zmk,behavior-sensor-custom";
-         #binding-cells = <2>; // Takes 2 args: CW_action, CCW_action
-         bindings-clockwise = <__VA_ARGS_BINDING_CELL_1__>;
-         bindings-counter-clockwise = <__VA_ARGS_BINDING_CELL_2__>;
-     };
-     #+end_src
-
-   - **`config/wrappers.dtsi` (Update wrapper macros to use `sensor_rot_kp`):**
-     Replace all instances of `&inc_dec_kp CW_KEY CCW_KEY` with `&sensor_rot_kp CW_KEY CCW_KEY`.
-     #+begin_src dts
-     // Example for ___ENC_BASE___
-     #define ___ENC_BASE___         &sensor_rot_kp kp C_VOL_UP kp C_VOL_DN \
-                                    &sensor_rot_kp kp PG_UP kp PG_DN
-     #end_src
-
-   - **Layer-Specific Overrides (Example in `sofle.keymap` or `cradio.keymap`):**
-     To change encoder behavior for a specific layer, override its `sensor-bindings`.
-     #+begin_src dts
-     raise {
-         // ... other key bindings ...
-
-         sensor-bindings = <
-             // First encoder: Screen Brightness
-             &sensor_rot_kp kp C_BRI_UP kp C_BRI_DN
-             // Second encoder: RGB Underglow Hue
-             &sensor_rot_kp rgb_ug RGB_HUI rgb_ug RGB_HUD
-         >;
-     };
-     #end_src
-
-** 2. Common Encoder Uses for Other Layers:**
-
-   Here are some popular and highly useful ideas for encoder applications on different layers, leveraging the flexibility of `sensor_rot_kp`:
-
-   - **Media & Volume Control (Your Current Default):**
-     - Base/Default Layer: `&kp C_VOL_UP / &kp C_VOL_DN` (Volume control)
-     - Base/Default Layer: `&kp PG_UP / &kp PG_DN` (Page Up/Down)
-
-   - **Scrolling (More Granular Control):**
-     - Navigation Layer (e.g., `FUNC` layer):
-       - `&kp UP / &kp DOWN` for fine-grained vertical scrolling.
-       - `&kp LEFT / &kp RIGHT` for horizontal scrolling (e.g., in spreadsheets or timelines).
-     - Fast Scroll: Combine with a modifier: `&kp LSHIFT LEFT / &kp LSHIFT RIGHT`
-
-   - **Layer Switching / Navigation:**
-     - Adjust Layer / Utility Layer:
-       - Workspace/Desktop Switching: `&kp LG(LEFT) / &kp LG(RIGHT)` (macOS) or `&kp LCTRL LALT LEFT / &kp LCTRL LALT RIGHT` (Linux/Windows).
-       - Tab Switching: `&kp LCTRL TAB / &kp LCTRL LS(TAB)` (in browsers/apps).
-       - Layer Cycling: `&tog Layer_N / &tog Layer_M` to cycle between specific layers.
-
-   - **Brightness / Backlight Control:**
-     - Adjust Layer / Utility Layer:
-       - Screen Brightness: `&kp C_BRI_UP / &kp C_BRI_DN`
-       - RGB Underglow Brightness: `&rgb_ug RGB_BRI / &rgb_ug RGB_BRD` (if RGB underglow is enabled)
-       - RGB Underglow Hue/Saturation: `&rgb_ug RGB_HUI / &rgb_ug RGB_HUD` or `&rgb_ug RGB_SAI / &rgb_ug RGB_SAD`
-
-   - **Application-Specific Controls (Power User!):**
-     - Video Editing / Audio Production Layer:
-       - `&macro_timeline_zoom_in / &macro_timeline_zoom_out`
-       - `&macro_track_prev / &macro_track_next`
-     - Graphics Editing Layer (e.g., Photoshop):
-       - `&macro_brush_size_up / &macro_brush_size_down`
-       - `&macro_zoom_in / &macro_zoom_out`
-     - IDE/Editor Specific:
-       - `&macro_next_error / &macro_prev_error`
-       - `&macro_line_indent / &macro_line_dedent`
