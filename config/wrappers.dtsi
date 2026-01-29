@@ -91,13 +91,13 @@
  * --------------------------------------------------------------------------
  *  \     $     |     -     [          ]     +     #     ;     ::
  *  ~     &     *     =     (          )     ^     _     %     :
- * ..=    !     '     "     {          }     @     <     >     ?
+ *  `     !     '     "     {          }     @     <     >     ?
  */
 #define ___RAISE_L1___ &kp BSLH &kp DLLR &kp PIPE &kp MINUS &kp LBKT
 #define ___RAISE_L2___ &kp TILDE &kp AMPS &kp STAR &kp EQUAL &kp LPAR
-#define ___RAISE_L3___ &none &kp EXCL &kp SQT &kp DQT &kp LBRC
+#define ___RAISE_L3___ &kp GRAVE &kp EXCL &kp SQT &kp DQT &kp LBRC
 
-#define ___RAISE_R1___ &kp RBKT &kp PLUS &kp HASH &kp SEMI &none
+#define ___RAISE_R1___ &kp RBKT &kp PLUS &kp HASH &kp SEMI &double_colon
 #define ___RAISE_R2___ &kp RPAR &kp CARET &kp UNDER &kp PRCNT &kp COLON
 #define ___RAISE_R3___ &kp RBRC &kp AT &kp LT &kp GT &kp QMARK
 
