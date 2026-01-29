@@ -115,28 +115,32 @@
 // =====================================================================================
 // Left-hand Shift (R+T])
         combo_rt_lshift: combo_rt_lshift {
-            timeout-ms = <50>;
+            timeout-ms = <40>;
+            require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LSHFT>;
             layers = <BASE>;
         };
 // Left-hand Control (E+R)
         combo_er_lctrl: combo_er_lctrl {
-            timeout-ms = <50>;
+            timeout-ms = <40>;
+            require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LCTRL>;
             layers = <BASE>;
         };
 // Left-hand Alt (W+E)
         combo_we_lalt: combo_we_lalt {
-            timeout-ms = <50>;
+            timeout-ms = <40>;
+            require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LALT>;
             layers = <BASE>;
         };
 // Left-hand Super (Q+W)
         combo_qw_lgui: combo_qw_lgui {
-            timeout-ms = <50>;
+            timeout-ms = <40>;
+            require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LGUI>;
             layers = <BASE>;
@@ -144,28 +148,32 @@
 // =====================================================================================
 // Right-hand Shift (Y+U])
         combo_yu_rshift: combo_yu_rshift {
-            timeout-ms = <50>;
+            timeout-ms = <40>;
+            require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RSHFT>;
             layers = <BASE>;
         };
 // Right-hand Control (U+I)
         combo_ui_rctrl: combo_ui_rctrl {
-            timeout-ms = <50>;
+            timeout-ms = <40>;
+            require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RCTRL>;
             layers = <BASE>;
         };
 // Right-hand Alt (I+O)
         combo_io_ralt: combo_io_ralt {
-            timeout-ms = <50>;
+            timeout-ms = <40>;
+            require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RALT>;
             layers = <BASE>;
         };
 // Right-hand Super (O+P)
         combo_op_rgui: combo_op_rgui {
-            timeout-ms = <50>;
+            timeout-ms = <40>;
+            require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RGUI>;
             layers = <BASE>;

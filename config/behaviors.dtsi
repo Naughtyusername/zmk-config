@@ -10,8 +10,8 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <175>;
-            quick-tap-ms = <120>;
-            require-prior-idle-ms = <100>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <125>;
             flavor = "balanced";
             hold-while-undecided;
             bindings = <&kp>, <&kp>;
@@ -23,8 +23,8 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <175>;
-            quick-tap-ms = <120>;
-            require-prior-idle-ms = <100>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <125>;
             flavor = "balanced";
             hold-while-undecided;
             bindings = <&kp>, <&kp>;

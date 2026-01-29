@@ -1,4 +1,5 @@
 // config/wrappers.dtsi
+#include <dt-bindings/zmk/bt.h>
 // clang-format off
 
 /* Copyright 2025 naughtyusername
@@ -26,16 +27,17 @@
  */
 
 
-#define BASE 0
-#define LOWER 1
-#define RAISE 2
-#define FUNC 3
-#define ADJUST 4
-#define GAMING 5
-#define GAMING2 6
-#define MOUSE 7
-#define ROGUELIKE 8
-#define SYS 9
+#define BASE 0           // Where we spend most our time
+#define LOWER 1          // NUMBERS
+#define RAISE 2          // SYMBOLS
+#define FUNC 3           // FUNCTIONS and NAV
+#define ADJUST 4         // Keyboard adjustments and layer director, caps/num lock
+#define GAMING 5         // GAMES
+#define GAMING2 6        // GAMES EXPANDED
+#define ROGUELIKE 7      // ROGUELIKE games, the ones that hate vim (also hard to vi key on a spiit kb on diagonal rl's)
+#define VIM 8            // VIMIUM keys. home row mod free
+#define SYS 9            // SYSTEM bluetooth connection center, system reboot, bootloader.
+#define MOUSE 10         // MOUSE keys, we dont really use. maybe on corne with trackpad.
 
 // alias
 #define _______ &trans
@@ -187,12 +189,12 @@
  *  bootloader system reset                       system reset bootloader
  *  holding  tog-base  _     _     _        _     _     _     _    holding
  */
-#define ___SYS_L1___ _______ _______ _______ _______ _______
-#define ___SYS_L2___ _______ _______ _______ _______ _______
-#define ___SYS_L3___ &tog BASE  _______ _______ _______ _______
+#define ___SYS_L1___ &bt BT_CLR_ALL &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
+#define ___SYS_L2___ &bootloader &sys_reset    _______ _______ _______
+#define ___SYS_L3___ _______ &tog BASE  _______ _______ _______
 
 #define ___SYS_R1___ _______ _______ _______ _______ _______
-#define ___SYS_R2___ _______ _______ _______ _______ _______
+#define ___SYS_R2___ _______ _______ _______ &sys_reset &bootloader
 #define ___SYS_R3___ _______ _______ _______ _______ _______
 
 
@@ -245,13 +247,13 @@
  *
  * Format: OUTER_LEFT, <5 col macro>, OUTER_RIGHT
  */
-#define ___BASE_L1_6___ _______ ___BASE_L1___
-#define ___BASE_L2_6___ &kp TAB ___BASE_L2___
-#define ___BASE_L3_6___ _______ ___BASE_L3___
+#define ___BASE_L1_6___ &kp ESC   ___BASE_L1___
+#define ___BASE_L2_6___ &kp TAB   ___BASE_L2___
+#define ___BASE_L3_6___ &sk LGUI  ___BASE_L3___
 
-#define ___BASE_R1_6___ ___BASE_R1___ &kp BSLH
+#define ___BASE_R1_6___ ___BASE_R1___ &kp BSPC
 #define ___BASE_R2_6___ ___BASE_R2___ &kp SQT
-#define ___BASE_R3_6___ ___BASE_R3___ &none
+#define ___BASE_R3_6___ ___BASE_R3___ &sk RGUI
 
 // Raise layer with outer columns
 #define ___RAISE_L1_6___ _______ ___RAISE_L1___
@@ -263,7 +265,7 @@
 #define ___RAISE_R3_6___ ___RAISE_R3___ _______
 
 // Lower layer with outer columns
-#define ___LOWER_L1_6___ &none   ___LOWER_L1___
+#define ___LOWER_L1_6___ _______   ___LOWER_L1___
 #define ___LOWER_L2_6___ _______ ___LOWER_L2___
 #define ___LOWER_L3_6___ _______ ___LOWER_L3___
 
@@ -310,7 +312,7 @@
 // Gaming layer with outer columns
 #define ___GAMING_L1_6___ &kp TAB ___GAMING_L1___
 #define ___GAMING_L2_6___ &kp ESC ___GAMING_L2___
-#define ___GAMING_L3_6___ &none ___GAMING_L3___
+#define ___GAMING_L3_6___ _______ ___GAMING_L3___
 
 #define ___GAMING_R1_6___ ___GAMING_R1___ &kp BSLH
 #define ___GAMING_R2_6___ ___GAMING_R2___ &kp SQT
@@ -338,28 +340,28 @@
 
 // Sofle thumbs
 #define ___SOFLE_THUMBS_L_BASE___ &sk LSHFT &sk LCTRL &sk LALT &bs_del &lt RAISE SPACE
-#define ___SOFLE_THUMBS_R_BASE___ &lt LOWER RETURN  &lt FUNC TAB  &none  &none  &none
+#define ___SOFLE_THUMBS_R_BASE___ &lt LOWER RETURN  &lt FUNC TAB  &sk RSHFT &sk RCTRL &sk RALT
 
-#define ___SOFLE_THUMBS_L_LOWER___ &none  &none  &none  &none  &trans
-#define ___SOFLE_THUMBS_R_LOWER___ &trans  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_LOWER___ _______  _______  _______  _______  &trans
+#define ___SOFLE_THUMBS_R_LOWER___ &trans  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_RAISE___ &none  &none  &none  &none  &trans
-#define ___SOFLE_THUMBS_R_RAISE___ &trans  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_RAISE___ _______  _______  _______  _______  &trans
+#define ___SOFLE_THUMBS_R_RAISE___ &trans  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_FUNC___ &none  &none  &none  &none  &trans
-#define ___SOFLE_THUMBS_R_FUNC___ &trans  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_FUNC___ _______  _______  _______  _______  &trans
+#define ___SOFLE_THUMBS_R_FUNC___ &trans  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_ADJUST___ &none  &none  &none  &none  &trans
-#define ___SOFLE_THUMBS_R_ADJUST___ &trans  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_ADJUST___ _______  _______  _______  _______  &trans
+#define ___SOFLE_THUMBS_R_ADJUST___ &trans  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_ROGUELIKE___ &none  &none  &none  &none  &trans
-#define ___SOFLE_THUMBS_R_ROGUELIKE___ &trans  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_ROGUELIKE___ _______  _______  _______  _______  &trans
+#define ___SOFLE_THUMBS_R_ROGUELIKE___ &trans  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_SYS___ &none  &none  &none  &none  &trans
-#define ___SOFLE_THUMBS_R_SYS___ &trans  &none  &none  &none  &none
+#define ___SOFLE_THUMBS_L_SYS___ _______  _______  _______  _______  &trans
+#define ___SOFLE_THUMBS_R_SYS___ &trans  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_GAMING___ &none  &none  &none  &kp BSPC  &kp SPACE
-#define ___SOFLE_THUMBS_R_GAMING___ &kp RET  &kp TAB  &none  &none  &none
+#define ___SOFLE_THUMBS_L_GAMING___ _______  _______  _______  &kp BSPC  &kp SPACE
+#define ___SOFLE_THUMBS_R_GAMING___ &kp RET  &kp TAB  _______  _______  _______
 
 // Sofle encoder rotation bindings
 #define ___ENC_BASE___         &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
