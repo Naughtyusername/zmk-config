@@ -80,11 +80,11 @@
 // Alphas
 #define ___BASE_L1___ &kp Q &kp W &kp E &kp R &kp T
 #define ___BASE_L2___ HM_A HM_S HM_D HM_F &kp G
-#define ___BASE_L3___ &lt_1s_mo SYS Z &kp X &kp C &kp V &kp B
+#define ___BASE_L3___ &lt_1s_mo SYS Z &kp X &kp C &kp V &lt LOWER B
 
 #define ___BASE_R1___ &kp Y &kp U &kp I &kp O &kp P
 #define ___BASE_R2___ &kp H HM_J HM_K HM_L HM_SCLN
-#define ___BASE_R3___ &kp N &kp M &kp COMMA &kp DOT &lt_1s_mo SYS SLASH
+#define ___BASE_R3___ &lt RAISE N &kp M &kp COMMA &kp DOT &lt_1s_mo SYS SLASH
 
 /* --------------------------------------------------------------------------
  * RAISE LAYER - Symbols (Odin/Programming focused)
@@ -240,17 +240,14 @@
 /* ==========================================================================
  * 6-COLUMN EXPANSION MACROS
  * ==========================================================================
- * For keyboards with 6 columns per side (like Corne) we add an outer column.
+ * For keyboards with 6 columns per side (like Corne and sofle) we add an outer column.
  * These take the 5-column macros and add a key on each edge.
  *
  * Format: OUTER_LEFT, <5 col macro>, OUTER_RIGHT
  */
-
-// Base layer with outer columns: Tab on left, Backspace on right
-// used on corne and kyria
-#define ___BASE_L1_6___ &kp TAB ___BASE_L1___
-#define ___BASE_L2_6___ &kp ESC ___BASE_L2___
-#define ___BASE_L3_6___ &kp ESC ___BASE_L3___
+#define ___BASE_L1_6___ _______ ___BASE_L1___
+#define ___BASE_L2_6___ &kp TAB ___BASE_L2___
+#define ___BASE_L3_6___ _______ ___BASE_L3___
 
 #define ___BASE_R1_6___ ___BASE_R1___ &kp BSLH
 #define ___BASE_R2_6___ ___BASE_R2___ &kp SQT
@@ -322,7 +319,7 @@
 /* --------------------------------------------------------------------------
  * Sofle thumb layers
  * --------------------------------------------------------------------------
- * |BASE  | TRANS     TRANS     TRANS     TRANS RAISE+SPACE |    LOWER+RETURN     TRANS     TRANS     TRANS     TRANS
+ * |BASE  | skALT     skCTL     skSHIFT   bs_del RAISE+SPACE|LOWER+RET   FN+TAB    skSHIFT   skCTL     skALT
                                                             |
  * |LOWER | TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
                                                             |

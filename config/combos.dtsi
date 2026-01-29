@@ -4,59 +4,63 @@
     // clang-format off
     combos {
         compatible = "zmk,combos";
+
+// =====================================================================================
+// short hand list of all combos currently in use
+/*
+  row 1 GACS stickey keys (one shot mods in QMK)
+  qw we er rt yu ui io op
+  row 2 handy symbols and functions ie. tab enter caps word, backspace escape
+  sd df fg hj jk l;
+  row 3 this is where we can make use of the auto braces and quotes maybe vb for sqt
+  nm () m, {} ,.[] jm k, for quotes? that will be where i start to try it out at least.
+
+*/
+// =====================================================================================
+
 // =====================================================================================
 // Main combo section TODO we need to port all of these to QMK, this shit rules so hard
 // =====================================================================================
         // hj ONE_COMBO_TO_RULE_THEM_ALL
         combo_hj_caps_word {
             timeout-ms = <50>;
-            // Generic default. MUST be overridden.
-            key-positions = <0 1>; // Placeholder
-            bindings = <&caps_word>;
-            layers = <BASE>; // Combo active only on BASE layer. Adjust as needed.
-        };
-
-        jk_esc_combo {
-            timeout-ms = <50>;
             // This is a generic default. It MUST be overridden by
             // board-specific keymaps. Example: For J and K on Sofle, this might
             // be <31 32>.
             key-positions = <0 1>;
-            bindings = <&kp ESC>;
-            layers = <BASE>; // Combo active only on BASE layer. Adjust as needed.
+            bindings = <&caps_word>;
+            // layer locking, we can adjust this to allow on more layers as needed
+            layers = <BASE>;
         };
-
-        // combo_as_bspc removed as per user's request.
-
+        combo_jk_esc {
+            timeout-ms = <50>;
+            key-positions = <0 1>;
+            bindings = <&kp ESC>;
+            layers = <BASE>;
+        };
         combo_lscln_ent {
             timeout-ms = <50>;
-            // Generic default. MUST be overridden. Example: Sofle <33 34> (L+;)
             key-positions = <0 1>;
             bindings = <&kp RET>;
             layers = <BASE>;
         };
-
         combo_fg_underscore {
             timeout-ms = <50>;
-            // Generic default. MUST be overridden. Example: Sofle <28 29> (F+G)
             key-positions = <0 1>;
             bindings = <&kp UNDERSCORE>;
             layers = <BASE>;
         };
-
         // mostly useful for quick delete one char when i fuck up placing ()'s or osm(sk) ctrl
         combo_sd_bspc {
             timeout-ms = <50>;
-            // Generic default. MUST be overridden. Example: Sofle <26 27> (S+D)
             key-positions = <0 1>;
-            bindings = <&kp BSPC>; // Changed from &kp TAB to &kp BSPC
+            bindings = <&kp BSPC>;
             layers = <BASE>;
         };
 
         combo_df_tab {
             timeout-ms = <50>;
-            // Generic default. MUST be overridden. Example: Sofle <27 28> (D+F)
-            key-positions = <0 1>; // Placeholder
+            key-positions = <0 1>;
             bindings = <&kp TAB>;
             layers = <BASE>;
         };
@@ -64,37 +68,40 @@
 // top row one shot modifier combos
 // =====================================================================================
         // Example: C and V keys for parentheses
-        // Im putting these on the right hand since i stuck with qwerty and right hand is to minimally uesd
-        combo_parens: combo_parens {
+        // Im putting these on the right hand since i stuck with qwerty and right
+        // hand is to minimally uesd
+        combo_nm_parens: combo_nm_parens {
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&macro_parens>;
             layers = <BASE>;
         };
         // Example: X and C keys for brackets
-        combo_brackets: combo_brackets {
+        combo_m_comma_brackets: combo_m_comma_brackets {
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&macro_brackets>;
             layers = <BASE>;
         };
         // Example: N and M keys for braces
-        combo_braces: combo_braces {
+        combo_comma_dot_braces: combo_comma_dot_braces {
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&macro_braces>;
             layers = <BASE>;
         };
+
 // Auto pairing quotes as well
+
         // Double quotes with cursor inside
-        combo_dquotes: combo_dquotes {
+        combo_k_comma_dquotes: combo_k_comma_dquotes {
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&macro_dquotes>;
             layers = <BASE>;
         };
         // Single quotes with cursor inside
-        combo_squotes: combo_squotes {
+        combo_jm_squotes: combo_jm_squotes {
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&macro_squotes>;
@@ -109,28 +116,28 @@
 // Left-hand Shift (R+T])
         combo_rt_lshift: combo_rt_lshift {
             timeout-ms = <50>;
-            key-positions = <0 1>; // placeholder values
-            bindings = <&sk LSHFT>; // test this, i thought it was sk in zmk
+            key-positions = <0 1>;
+            bindings = <&sk LSHFT>;
             layers = <BASE>;
         };
 // Left-hand Control (E+R)
         combo_er_lctrl: combo_er_lctrl {
             timeout-ms = <50>;
-            key-positions = <0 1>; // U + Y
+            key-positions = <0 1>;
             bindings = <&sk LCTRL>;
             layers = <BASE>;
         };
 // Left-hand Alt (W+E)
         combo_we_lalt: combo_we_lalt {
             timeout-ms = <50>;
-            key-positions = <0 1>; // U + Y
+            key-positions = <0 1>;
             bindings = <&sk LALT>;
             layers = <BASE>;
         };
 // Left-hand Super (Q+W)
         combo_qw_lgui: combo_qw_lgui {
             timeout-ms = <50>;
-            key-positions = <0 1>; // U + Y
+            key-positions = <0 1>;
             bindings = <&sk LGUI>;
             layers = <BASE>;
         };
@@ -138,28 +145,28 @@
 // Right-hand Shift (Y+U])
         combo_yu_rshift: combo_yu_rshift {
             timeout-ms = <50>;
-            key-positions = <0 1>; // placeholder values
-            bindings = <&sk RSHFT>; // test this, i thought it was sk in zmk
+            key-positions = <0 1>;
+            bindings = <&sk RSHFT>;
             layers = <BASE>;
         };
 // Right-hand Control (U+I)
         combo_ui_rctrl: combo_ui_rctrl {
             timeout-ms = <50>;
-            key-positions = <0 1>; // U + Y
+            key-positions = <0 1>;
             bindings = <&sk RCTRL>;
             layers = <BASE>;
         };
 // Right-hand Alt (I+O)
         combo_io_ralt: combo_io_ralt {
             timeout-ms = <50>;
-            key-positions = <0 1>; // U + Y
+            key-positions = <0 1>;
             bindings = <&sk RALT>;
             layers = <BASE>;
         };
 // Right-hand Super (O+P)
         combo_op_rgui: combo_op_rgui {
             timeout-ms = <50>;
-            key-positions = <0 1>; // U + Y
+            key-positions = <0 1>;
             bindings = <&sk RGUI>;
             layers = <BASE>;
         };

@@ -1,17 +1,17 @@
 * TODO Tasks
 
-** [ ] Set up 'B' and 'N' as tap-preferred layer keys for LOWER and RAISE (Opposite-Hands Rule)
 ** [ ] Implement 'sticky layer' that is active until a specific key (e.g., Space) is pressed
-** [ ] Implement a combo for one-shot layers (&osl) to improve layer access
-** [ ] Explore One-Shot Mods (`&sk`) in Combos
-   - **Goal:** Allow easy access to modifiers on layers where Home Row Mods are deactivated (e.g., gaming layers).
-   - **Details:** Investigate binding `&sk <modifier>` (e.g., `&sk LSHFT`) to a combo. This enables a "one-shot" modifier effect without dedicating a full key or relying on HRMs.
+this is less useful to us unless we do smart macros that allow us to go to the layer and hit 2.5 and have the space there (or any keys we decide to be escape codes)
+this does seem to be possible in base zmk just requires some macro magic, urob has some tools that could help but urobs stuff isnt always easy to implement so pass for now.
+** [ ] Implement a combo for one-shot layers (`&osl`) to improve layer access
 ** [ ] Implement Combo for Layer Toggling (`&tg`) or Turning On (`&to`)
    - **Goal:** Enable semi-permanent layer switching using key combos, similar to QMK's `TO()` or `TG()`.
    - **Details:** Define a combo (e.g., `ZA`) that, when pressed, switches to a specific layer (e.g., `GAMING`) until explicitly exited.
 ** [ ] Finalize QMK wrapper porting
-   - [ ] Review and update comments in `config/wrappers.dtsi` to be ZMK-specific.
-** [ ] Populate `___SOFLE_THUMBS_...___` macros for sofle keyboard
+   - [X] Review and update comments in `config/wrappers.dtsi` to be ZMK-specific.
+** [X] Populate `___SOFLE_THUMBS_...___` macros for sofle keyboard
+update: for now most sofle thumb keys unless explictly set otherwise will act as modifier keys but one shot mods or sk keys, so we can hold them if desired but otherwise
+just tapping them will chain the sequence
      this is so low priority for me because ill never use the majority of keys, however
      i think i will set the sofle up as the main gaming keyboard, might as well,
      so with that in mind we can put the extra keys to better use, probably add a second gaming layer too (not just the roguelike layer, but something different like i used to have. as well as full mod keys available)
@@ -19,15 +19,17 @@
    - [ ] **Per-Key Tapping Term:** Your QMK config uses a longer tapping term for weaker pinky fingers.
      - To port this, create new `hold-tap` behaviors in `config/behaviors.dtsi` (e.g., `hml_pinky`) with a longer `tapping-term-ms` (e.g., 185).
      - Apply this new behavior to the pinky home-row keys (`A`, `;`) in `config/wrappers.dtsi`.
-   - [ ] Add '.' key to LOWER layer for easier numeric input (e.g., "2.5").
-   - [ ] Ensure '::' and '->' macros are accessible/used in wrappers; remove '..=' macro.
+   - [X] Ensure '::' and '->' macros are accessible/used in wrappers; remove '..=' macro.
 ** [ ] Add combo to return to BASE layer (on second gaming layer and roguelike layer).
 ** [ ] Utilize One-Shot Key Modifier Combos on the ROGUELIKE layer.
-** [ ] Implement top-row mirrored GACS one-shot modifier combos (e.g., QW for GUI, WE for Alt, ER for Ctrl, RT for Shift on left hand, mirrored on right).
-** [ ] Add combo for single quote (e.g., 'nm') for faster comment/sentence writing.
 
 * DONE Tasks
 
+** [X] Set up 'B' and 'N' as tap-preferred layer keys for LOWER and RAISE respectively (Opposite-Hands Rule)
+** [X] Add '.' key to LOWER layer for easier numeric input (e.g., "2.5").
+** [X] Explore One-Shot Mods (`&sk`) in Combos
+** [X] Implement top-row mirrored GACS one-shot modifier combos
+** [X] Add combo for single quote (e.g., 'nm') for faster comment/sentence writing.
 ** [X] Fix timing values to match QMK configuration.
 ** [X] Implement programming combos for auto-pairing brackets and operators.
 ** [X] Fix Sofle display widgets build error for the right-hand side.

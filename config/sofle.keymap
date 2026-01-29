@@ -15,32 +15,93 @@
   ╰───────╮ 50  51  52  53  54 │ 55  56  57  58  59 ╭───────╯ ╰───────╮ LH4 LH3 LH2 LH1 LH0 │ RH0 RH1 RH2 RH3 RH4 ╭───────╯
           ╰────────────────────┴────────────────────╯                 ╰─────────────────────┴─────────────────────╯         */
 
+/*                      cheater map for brain farts while writing combos
+  ╭────────────────────────────┬────────────────────────────╮
+  │  0   1   2   3   4   5     │      6   7   8   9  10  11 │
+                          NUMBER ROW
+  │ 12  13  14  15  16  17     │     18  19  20  21  22  23 │
+   ---   Q   W   E   R   T            Y   U   I   O   P  ---
+  │ 24  25  26  27  28  29     │     30  31  32  33  34  35 │
+   ---   A   S   D   F   G            H   J   K   L   ;  ---
+  │ 36  37  38  39  40  41  42 │ 43  44  45  46  47  48  49 │
+   ---   Z   X   C   V   B            N   M   ,   .   /  ---
+  ╰───────╮ 50  51  52  53  54 │ 55  56  57  58  59 ╭───────╯
+                          SOFLE THUMB KEYS
+          ╰────────────────────┴────────────────────╯
+*/
 / {
     combos {
-        jk_esc_combo {
-            // Sofle-specific key positions for J (RM1) and K (RM2) from sofle.h
+        combo_jk_esc {
             key-positions = <31 32>;
         };
-        // combo_as_bspc removed as per user's request.
         combo_lscln_ent {
-            // Sofle-specific key positions for L (RM3) and ; (RM4) from sofle.h
             key-positions = <33 34>;
         };
         combo_fg_underscore {
-            // Sofle-specific key positions for F (LM1) and G (LM0) from sofle.h
             key-positions = <28 29>;
         };
         combo_sd_bspc {
-            // Sofle-specific key positions for S (LM3) and D (LM2) from sofle.h
             key-positions = <26 27>;
         };
         combo_hj_caps_word {
-            key-positions = <30 31>; // H and J for Sofle
+            key-positions = <30 31>;
         };
         combo_df_tab {
-            key-positions = <27 28>; // D and F for Sofle
+            key-positions = <27 28>;
         };
-    };
+        // testing [](){} auto double and move cursor inside, right hand initiation since
+        // qwerty is to heavy on left hand actions and i unintentionally made my left
+        // hand symbols the more common ones as well.
+        combo_nm_parens {
+            key-positions = <44 45>;
+        };
+        combo_m_comma_brackets {
+            key-positions = <45 46>;
+        };
+        combo_comma_dot_braces {
+            key-positions = <46 47>;
+        };
+        // Similar concept but for quotes
+        combo_jm_squotes {
+            key-positions = <31 45>;
+        };
+        combo_k_comma_dquotes {
+            key-positions = <32 46>;
+        };
+// =====================================================================================
+// GACS but for combos and row 1 instead of homerow (row 2) this is also a test, and more
+// so intended for a non-HRM layer for roguelike development, as when im not on a laptop
+// it is nice to hit hjkl without the games framebuffer ignoring due to timing on firmware
+// based off my old vim layers from QMK, will create that in the future, its low-pri
+// =====================================================================================
+        combo_qw_lgui {
+            key-positions = <13 14>;
+        };
+        combo_we_lalt {
+            key-positions = <14 15>;
+        };
+        combo_er_lctrl {
+            key-positions = <15 16>;
+        };
+        combo_rt_lshift {
+            key-positions = <16 17>;
+        };
+
+// =====================================================================================
+        // right side
+        combo_yu_rshift {
+            key-positions = <18 19>;
+        };
+        combo_ui_rctrl {
+            key-positions = <19 20>;
+        };
+        combo_io_ralt {
+            key-positions = <20 21>;
+        };
+        combo_op_rgui {
+            key-positions = <21 22>;
+        };
+};
 
     keymap {
         compatible = "zmk,keymap";
