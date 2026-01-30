@@ -153,7 +153,7 @@
 #define ___ADJUST_R3___ _______ _______ _______ _______ _______
 
 /* --------------------------------------------------------------------------
- * GAMING LAYER - No home row mods standard QWERTY
+ * GAMING LAYER - No home row mods standard QWERTY - escapes to base, gaming2, roguelike
  * --------------------------------------------------------------------------
  *  Q     W     E     R     T          Y     U     I     O     P
  *  A     S     D     F     G          H     J     K     L     ;
@@ -168,7 +168,8 @@
 #define ___GAMING_R3___ &kp N &kp M &kp COMMA &kp DOT &kp FSLH
 
 /* --------------------------------------------------------------------------
- * ROGUELIKE LAYER - Extension of Gaming layer
+ * ROGUELIKE LAYER - Extension of Gaming layer - Numpad on right, escape codes back to
+ gaming 1 possibly gaming 2?
  * --------------------------------------------------------------------------
  *  _     _     _     _     _          _     _     _     _     _
  *  _     _     _     _     _          _     _     _     _     _
@@ -185,9 +186,9 @@
 /* --------------------------------------------------------------------------
  * SYS LAYER - Bluetooth connections, clearing, reboot bootloader
  * --------------------------------------------------------------------------
- *  btCLEAR btONE btTWO btTHREE btFOUR            _     _     _     _     _
- *  bootloader system reset                       system reset bootloader
- *  holding  tog-base  _     _     _        _     _     _     _    holding
+ *  btCLEAR btZERO btONE btTWO btTHREE    _     _     _     _     _
+ *  bootloader system reset  _     _      _     _     _  sys_reset bootloader
+ *  holding  tog-base  _     _     _      _     _     _     _    holding
  */
 #define ___SYS_L1___ &bt BT_CLR_ALL &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
 #define ___SYS_L2___ &bootloader &sys_reset    _______ _______ _______
@@ -199,7 +200,7 @@
 
 
 /* --------------------------------------------------------------------------
- * BLANK TEMPLATE - For new layers TODO in zmk this needs to be changed. we aliased trans or none to ___ and XXX
+ * BLANK TEMPLATE
  * --------------------------------------------------------------------------
  *  _     _     _     _     _          _     _     _     _     _
  *  _     _     _     _     _          _     _     _     _     _
@@ -219,6 +220,7 @@
 
 // --------------------------------------------------------------------------
 // TOP ROW NUMBER ROW - sofle - any huge keyboard.
+// TODO we need to make a 6 key version, sofle is broken rn due to this.
 // --------------------------------------------------------------------------
 #define ___NUM_BASE_L___   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
 #define ___NUM_BASE_R___   &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
@@ -238,6 +240,26 @@
 #define ___NUM_GAMING_L___ &trans &trans &trans &trans &trans
 #define ___NUM_GAMING_R___ &trans &trans &trans &trans &trans
 
+// --------------------------------------------------------------------------
+// TOP ROW NUMBER ROW 6 COLUMN EXPANSION - sofle - any huge keyboard.
+// --------------------------------------------------------------------------
+#define ___NUM_BASE_L_6___   _______ &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
+#define ___NUM_BASE_R_6___   &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 _______
+
+#define ___NUM_LOWER_L_6___  _______ &trans &trans &trans &trans &trans
+#define ___NUM_LOWER_R_6___  &trans &trans &trans &trans &trans _______
+
+#define ___NUM_RAISE_L_6___  _______ &trans &trans &trans &trans &trans
+#define ___NUM_RAISE_R_6___  &trans &trans &trans &trans &trans _______
+
+#define ___NUM_FUNC_L_6___   _______ &trans &trans &trans &trans &trans
+#define ___NUM_FUNC_R_6___   &trans &trans &trans &trans &trans _______
+
+#define ___NUM_ADJUST_L_6___ _______ &trans &trans &trans &trans &trans
+#define ___NUM_ADJUST_R_6___ &trans &trans &trans &trans &trans _______
+
+#define ___NUM_GAMING_L_6___ _______ &trans &trans &trans &trans &trans
+#define ___NUM_GAMING_R_6___ &trans &trans &trans &trans &trans _______
 
 /* ==========================================================================
  * 6-COLUMN EXPANSION MACROS
@@ -342,23 +364,23 @@
 #define ___SOFLE_THUMBS_L_BASE___ &sk LSHFT &sk LCTRL &sk LALT &bs_del &lt RAISE SPACE
 #define ___SOFLE_THUMBS_R_BASE___ &lt LOWER RETURN  &lt FUNC TAB  &sk RSHFT &sk RCTRL &sk RALT
 
-#define ___SOFLE_THUMBS_L_LOWER___ _______  _______  _______  _______  &trans
-#define ___SOFLE_THUMBS_R_LOWER___ &trans  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_L_LOWER___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_R_LOWER___ _______  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_RAISE___ _______  _______  _______  _______  &trans
-#define ___SOFLE_THUMBS_R_RAISE___ &trans  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_L_RAISE___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_R_RAISE___ _______  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_FUNC___ _______  _______  _______  _______  &trans
-#define ___SOFLE_THUMBS_R_FUNC___ &trans  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_L_FUNC___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_R_FUNC___ _______  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_ADJUST___ _______  _______  _______  _______  &trans
-#define ___SOFLE_THUMBS_R_ADJUST___ &trans  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_L_ADJUST___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_R_ADJUST___ _______  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_ROGUELIKE___ _______  _______  _______  _______  &trans
-#define ___SOFLE_THUMBS_R_ROGUELIKE___ &trans  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_L_ROGUELIKE___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_R_ROGUELIKE___ _______  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_SYS___ _______  _______  _______  _______  &trans
-#define ___SOFLE_THUMBS_R_SYS___ &trans  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_L_SYS___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_R_SYS___ _______  _______  _______  _______  _______
 
 #define ___SOFLE_THUMBS_L_GAMING___ _______  _______  _______  &kp BSPC  &kp SPACE
 #define ___SOFLE_THUMBS_R_GAMING___ &kp RET  &kp TAB  _______  _______  _______
@@ -392,10 +414,10 @@
  */
 // Sweep / Cradio Thumbs
 #define ___SWEEP_THUMBS_BASE___        &bs_del  &lt RAISE SPACE      &lt LOWER RETURN  &lt FUNC TAB
-#define ___SWEEP_THUMBS_LOWER___       &trans  &trans                &trans  &trans
-#define ___SWEEP_THUMBS_RAISE___       &trans  &trans                &trans  &trans
-#define ___SWEEP_THUMBS_FUNC___        &kp TAB  &kp SPACE            &kp RETURN  &trans
-#define ___SWEEP_THUMBS_ADJUST___      &trans  &trans                &trans  &trans
-#define ___SWEEP_THUMBS_ROGUELIKE___   &trans  &trans                &trans  &trans
-#define ___SWEEP_THUMBS_SYS___         &trans  &trans                &trans  &trans
+#define ___SWEEP_THUMBS_LOWER___       _______  _______                _______  _______
+#define ___SWEEP_THUMBS_RAISE___       _______  _______                _______  _______
+#define ___SWEEP_THUMBS_FUNC___        &kp TAB  &kp SPACE            &kp RETURN  _______
+#define ___SWEEP_THUMBS_ADJUST___      _______  _______                _______  _______
+#define ___SWEEP_THUMBS_ROGUELIKE___   _______  _______                _______  _______
+#define ___SWEEP_THUMBS_SYS___         _______  _______                _______  _______
 #define ___SWEEP_THUMBS_GAMING___      &kp BSPC  &kp SPACE           &kp RETURN  &kp TAB

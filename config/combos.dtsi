@@ -23,7 +23,7 @@
 // =====================================================================================
         // hj ONE_COMBO_TO_RULE_THEM_ALL
         combo_hj_caps_word {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             // This is a generic default. It MUST be overridden by
             // board-specific keymaps. Example: For J and K on Sofle, this might
             // be <31 32>.
@@ -33,33 +33,33 @@
             layers = <BASE>;
         };
         combo_jk_esc {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp ESC>;
             layers = <BASE>;
         };
         combo_lscln_ent {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp RET>;
             layers = <BASE>;
         };
         combo_fg_underscore {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp UNDERSCORE>;
             layers = <BASE>;
         };
         // mostly useful for quick delete one char when i fuck up placing ()'s or osm(sk) ctrl
         combo_sd_bspc {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp BSPC>;
             layers = <BASE>;
         };
 
         combo_df_tab {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp TAB>;
             layers = <BASE>;
@@ -71,23 +71,23 @@
         // Im putting these on the right hand since i stuck with qwerty and right
         // hand is to minimally uesd
         combo_nm_parens: combo_nm_parens {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_parens>;
             layers = <BASE>;
         };
-        // Example: X and C keys for brackets
-        combo_m_comma_brackets: combo_m_comma_brackets {
-            timeout-ms = <50>;
-            key-positions = <0 1>;
-            bindings = <&macro_brackets>;
-            layers = <BASE>;
-        };
-        // Example: N and M keys for braces
-        combo_comma_dot_braces: combo_comma_dot_braces {
-            timeout-ms = <50>;
+        // Example: X and C keys for braces
+        combo_m_comma_braces: combo_m_comma_braces {
+            timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_braces>;
+            layers = <BASE>;
+        };
+        // Example: N and M keys for brackets
+        combo_comma_dot_brackets: combo_comma_dot_brackets {
+            timeout-ms = <30>;
+            key-positions = <0 1>;
+            bindings = <&macro_brackets>;
             layers = <BASE>;
         };
 
@@ -95,14 +95,14 @@
 
         // Double quotes with cursor inside
         combo_k_comma_dquotes: combo_k_comma_dquotes {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_dquotes>;
             layers = <BASE>;
         };
         // Single quotes with cursor inside
         combo_jm_squotes: combo_jm_squotes {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_squotes>;
             layers = <BASE>;
@@ -115,67 +115,75 @@
 // =====================================================================================
 // Left-hand Shift (R+T])
         combo_rt_lshift: combo_rt_lshift {
-            timeout-ms = <40>;
+            timeout-ms = <30>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LSHFT>;
+            slow-release;
             layers = <BASE>;
         };
 // Left-hand Control (E+R)
         combo_er_lctrl: combo_er_lctrl {
-            timeout-ms = <40>;
+            timeout-ms = <30>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LCTRL>;
+            slow-release;
             layers = <BASE>;
         };
 // Left-hand Alt (W+E)
         combo_we_lalt: combo_we_lalt {
-            timeout-ms = <40>;
+            timeout-ms = <30>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LALT>;
+            slow-release;
             layers = <BASE>;
         };
 // Left-hand Super (Q+W)
         combo_qw_lgui: combo_qw_lgui {
-            timeout-ms = <40>;
+            timeout-ms = <30>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LGUI>;
+            slow-release;
             layers = <BASE>;
         };
 // =====================================================================================
 // Right-hand Shift (Y+U])
         combo_yu_rshift: combo_yu_rshift {
-            timeout-ms = <40>;
+            timeout-ms = <30>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RSHFT>;
+            slow-release;
             layers = <BASE>;
         };
 // Right-hand Control (U+I)
         combo_ui_rctrl: combo_ui_rctrl {
-            timeout-ms = <40>;
+            timeout-ms = <30>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RCTRL>;
+            slow-release;
             layers = <BASE>;
         };
 // Right-hand Alt (I+O)
         combo_io_ralt: combo_io_ralt {
-            timeout-ms = <40>;
+            timeout-ms = <30>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RALT>;
+            slow-release;
             layers = <BASE>;
         };
 // Right-hand Super (O+P)
         combo_op_rgui: combo_op_rgui {
-            timeout-ms = <40>;
+            timeout-ms = <30>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RGUI>;
+            slow-release;
             layers = <BASE>;
         };
 // =====================================================================================

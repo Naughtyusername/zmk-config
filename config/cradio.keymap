@@ -50,10 +50,10 @@
         combo_nm_parens {
             key-positions = <25 26>;
         };
-        combo_m_comma_brackets {
+        combo_m_comma_braces {
             key-positions = <26 27>;
         };
-        combo_comma_dot_braces {
+        combo_comma_dot_brackets {
             key-positions = <27 28>;
         };
         // Similar concept but for quotes
