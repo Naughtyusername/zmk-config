@@ -55,6 +55,12 @@
 #define HM_L &hmr RALT L
 #define HM_SCLN &hmr RGUI SEMI
 
+// --- Mouse Key Aliases ---
+// Requires: #include <dt-bindings/zmk/mouse.h> in your keymap
+// Movement: &mmv MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT
+// Scroll: &msc SCRL_UP, SCRL_DOWN, SCRL_LEFT, SCRL_RIGHT
+// Buttons: &mkp MB1 (left), MB2 (right), MB3 (middle)
+
 
 /* ==========================================================================
  * 5-COLUMN MACROS (for 3x5 splits like the core of your layout)
@@ -110,12 +116,12 @@
  *  _     _    Vol+  Vol-  Mute        .     4     5     6     0
  *  _     _    Prev  Play  Next        +     1     2     3     -
  */
-#define ___LOWER_L1___ &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
-#define ___LOWER_L2___ _______ _______ &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE
-#define ___LOWER_L3___ _______ _______ &kp C_PREV &kp C_PP &kp C_NEXT
+#define ___LOWER_L1___ &kp N1 &kp N2 &kp N3       &kp N4       &kp N5
+#define ___LOWER_L2___ XXX XXX       &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE
+#define ___LOWER_L3___ XXX XXX       &kp C_PREV   &kp C_PP     &kp C_NEXT
 
-#define ___LOWER_R1___ &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
-#define ___LOWER_R2___ &kp DOT &kp N4 &kp N5 &kp N6 &kp N0
+#define ___LOWER_R1___ &kp N6   &kp N7 &kp N8 &kp N9 &kp N0
+#define ___LOWER_R2___ &kp DOT  &kp N4 &kp N5 &kp N6 &kp N0
 #define ___LOWER_R3___ &kp PLUS &kp N1 &kp N2 &kp N3 &kp MINUS
 
 /* --------------------------------------------------------------------------
@@ -126,27 +132,23 @@
  *  F1   F2    F3    F4     _          PgDn   _     _     _      _
  */
 #define ___FUNC_L1___ &kp F9 &kp F10 &kp F11 &kp F12 &kp PSCRN
-#define ___FUNC_L2___ &kp F5 &kp F6 &kp F7 &kp F8 _______
-#define ___FUNC_L3___ &kp F1 &kp F2 &kp F3 &kp F4 _______
+#define ___FUNC_L2___ &kp F5 &kp F6 &kp F7 &kp F8    XXX
+#define ___FUNC_L3___ &kp F1 &kp F2 &kp F3 &kp F4    XXX
 
-#define ___FUNC_R1___ &kp PG_UP &kp HOME &kp END &kp INS _______
-#define ___FUNC_R2___ &kp LEFT &kp DOWN &kp UP &kp RIGHT _______
-#define ___FUNC_R3___ &kp PG_DN _______ _______ _______ _______
+#define ___FUNC_R1___ &kp PG_UP &kp HOME &kp END &kp INS &kp DEL
+#define ___FUNC_R2___ &kp LEFT  &kp DOWN &kp UP  &kp RIGHT XXX
+#define ___FUNC_R3___ &kp PG_DN XXX      XXX      XXX      XXX
 
 /* --------------------------------------------------------------------------
- * ADJUST LAYER - System (Tri-layer: LOWER + RAISE) TODO: tweak this removed
- * mouse keys from here dont care for them anwyways. probably do something with
- * NK tog we need the bootmagic shit to use kb in bootloaders too on the list.
- // now that this is usable safely due to the sys layer, we can put misc keyboard tools
- // here, like rgb stuff or audio or num and caps lock etc. TODO
+ * ADJUST LAYER - System (Tri-layer: LOWER + RAISE)
  * --------------------------------------------------------------------------
- * Base  Game   _     _     capslock            _     _     _     _    _
+ * Base  Game  Rogue  Vim   capslock            _     _     _     _    _
  *  _     _     _     _     numlock             _     _     _     _    _
  *  _     _     _     _     _            _     _     _     _    _
  */
 #define ___ADJUST_L1___ &tog BASE &tog GAMING _______ _______ &kp CAPS
-#define ___ADJUST_L2___ _______ _______ _______ _______ &kp KP_NUM
-#define ___ADJUST_L3___ _______ _______ _______ _______ _______
+#define ___ADJUST_L2___ _______ _______ _______ _______       &kp KP_NUM
+#define ___ADJUST_L3___ _______ _______ _______ _______       _______
 
 #define ___ADJUST_R1___ _______ _______ _______ _______ _______
 #define ___ADJUST_R2___ _______ _______ _______ _______ _______
@@ -159,6 +161,7 @@
  *  A     S     D     F     G          H     J     K     L     ;
  *  Z     X     C     V     B          N     M     ,     .     /
  */
+// TODO three finger combo to escape from gaming or leader key sequence or something.
 #define ___GAMING_L1___ &kp Q &kp W &kp E &kp R &kp T
 #define ___GAMING_L2___ &kp A &kp S &kp D &kp F &kp G
 #define ___GAMING_L3___ &kp Z &kp X &kp C &kp V &kp B
@@ -171,24 +174,24 @@
  * ROGUELIKE LAYER - Extension of Gaming layer - Numpad on right, escape codes back to
  gaming 1 possibly gaming 2?
  * --------------------------------------------------------------------------
- *  _     _     _     _     _          _     _     _     _     _
- *  _     _     _     _     _          _     _     _     _     _
- *  _     _     _     _     _          _     _     _     _     _
+ *  Q(comboESC) W     E     R     T        Y     7     8     9     _
+ *  A           S     D     F     G        .     4     5     6     _
+ *  Z           X     X     C     B        N     1     2     3     _
  */
-#define ___ROGUELIKE_L1___ _______ _______ _______ _______ _______
-#define ___ROGUELIKE_L2___ _______ _______ _______ _______ _______
-#define ___ROGUELIKE_L3___ _______ _______ _______ _______ _______
+#define ___ROGUELIKE_L1___ &kp Q &kp W &kp E &kp R &kp T
+#define ___ROGUELIKE_L2___ &kp A &kp S &kp D &kp F &kp G
+#define ___ROGUELIKE_L3___ &kp Z &kp X &kp C &kp V &kp B
 
-#define ___ROGUELIKE_R1___ _______ _______ _______ _______ _______
-#define ___ROGUELIKE_R2___ _______ _______ _______ _______ _______
-#define ___ROGUELIKE_R3___ _______ _______ _______ _______ _______
+#define ___ROGUELIKE_R1___ &kp Y       &kp KP_N7  &kp KP_N8  &kp KP_N9 XXX
+#define ___ROGUELIKE_R2___ &kp KP_DOT  &kp KP_N4  &kp KP_N5  &kp KP_N6 XXX
+#define ___ROGUELIKE_R3___ &kp N       &kp KP_N1  &kp KP_N2  &kp KP_N3 XXX
 
 /* --------------------------------------------------------------------------
  * SYS LAYER - Bluetooth connections, clearing, reboot bootloader
  * --------------------------------------------------------------------------
- *  btCLEAR btZERO btONE btTWO btTHREE    _     _     _     _     _
- *  bootloader system reset  _     _      _     _     _  sys_reset bootloader
- *  holding  tog-base  _     _     _      _     _     _     _    holding
+ *  btCLEAR btZERO btONE btTWO btTHREE         _     _     _        _         _
+ *  bootloader system reset  _     _           _     _     _  sys_reset bootloader
+ *  holding  tog-base  _     _     _           _     _     _        _    holding
  */
 #define ___SYS_L1___ &bt BT_CLR_ALL &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
 #define ___SYS_L2___ &bootloader &sys_reset    _______ _______ _______
@@ -198,6 +201,41 @@
 #define ___SYS_R2___ _______ _______ _______ &sys_reset &bootloader
 #define ___SYS_R3___ _______ _______ _______ _______ _______
 
+/* --------------------------------------------------------------------------
+ * VIM LAYER - Plain QWERTY without Home Row Mods
+ * --------------------------------------------------------------------------
+ * For Vimium browser extension, vim modes in editors, etc.
+ * One-shot mods available via combos: GACS on QW/WE/ER/RT (left) and YU/UI/IO/OP (right)
+ *    GUI   ALT   CTL   SHFT             SHFT  CTRL  ALT   GUI
+ *  Q<--->W<--->E<--->R<--->T          Y<--->U<--->I<--->O<--->P
+ *  A     S     D     F     G          H     J     K     L     ;
+ *  Z     X     C     V     B          N     M     ,     .     /
+ */
+#define ___VIM_L1___ &kp Q &kp W &kp E &kp R &kp T
+#define ___VIM_L2___ &kp A &kp S &kp D &kp F &kp G
+#define ___VIM_L3___ &kp Z &kp X &kp C &kp V &kp B
+
+#define ___VIM_R1___ &kp Y &kp U &kp I &kp O &kp P
+#define ___VIM_R2___ &kp H &kp J &kp K &kp L &kp SEMI
+#define ___VIM_R3___ &kp N &kp M &kp COMMA &kp DOT &kp FSLH
+
+/* --------------------------------------------------------------------------
+ * MOUSE LAYER - Mouse keys for trackpad-less navigation
+ * --------------------------------------------------------------------------
+ * Movement mirrored on both hands (WASD left, HJKL-style right)
+ * Scroll on left hand, buttons on both sides
+ *
+ *  Scrl_L Scrl_U Scrl_D Scrl_R  _         _    MsUp    _      _     _
+ *  MsLft  MsDn   MsUp   MsRt   Btn3      Btn3 MsLft  MsDn   MsRt   _
+ *   _     Btn1   Btn2   Btn3    _         _    Btn1   Btn2   Btn3   _
+ */
+#define ___MOUSE_L1___ &msc SCRL_LEFT &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_RIGHT XXX
+#define ___MOUSE_L2___ &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &mkp MB3
+#define ___MOUSE_L3___ XXX &mkp MB1 &mkp MB2 &mkp MB3 XXX
+
+#define ___MOUSE_R1___ XXX &mmv MOVE_UP XXX XXX XXX
+#define ___MOUSE_R2___ &mkp MB3 &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT XXX
+#define ___MOUSE_R3___ XXX &mkp MB1 &mkp MB2 &mkp MB3 XXX
 
 /* --------------------------------------------------------------------------
  * BLANK TEMPLATE
@@ -220,7 +258,6 @@
 
 // --------------------------------------------------------------------------
 // TOP ROW NUMBER ROW - sofle - any huge keyboard.
-// TODO we need to make a 6 key version, sofle is broken rn due to this.
 // --------------------------------------------------------------------------
 #define ___NUM_BASE_L___   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
 #define ___NUM_BASE_R___   &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
@@ -239,6 +276,18 @@
 
 #define ___NUM_GAMING_L___ &trans &trans &trans &trans &trans
 #define ___NUM_GAMING_R___ &trans &trans &trans &trans &trans
+
+#define ___NUM_ROGUELIKE_L___ _______ _______ _______ _______ _______
+#define ___NUM_ROGUELIKE_R___ _______ _______ _______ _______ _______
+
+#define ___NUM_SYS_L___ _______ _______ _______ _______ _______
+#define ___NUM_SYS_R___ _______ _______ _______ _______ _______
+
+#define ___NUM_VIM_L___ _______ _______ _______ _______ _______
+#define ___NUM_VIM_R___ _______ _______ _______ _______ _______
+
+#define ___NUM_MOUSE_L___ _______ _______ _______ _______ _______
+#define ___NUM_MOUSE_R___ _______ _______ _______ _______ _______
 
 // --------------------------------------------------------------------------
 // TOP ROW NUMBER ROW 6 COLUMN EXPANSION - sofle - any huge keyboard.
@@ -260,6 +309,52 @@
 
 #define ___NUM_GAMING_L_6___ _______ &trans &trans &trans &trans &trans
 #define ___NUM_GAMING_R_6___ &trans &trans &trans &trans &trans _______
+
+#define ___NUM_ROGUELIKE_L_6___ _______ _______ _______ _______ _______ _______
+#define ___NUM_ROGUELIKE_R_6___ _______ _______ _______ _______ _______ _______
+
+#define ___NUM_SYS_L_6___ _______ _______ _______ _______ _______ _______
+#define ___NUM_SYS_R_6___ _______ _______ _______ _______ _______ _______
+
+#define ___NUM_VIM_L_6___ _______ _______ _______ _______ _______ _______
+#define ___NUM_VIM_R_6___ _______ _______ _______ _______ _______ _______
+
+#define ___NUM_MOUSE_L_6___ _______ _______ _______ _______ _______ _______
+#define ___NUM_MOUSE_R_6___ _______ _______ _______ _______ _______ _______
+
+// --------------------------------------------------------------------------
+// SOFLE-SPECIFIC GAMING2 - F-keys focused (Sofle already has number row)
+// --------------------------------------------------------------------------
+// Top row (number row position): F1-F5, F6-F10
+// This replaces the standard GAMING2 top row for Sofle since it has numbers already
+#define ___NUM_GAMING2_L_6___ &kp ESC &kp F1 &kp F2 &kp F3 &kp F4 &kp F5
+#define ___NUM_GAMING2_R_6___ &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 _______
+
+/* --------------------------------------------------------------------------
+ * SOFLE GAMING2 LAYER - F-keys focused (use instead of standard GAMING2 on Sofle)
+ * --------------------------------------------------------------------------
+ * Number row: F1-F10 (since Sofle already has 1-0 on GAMING)
+ *
+ *  F11   F12   _     _     PrtSc      _     _     _     _     _
+ *  _     _     _     _     _          _     _     _     _     _
+ *  _     _     _     _     _          _     _     _     _     _
+ */
+#define ___SOFLE_GAMING2_L1___ &kp F11 &kp F12 _______ _______ &kp PSCRN
+#define ___SOFLE_GAMING2_L2___ _______ _______ _______ _______ _______
+#define ___SOFLE_GAMING2_L3___ _______ _______ _______ _______ _______
+
+#define ___SOFLE_GAMING2_R1___ _______ _______ _______ _______ _______
+#define ___SOFLE_GAMING2_R2___ _______ _______ _______ _______ _______
+#define ___SOFLE_GAMING2_R3___ _______ _______ _______ _______ _______
+
+// 6-column expansion for Sofle GAMING2
+#define ___SOFLE_GAMING2_L1_6___ _______ ___SOFLE_GAMING2_L1___
+#define ___SOFLE_GAMING2_L2_6___ _______ ___SOFLE_GAMING2_L2___
+#define ___SOFLE_GAMING2_L3_6___ _______ ___SOFLE_GAMING2_L3___
+
+#define ___SOFLE_GAMING2_R1_6___ ___SOFLE_GAMING2_R1___ _______
+#define ___SOFLE_GAMING2_R2_6___ ___SOFLE_GAMING2_R2___ _______
+#define ___SOFLE_GAMING2_R3_6___ ___SOFLE_GAMING2_R3___ _______
 
 /* ==========================================================================
  * 6-COLUMN EXPANSION MACROS
@@ -340,24 +435,51 @@
 #define ___GAMING_R2_6___ ___GAMING_R2___ &kp SQT
 #define ___GAMING_R3_6___ ___GAMING_R3___ &kp RET
 
+// Gaming2 layer with outer columns (ESC top left for boards without number row)
+#define ___GAMING2_L1_6___ &kp ESC ___GAMING2_L1___
+#define ___GAMING2_L2_6___ _______ ___GAMING2_L2___
+#define ___GAMING2_L3_6___ _______ ___GAMING2_L3___
+
+#define ___GAMING2_R1_6___ ___GAMING2_R1___ _______
+#define ___GAMING2_R2_6___ ___GAMING2_R2___ _______
+#define ___GAMING2_R3_6___ ___GAMING2_R3___ _______
+
+// VIM layer with outer columns
+#define ___VIM_L1_6___ &kp ESC ___VIM_L1___
+#define ___VIM_L2_6___ &kp TAB ___VIM_L2___
+#define ___VIM_L3_6___ _______ ___VIM_L3___
+
+#define ___VIM_R1_6___ ___VIM_R1___ &kp BSPC
+#define ___VIM_R2_6___ ___VIM_R2___ &kp SQT
+#define ___VIM_R3_6___ ___VIM_R3___ &kp RET
+
+// MOUSE layer with outer columns
+#define ___MOUSE_L1_6___ _______ ___MOUSE_L1___
+#define ___MOUSE_L2_6___ _______ ___MOUSE_L2___
+#define ___MOUSE_L3_6___ _______ ___MOUSE_L3___
+
+#define ___MOUSE_R1_6___ ___MOUSE_R1___ _______
+#define ___MOUSE_R2_6___ ___MOUSE_R2___ _______
+#define ___MOUSE_R3_6___ ___MOUSE_R3___ _______
+
 /* --------------------------------------------------------------------------
  * Sofle thumb layers
  * --------------------------------------------------------------------------
- * |BASE  | skALT     skCTL     skSHIFT   bs_del RAISE+SPACE|LOWER+RET   FN+TAB    skSHIFT   skCTL     skALT
-                                                            |
- * |LOWER | TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
-                                                            |
- * |RAISE | TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
-                                                            |
- * |FUNC  | TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
-                                                            |
- * |ADJUST| TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
-                                                            |
- * |ROGUE|  TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
-                                                            |
- * |SYS   | TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
-                                                            |
- * |GAMING| TRANS     TRANS     TRANS     TRANS     TRANS   |  TRANS     TRANS     TRANS     TRANS     TRANS
+ * |BASE  |  skALT      skCTL       skSHIFT     bs_del    RAISE+SPACE |  LOWER+RET   FN+TAB    skSHIFT   skCTL     skALT
+                                                                      |
+ * |LOWER | _______     _______     _______     _______     _______   |  _______     _______     _______     _______     _______
+                                                                      |
+ * |RAISE | _______     _______     _______     _______     _______   |  _______     _______     _______     _______     _______
+                                                                      |
+ * |FUNC  | _______     _______     _______     _______     _______   |  _______     _______     _______     _______     _______
+                                                                      |
+ * |ADJUST| _______     _______     _______     _______     _______   |  _______     _______     _______     _______     _______
+                                                                      |
+ * |ROGUE|  _______     _______     _______     _______     _______   |  _______     _______     _______     _______     _______
+                                                                      |
+ * |SYS   | _______     _______     _______     _______     _______   |  _______     _______     _______     _______     _______
+                                                                      |
+ * |GAMING| _______     _______     _______     _______     _______   |  _______     _______     _______     _______     _______
  */
 
 // Sofle thumbs
@@ -383,7 +505,16 @@
 #define ___SOFLE_THUMBS_R_SYS___ _______  _______  _______  _______  _______
 
 #define ___SOFLE_THUMBS_L_GAMING___ _______  _______  _______  &kp BSPC  &kp SPACE
-#define ___SOFLE_THUMBS_R_GAMING___ &kp RET  &kp TAB  _______  _______  _______
+#define ___SOFLE_THUMBS_R_GAMING___ &kp RET  &lt GAMING2 TAB  _______  _______  _______
+
+#define ___SOFLE_THUMBS_L_GAMING2___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_R_GAMING2___ _______  _______  _______  _______  _______
+
+#define ___SOFLE_THUMBS_L_VIM___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_R_VIM___ _______  _______  _______  _______  _______
+
+#define ___SOFLE_THUMBS_L_MOUSE___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_R_MOUSE___ _______  _______  _______  _______  _______
 
 // Sofle encoder rotation bindings
 #define ___ENC_BASE___         &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
@@ -392,15 +523,25 @@
 #define ___ENC_FUNC___         &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
 #define ___ENC_ADJUST___       &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
 #define ___ENC_GAMING___       &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+#define ___ENC_GAMING2___      &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+#define ___ENC_ROGUELIKE___    &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+#define ___ENC_SYS___          &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+#define ___ENC_VIM___          &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
+#define ___ENC_MOUSE___        &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp PG_UP PG_DN
 
 // Encoder Button bindings - this particular setup works for any keyboard where they are paralel
 // on the same row.
-#define ___ENC_KEY_BASE___   _______ _______
+#define ___ENC_KEY_BASE___   XXX &kp C_MUTE
 #define ___ENC_KEY_LOWER___  _______ _______
 #define ___ENC_KEY_RAISE___  _______ _______
 #define ___ENC_KEY_FUNC___   _______ _______
 #define ___ENC_KEY_ADJUST___ _______ _______
 #define ___ENC_KEY_GAMING___ _______ _______
+#define ___ENC_KEY_GAMING2___ _______ _______
+#define ___ENC_KEY_ROGUELIKE___ _______ _______
+#define ___ENC_KEY_SYS___       _______ _______
+#define ___ENC_KEY_VIM___       _______ _______
+#define ___ENC_KEY_MOUSE___     _______ _______
 
 /* --------------------------------------------------------------------------
  * Sweep thumb layers // TODO no idea if we should add anythign on the adjust layer, but its an option
@@ -421,3 +562,6 @@
 #define ___SWEEP_THUMBS_ROGUELIKE___   _______  _______                _______  _______
 #define ___SWEEP_THUMBS_SYS___         _______  _______                _______  _______
 #define ___SWEEP_THUMBS_GAMING___      &kp BSPC  &kp SPACE           &kp RETURN  &kp TAB
+#define ___SWEEP_THUMBS_GAMING2___     _______  _______              _______  _______
+#define ___SWEEP_THUMBS_VIM___         _______  _______              _______  _______
+#define ___SWEEP_THUMBS_MOUSE___       _______  _______              _______  _______

@@ -1,4 +1,7 @@
 // SPDX-License-Identifier: MIT
+#define COMBO_TERM_FAST 18
+#define COMBO_TERM_MED 30
+#define COMBO_TERM_SLOW 50
 
 / {
     // clang-format off
@@ -50,6 +53,12 @@
             bindings = <&kp UNDERSCORE>;
             layers = <BASE>;
         };
+        combo_vb_minus {
+            timeout-ms = <30>;
+            key-positions = <0 1>;
+            bindings = <&kp MINUS>;
+            layers = <BASE>;
+        };
         // mostly useful for quick delete one char when i fuck up placing ()'s or osm(sk) ctrl
         combo_sd_bspc {
             timeout-ms = <30>;
@@ -62,6 +71,50 @@
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp TAB>;
+            layers = <BASE>;
+        };
+
+// =====================================================================================
+// Three finger combos, initial ones are for layer swapping, from base to vim
+// from gaming to gaming 2
+// from gaming to roguelike
+// and then escapes from those top layers back down to base ofc, no trapping.
+// =====================================================================================
+// THE UNIVERSAL ESCAPE HATCH
+        // This takes you back to Base (0) from any other layer.
+        combo_return_to_base { // qwe is what im thinking for this.
+            timeout-ms = <50>;
+            key-positions = <0 1 2>; // Adjust to your preferred keys
+            bindings = <&to 0>;
+            layers = <5 6 7 8 10>; // no need on lower/raise/adjust/func.
+            // set for gaming, gaming2, roguelike, vim, mouse.
+        };
+        // go from gamingtwo to gaming
+        combo_goto_gaming {
+            timeout-ms = <50>;
+            key-positions = <0 1 2>;
+            bindings = <&to GAMING>;
+            layers = <BASE>;
+        };
+        // go from gaming to gamingtwo
+        combo_goto_gamingtwo {
+            timeout-ms = <50>;
+            key-positions = <0 1 2>;
+            bindings = <&to GAMING>;
+            layers = <BASE>;
+        };
+        // go from gaming to rogue
+        combo_goto_rogue {
+            timeout-ms = <50>;
+            key-positions = <0 1 2>;
+            bindings = <&to GAMING>;
+            layers = <BASE>;
+        };
+        // go from base to vim. free home row keys, mods on top row, good for RL game testing/vim editing sometimes
+        combo_goto_vim {
+            timeout-ms = <50>;
+            key-positions = <0 1 2>;
+            bindings = <&to GAMING>;
             layers = <BASE>;
         };
 // =====================================================================================
@@ -115,7 +168,7 @@
 // =====================================================================================
 // Left-hand Shift (R+T])
         combo_rt_lshift: combo_rt_lshift {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LSHFT>;
@@ -124,7 +177,7 @@
         };
 // Left-hand Control (E+R)
         combo_er_lctrl: combo_er_lctrl {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LCTRL>;
@@ -133,7 +186,7 @@
         };
 // Left-hand Alt (W+E)
         combo_we_lalt: combo_we_lalt {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LALT>;
@@ -142,7 +195,7 @@
         };
 // Left-hand Super (Q+W)
         combo_qw_lgui: combo_qw_lgui {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk LGUI>;
@@ -152,7 +205,7 @@
 // =====================================================================================
 // Right-hand Shift (Y+U])
         combo_yu_rshift: combo_yu_rshift {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RSHFT>;
@@ -161,7 +214,7 @@
         };
 // Right-hand Control (U+I)
         combo_ui_rctrl: combo_ui_rctrl {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RCTRL>;
@@ -170,7 +223,7 @@
         };
 // Right-hand Alt (I+O)
         combo_io_ralt: combo_io_ralt {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RALT>;
@@ -179,7 +232,7 @@
         };
 // Right-hand Super (O+P)
         combo_op_rgui: combo_op_rgui {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
             bindings = <&sk RGUI>;

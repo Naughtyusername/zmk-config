@@ -1,6 +1,7 @@
 // clang-format off
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/mouse.h>
 #include "behaviors.dtsi" // before wrappers because .dtsi are fucking dumb
 #include "wrappers.dtsi" // qmk logic. has to come after the zmk headers
 #include "combos.dtsi" // Shared combo definitions
@@ -34,6 +35,9 @@
         };
         combo_fg_underscore {
             key-positions = <13 14>;
+        };
+        combo_vb_minus {
+            key-positions = <23 24>;
         };
         combo_sd_bspc {
             key-positions = <11 12>;
@@ -155,7 +159,7 @@
         };
         roguelike_layer {
             bindings = <
-                ___BASE_L1___ ___BASE_R1___ // Assuming base row layout initially
+                ___ROGUELIKE_L1___ ___ROGUELIKE_R1___
                 ___ROGUELIKE_L2___ ___ROGUELIKE_R2___
                 ___ROGUELIKE_L3___ ___ROGUELIKE_R3___
                   ___SWEEP_THUMBS_ROGUELIKE___
@@ -164,10 +168,28 @@
 
         sys_layer {
             bindings = <
-                ___BASE_L1___ ___BASE_R1___ // Assuming base row layout initially
+                ___SYS_L1___ ___SYS_R1___
                 ___SYS_L2___ ___SYS_R2___
                 ___SYS_L3___ ___SYS_R3___
                   ___SWEEP_THUMBS_SYS___
+            >;
+        };
+
+        vim_layer {
+            bindings = <
+                ___VIM_L1___ ___VIM_R1___
+                ___VIM_L2___ ___VIM_R2___
+                ___VIM_L3___ ___VIM_R3___
+                  ___SWEEP_THUMBS_VIM___
+            >;
+        };
+
+        mouse_layer {
+            bindings = <
+                ___MOUSE_L1___ ___MOUSE_R1___
+                ___MOUSE_L2___ ___MOUSE_R2___
+                ___MOUSE_L3___ ___MOUSE_R3___
+                  ___SWEEP_THUMBS_MOUSE___
             >;
         };
     };

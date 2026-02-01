@@ -1,6 +1,7 @@
 // clang-format off
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/mouse.h>
 #include "behaviors.dtsi" // before wrappers because .dtsi are fucking dumb
 #include "wrappers.dtsi" // after behaviors
 #include "combos.dtsi" // Shared combo definitions
@@ -39,6 +40,9 @@
         };
         combo_fg_underscore {
             key-positions = <28 29>;
+        };
+        combo_vb_minus {
+            key-positions = <40 41>;
         };
         combo_sd_bspc {
             key-positions = <26 27>;
@@ -178,25 +182,49 @@
         roguelike {
             display-name = "ROGUELIKE";
             bindings = <
-                  ___NUM_GAMING_L_6___                   ___NUM_GAMING_R_6___
+                  ___NUM_ROGUELIKE_L_6___                   ___NUM_ROGUELIKE_R_6___
                   ___ROGUELIKE_L1_6___                    ___ROGUELIKE_R1_6___
                   ___ROGUELIKE_L2_6___                    ___ROGUELIKE_R2_6___
-                  ___ROGUELIKE_L3_6___ ___ENC_KEY_GAMING___ ___ROGUELIKE_R3_6___
+                  ___ROGUELIKE_L3_6___ ___ENC_KEY_ROGUELIKE___ ___ROGUELIKE_R3_6___
                 ___SOFLE_THUMBS_L_ROGUELIKE___ ___SOFLE_THUMBS_R_ROGUELIKE___
             >;
-                 sensor-bindings = <___ENC_GAMING___>;
+                 sensor-bindings = <___ENC_ROGUELIKE___>;
         };
 
         sys {
             display-name = "SYS";
             bindings = <
-                  ___NUM_ADJUST_L_6___                   ___NUM_ADJUST_R_6___
+                  ___NUM_SYS_L_6___                   ___NUM_SYS_R_6___
                   ___SYS_L1_6___                    ___SYS_R1_6___
                   ___SYS_L2_6___                    ___SYS_R2_6___
-                  ___SYS_L3_6___ ___ENC_KEY_ADJUST___ ___SYS_R3_6___
+                  ___SYS_L3_6___ ___ENC_KEY_SYS___ ___SYS_R3_6___
                 ___SOFLE_THUMBS_L_SYS___ ___SOFLE_THUMBS_R_SYS___
             >;
-                 sensor-bindings = <___ENC_ADJUST___>;
+                 sensor-bindings = <___ENC_SYS___>;
+        };
+
+        vim {
+            display-name = "VIM";
+            bindings = <
+                  ___NUM_VIM_L_6___                   ___NUM_VIM_R_6___
+                  ___VIM_L1_6___                    ___VIM_R1_6___
+                  ___VIM_L2_6___                    ___VIM_R2_6___
+                  ___VIM_L3_6___ ___ENC_KEY_VIM___ ___VIM_R3_6___
+                ___SOFLE_THUMBS_L_VIM___ ___SOFLE_THUMBS_R_VIM___
+            >;
+                 sensor-bindings = <___ENC_VIM___>;
+        };
+
+        mouse {
+            display-name = "MOUSE";
+            bindings = <
+                  ___NUM_MOUSE_L_6___                   ___NUM_MOUSE_R_6___
+                  ___MOUSE_L1_6___                    ___MOUSE_R1_6___
+                  ___MOUSE_L2_6___                    ___MOUSE_R2_6___
+                  ___MOUSE_L3_6___ ___ENC_KEY_MOUSE___ ___MOUSE_R3_6___
+                ___SOFLE_THUMBS_L_MOUSE___ ___SOFLE_THUMBS_R_MOUSE___
+            >;
+                 sensor-bindings = <___ENC_MOUSE___>;
         };
     };
 };
