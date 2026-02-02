@@ -81,41 +81,66 @@
 // and then escapes from those top layers back down to base ofc, no trapping.
 // =====================================================================================
 // THE UNIVERSAL ESCAPE HATCH
-        // This takes you back to Base (0) from any other layer.
-        combo_return_to_base { // qwe is what im thinking for this.
+        combo_return_to_base {
             timeout-ms = <50>;
-            key-positions = <0 1 2>; // Adjust to your preferred keys
+            key-positions = <0 1 2>;  // QWE
             bindings = <&to 0>;
-            layers = <5 6 7 8 10>; // no need on lower/raise/adjust/func.
-            // set for gaming, gaming2, roguelike, vim, mouse.
+            layers = <0 5 6 7 8>; // active return to home on base gaming, gaming2, roguelike, vim
         };
-        // go from gamingtwo to gaming
-        combo_goto_gaming {
+
+// BASE → GAMING (ASD)
+        combo_base_to_gaming {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;
-            bindings = <&to GAMING>;
-            layers = <BASE>;
+            key-positions = <0 1 2>;  // ASD
+            bindings = <&to 5>;
+            layers = <0>;
         };
-        // go from gaming to gamingtwo
-        combo_goto_gamingtwo {
+
+// BASE → VIM (NM,)
+        combo_base_to_vim {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;
-            bindings = <&to GAMING>;
-            layers = <BASE>;
+            key-positions = <0 1 2>;  // NM,
+            bindings = <&to 8>;
+            layers = <0>;
         };
-        // go from gaming to rogue
-        combo_goto_rogue {
+
+// VIM → BASE (NM,) - toggle back
+        combo_vim_to_base {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;
-            bindings = <&to GAMING>;
-            layers = <BASE>;
+            key-positions = <0 1 2>;  // NM,
+            bindings = <&to 0>;
+            layers = <8>;
         };
-        // go from base to vim. free home row keys, mods on top row, good for RL game testing/vim editing sometimes
-        combo_goto_vim {
+// GAMING → ROGUELIKE (HJK)
+        combo_gaming_to_roguelike {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;
-            bindings = <&to GAMING>;
-            layers = <BASE>;
+            key-positions = <0 1 2>;  // HJK
+            bindings = <&to 7>;
+            layers = <5>;
+        };
+
+// ROGUELIKE → GAMING (HJK) - toggle back
+        combo_roguelike_to_gaming {
+            timeout-ms = <50>;
+            key-positions = <0 1 2>;  // HJK
+            bindings = <&to 5>;
+            layers = <7>;
+        };
+
+// GAMING → GAMING2 (YUI)
+        combo_gaming_to_gaming2 {
+            timeout-ms = <50>;
+            key-positions = <0 1 2>;  // YUI
+            bindings = <&to 6>;
+            layers = <5>;
+        };
+
+// GAMING2 → GAMING (YUI) - toggle back
+        combo_gaming2_to_gaming {
+            timeout-ms = <50>;
+            key-positions = <0 1 2>;  // YUI
+            bindings = <&to 5>;
+            layers = <6>;
         };
 // =====================================================================================
 // top row one shot modifier combos

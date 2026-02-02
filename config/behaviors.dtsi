@@ -39,13 +39,6 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        td_q_esc: tap_dance_q_esc {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <175>;
-            bindings = <&kp Q>, <&kp ESC>;
-        };
-
         lt_1s_mo: layer_toggle_1s_momentary {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>; // For Layer and Keycode

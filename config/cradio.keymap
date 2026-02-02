@@ -100,6 +100,40 @@
         combo_op_rgui {
             key-positions = <8 9>;
         };
+// =====================================================================================
+// Three-Finger goto layer combos
+// =====================================================================================
+        combo_return_to_base { // QWE on all layers to return home
+            key-positions = <0 1 2>;
+        };
+
+        combo_base_to_gaming {
+            key-positions = <10 11 12>; // ASD
+        };
+
+        combo_base_to_vim {
+            key-positions = <25 26 27>; // NM,
+        };
+
+        combo_vim_to_base {
+            key-positions = <25 26 27>; // NM, to return, qwe still works too.
+        };
+
+        combo_gaming_to_roguelike {
+            key-positions = <15 16 17>; // HJK
+        };
+
+        combo_roguelike_to_gaming {
+            key-positions = <15 16 17>; // HJK to go back (supposed to work even tho it will be numpad keys)
+        };
+
+        combo_gaming_to_gaming2 {
+            key-positions = <5 6 7>; // YUI
+        };
+
+        combo_gaming2_to_gaming {
+            key-positions = <5 6 7>; // YUI to return
+        };
 };
 
     keymap {
@@ -157,6 +191,16 @@
                   ___SWEEP_THUMBS_GAMING___
             >;
         };
+
+        gaming2_layer {
+            bindings = <
+                ___GAMING2_L1___ ___GAMING2_R1___
+                ___GAMING2_L2___ ___GAMING2_R2___
+                ___GAMING2_L3___ ___GAMING2_R3___
+                  ___SWEEP_THUMBS_GAMING2___
+            >;
+        };
+
         roguelike_layer {
             bindings = <
                 ___ROGUELIKE_L1___ ___ROGUELIKE_R1___
@@ -166,21 +210,21 @@
             >;
         };
 
-        sys_layer {
-            bindings = <
-                ___SYS_L1___ ___SYS_R1___
-                ___SYS_L2___ ___SYS_R2___
-                ___SYS_L3___ ___SYS_R3___
-                  ___SWEEP_THUMBS_SYS___
-            >;
-        };
-
         vim_layer {
             bindings = <
                 ___VIM_L1___ ___VIM_R1___
                 ___VIM_L2___ ___VIM_R2___
                 ___VIM_L3___ ___VIM_R3___
                   ___SWEEP_THUMBS_VIM___
+            >;
+        };
+
+        sys_layer {
+            bindings = <
+                ___SYS_L1___ ___SYS_R1___
+                ___SYS_L2___ ___SYS_R2___
+                ___SYS_L3___ ___SYS_R3___
+                  ___SWEEP_THUMBS_SYS___
             >;
         };
 

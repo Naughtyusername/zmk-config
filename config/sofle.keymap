@@ -179,6 +179,19 @@
             >;
                  sensor-bindings = <___ENC_GAMING___>;
         };
+
+        gaming2 {
+            display-name = "GAMING2";
+            bindings = <
+                  ___NUM_GAMING2_L_6___                       ___NUM_GAMING2_R_6___
+                  ___SOFLE_GAMING2_L1_6___                    ___SOFLE_GAMING2_R1_6___
+                  ___SOFLE_GAMING2_L2_6___                    ___SOFLE_GAMING2_R2_6___
+                  ___SOFLE_GAMING2_L3_6___ ___ENC_KEY_GAMING2___ ___SOFLE_GAMING2_R3_6___
+                ___SOFLE_THUMBS_L_GAMING2___ ___SOFLE_THUMBS_R_GAMING2___
+            >;
+                 sensor-bindings = <___ENC_GAMING2___>;
+        };
+
         roguelike {
             display-name = "ROGUELIKE";
             bindings = <
@@ -191,18 +204,6 @@
                  sensor-bindings = <___ENC_ROGUELIKE___>;
         };
 
-        sys {
-            display-name = "SYS";
-            bindings = <
-                  ___NUM_SYS_L_6___                   ___NUM_SYS_R_6___
-                  ___SYS_L1_6___                    ___SYS_R1_6___
-                  ___SYS_L2_6___                    ___SYS_R2_6___
-                  ___SYS_L3_6___ ___ENC_KEY_SYS___ ___SYS_R3_6___
-                ___SOFLE_THUMBS_L_SYS___ ___SOFLE_THUMBS_R_SYS___
-            >;
-                 sensor-bindings = <___ENC_SYS___>;
-        };
-
         vim {
             display-name = "VIM";
             bindings = <
@@ -213,6 +214,18 @@
                 ___SOFLE_THUMBS_L_VIM___ ___SOFLE_THUMBS_R_VIM___
             >;
                  sensor-bindings = <___ENC_VIM___>;
+        };
+
+        sys {
+            display-name = "SYS";
+            bindings = <
+                  ___NUM_SYS_L_6___                   ___NUM_SYS_R_6___
+                  ___SYS_L1_6___                    ___SYS_R1_6___
+                  ___SYS_L2_6___                    ___SYS_R2_6___
+                  ___SYS_L3_6___ ___ENC_KEY_SYS___ ___SYS_R3_6___
+                ___SOFLE_THUMBS_L_SYS___ ___SOFLE_THUMBS_R_SYS___
+            >;
+                 sensor-bindings = <___ENC_SYS___>;
         };
 
         mouse {

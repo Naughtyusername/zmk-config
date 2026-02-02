@@ -19,7 +19,7 @@
  * C preprocessor macros are expanded in multiple passes. This lets us do:
  *
  *   LAYOUT_mitosis_wrapper(
- *       ___BASE_L1___, ___BASE_R1___,   // Expands to: TD(TD_Q_ESC), KC_W, ...
+ *       ___BASE_L1___, ___BASE_R1___,   // Expands to: KC_Q), KC_W, ...
  *       ...
  *   )
  *
@@ -171,6 +171,21 @@
 #define ___GAMING_R3___ &kp N &kp M &kp COMMA &kp DOT &kp FSLH
 
 /* --------------------------------------------------------------------------
+ * GAMING2 LAYER - F-keys and Numbers (for boards without numrow like Cradio)
+ * --------------------------------------------------------------------------
+ *  1     2     3     4     5          6     7     8     9     0
+ *  F1    F2    F3    F4    F5         F6    F7    F8    F9    F10
+ *  F11   F12   _     _     PrtSc      _     _     _     _     _
+ */
+#define ___GAMING2_L1___ &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
+#define ___GAMING2_L2___ &kp F1 &kp F2 &kp F3 &kp F4 &kp F5
+#define ___GAMING2_L3___ &kp F11 &kp F12 _______ _______ &kp PSCRN
+
+#define ___GAMING2_R1___ &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
+#define ___GAMING2_R2___ &kp F6 &kp F7 &kp F8 &kp F9 &kp F10
+#define ___GAMING2_R3___ _______ _______ _______ _______ _______
+
+/* --------------------------------------------------------------------------
  * ROGUELIKE LAYER - Extension of Gaming layer - Numpad on right, escape codes back to
  gaming 1 possibly gaming 2?
  * --------------------------------------------------------------------------
@@ -276,6 +291,9 @@
 
 #define ___NUM_GAMING_L___ &trans &trans &trans &trans &trans
 #define ___NUM_GAMING_R___ &trans &trans &trans &trans &trans
+
+#define ___NUM_GAMING2_L___ _______ _______ _______ _______ _______
+#define ___NUM_GAMING2_R___ _______ _______ _______ _______ _______
 
 #define ___NUM_ROGUELIKE_L___ _______ _______ _______ _______ _______
 #define ___NUM_ROGUELIKE_R___ _______ _______ _______ _______ _______
