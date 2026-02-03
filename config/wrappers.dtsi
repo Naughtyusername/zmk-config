@@ -1,6 +1,6 @@
+// clang-format off
 // config/wrappers.dtsi
 #include <dt-bindings/zmk/bt.h>
-// clang-format off
 
 /* Copyright 2025 naughtyusername
  * SPDX-License-Identifier: GPL-2.0-or-later

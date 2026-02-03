@@ -4,6 +4,34 @@
 / {
     behaviors {
 // =====================================================================================
+// CUSTOM BEHAVIOR CHANGES THAT HOPEFULLY WORK
+// =====================================================================================
+
+// caps word continue list
+    better_caps_word: capsword {
+            compatible = "zmk,behavior-caps-word";
+            label = "CAPS_WORD";
+            #binding-cells = <0>;
+            // expand the list to all the keys that you want caps word to not stop capping on
+            // default is all the alphas and _ but it lacked minus which is annoying.
+            continue-list = <UNDERSCORE BACKSPACE DELETE MINUS N1 N2 N3 N4 N5 N6 N7 N8 N9 N0>;
+        };
+
+        // caps_word_invert_on_shift lets it stay active while we un-caps while holding shift
+        // might be useful with shift+bspc=del, worth consideration
+
+// sticky keys fix - they linger on to long / i type to fast, ie. 2 keys get shifted or
+// whatever modifier when its only supposed to be one
+skq: sticky_key_quick_release {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <1000>; // Duration until it turns off i see a lot of 1200-1500 from other users here
+            quick-release;             // This lets us NOt haave that double caps happen
+                                       //              ^^^
+        };
+
+// =====================================================================================
 // HOME_ROW_MODS
 // =====================================================================================
         hml: homerow_mods_left {

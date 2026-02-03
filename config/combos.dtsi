@@ -31,47 +31,54 @@
             // board-specific keymaps. Example: For J and K on Sofle, this might
             // be <31 32>.
             key-positions = <0 1>;
-            bindings = <&caps_word>;
+            bindings = <&better_caps_word>;
             // layer locking, we can adjust this to allow on more layers as needed
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
         combo_jk_esc {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp ESC>;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
         combo_lscln_ent {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp RET>;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
         combo_fg_underscore {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp UNDERSCORE>;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
         combo_vb_minus {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp MINUS>;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
         // mostly useful for quick delete one char when i fuck up placing ()'s or osm(sk) ctrl
         combo_sd_bspc {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp BSPC>;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 
         combo_df_tab {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp TAB>;
-            layers = <BASE>;
+            layers = <BASE 8>;
+        };
+
+        combo_kl_sqt {
+            timeout-ms = <30>;
+            key-positions = <0 1>;
+            bindings = <&kp SQT>;
+            layers = <BASE 8>;
         };
 
 // =====================================================================================
@@ -152,21 +159,21 @@
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_parens>;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
         // Example: X and C keys for braces
         combo_m_comma_braces: combo_m_comma_braces {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_braces>;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
-        // Example: N and M keys for brackets
+        // Example: , . keys for brackets
         combo_comma_dot_brackets: combo_comma_dot_brackets {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_brackets>;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 
 // Auto pairing quotes as well
@@ -176,14 +183,14 @@
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_dquotes>;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
         // Single quotes with cursor inside
         combo_jm_squotes: combo_jm_squotes {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_squotes>;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 // =====================================================================================
 // top row one shot modifier combos GACS just like on homerow, just one row up,
@@ -196,36 +203,36 @@
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
-            bindings = <&sk LSHFT>;
+            bindings = <&skq LSHFT>;
             slow-release;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 // Left-hand Control (E+R)
         combo_er_lctrl: combo_er_lctrl {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
-            bindings = <&sk LCTRL>;
+            bindings = <&skq LCTRL>;
             slow-release;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 // Left-hand Alt (W+E)
         combo_we_lalt: combo_we_lalt {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
-            bindings = <&sk LALT>;
+            bindings = <&skq LALT>;
             slow-release;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 // Left-hand Super (Q+W)
         combo_qw_lgui: combo_qw_lgui {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
-            bindings = <&sk LGUI>;
+            bindings = <&skq LGUI>;
             slow-release;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 // =====================================================================================
 // Right-hand Shift (Y+U])
@@ -233,36 +240,36 @@
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
-            bindings = <&sk RSHFT>;
+            bindings = <&skq RSHFT>;
             slow-release;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 // Right-hand Control (U+I)
         combo_ui_rctrl: combo_ui_rctrl {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
-            bindings = <&sk RCTRL>;
+            bindings = <&skq RCTRL>;
             slow-release;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 // Right-hand Alt (I+O)
         combo_io_ralt: combo_io_ralt {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
-            bindings = <&sk RALT>;
+            bindings = <&skq RALT>;
             slow-release;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 // Right-hand Super (O+P)
         combo_op_rgui: combo_op_rgui {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
             key-positions = <0 1>;
-            bindings = <&sk RGUI>;
+            bindings = <&skq RGUI>;
             slow-release;
-            layers = <BASE>;
+            layers = <BASE 8>;
         };
 // =====================================================================================
 // end of combos
