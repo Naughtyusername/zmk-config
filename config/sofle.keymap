@@ -32,6 +32,12 @@
 */
 / {
     combos {
+        combo_hj_caps_word {
+            key-positions = <30 31>;
+        };
+        combo_yh_num_word {
+            key-positions = <30 18>;
+        };
         combo_jk_esc {
             key-positions = <31 32>;
         };
@@ -41,17 +47,14 @@
         combo_fg_underscore {
             key-positions = <28 29>;
         };
-        combo_vb_minus {
-            key-positions = <40 41>;
-        };
         combo_sd_bspc {
             key-positions = <26 27>;
         };
-        combo_hj_caps_word {
-            key-positions = <30 31>;
-        };
         combo_df_tab {
             key-positions = <27 28>;
+        };
+        combo_vb_minus {
+            key-positions = <40 41>;
         };
         combo_kl_sqt {
             key-positions = <32 33>;
@@ -67,6 +70,9 @@
         };
         combo_comma_dot_brackets {
             key-positions = <46 47>;
+        };
+        combo_dot_slash_ltgt {
+            key-positions = <47 48>;
         };
         // Similar concept but for quotes
         combo_jm_squotes {
@@ -111,7 +117,10 @@
 };
 
     keymap {
+
+        // base, vim, lower, raise, gaming, gaming2, roguelike, sys, mouse
         compatible = "zmk,keymap";
+
         base {
             display-name = "BASE";
             bindings = <
@@ -122,6 +131,18 @@
                 ___SOFLE_THUMBS_L_BASE___ ___SOFLE_THUMBS_R_BASE___
             >;
                  sensor-bindings = <___ENC_BASE___>;
+        };
+
+        vim {
+            display-name = "VIM";
+            bindings = <
+                  ___NUM_VIM_L_6___                   ___NUM_VIM_R_6___
+                  ___VIM_L1_6___                    ___VIM_R1_6___
+                  ___VIM_L2_6___                    ___VIM_R2_6___
+                  ___VIM_L3_6___ ___ENC_KEY_VIM___ ___VIM_R3_6___
+                ___SOFLE_THUMBS_L_VIM___ ___SOFLE_THUMBS_R_VIM___
+            >;
+                 sensor-bindings = <___ENC_VIM___>;
         };
 
         lower {
@@ -159,6 +180,7 @@
             >;
                  sensor-bindings = <___ENC_FUNC___>;
         };
+
         adjust {
             display-name = "ADJUST";
             bindings = <
@@ -175,8 +197,8 @@
             display-name = "GAMING";
             bindings = <
                   ___NUM_GAMING_L_6___                   ___NUM_GAMING_R_6___
-                  ___GAMING_L1_6___                    ___GAMING_R1_6___
-                  ___GAMING_L2_6___                    ___GAMING_R2_6___
+                  ___GAMING_L1_6___                      ___GAMING_R1_6___
+                  ___GAMING_L2_6___                      ___GAMING_R2_6___
                   ___GAMING_L3_6___ ___ENC_KEY_GAMING___ ___GAMING_R3_6___
                 ___SOFLE_THUMBS_L_GAMING___ ___SOFLE_THUMBS_R_GAMING___
             >;
@@ -205,18 +227,6 @@
                 ___SOFLE_THUMBS_L_ROGUELIKE___ ___SOFLE_THUMBS_R_ROGUELIKE___
             >;
                  sensor-bindings = <___ENC_ROGUELIKE___>;
-        };
-
-        vim {
-            display-name = "VIM";
-            bindings = <
-                  ___NUM_VIM_L_6___                   ___NUM_VIM_R_6___
-                  ___VIM_L1_6___                    ___VIM_R1_6___
-                  ___VIM_L2_6___                    ___VIM_R2_6___
-                  ___VIM_L3_6___ ___ENC_KEY_VIM___ ___VIM_R3_6___
-                ___SOFLE_THUMBS_L_VIM___ ___SOFLE_THUMBS_R_VIM___
-            >;
-                 sensor-bindings = <___ENC_VIM___>;
         };
 
         sys {

@@ -7,22 +7,66 @@
     // clang-format off
     combos {
         compatible = "zmk,combos";
-
 // =====================================================================================
-// short hand list of all combos currently in use
 /*
-  row 1 GACS stickey keys (one shot mods in QMK)
-  qw we er rt yu ui io op
-  row 2 handy symbols and functions ie. tab enter caps word, backspace escape
-  sd df fg hj jk l;
-  row 3 this is where we can make use of the auto braces and quotes maybe vb for sqt
-  nm () m, {} ,.[] jm k, for quotes? that will be where i start to try it out at least.
+   // ===== UTILITY COMBOS (home row) =====
+   // H + J = Caps Word
+   // H + Y = NUM Word
+   // J + K = Escape
+   // L + ; = Enter
+   // F + G = Underscore    _
+   // S + D = Backspace
+   // D + F = Tab
+   // V + B = Minus         -
+   // K + L = Single Quote  '
+   // TODO we should add some more combos to home row, if we could do all of the
+   common ones so we never have to leave uneless we want to do longeer sequences of
+   symbols. i ended up using these way more than i initially thought i would,
+   favorite feature that i slept on for years.
 
+   \$|~&*=!+#^%@?
+   could do doubles of; == || &&
+   + would be nice, * maybe.
+
+   // ===== AUTO-PAIR COMBOS (bottom row) =====
+   // N + M = () with cursor inside
+   // M + , = {} with cursor inside
+   // , + . = [] with cursor inside
+   // . + / = <> with cursor inside
+   // K + , = "" with cursor inside
+   // J + M = '' with cursor inside
+
+   //  ===== ONE-SHOT MODIFIER COMBOS (top row, GACS order) =====
+   //  Left hand
+   // Q + W = One-shot GUI
+   // W + E = One-shot Alt
+   // E + R = One-shot Ctrl
+   // R + T = One-shot Shift
+   //  Right hand
+   // Y + U = One-shot Shift
+   // U + I = One-shot Ctrl
+   // I + O = One-shot Alt
+   // O + P = One-shot GUI
+
+   // ===== LAYER SWITCHING COMBOS =====
+   // Universal escape hatch
+   // Q + W + E = Return to BASE (from anywhere)
+
+   // From BASE
+   // A + S + D = Go to GAMING
+   // N + M + , = Go to VIM
+
+   // From GAMING
+   // Y + U + I = Go to GAMING2
+   // H + J + K = Go to ROGUELIKE
+
+   // Return routes (same combos, opposite direction)
+   // Y + U + I = Return to GAMING (from GAMING2)
+   // H + J + K = Return to GAMING (from ROGUELIKE)
+   // N + M + , = Return to BASE (from VIM)
 */
 // =====================================================================================
-
-// =====================================================================================
-// Main combo section TODO we need to port all of these to QMK, this shit rules so hard
+// Main combo section
 // =====================================================================================
         // hj ONE_COMBO_TO_RULE_THEM_ALL
         combo_hj_caps_word {
@@ -33,58 +77,58 @@
             key-positions = <0 1>;
             bindings = <&better_caps_word>;
             // layer locking, we can adjust this to allow on more layers as needed
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
         combo_yh_num_word {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&num_word LOWER>; // bindings set to 1 (we need 1 arg, ie. add the &num_word AND then 1 arg, which layer to swap to in this case. It should find LOWER if not put the value 2)
-            layers = <BASE>;
+            layers = <BASE VIM>;
         };
         combo_jk_esc {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp ESC>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
         combo_lscln_ent {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp RET>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
         combo_fg_underscore {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp UNDERSCORE>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
         combo_vb_minus {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp MINUS>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
         // mostly useful for quick delete one char when i fuck up placing ()'s or osm(sk) ctrl
         combo_sd_bspc {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp BSPC>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
 
         combo_df_tab {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp TAB>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
 
         combo_kl_sqt {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp SQT>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
 
 // =====================================================================================
@@ -98,7 +142,7 @@
             timeout-ms = <50>;
             key-positions = <0 1 2>;  // QWE
             bindings = <&to 0>;
-            layers = <0 5 6 7 8>; // active return to home on base gaming, gaming2, roguelike, vim
+            layers = <BASE GAMING GAMING2 ROGUELIKE VIM>; // active return to home on base gaming, gaming2, roguelike, vim
         };
 
 // BASE → GAMING (ASD)
@@ -106,97 +150,100 @@
             timeout-ms = <50>;
             key-positions = <0 1 2>;  // ASD
             bindings = <&to 5>;
-            layers = <0>;
+            layers = <BASE>;
         };
 
 // BASE → VIM (NM,)
         combo_base_to_vim {
             timeout-ms = <50>;
             key-positions = <0 1 2>;  // NM,
-            bindings = <&to 8>;
-            layers = <0>;
+            bindings = <&to VIM>;
+            layers = <BASE>;
         };
 
 // VIM → BASE (NM,) - toggle back
         combo_vim_to_base {
             timeout-ms = <50>;
             key-positions = <0 1 2>;  // NM,
-            bindings = <&to 0>;
-            layers = <8>;
+            bindings = <&to BASE>;
+            layers = <VIM>;
         };
 // GAMING → ROGUELIKE (HJK)
         combo_gaming_to_roguelike {
             timeout-ms = <50>;
             key-positions = <0 1 2>;  // HJK
-            bindings = <&to 7>;
-            layers = <5>;
+            bindings = <&to ROGUELIKE>;
+            layers = <GAMING>;
         };
 
 // ROGUELIKE → GAMING (HJK) - toggle back
         combo_roguelike_to_gaming {
             timeout-ms = <50>;
             key-positions = <0 1 2>;  // HJK
-            bindings = <&to 5>;
-            layers = <7>;
+            bindings = <&to GAMING>;
+            layers = <ROGUELIKE>;
         };
 
 // GAMING → GAMING2 (YUI)
         combo_gaming_to_gaming2 {
             timeout-ms = <50>;
             key-positions = <0 1 2>;  // YUI
-            bindings = <&to 6>;
-            layers = <5>;
+            bindings = <&to GAMING2>;
+            layers = <GAMING>;
         };
 
 // GAMING2 → GAMING (YUI) - toggle back
         combo_gaming2_to_gaming {
             timeout-ms = <50>;
             key-positions = <0 1 2>;  // YUI
-            bindings = <&to 5>;
-            layers = <6>;
+            bindings = <&to GAMING>;
+            layers = <GAMING2>;
         };
 // =====================================================================================
 // top row one shot modifier combos
 // =====================================================================================
-        // Example: C and V keys for parentheses
-        // Im putting these on the right hand since i stuck with qwerty and right
-        // hand is to minimally uesd
+        // Example: N and M keys for parentheses ()
         combo_nm_parens: combo_nm_parens {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_parens>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
-        // Example: X and C keys for braces
+        // Example: M and , keys for braces {}
         combo_m_comma_braces: combo_m_comma_braces {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_braces>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
-        // Example: , . keys for brackets
+        // Example: , . keys for brackets []
         combo_comma_dot_brackets: combo_comma_dot_brackets {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_brackets>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
-
+        // Example: . / keys for brackets <>
+        combo_dot_slash_ltgt: combo_dot_slash_ltgt {
+            timeout-ms = <30>;
+            key-positions = <0 1>;
+            bindings = <&macro_ltgt>;
+            layers = <BASE VIM>;
+        };
 // Auto pairing quotes as well
-
-        // Double quotes with cursor inside
+        // Double quotes with cursor inside  " "
         combo_k_comma_dquotes: combo_k_comma_dquotes {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_dquotes>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
-        // Single quotes with cursor inside
+        // Single quotes with cursor inside ' '
         combo_jm_squotes: combo_jm_squotes {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_squotes>;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
 // =====================================================================================
 // top row one shot modifier combos GACS just like on homerow, just one row up,
@@ -211,7 +258,7 @@
             key-positions = <0 1>;
             bindings = <&skq LSHFT>;
             slow-release;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
 // Left-hand Control (E+R)
         combo_er_lctrl: combo_er_lctrl {
@@ -220,7 +267,7 @@
             key-positions = <0 1>;
             bindings = <&skq LCTRL>;
             slow-release;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
 // Left-hand Alt (W+E)
         combo_we_lalt: combo_we_lalt {
@@ -229,7 +276,7 @@
             key-positions = <0 1>;
             bindings = <&skq LALT>;
             slow-release;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
 // Left-hand Super (Q+W)
         combo_qw_lgui: combo_qw_lgui {
@@ -238,7 +285,7 @@
             key-positions = <0 1>;
             bindings = <&skq LGUI>;
             slow-release;
-            layers = <BASE 8>;
+            layers = <BASE VIM>;
         };
 // =====================================================================================
 // Right-hand Shift (Y+U])
@@ -248,7 +295,7 @@
             key-positions = <0 1>;
             bindings = <&skq RSHFT>;
             slow-release;
-            layers = <BASE 8>;
+            layers = <BASE VIM GAMING>;
         };
 // Right-hand Control (U+I)
         combo_ui_rctrl: combo_ui_rctrl {
@@ -257,7 +304,7 @@
             key-positions = <0 1>;
             bindings = <&skq RCTRL>;
             slow-release;
-            layers = <BASE 8>;
+            layers = <BASE VIM GAMING>;
         };
 // Right-hand Alt (I+O)
         combo_io_ralt: combo_io_ralt {
@@ -266,7 +313,7 @@
             key-positions = <0 1>;
             bindings = <&skq RALT>;
             slow-release;
-            layers = <BASE 8>;
+            layers = <BASE VIM GAMING>;
         };
 // Right-hand Super (O+P)
         combo_op_rgui: combo_op_rgui {
@@ -275,7 +322,7 @@
             key-positions = <0 1>;
             bindings = <&skq RGUI>;
             slow-release;
-            layers = <BASE 8>;
+            layers = <BASE VIM GAMING>;
         };
 // =====================================================================================
 // end of combos

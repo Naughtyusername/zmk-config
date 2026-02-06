@@ -27,6 +27,12 @@
 / {
     combos {
         // basic functions we love
+        combo_hj_caps_word {
+            key-positions = <15 16>;
+        };
+        combo_yh_num_word {
+            key-positions = <15 5>;
+        };
         combo_jk_esc {
             key-positions = <16 17>;
         };
@@ -41,9 +47,6 @@
         };
         combo_sd_bspc {
             key-positions = <11 12>;
-        };
-        combo_hj_caps_word {
-            key-positions = <15 16>;
         };
         combo_df_tab {
             key-positions = <12 13>;
@@ -62,6 +65,9 @@
         };
         combo_comma_dot_brackets {
             key-positions = <27 28>;
+        };
+        combo_dot_slash_ltgt {
+            key-positions = <28 29>;
         };
         // Similar concept but for quotes
         combo_jm_squotes {
@@ -141,12 +147,22 @@
 
     keymap {
         compatible = "zmk,keymap";
+        // base, vim, lower, raise, gaming, gaming2, roguelike, sys, mouse
         base_layer {
             bindings = <
                 ___BASE_L1___ ___BASE_R1___
                 ___BASE_L2___ ___BASE_R2___
                 ___BASE_L3___ ___BASE_R3___
                   ___SWEEP_THUMBS_BASE___
+            >;
+        };
+
+        vim_layer {
+            bindings = <
+                ___VIM_L1___ ___VIM_R1___
+                ___VIM_L2___ ___VIM_R2___
+                ___VIM_L3___ ___VIM_R3___
+                  ___SWEEP_THUMBS_VIM___
             >;
         };
 
@@ -210,15 +226,6 @@
                 ___ROGUELIKE_L2___ ___ROGUELIKE_R2___
                 ___ROGUELIKE_L3___ ___ROGUELIKE_R3___
                   ___SWEEP_THUMBS_ROGUELIKE___
-            >;
-        };
-
-        vim_layer {
-            bindings = <
-                ___VIM_L1___ ___VIM_R1___
-                ___VIM_L2___ ___VIM_R2___
-                ___VIM_L3___ ___VIM_R3___
-                  ___SWEEP_THUMBS_VIM___
             >;
         };
 

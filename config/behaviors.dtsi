@@ -138,6 +138,12 @@ skq: sticky_key_quick_release {
           #binding-cells = <0>;
           bindings = <&kp LBRC &kp RBRC &kp LEFT>;
         };
+        // Types "<>" and places cursor in the middle
+        macro_ltgt: macro_ltgt {
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          bindings = <&kp LT &kp GT &kp LEFT>;
+        };
         macro_dquotes: macro_dquotes {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
