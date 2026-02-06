@@ -35,6 +35,12 @@
             // layer locking, we can adjust this to allow on more layers as needed
             layers = <BASE 8>;
         };
+        combo_yh_num_word {
+            timeout-ms = <30>;
+            key-positions = <0 1>;
+            bindings = <&num_word LOWER>; // bindings set to 1 (we need 1 arg, ie. add the &num_word AND then 1 arg, which layer to swap to in this case. It should find LOWER if not put the value 2)
+            layers = <BASE>;
+        };
         combo_jk_esc {
             timeout-ms = <30>;
             key-positions = <0 1>;

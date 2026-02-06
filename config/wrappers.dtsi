@@ -113,15 +113,15 @@
  * LOWER LAYER - Numbers and Media
  * --------------------------------------------------------------------------
  *  1     2     3     4     5          6     7     8     9     0
- *  _     _    Vol+  Vol-  Mute        .     4     5     6     0
- *  _     _    Prev  Play  Next        +     1     2     3     -
+ *  _     _    Vol+  Vol-  Mute        .     4     5     6     ,
+ *  *     _    Prev  Play  Next        +     1     2     3     -
  */
-#define ___LOWER_L1___ &kp N1 &kp N2 &kp N3       &kp N4       &kp N5
-#define ___LOWER_L2___ XXX XXX       &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE
-#define ___LOWER_L3___ XXX XXX       &kp C_PREV   &kp C_PP     &kp C_NEXT
+#define ___LOWER_L1___ &kp N1 &kp N2 &kp N3        &kp N4       &kp N5
+#define ___LOWER_L2___ &kp UNDER XXX  &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE
+#define ___LOWER_L3___ &kp STAR XXX   &kp C_PREV   &kp C_PP     &kp C_NEXT
 
 #define ___LOWER_R1___ &kp N6   &kp N7 &kp N8 &kp N9 &kp N0
-#define ___LOWER_R2___ &kp DOT  &kp N4 &kp N5 &kp N6 &kp N0
+#define ___LOWER_R2___ &kp DOT  &kp N4 &kp N5 &kp N6 &kp COMMA
 #define ___LOWER_R3___ &kp PLUS &kp N1 &kp N2 &kp N3 &kp MINUS
 
 /* --------------------------------------------------------------------------
