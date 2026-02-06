@@ -26,7 +26,9 @@
  * The wrapper macro passes everything to the real LAYOUT() macro.
  */
 
-
+// these are included in combos now to fix the bug since i added so many combos
+// that use N layers, it was easier to juts to that than all the numbers.
+// in the future if this causes issues with #include duplications, well, we know one source.
 #define BASE       0  // Where we spend most our time
 #define VIM        1  // VIMIUM keys. home row mod free
 #define LOWER      2  // NUMBERS
@@ -483,7 +485,7 @@
 /* --------------------------------------------------------------------------
  * Sofle thumb layers
  * --------------------------------------------------------------------------
- * |BASE  |  skALT      skCTL       skSHIFT     bs_del    RAISE+SPACE |  LOWER+RET   FN+TAB    skSHIFT   skCTL     skALT
+ * |BASE  |  ALT CTL SHIFT bs_del RAISE+SPACE |  LOWER+RET FN+TAB SHIFT CTL ALT
                                                                       |
  * |LOWER | _______     _______     _______     _______     _______   |  _______     _______     _______     _______     _______
                                                                       |
@@ -501,8 +503,8 @@
  */
 
 // Sofle thumbs
-#define ___SOFLE_THUMBS_L_BASE___ &sk LSHFT &sk LCTRL &sk LALT &bs_del &lt RAISE SPACE
-#define ___SOFLE_THUMBS_R_BASE___ &lt LOWER RETURN  &lt FUNC TAB  &sk RSHFT &sk RCTRL &sk RALT
+#define ___SOFLE_THUMBS_L_BASE___ &kp LSHFT &kp LCTRL &kp LALT &bs_del &lt RAISE SPACE
+#define ___SOFLE_THUMBS_R_BASE___ &lt LOWER RETURN  &lt FUNC TAB  &kp RSHFT &kp RCTRL &kp RALT
 
 #define ___SOFLE_THUMBS_L_LOWER___ _______  _______  _______  _______  _______
 #define ___SOFLE_THUMBS_R_LOWER___ _______  _______  _______  _______  _______

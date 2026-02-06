@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+#include "wrappers.dtsi" // qmk logic. has to come after the zmk headers
 #define COMBO_TERM_FAST 18
 #define COMBO_TERM_MED 30
 #define COMBO_TERM_SLOW 50
@@ -149,7 +150,7 @@
         combo_base_to_gaming {
             timeout-ms = <50>;
             key-positions = <0 1 2>;  // ASD
-            bindings = <&to 5>;
+            bindings = <&to GAMING>;
             layers = <BASE>;
         };
 

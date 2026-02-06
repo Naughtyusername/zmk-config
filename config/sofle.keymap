@@ -3,7 +3,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/mouse.h>
 #include "behaviors.dtsi" // before wrappers because .dtsi are fucking dumb
-#include "wrappers.dtsi" // after behaviors
 #include "combos.dtsi" // Shared combo definitions
 
 /*                                      60 KEY MATRIX / LAYOUT MAPPING
