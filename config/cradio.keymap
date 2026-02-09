@@ -38,13 +38,13 @@
         combo_lscln_ent {
             key-positions = <18 19>;
         };
-        combo_fg_underscore {
+        combo_fg_tab {
             key-positions = <13 14>;
         };
         combo_cv_minus {
             key-positions = <23 24>;
         };
-        combo_sd_bspc {
+        combo_as_bspc {
             key-positions = <11 12>;
         };
         combo_df_underscore {

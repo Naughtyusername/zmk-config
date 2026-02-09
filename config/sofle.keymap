@@ -43,10 +43,10 @@
         combo_lscln_ent {
             key-positions = <33 34>;
         };
-        combo_fg_underscore {
-            key-positions = <28 29>;
+        combo_fg_tab {
+            key-positions = <33 34>;
         };
-        combo_sd_bspc {
+        combo_as_bspc {
             key-positions = <26 27>;
         };
         combo_df_underscore {

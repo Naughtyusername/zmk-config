@@ -13,13 +13,19 @@
    // ===== UTILITY COMBOS (home row) =====
    // H + J = Caps Word
    // H + Y = NUM Word
+
    // J + K = Escape
    // L + ; = Enter
+   // A + S = Backspace
+   // F + G = TAB
+
    // D + F = Underscore          _
-   // S + D = Backspace
    // V + B = Minus               -
+
    // K + L = Single Quote        '
    // J + K + L = Double Quote    "
+   // K + L + ; = : ^ colon space caret combo - very
+
    // TODO we should add some more combos to home row, if we could do all of the
    common ones so we never have to leave uneless we want to do longeer sequences of
    symbols. i ended up using these way more than i initially thought i would,
@@ -137,7 +143,13 @@
             bindings = <&kp RET>;
             layers = <BASE VIM>;
         };
-        combo_fg_underscore {
+        combo_fg_tab {
+            timeout-ms = <30>;
+            key-positions = <0 1>;
+            bindings = <&kp TAB>;
+            layers = <BASE VIM>;
+        };
+        combo_df_underscore {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp UNDERSCORE>;
@@ -150,17 +162,10 @@
             layers = <BASE VIM>;
         };
         // mostly useful for quick delete one char when i fuck up placing ()'s or osm(sk) ctrl
-        combo_sd_bspc {
+        combo_as_bspc {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp BSPC>;
-            layers = <BASE VIM>;
-        };
-
-        combo_df_underscore {
-            timeout-ms = <30>;
-            key-positions = <0 1>;
-            bindings = <&kp TAB>;
             layers = <BASE VIM>;
         };
 
