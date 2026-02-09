@@ -57,7 +57,7 @@ skq: sticky_key_quick_release {
             quick-tap-ms = <150>;
             require-prior-idle-ms = <125>;
             flavor = "balanced";
-            hold-while-undecided;
+            // hold-while-undecided;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33>;
             hold-trigger-on-release;
@@ -70,7 +70,7 @@ skq: sticky_key_quick_release {
             quick-tap-ms = <150>;
             require-prior-idle-ms = <125>;
             flavor = "balanced";
-            hold-while-undecided;
+            // hold-while-undecided;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33>;
             hold-trigger-on-release;
@@ -110,16 +110,15 @@ skq: sticky_key_quick_release {
             #binding-cells = <0>;
             bindings = <&kp COLON &kp COLON>;
         };
-        dotdot: dotdot_macro {
+
+        // misc useful we are renaming this one day this one fucks my dyslexic brain up
+        ocsc_macro: ocsc_macro { // : ^  super handy in odin
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp DOT &kp DOT &kp FSLH>;
+            bindings = <&kp COLON &kp SPACE &kp CARET>;
         };
-        hmdr: hmdr_macro {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp TILDE &kp FSLH>;
-        };
+
+        // pairing combos
         // Types "()" and places cursor in the middle
         macro_parens: macro_parens {
            compatible = "zmk,behavior-macro";

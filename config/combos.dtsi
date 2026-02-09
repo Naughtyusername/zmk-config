@@ -15,11 +15,11 @@
    // H + Y = NUM Word
    // J + K = Escape
    // L + ; = Enter
-   // F + G = Underscore    _
+   // D + F = Underscore          _
    // S + D = Backspace
-   // D + F = Tab
-   // V + B = Minus         -
-   // K + L = Single Quote  '
+   // V + B = Minus               -
+   // K + L = Single Quote        '
+   // J + K + L = Double Quote    "
    // TODO we should add some more combos to home row, if we could do all of the
    common ones so we never have to leave uneless we want to do longeer sequences of
    symbols. i ended up using these way more than i initially thought i would,
@@ -120,7 +120,7 @@
             layers = <BASE VIM>;
         };
         combo_yh_num_word {
-            timeout-ms = <30>;
+            timeout-ms = <18>;
             key-positions = <0 1>;
             bindings = <&num_word LOWER>; // bindings set to 1 (we need 1 arg, ie. add the &num_word AND then 1 arg, which layer to swap to in this case. It should find LOWER if not put the value 2)
             layers = <BASE VIM>;
@@ -143,7 +143,7 @@
             bindings = <&kp UNDERSCORE>;
             layers = <BASE VIM>;
         };
-        combo_vb_minus {
+        combo_cv_minus {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp MINUS>;
@@ -157,7 +157,7 @@
             layers = <BASE VIM>;
         };
 
-        combo_df_tab {
+        combo_df_underscore {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp TAB>;
@@ -171,6 +171,18 @@
             layers = <BASE VIM>;
         };
 
+        combo_jkl_dqt {
+            timeout-ms = <30>;
+            key-positions = <0 1 2>;
+            bindings = <&kp DQT>;
+            layers = <BASE VIM>;
+        };
+        combo_kl_scln_ocsc: combo_kl_scln_ocsc {
+            timeout-ms = <30>;
+            key-positions = <0 1 2>;
+            bindings = <&ocsc_macro>;
+            layers = <BASE VIM>;
+        };
 // =====================================================================================
 // Three finger combos, initial ones are for layer swapping, from base to vim
 // from gaming to gaming 2

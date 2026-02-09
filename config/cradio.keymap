@@ -41,17 +41,23 @@
         combo_fg_underscore {
             key-positions = <13 14>;
         };
-        combo_vb_minus {
+        combo_cv_minus {
             key-positions = <23 24>;
         };
         combo_sd_bspc {
             key-positions = <11 12>;
         };
-        combo_df_tab {
+        combo_df_underscore {
             key-positions = <12 13>;
         };
         combo_kl_sqt {
             key-positions = <17 18>;
+        };
+        combo_jkl_dqt {
+            key-positions = <16 17 18>;
+        };
+        combo_kl_scln_ocsc {
+            key-positions = <17 18 19>;
         };
         // testing [](){} auto double and move cursor inside, right hand initiation since
         // qwerty is to heavy on left hand actions and i unintentionally made my left
