@@ -44,16 +44,16 @@
             key-positions = <33 34>;
         };
         combo_fg_tab {
-            key-positions = <33 34>;
+            key-positions = <28 29>;
         };
         combo_as_bspc {
-            key-positions = <26 27>;
+            key-positions = <25 26>;
         };
         combo_df_underscore {
             key-positions = <27 28>;
         };
         combo_cv_minus {
-            key-positions = <40 41>;
+            key-positions = <39 40>;
         };
         combo_kl_sqt {
             key-positions = <32 33>;
@@ -118,6 +118,33 @@
         };
         combo_op_rgui {
             key-positions = <21 22>;
+        };
+// =====================================================================================
+// Three-finger layer switching combos
+// =====================================================================================
+        combo_return_to_base {
+            key-positions = <13 14 15>;  // QWE
+        };
+        combo_base_to_gaming {
+            key-positions = <25 26 27>;  // ASD
+        };
+        combo_base_to_vim {
+            key-positions = <44 45 46>;  // NM,
+        };
+        combo_vim_to_base {
+            key-positions = <44 45 46>;  // NM,
+        };
+        combo_gaming_to_roguelike {
+            key-positions = <30 31 32>;  // HJK
+        };
+        combo_roguelike_to_gaming {
+            key-positions = <30 31 32>;  // HJK
+        };
+        combo_gaming_to_gaming2 {
+            key-positions = <18 19 20>;  // YUI
+        };
+        combo_gaming2_to_gaming {
+            key-positions = <18 19 20>;  // YUI
         };
 };
 

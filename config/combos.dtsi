@@ -9,126 +9,101 @@
     combos {
         compatible = "zmk,combos";
 // =====================================================================================
-/*
-   // ===== UTILITY COMBOS (home row) =====
-   // H + J = Caps Word
-   // H + Y = NUM Word
-
-   // J + K = Escape
-   // L + ; = Enter
-   // A + S = Backspace
-   // F + G = TAB
-
-   // D + F = Underscore          _
-   // V + B = Minus               -
-
-   // K + L = Single Quote        '
-   // J + K + L = Double Quote    "
-   // K + L + ; = : ^ colon space caret combo - very
-
-   // TODO we should add some more combos to home row, if we could do all of the
-   common ones so we never have to leave uneless we want to do longeer sequences of
-   symbols. i ended up using these way more than i initially thought i would,
-   favorite feature that i slept on for years.
-
-   \$|~&*=!+#^%@?
-
-   + would be nice, * maybe.
-   thoughts afer this week
-   + * that way we have all the math symbols on the main layer
-   we have keys as sd and df open, (i dont care about the backspace one i dont seem to use it
-   i dont seem to care about tab either so we can change those most likely)
-   then we have zx xc cv open as well. and then we have most the 3 finger combos open still and we also can do 2 hand combos
-
-   so for a visual map keys we have open that we should fill this week
-   as
-   sd
-   df
-   zx
-   xc
-   cv
-
-   vertical combos a lot of this wouldnt be fun to use, omit those ofc. but for now, its vis
-   qa ws ed rf tg top row - left
-   az sx dc fv gb mid-bottom row - left
-
-   vertical combos - right
-   --- yh jm k, --- are taken
-   uj ik ol p; hn l. ;/
-
-   logical same finger opposite hand combos, only issue is if we have to hold for the combo that kinda throws things off
-   a;
-   sl
-   dk
-   fj
-
-   any other opposite hand combos id we do try them have to be non steno words/letters, otherwise misfires will happen
-   and as it we arent misfiring hardly at all so no need to keep it that way
-
-   open 3 finger combos
-   zxc
-   ert
-   dfg
-   cvb
-   iop
-   kl;
-   ,./
-
-   // ===== AUTO-PAIR COMBOS (bottom row) =====
-   // N + M = () with cursor inside
-   // M + , = {} with cursor inside
-   // , + . = [] with cursor inside
-   // . + / = <> with cursor inside
-   // K + , = "" with cursor inside
-   // J + M = '' with cursor inside
-
-   //  ===== ONE-SHOT MODIFIER COMBOS (top row, GACS order) =====
-   //  Left hand
-   // Q + W = One-shot GUI
-   // W + E = One-shot Alt
-   // E + R = One-shot Ctrl
-   // R + T = One-shot Shift
-   //  Right hand
-   // Y + U = One-shot Shift
-   // U + I = One-shot Ctrl
-   // I + O = One-shot Alt
-   // O + P = One-shot GUI
-
-   // ===== LAYER SWITCHING COMBOS =====
-   // Universal escape hatch
-   // Q + W + E = Return to BASE (from anywhere)
-
-   // From BASE
-   // A + S + D = Go to GAMING
-   // N + M + , = Go to VIM
-
-   // From GAMING
-   // Y + U + I = Go to GAMING2
-   // H + J + K = Go to ROGUELIKE
-
-   // Return routes (same combos, opposite direction)
-   // Y + U + I = Return to GAMING (from GAMING2)
-   // H + J + K = Return to GAMING (from ROGUELIKE)
-   // N + M + , = Return to BASE (from VIM)
-*/
+//                         COMBO REFERENCE & EDITING GUIDE
 // =====================================================================================
-// Main combo section
+//
+//  HOW THIS WORKS
+//  All combos defined here with bindings, timeouts, and layer locks.
+//  key-positions are PLACEHOLDERS (<0 1>) — override in each board keymap:
+//    config/cradio.keymap  (34-key sweep)
+//    config/sofle.keymap   (60-key)
+//
+//  TO ADD A NEW COMBO
+//  1. Add the combo node below (copy an existing one as template)
+//  2. Set: timeout-ms, bindings, layers  (leave key-positions = <0 1>)
+//  3. Override key-positions in EVERY board keymap
+//  4. Update this reference table
+//
+//  POSITION MAPS
+//
+//  Cradio (34-key):
+//   0=Q   1=W   2=E   3=R   4=T │  5=Y   6=U   7=I   8=O   9=P
+//  10=A  11=S  12=D  13=F  14=G │ 15=H  16=J  17=K  18=L  19=;
+//  20=Z  21=X  22=C  23=V  24=B │ 25=N  26=M  27=,  28=.  29=/
+//                        30  31 │ 32  33
+//
+//  Sofle (60-key):
+//   0   1   2   3   4   5       │       6   7   8   9  10  11    ← number row
+//  12  13=Q 14=W 15=E 16=R 17=T │ 18=Y 19=U 20=I 21=O 22=P  23
+//  24  25=A 26=S 27=D 28=F 29=G │ 30=H 31=J 32=K 33=L 34=;  35
+//  36  37=Z 38=X 39=C 40=V 41=B │ 42  43  44=N 45=M 46=, 47=. 48=/ 49
+//              50  51  52  53  54 │ 55  56  57  58  59            ← thumbs
+//
+//  COMBO INDEX
+//  ┌───────────────────────────┬──────┬────────────────────┬─────────────────────┐
+//  │ Name                      │ Keys │ Binding            │ Layers              │
+//  ├───────────────────────────┼──────┼────────────────────┼─────────────────────┤
+//  │ UTILITY                   │      │                    │                     │
+//  │  combo_hj_caps_word       │ H+J  │ &better_caps_word  │ BASE VIM            │
+//  │  combo_yh_num_word        │ Y+H  │ &num_word LOWER    │ BASE VIM            │
+//  │  combo_jk_esc             │ J+K  │ &kp ESC            │ BASE VIM            │
+//  │  combo_lscln_ent          │ L+;  │ &kp RET            │ BASE VIM            │
+//  │  combo_fg_tab             │ F+G  │ &kp TAB            │ BASE VIM            │
+//  │  combo_df_underscore      │ D+F  │ &kp UNDERSCORE     │ BASE VIM            │
+//  │  combo_cv_minus           │ C+V  │ &kp MINUS          │ BASE VIM            │
+//  │  combo_as_bspc            │ A+S  │ &kp BSPC           │ BASE VIM            │
+//  │  combo_kl_sqt             │ K+L  │ &kp SQT            │ BASE VIM            │
+//  │  combo_jkl_dqt            │ JKL  │ &kp DQT            │ BASE VIM            │
+//  │  combo_kl_scln_ocsc       │ KL;  │ &ocsc_macro        │ BASE VIM            │
+//  ├───────────────────────────┼──────┼────────────────────┼─────────────────────┤
+//  │ AUTO-PAIR                 │      │                    │                     │
+//  │  combo_nm_parens          │ N+M  │ &macro_parens      │ BASE VIM            │
+//  │  combo_m_comma_braces     │ M+,  │ &macro_braces      │ BASE VIM            │
+//  │  combo_comma_dot_brackets │ ,+.  │ &macro_brackets    │ BASE VIM            │
+//  │  combo_dot_slash_ltgt     │ .+/  │ &macro_ltgt        │ BASE VIM            │
+//  │  combo_k_comma_dquotes    │ K+,  │ &macro_dquotes     │ BASE VIM            │
+//  │  combo_jm_squotes         │ J+M  │ &macro_squotes     │ BASE VIM            │
+//  ├───────────────────────────┼──────┼────────────────────┼─────────────────────┤
+//  │ ONE-SHOT MODS (GACS)      │      │                    │                     │
+//  │  combo_qw_lgui            │ Q+W  │ &skq LGUI          │ BASE VIM            │
+//  │  combo_we_lalt            │ W+E  │ &skq LALT          │ BASE VIM            │
+//  │  combo_er_lctrl           │ E+R  │ &skq LCTRL         │ BASE VIM            │
+//  │  combo_rt_lshift          │ R+T  │ &skq LSHFT         │ BASE VIM            │
+//  │  combo_yu_rshift          │ Y+U  │ &skq RSHFT         │ BASE VIM GAMING     │
+//  │  combo_ui_rctrl           │ U+I  │ &skq RCTRL         │ BASE VIM GAMING     │
+//  │  combo_io_ralt            │ I+O  │ &skq RALT          │ BASE VIM GAMING     │
+//  │  combo_op_rgui            │ O+P  │ &skq RGUI          │ BASE VIM GAMING     │
+//  ├───────────────────────────┼──────┼────────────────────┼─────────────────────┤
+//  │ LAYER SWITCHING (3-key)   │      │                    │                     │
+//  │  combo_return_to_base     │ QWE  │ &to 0              │ ALL (escape hatch)  │
+//  │  combo_base_to_gaming     │ ASD  │ &to GAMING         │ BASE                │
+//  │  combo_base_to_vim        │ NM,  │ &to VIM            │ BASE                │
+//  │  combo_vim_to_base        │ NM,  │ &to BASE           │ VIM                 │
+//  │  combo_gaming_to_roguelike│ HJK  │ &to ROGUELIKE      │ GAMING              │
+//  │  combo_roguelike_to_gaming│ HJK  │ &to GAMING         │ ROGUELIKE           │
+//  │  combo_gaming_to_gaming2  │ YUI  │ &to GAMING2        │ GAMING              │
+//  │  combo_gaming2_to_gaming  │ YUI  │ &to GAMING         │ GAMING2             │
+//  └───────────────────────────┴──────┴────────────────────┴─────────────────────┘
+//
+//  OPEN SLOTS (no combo assigned):
+//    2-key:  ZX, XC           (left bottom)
+//    3-key:  ZXC, ERT, DFG, CVB, IOP, KL;, ,./
+//    vert:   QA, WS, ED, RF, TG, UJ, IK, OL, P;, HN, L., ;/
+//    cross:  A;, SL, DK, FJ
+//
 // =====================================================================================
-        // hj ONE_COMBO_TO_RULE_THEM_ALL
+// Utility combos
+// =====================================================================================
         combo_hj_caps_word {
             timeout-ms = <30>;
-            // This is a generic default. It MUST be overridden by
-            // board-specific keymaps. Example: For J and K on Sofle, this might
-            // be <31 32>.
             key-positions = <0 1>;
             bindings = <&better_caps_word>;
-            // layer locking, we can adjust this to allow on more layers as needed
             layers = <BASE VIM>;
         };
         combo_yh_num_word {
             timeout-ms = <18>;
             key-positions = <0 1>;
-            bindings = <&num_word LOWER>; // bindings set to 1 (we need 1 arg, ie. add the &num_word AND then 1 arg, which layer to swap to in this case. It should find LOWER if not put the value 2)
+            bindings = <&num_word LOWER>;
             layers = <BASE VIM>;
         };
         combo_jk_esc {
@@ -161,21 +136,18 @@
             bindings = <&kp MINUS>;
             layers = <BASE VIM>;
         };
-        // mostly useful for quick delete one char when i fuck up placing ()'s or osm(sk) ctrl
         combo_as_bspc {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp BSPC>;
             layers = <BASE VIM>;
         };
-
         combo_kl_sqt {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp SQT>;
             layers = <BASE VIM>;
         };
-
         combo_jkl_dqt {
             timeout-ms = <30>;
             key-positions = <0 1 2>;
@@ -189,113 +161,89 @@
             layers = <BASE VIM>;
         };
 // =====================================================================================
-// Three finger combos, initial ones are for layer swapping, from base to vim
-// from gaming to gaming 2
-// from gaming to roguelike
-// and then escapes from those top layers back down to base ofc, no trapping.
+// Three-finger layer switching combos
 // =====================================================================================
-// THE UNIVERSAL ESCAPE HATCH
         combo_return_to_base {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;  // QWE
+            key-positions = <0 1 2>;
             bindings = <&to 0>;
-            layers = <BASE GAMING GAMING2 ROGUELIKE VIM>; // active return to home on base gaming, gaming2, roguelike, vim
+            layers = <BASE GAMING GAMING2 ROGUELIKE VIM>;
         };
-
-// BASE → GAMING (ASD)
         combo_base_to_gaming {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;  // ASD
+            key-positions = <0 1 2>;
             bindings = <&to GAMING>;
             layers = <BASE>;
         };
-
-// BASE → VIM (NM,)
         combo_base_to_vim {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;  // NM,
+            key-positions = <0 1 2>;
             bindings = <&to VIM>;
             layers = <BASE>;
         };
-
-// VIM → BASE (NM,) - toggle back
         combo_vim_to_base {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;  // NM,
+            key-positions = <0 1 2>;
             bindings = <&to BASE>;
             layers = <VIM>;
         };
-// GAMING → ROGUELIKE (HJK)
         combo_gaming_to_roguelike {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;  // HJK
+            key-positions = <0 1 2>;
             bindings = <&to ROGUELIKE>;
             layers = <GAMING>;
         };
-
-// ROGUELIKE → GAMING (HJK) - toggle back
         combo_roguelike_to_gaming {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;  // HJK
+            key-positions = <0 1 2>;
             bindings = <&to GAMING>;
             layers = <ROGUELIKE>;
         };
-
-// GAMING → GAMING2 (YUI)
         combo_gaming_to_gaming2 {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;  // YUI
+            key-positions = <0 1 2>;
             bindings = <&to GAMING2>;
             layers = <GAMING>;
         };
-
-// GAMING2 → GAMING (YUI) - toggle back
         combo_gaming2_to_gaming {
             timeout-ms = <50>;
-            key-positions = <0 1 2>;  // YUI
+            key-positions = <0 1 2>;
             bindings = <&to GAMING>;
             layers = <GAMING2>;
         };
 // =====================================================================================
-// top row one shot modifier combos
+// Auto-pair combos — types pair and moves cursor inside
 // =====================================================================================
-        // Example: N and M keys for parentheses ()
         combo_nm_parens: combo_nm_parens {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_parens>;
             layers = <BASE VIM>;
         };
-        // Example: M and , keys for braces {}
         combo_m_comma_braces: combo_m_comma_braces {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_braces>;
             layers = <BASE VIM>;
         };
-        // Example: , . keys for brackets []
         combo_comma_dot_brackets: combo_comma_dot_brackets {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_brackets>;
             layers = <BASE VIM>;
         };
-        // Example: . / keys for brackets <>
         combo_dot_slash_ltgt: combo_dot_slash_ltgt {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_ltgt>;
             layers = <BASE VIM>;
         };
-// Auto pairing quotes as well
-        // Double quotes with cursor inside  " "
         combo_k_comma_dquotes: combo_k_comma_dquotes {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&macro_dquotes>;
             layers = <BASE VIM>;
         };
-        // Single quotes with cursor inside ' '
         combo_jm_squotes: combo_jm_squotes {
             timeout-ms = <30>;
             key-positions = <0 1>;
@@ -303,12 +251,10 @@
             layers = <BASE VIM>;
         };
 // =====================================================================================
-// top row one shot modifier combos GACS just like on homerow, just one row up,
-// the idea being for roguelike gaming and since im making a RL it would be nice to
-// swap to a layer that i can hit hjkl etc. and because of how games and frame rate work
-// not have the awkward lack of input because the firmware waits and the frame doesnt proceess
+// One-shot modifier combos (top row, GACS order)
+// For roguelike/gaming layers where HRM timing interferes with frame input
 // =====================================================================================
-// Left-hand Shift (R+T])
+        // Left hand
         combo_rt_lshift: combo_rt_lshift {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
@@ -317,7 +263,6 @@
             slow-release;
             layers = <BASE VIM>;
         };
-// Left-hand Control (E+R)
         combo_er_lctrl: combo_er_lctrl {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
@@ -326,7 +271,6 @@
             slow-release;
             layers = <BASE VIM>;
         };
-// Left-hand Alt (W+E)
         combo_we_lalt: combo_we_lalt {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
@@ -335,7 +279,6 @@
             slow-release;
             layers = <BASE VIM>;
         };
-// Left-hand Super (Q+W)
         combo_qw_lgui: combo_qw_lgui {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
@@ -345,7 +288,7 @@
             layers = <BASE VIM>;
         };
 // =====================================================================================
-// Right-hand Shift (Y+U])
+        // Right hand
         combo_yu_rshift: combo_yu_rshift {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
@@ -354,7 +297,6 @@
             slow-release;
             layers = <BASE VIM GAMING>;
         };
-// Right-hand Control (U+I)
         combo_ui_rctrl: combo_ui_rctrl {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
@@ -363,7 +305,6 @@
             slow-release;
             layers = <BASE VIM GAMING>;
         };
-// Right-hand Alt (I+O)
         combo_io_ralt: combo_io_ralt {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;
@@ -372,7 +313,6 @@
             slow-release;
             layers = <BASE VIM GAMING>;
         };
-// Right-hand Super (O+P)
         combo_op_rgui: combo_op_rgui {
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <100>;

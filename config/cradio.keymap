@@ -42,10 +42,10 @@
             key-positions = <13 14>;
         };
         combo_cv_minus {
-            key-positions = <23 24>;
+            key-positions = <22 23>;
         };
         combo_as_bspc {
-            key-positions = <11 12>;
+            key-positions = <10 11>;
         };
         combo_df_underscore {
             key-positions = <12 13>;
