@@ -57,8 +57,8 @@
 //  │  COMBO_CV_MINS         │ C+V  │ KC_MINS    │ SLOW    │ BASE VIM         │
 //  │  COMBO_ZX_DEL          │ Z+X  │ KC_DEL     │ SLOW    │ BASE VIM         │
 //  │  COMBO_DC_ASSEQL       │ D+C  │ :=         │ SLOW    │ BASE VIM         │
-//  │  COMBO_GB_LEADER       │ G+B  │ QK_LEADER  │ SLOW    │ BASE VIM         │
-//  │  // XC - Reserved for future use                     │                  │
+//  │  COMBO_GB_LEADER       │ G+B  │ LEADER     │ SLOW    │ BASE VIM         │
+//  │  // Leader sequences: EM→email, GHN→github, SH→shebang                  │
 //  │                        │      │            │         │                  │
 //  │  COMBO_KL_SQT          │ K+L  │ KC_QUOT    │ MED     │ BASE VIM         │
 //  │  COMBO_JKL_DQT         │ JKL  │ "          │ MED     │ BASE VIM         │
@@ -162,8 +162,12 @@
             bindings = <&assign>;
             layers = <BASE VIM>;
         };
-        // Note: combo_gb_leader is QMK-only (ZMK lacks leader key infrastructure)
-        // In QMK: GB triggers leader sequences (email, github, etc.)
+        combo_gb_leader {
+            timeout-ms = <COMBO_TERM_SLOW>;
+            key-positions = <0 1>;
+            bindings = <&leader>;
+            layers = <BASE VIM>;
+        };
         combo_as_bspc {
             timeout-ms = <30>;
             key-positions = <0 1>;

@@ -3,3 +3,6 @@ config/frustrating.txt
 #tmp is my qmk_userspace code im letting ai reference when it makes our todo list, saves me time.
 tmp/
 taptermadjusts.md
+
+# secrets (email, personal info)
+config/secrets.dtsi

@@ -61,6 +61,9 @@
         combo_dc_assign {
             key-positions = <27 39>;
         };
+        combo_gb_leader {
+            key-positions = <29 41>;  // G + B
+        };
         combo_kl_sqt {
             key-positions = <32 33>;
         };

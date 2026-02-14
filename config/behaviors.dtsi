@@ -1,4 +1,5 @@
 #include "wrappers.dtsi"
+#include "secrets.dtsi"
 // clang-format off
 
 / {
@@ -90,6 +91,28 @@ skq: sticky_key_quick_release {
             flavor = "tap-preferred"; // Tap for keycode, hold for layer
             bindings = <&mo>, <&kp>; // Hold binding (&mo) and Tap binding (&kp)
         };
+
+// =====================================================================================
+// LEADER KEY BEHAVIOR
+// =====================================================================================
+        leader: leader {
+            compatible = "zmk,behavior-leader-key";
+            #binding-cells = <0>;
+
+            // Leader sequences - GB combo triggers, then type sequence keys
+            em {
+                sequence = <E M>;
+                bindings = <&macro_leader_email>;
+            };
+            ghn {
+                sequence = <G H N>;
+                bindings = <&macro_leader_github>;
+            };
+            sh {
+                sequence = <S H>;
+                bindings = <&macro_leader_shebang>;
+            };
+        };
     };
 // =====================================================================================
 // MACROS
@@ -152,6 +175,28 @@ skq: sticky_key_quick_release {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp SQT &kp SQT &kp LEFT>;
+        };
+
+// =====================================================================================
+// LEADER KEY SEQUENCE MACROS
+// =====================================================================================
+        // Note: Email macro (EM sequence) is in secrets.dtsi
+
+        // GHN sequence - GitHub URL (public, safe to commit)
+        macro_leader_github: macro_leader_github {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp G &kp I &kp T &kp H &kp U &kp B &kp DOT &kp C &kp O &kp M
+                        &kp FSLH &kp LS(N) &kp A &kp U &kp G &kp H &kp T &kp Y &kp U
+                        &kp S &kp E &kp R &kp N &kp A &kp M &kp E>;
+        };
+
+        // SH sequence - Bash shebang
+        macro_leader_shebang: macro_leader_shebang {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HASH &kp EXCL &kp FSLH &kp B &kp I &kp N &kp FSLH
+                        &kp B &kp A &kp S &kp H &kp RET>;
         };
 };
 

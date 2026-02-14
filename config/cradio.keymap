@@ -50,6 +50,9 @@
         combo_dc_assign {
             key-positions = <12 22>;
         };
+        combo_gb_leader {
+            key-positions = <14 24>;  // G + B
+        };
         combo_as_bspc {
             key-positions = <10 11>;
         };

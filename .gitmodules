@@ -1,0 +1,3 @@
+[submodule "zmk-modules/zmk-leader-key"]
+	path = zmk-modules/zmk-leader-key
+	url = https://github.com/urob/zmk-leader-key.git
