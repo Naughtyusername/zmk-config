@@ -176,6 +176,22 @@ skq: sticky_key_quick_release {
             #binding-cells = <0>;
             bindings = <&kp SQT &kp SQT &kp LEFT>;
         };
+        // Comparison operator macros
+        macro_lteq: macro_lteq {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LT &kp EQUAL>;  // <=
+        };
+        macro_gteq: macro_gteq {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp GT &kp EQUAL>;  // >=
+        };
+        macro_eqeq: macro_eqeq {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL &kp EQUAL>;  // ==
+        };
 
 // =====================================================================================
 // LEADER KEY SEQUENCE MACROS
