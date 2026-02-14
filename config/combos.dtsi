@@ -48,16 +48,16 @@
 //  │  COMBO_YH_NUMWORD      │ Y+H  │ NUMWORD    │ MED     │ BASE VIM         │
 //  │  COMBO_JK_ESC          │ J+K  │ KC_ESC     │ MED     │ BASE VIM         │
 //  │  COMBO_LSCLN_ENT       │ L+;  │ KC_ENT     │ MED     │ BASE VIM         │
-//  │  COMBO_FG_TAB          │ F+G  │ KC_TAB     │ MED     │ BASE VIM         │
-//  │  COMBO_DF_UNDS         │ D+F  │ KC_UNDS    │ MED     │ BASE VIM         │
-//  │  COMBO_VB_SPACE        │ V+B  │ KC_SPACE   │ MED     │ BASE VIM         │
-//  │  COMBO_AS_BSPC         │ A+S  │ KC_BSPC    │ MED     │ BASE VIM         │
-//  │  COMBO_ZX_DEL          │ Z+X  │ KC_DEL     │ MED     │ BASE VIM         │
+//  │  COMBO_FG_TAB          │ F+G  │ KC_TAB     │ MED     │ BASE VIM LOWER   │
+//  │  COMBO_DF_UNDS         │ D+F  │ KC_UNDS    │ MED     │ BASE VIM LOWER   │
+//  │  COMBO_VB_SPACE        │ V+B  │ KC_SPACE   │ MED     │ BASE VIM LOWER   │
+//  │  COMBO_AS_BSPC         │ A+S  │ KC_BSPC    │ MED     │ BASE VIM LOWER   │
+//  │  COMBO_HN_EQUAL        │ H+N  │ KC_EQUAL   │ MED     │ BASE VIM LOWER   │
 //  │                        │      │            │         │                  │
-//  │  COMBO_CV_MINS         │ C+V  │ KC_MINS    │ SLOW    │ BASE VIM         │
-//  │  COMBO_ZX_DEL          │ Z+X  │ KC_DEL     │ SLOW    │ BASE VIM         │
-//  │  COMBO_DC_ASSEQL       │ D+C  │ :=         │ SLOW    │ BASE VIM         │
-//  │  COMBO_GB_LEADER       │ G+B  │ LEADER     │ SLOW    │ BASE VIM         │
+//  │  COMBO_CV_MINS         │ C+V  │ KC_MINS    │ SLOW    │ BASE VIM LOWER   │
+//  │  COMBO_ZX_DEL          │ Z+X  │ KC_DEL     │ SLOW    │ BASE VIM LOWER   │
+//  │  COMBO_DC_ASSEQL       │ D+C  │ :=         │ SLOW    │ BASE VIM LOWER   │
+//  │  COMBO_GB_LEADER       │ G+B  │ LEADER     │ SLOW    │ BASE VIM LOWER   │
 //  │  // Leader sequences: EM→email, GHN→github, SH→shebang                  │
 //  │                        │      │            │         │                  │
 //  │  COMBO_KL_SQT          │ K+L  │ KC_QUOT    │ MED     │ BASE VIM         │
@@ -102,7 +102,7 @@
 //  OPEN SLOTS (no combo assigned):
 //    2-key:  ZX, XC           (left bottom)
 //    3-key:  ZXC, ERT, DFG, CVB, IOP, KL;, ,./
-//    vert:   QA, WS, ED, RF, TG, UJ, IK, OL, P;, HN, L., ;/
+//    vert:   QA, WS, ED, RF, TG, UJ, IK, OL, P;, L., ;/
 //    cross:  A;, SL, DK, FJ
 //
 // =====================================================================================
@@ -136,43 +136,55 @@
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp TAB>;
-            layers = <BASE VIM>;
+            layers = <BASE VIM LOWER>;
         };
         combo_df_underscore {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp UNDERSCORE>;
-            layers = <BASE VIM>;
+            layers = <BASE VIM LOWER>;
+        };
+        combo_vb_space {
+            timeout-ms = <30>;
+            key-positions = <0 1>;
+            bindings = <&kp SPACE>;
+            layers = <BASE VIM LOWER>;
         };
         combo_cv_minus {
             timeout-ms = <COMBO_TERM_SLOW>;
             key-positions = <0 1>;
             bindings = <&kp MINUS>;
-            layers = <BASE VIM>;
+            layers = <BASE VIM LOWER>;
         };
         combo_zx_del {
             timeout-ms = <COMBO_TERM_SLOW>;
             key-positions = <0 1>;
             bindings = <&kp DEL>;
-            layers = <BASE VIM>;
+            layers = <BASE VIM LOWER>;
         };
         combo_dc_assign {
             timeout-ms = <COMBO_TERM_SLOW>;
             key-positions = <0 1>;
             bindings = <&assign>;
-            layers = <BASE VIM>;
+            layers = <BASE VIM LOWER>;
         };
         combo_gb_leader {
             timeout-ms = <COMBO_TERM_SLOW>;
             key-positions = <0 1>;
             bindings = <&leader>;
-            layers = <BASE VIM>;
+            layers = <BASE VIM LOWER>;
         };
         combo_as_bspc {
             timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp BSPC>;
-            layers = <BASE VIM>;
+            layers = <BASE VIM LOWER>;
+        };
+        combo_hn_equal {
+            timeout-ms = <30>;
+            key-positions = <0 1>;
+            bindings = <&kp EQUAL>;
+            layers = <BASE VIM LOWER>;
         };
         combo_kl_sqt {
             timeout-ms = <30>;

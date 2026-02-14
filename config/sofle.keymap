@@ -49,8 +49,14 @@
         combo_as_bspc {
             key-positions = <25 26>;
         };
+        combo_hn_equal {
+            key-positions = <30 44>;  // H + N
+        };
         combo_df_underscore {
             key-positions = <27 28>;
+        };
+        combo_vb_space {
+            key-positions = <40 41>;  // V + B
         };
         combo_cv_minus {
             key-positions = <39 40>;
