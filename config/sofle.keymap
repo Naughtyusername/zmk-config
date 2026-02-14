@@ -55,6 +55,12 @@
         combo_cv_minus {
             key-positions = <39 40>;
         };
+        combo_zx_del {
+            key-positions = <37 38>;
+        };
+        combo_dc_assign {
+            key-positions = <27 39>;
+        };
         combo_kl_sqt {
             key-positions = <32 33>;
         };

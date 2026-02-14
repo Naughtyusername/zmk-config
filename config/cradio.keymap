@@ -44,6 +44,12 @@
         combo_cv_minus {
             key-positions = <22 23>;
         };
+        combo_zx_del {
+            key-positions = <20 21>;
+        };
+        combo_dc_assign {
+            key-positions = <12 22>;
+        };
         combo_as_bspc {
             key-positions = <10 11>;
         };

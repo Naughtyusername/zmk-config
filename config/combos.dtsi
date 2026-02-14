@@ -40,50 +40,64 @@
 //              50  51  52  53  54 │ 55  56  57  58  59            ← thumbs
 //
 //  COMBO INDEX
-//  ┌───────────────────────────┬──────┬────────────────────┬─────────────────────┐
-//  │ Name                      │ Keys │ Binding            │ Layers              │
-//  ├───────────────────────────┼──────┼────────────────────┼─────────────────────┤
-//  │ UTILITY                   │      │                    │                     │
-//  │  combo_hj_caps_word       │ H+J  │ &better_caps_word  │ BASE VIM            │
-//  │  combo_yh_num_word        │ Y+H  │ &num_word LOWER    │ BASE VIM            │
-//  │  combo_jk_esc             │ J+K  │ &kp ESC            │ BASE VIM            │
-//  │  combo_lscln_ent          │ L+;  │ &kp RET            │ BASE VIM            │
-//  │  combo_fg_tab             │ F+G  │ &kp TAB            │ BASE VIM            │
-//  │  combo_df_underscore      │ D+F  │ &kp UNDERSCORE     │ BASE VIM            │
-//  │  combo_cv_minus           │ C+V  │ &kp MINUS          │ BASE VIM            │
-//  │  combo_as_bspc            │ A+S  │ &kp BSPC           │ BASE VIM            │
-//  │  combo_kl_sqt             │ K+L  │ &kp SQT            │ BASE VIM            │
-//  │  combo_jkl_dqt            │ JKL  │ &kp DQT            │ BASE VIM            │
-//  │  combo_kl_scln_ocsc       │ KL;  │ &ocsc_macro        │ BASE VIM            │
-//  ├───────────────────────────┼──────┼────────────────────┼─────────────────────┤
-//  │ AUTO-PAIR                 │      │                    │                     │
-//  │  combo_nm_parens          │ N+M  │ &macro_parens      │ BASE VIM            │
-//  │  combo_m_comma_braces     │ M+,  │ &macro_braces      │ BASE VIM            │
-//  │  combo_comma_dot_brackets │ ,+.  │ &macro_brackets    │ BASE VIM            │
-//  │  combo_dot_slash_ltgt     │ .+/  │ &macro_ltgt        │ BASE VIM            │
-//  │  combo_k_comma_dquotes    │ K+,  │ &macro_dquotes     │ BASE VIM            │
-//  │  combo_jm_squotes         │ J+M  │ &macro_squotes     │ BASE VIM            │
-//  ├───────────────────────────┼──────┼────────────────────┼─────────────────────┤
-//  │ ONE-SHOT MODS (GACS)      │      │                    │                     │
-//  │  combo_qw_lgui            │ Q+W  │ &skq LGUI          │ BASE VIM            │
-//  │  combo_we_lalt            │ W+E  │ &skq LALT          │ BASE VIM            │
-//  │  combo_er_lctrl           │ E+R  │ &skq LCTRL         │ BASE VIM            │
-//  │  combo_rt_lshift          │ R+T  │ &skq LSHFT         │ BASE VIM            │
-//  │  combo_yu_rshift          │ Y+U  │ &skq RSHFT         │ BASE VIM GAMING     │
-//  │  combo_ui_rctrl           │ U+I  │ &skq RCTRL         │ BASE VIM GAMING     │
-//  │  combo_io_ralt            │ I+O  │ &skq RALT          │ BASE VIM GAMING     │
-//  │  combo_op_rgui            │ O+P  │ &skq RGUI          │ BASE VIM GAMING     │
-//  ├───────────────────────────┼──────┼────────────────────┼─────────────────────┤
-//  │ LAYER SWITCHING (3-key)   │      │                    │                     │
-//  │  combo_return_to_base     │ QWE  │ &to 0              │ ALL (escape hatch)  │
-//  │  combo_base_to_gaming     │ ASD  │ &to GAMING         │ BASE                │
-//  │  combo_base_to_vim        │ NM,  │ &to VIM            │ BASE                │
-//  │  combo_vim_to_base        │ NM,  │ &to BASE           │ VIM                 │
-//  │  combo_gaming_to_roguelike│ HJK  │ &to ROGUELIKE      │ GAMING              │
-//  │  combo_roguelike_to_gaming│ HJK  │ &to GAMING         │ ROGUELIKE           │
-//  │  combo_gaming_to_gaming2  │ YUI  │ &to GAMING2        │ GAMING              │
-//  │  combo_gaming2_to_gaming  │ YUI  │ &to GAMING         │ GAMING2             │
-//  └───────────────────────────┴──────┴────────────────────┴─────────────────────┘
+//  ┌────────────────────────┬──────┬────────────┬─────────┬──────────────────┐
+//  │ Enum                   │ Keys │ Output     │ Timing  │ Layers           │
+//  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
+//  │ UTILITY                │      │            │         │                  │
+//  │  COMBO_HJ_CAPSWORD     │ H+J  │ CW_TOGG    │ MED     │ BASE VIM         │
+//  │  COMBO_YH_NUMWORD      │ Y+H  │ NUMWORD    │ MED     │ BASE VIM         │
+//  │  COMBO_JK_ESC          │ J+K  │ KC_ESC     │ MED     │ BASE VIM         │
+//  │  COMBO_LSCLN_ENT       │ L+;  │ KC_ENT     │ MED     │ BASE VIM         │
+//  │  COMBO_FG_TAB          │ F+G  │ KC_TAB     │ MED     │ BASE VIM         │
+//  │  COMBO_DF_UNDS         │ D+F  │ KC_UNDS    │ MED     │ BASE VIM         │
+//  │  COMBO_VB_SPACE        │ V+B  │ KC_SPACE   │ MED     │ BASE VIM         │
+//  │  COMBO_AS_BSPC         │ A+S  │ KC_BSPC    │ MED     │ BASE VIM         │
+//  │  COMBO_ZX_DEL          │ Z+X  │ KC_DEL     │ MED     │ BASE VIM         │
+//  │                        │      │            │         │                  │
+//  │  COMBO_CV_MINS         │ C+V  │ KC_MINS    │ SLOW    │ BASE VIM         │
+//  │  COMBO_ZX_DEL          │ Z+X  │ KC_DEL     │ SLOW    │ BASE VIM         │
+//  │  COMBO_DC_ASSEQL       │ D+C  │ :=         │ SLOW    │ BASE VIM         │
+//  │  COMBO_GB_LEADER       │ G+B  │ QK_LEADER  │ SLOW    │ BASE VIM         │
+//  │  // XC - Reserved for future use                     │                  │
+//  │                        │      │            │         │                  │
+//  │  COMBO_KL_SQT          │ K+L  │ KC_QUOT    │ MED     │ BASE VIM         │
+//  │  COMBO_JKL_DQT         │ JKL  │ "          │ MED     │ BASE VIM         │
+//  │  COMBO_KL_SCLN_OCSC    │ KL;  │ : ^        │ MED     │ BASE VIM         │
+//  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
+//  │ AUTO-PAIR              │      │            │         │                  │
+//  │  COMBO_NM_PARENS       │ N+M  │ () + ←     │ MED     │ BASE VIM         │
+//  │  COMBO_MCOMM_BRACES    │ M+,  │ {} + ←     │ MED     │ BASE VIM         │
+//  │  COMBO_COMMDOT_BRACKETS│ ,+.  │ [] + ←     │ MED     │ BASE VIM         │
+//  │  COMBO_KCOMM_DQUOTES   │ K+,  │ "" + ←     │ MED     │ BASE VIM         │
+//  │  COMBO_JM_SQUOTES      │ J+M  │ '' + ←     │ MED     │ BASE VIM         │
+//  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
+//  │ ONE-SHOT MODS (GACS)   │      │            │         │                  │
+//  │  COMBO_QW_OSM_LGUI     │ Q+W  │ OSM GUI    │ FAST    │ BASE VIM         │
+//  │  COMBO_WE_OSM_LALT     │ W+E  │ OSM ALT    │ FAST    │ BASE VIM         │
+//  │  COMBO_ER_OSM_LCTL     │ E+R  │ OSM CTRL   │ FAST    │ BASE VIM         │
+//  │  COMBO_RT_OSM_LSFT     │ R+T  │ OSM SHIFT  │ FAST    │ BASE VIM         │
+//  │  COMBO_YU_OSM_RSFT     │ Y+U  │ OSM SHIFT  │ FAST    │ BASE VIM         │
+//  │  COMBO_UI_OSM_RCTL     │ U+I  │ OSM CTRL   │ FAST    │ BASE VIM         │
+//  │  COMBO_IO_OSM_RALT     │ I+O  │ OSM ALT    │ FAST    │ BASE VIM         │
+//  │  COMBO_OP_OSM_RGUI     │ O+P  │ OSM GUI    │ FAST    │ BASE VIM         │
+//  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
+//  │ LAYER SWITCHING        │      │            │         │                  │
+//  │  COMBO_QWE_TO_BASE     │ QWE  │ TO(BASE)   │ SLOW    │ !BASE (anywhere) │
+//  │  COMBO_ASD_TO_GAMING   │ ASD  │ TO(GAMING) │ SLOW    │ BASE             │
+//  │  COMBO_NM_COMM_TO_VIM  │ NM,  │ TO(VIM)    │ SLOW    │ BASE             │
+//  │  COMBO_YUI_TO_GAMING2  │ YUI  │ TO(GAMING2)│ SLOW    │ GAMING           │
+//  │  COMBO_HJK_TO_ROGUELIKE│ HJK  │ TO(ROGUE)  │ SLOW    │ GAMING           │
+//  │  COMBO_YUI_TO_GAMING   │ YUI  │ TO(GAMING) │ SLOW    │ GAMING2          │
+//  │  COMBO_HJK_TO_GAMING   │ HJK  │ TO(GAMING) │ SLOW    │ ROGUELIKE        │
+//  │  COMBO_NM_COMM_TO_BASE │ NM,  │ TO(BASE)   │ SLOW    │ VIM              │
+//  └────────────────────────┴──────┴────────────┴─────────┴──────────────────┘
+    // For personal formatting use, templating etc.
+//  ┌────────────────────────┬──────┬────────────┬─────────┬──────────────────┐
+//  │                        │      │            │         │                  │
+//  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
+//  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
+//  └────────────────────────┴──────┴────────────┴─────────┴──────────────────┘
+//  │                        │      │            │         │                  │
 //
 //  OPEN SLOTS (no combo assigned):
 //    2-key:  ZX, XC           (left bottom)
@@ -131,11 +145,25 @@
             layers = <BASE VIM>;
         };
         combo_cv_minus {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TERM_SLOW>;
             key-positions = <0 1>;
             bindings = <&kp MINUS>;
             layers = <BASE VIM>;
         };
+        combo_zx_del {
+            timeout-ms = <COMBO_TERM_SLOW>;
+            key-positions = <0 1>;
+            bindings = <&kp DEL>;
+            layers = <BASE VIM>;
+        };
+        combo_dc_assign {
+            timeout-ms = <COMBO_TERM_SLOW>;
+            key-positions = <0 1>;
+            bindings = <&assign>;
+            layers = <BASE VIM>;
+        };
+        // Note: combo_gb_leader is QMK-only (ZMK lacks leader key infrastructure)
+        // In QMK: GB triggers leader sequences (email, github, etc.)
         combo_as_bspc {
             timeout-ms = <30>;
             key-positions = <0 1>;
