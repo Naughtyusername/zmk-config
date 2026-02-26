@@ -48,7 +48,10 @@ cd app
 build_split_keyboard "sofle"
 build_split_keyboard "cradio"
 # Build standalone boards (single integrated boards)
-build_standalone_board "bullet_train"
+# TODO: Bullet Train - CannonKeys GB ETA Q3 2026, board definition incomplete as of 2025-02-25
+#       Kconfig errors when building. Re-enable once ZMK support is finalized.
+#       Check: https://github.com/cannonkeys/zmk-cannonkeys-keyboards
+# build_standalone_board "bullet_train"
 # --- 4. Cleanup & Notifications ---
 echo "---------------------------------------"
 echo "🧹 Cleaning up..."

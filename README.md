@@ -41,11 +41,21 @@ This configuration is currently set up to build for the following keyboards:
 -   **Sofle**
 -   **Corne**
 
+## Keymaps
+
+<details>
+<summary>Cradio — 34-key split</summary>
+<img src="images/keymaps/cradio.svg" width="900">
+</details>
+
+<details>
+<summary>Sofle — 60-key split ergonomic</summary>
+<img src="images/keymaps/sofle.svg" width="900">
+</details>
+
 ## Layouts
 
 The layout is based on a 3x5 grid with extensive use of layers and combos to maintain functionality on a small footprint.
-
-*(ASCII layout representation can be added here if desired)*
 
 ### Layers
 
