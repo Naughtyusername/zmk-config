@@ -590,3 +590,86 @@
 #define ___SWEEP_THUMBS_GAMING2___     _______  _______              _______  _______
 #define ___SWEEP_THUMBS_VIM___         _______  _______              _______  _______
 #define ___SWEEP_THUMBS_MOUSE___       _______  _______              _______  _______
+
+/* --------------------------------------------------------------------------
+ * BULLET TRAIN SPECIFIC WRAPPERS
+ * --------------------------------------------------------------------------
+ * The Bullet Train (V4N4G0N layout) is a ~44-key board with:
+ *   Row 0 (partial numrow): 6 keys left side only (1-6)
+ *   Row 1 (QWERTY): 12 keys (ESC + 5L + 5R + BSPC)
+ *   Row 2 (home): 12 keys (TAB + 5L + 5R + RET)
+ *   Row 3 (bottom): 12 keys (SHFT + 5L + N M , . UP /)  <- 6 on right (UP before SLASH)
+ *   Row 4 (space): 9 keys (LCTRL LGUI LALT + 3 space + LEFT DOWN RIGHT)
+ *
+ * Rows 1-2 mostly reuse existing 6-col macros. Rows 0, 3, 4 need BT-specific wrappers.
+ */
+
+// --- Row 0: Partial Numrow (6 keys, left side only) ---
+#define ___BT_NUMROW_BASE___    &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6
+#define ___BT_NUMROW_LOWER___   _______ _______ _______ _______ _______ _______
+#define ___BT_NUMROW_RAISE___   _______ _______ _______ _______ _______ _______
+#define ___BT_NUMROW_FUNC___    _______ _______ _______ _______ _______ _______
+#define ___BT_NUMROW_VIM___     _______ _______ _______ _______ _______ _______
+#define ___BT_NUMROW_ADJUST___  _______ _______ _______ _______ _______ _______
+#define ___BT_NUMROW_GAMING___  &kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6
+#define ___BT_NUMROW_GAMING2___ _______ _______ _______ _______ _______ _______
+#define ___BT_NUMROW_ROGUE___   _______ _______ _______ _______ _______ _______
+#define ___BT_NUMROW_SYS___     _______ _______ _______ _______ _______ _______
+#define ___BT_NUMROW_MOUSE___   _______ _______ _______ _______ _______ _______
+
+// --- Row 2: Right side outer column (RET for BT, not SQT like Sofle) ---
+#define ___BT_BASE_R2_6___     ___BASE_R2___  &lt FUNC RET
+#define ___BT_VIM_R2_6___      ___VIM_R2___   &kp RET
+#define ___BT_LOWER_R2_6___    ___LOWER_R2___ _______
+#define ___BT_RAISE_R2_6___    ___RAISE_R2___ _______
+#define ___BT_FUNC_R2_6___     ___FUNC_R2___  _______
+#define ___BT_ADJUST_R2_6___   ___ADJUST_R2___ _______
+#define ___BT_GAMING_R2_6___   ___GAMING_R2___ &kp SQT
+#define ___BT_GAMING2_R2_6___  _______ _______
+#define ___BT_ROGUE_R2_6___    _______ _______
+#define ___BT_SYS_R2_6___      ___SYS_R2___   _______
+#define ___BT_MOUSE_R2_6___    ___MOUSE_R2___ _______
+
+// --- Row 3: Left side (SHFT as outer, then standard L3) ---
+#define ___BT_BASE_L3_6___      &kp LSHFT  ___BASE_L3___
+#define ___BT_VIM_L3_6___       &kp LSHFT  ___VIM_L3___
+#define ___BT_LOWER_L3_6___     &kp LSHFT  ___LOWER_L3___
+#define ___BT_RAISE_L3_6___     &kp LSHFT  ___RAISE_L3___
+#define ___BT_FUNC_L3_6___      &kp LSHFT  ___FUNC_L3___
+#define ___BT_ADJUST_L3_6___    &kp LSHFT  ___ADJUST_L3___
+#define ___BT_GAMING_L3_6___    &kp LSHFT  ___GAMING_L3___
+#define ___BT_GAMING2_L3_6___   &kp LSHFT  ___GAMING2_L3___
+#define ___BT_ROGUE_L3_6___     &kp LSHFT  ___ROGUELIKE_L3___
+#define ___BT_SYS_L3_6___       &kp LSHFT  ___SYS_L3___
+#define ___BT_MOUSE_L3_6___     &kp LSHFT  ___MOUSE_L3___
+
+// --- Row 3: Right side (6 keys - UP is embedded before SLASH) ---
+// Standard R3 is 5 keys. BT inserts UP at position 10, SLASH at position 11.
+// Expand manually for each layer to insert UP in the right place.
+#define ___BT_BASE_R3_6___      &lt RAISE N &kp M &kp COMMA &kp DOT &kp UP &lt_1s_mo SYS SLASH
+#define ___BT_VIM_R3_6___       &kp N &kp M &kp COMMA &kp DOT &kp UP &kp FSLH
+#define ___BT_LOWER_R3_6___     &kp COMMA &kp N1 &kp N2 &kp N3 &kp UP _______
+#define ___BT_RAISE_R3_6___     &kp RBRC &kp AT &kp LT &kp GT &kp UP _______
+#define ___BT_FUNC_R3_6___      &kp PG_DN XXX XXX XXX &kp UP _______
+#define ___BT_ADJUST_R3_6___    _______ _______ _______ _______ &kp UP _______
+#define ___BT_GAMING_R3_6___    &kp N &kp M &kp COMMA &kp DOT &kp UP &kp FSLH
+#define ___BT_GAMING2_R3_6___   _______ _______ _______ _______ &kp UP _______
+#define ___BT_ROGUE_R3_6___     &kp Y &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp UP XXX
+#define ___BT_SYS_R3_6___       _______ _______ _______ _______ &kp UP _______
+#define ___BT_MOUSE_R3_6___     _______ _______ _______ _______ &kp UP _______
+
+// --- Row 4: Thumb cluster (9 keys: 3 left mods + 3 space + 3 nav) ---
+// Positions (matrix): LCTL(42) LGUI(43) LALT(44) | SPC1(45) SPC2(46) SPC3(47) | LEFT(48) DOWN(49) RIGHT(50)
+// For split space variants, you can define separate clusters per spacebar config.
+// For now, unified thumb cluster works with both split and full space transforms.
+#define ___BT_THUMBS_BASE___    &kp LCTRL &kp LGUI &kp LALT  &bs_del _______ &lt LOWER RET  &kp LEFT &kp DOWN &kp RIGHT
+#define ___BT_THUMBS_LOWER___   _______ _______ _______  _______ _______ _______  _______ _______ _______
+#define ___BT_THUMBS_RAISE___   _______ _______ _______  _______ _______ _______  _______ _______ _______
+#define ___BT_THUMBS_FUNC___    _______ _______ _______  &kp TAB &kp SPACE &kp RET  _______ _______ _______
+#define ___BT_THUMBS_VIM___     _______ _______ _______  _______ _______ _______  _______ _______ _______
+#define ___BT_THUMBS_ADJUST___  _______ _______ _______  _______ _______ _______  _______ _______ _______
+#define ___BT_THUMBS_GAMING___  &kp LCTRL &kp LGUI &kp LALT  &kp BSPC _______ &kp RET  _______ _______ _______
+#define ___BT_THUMBS_GAMING2___ _______ _______ _______  _______ _______ _______  _______ _______ _______
+#define ___BT_THUMBS_ROGUE___   _______ _______ _______  _______ _______ _______  _______ _______ _______
+#define ___BT_THUMBS_SYS___     _______ _______ _______  _______ _______ _______  _______ _______ _______
+#define ___BT_THUMBS_MOUSE___   _______ _______ _______  &mkp MB1 _______ &mkp MB2  _______ _______ _______

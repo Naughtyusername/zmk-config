@@ -27,6 +27,7 @@ include:
     shield: cradio_left
   - board: nice_nano
     shield: cradio_right
+  - board: bullet_train
 #these dont exist yet  - board: nice_nano
 #these dont exist yet    shield: halcyon_corne_left
 #these dont exist yet  - board: nice_nano

@@ -7,12 +7,12 @@ EXTRA_MODULES="$MODULES_PATH/zmk-auto-layer;$MODULES_PATH/zmk-leader-key"
 BOARD="nice_nano"
 DATE_STR=$(date +%Y-%m-%d_%H-%M)
 BASE_DEST="$HOME/Downloads/zmk_builds/$DATE_STR"
-# --- 2. The Build Function ---
-# This takes one argument: the name of the shield (e.g., "sofle" or "cradio")
-build_keyboard() {
+# --- 2. Build Functions ---
+# Split keyboard function (left/right): takes shield name
+build_split_keyboard() {
     local SHIELD=$1
     echo "---------------------------------------"
-    echo "🛠️  BUILDING $SHIELD"
+    echo "🛠️  BUILDING $SHIELD (split)"
     echo "---------------------------------------"
     # Build Left
     west build -p always -b "$BOARD" -d "build/$SHIELD/left" -- -DSHIELD="${SHIELD}_left" -DZMK_CONFIG="$CONFIG_PATH" -DZMK_EXTRA_MODULES="$EXTRA_MODULES"
@@ -23,20 +23,39 @@ build_keyboard() {
     cp "build/$SHIELD/left/zephyr/zmk.uf2" "$BASE_DEST/$SHIELD/${SHIELD}_left.uf2"
     cp "build/$SHIELD/right/zephyr/zmk.uf2" "$BASE_DEST/$SHIELD/${SHIELD}_right.uf2"
 }
+
+# Standalone board function (single integrated board): takes board name
+build_standalone_board() {
+    local BOARD_NAME=$1
+    echo "---------------------------------------"
+    echo "🛠️  BUILDING $BOARD_NAME (standalone)"
+    echo "---------------------------------------"
+    west build -p always -b "$BOARD_NAME" -d "build/$BOARD_NAME" -- -DZMK_CONFIG="$CONFIG_PATH" -DZMK_EXTRA_MODULES="$EXTRA_MODULES"
+    # Create destination and copy file
+    mkdir -p "$BASE_DEST/$BOARD_NAME"
+    cp "build/$BOARD_NAME/zephyr/zmk.uf2" "$BASE_DEST/$BOARD_NAME/${BOARD_NAME}.uf2"
+}
+
+# Legacy alias for backwards compatibility
+build_keyboard() {
+    build_split_keyboard "$@"
+}
 # --- 3. Execution ---
 cd "$ZMK_PATH" || exit
 source .venv/bin/activate
 cd app
-# Build your boards
-build_keyboard "sofle"
-build_keyboard "cradio"
+# Build split keyboards (left/right pairs)
+build_split_keyboard "sofle"
+build_split_keyboard "cradio"
+# Build standalone boards (single integrated boards)
+build_standalone_board "bullet_train"
 # --- 4. Cleanup & Notifications ---
 echo "---------------------------------------"
 echo "🧹 Cleaning up..."
 rm -rf build/
 # Desktop Notification (Linux)
 if command -v notify-send &>/dev/null; then
-    notify-send "ZMK Build Complete" "Sofle and Sweep firmware are ready in Downloads." -i keyboard
+    notify-send "ZMK Build Complete" "Sofle, Sweep, and Bullet Train firmware ready in Downloads." -i keyboard
 fi
 # Sound Alert (System Beep)
 echo -e "\a"

@@ -8,12 +8,17 @@ manifest:
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
     - name: urob
       url-base: https://github.com/urob
+    - name: cannonkeys
+      url-base: https://github.com/cannonkeys
   projects:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
     - name: zmk-auto-layer
       remote: urob
+      revision: main
+    - name: zmk-cannonkeys-keyboards
+      remote: cannonkeys
       revision: main
   self:
     path: config

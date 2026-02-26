@@ -1,0 +1,274 @@
+// clang-format off
+/*
+ * Copyright (c) 2025
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ *
+ * Bullet Train (V4N4G0N layout) ZMK keymap
+ * Wireless nRF52840 board with 44-key layout: 6-key partial numrow, standard 40% bottom
+ *
+ * Matrix Layout (split space transform):
+ *  Row 0: [1-6]
+ *  Row 1: ESC Q W E R T | Y U I O P BSPC
+ *  Row 2: TAB A S D F G | H J K L ; RET
+ *  Row 3: SHFT Z X C V B | N M , . UP /
+ *  Row 4: LCTL LGUI LALT | SPC1 SPC2 SPC3 | LEFT DOWN RIGHT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/mouse.h>
+#include "behaviors.dtsi"
+#include "combos.dtsi"
+
+/ {
+    combos {
+        // Override combo key positions for the Bullet Train matrix
+        // Key position reference:
+        //  Row 0: 0-5 (partial numrow)
+        //  Row 1: 6-17 (ESC Q W E R T | Y U I O P BSPC)
+        //  Row 2: 18-29 (TAB A S D F G | H J K L ; RET)
+        //  Row 3: 30-41 (SHFT Z X C V B | N M , . UP /)
+        //  Row 4: 42-50 (LCTL LGUI LALT | SPC1 SPC2 SPC3 | LEFT DOWN RIGHT)
+
+        combo_hj_caps_word {
+            key-positions = <24 25>;  // H J
+        };
+        combo_yh_num_word {
+            key-positions = <12 24>;  // Y H
+        };
+        combo_jk_esc {
+            key-positions = <25 26>;  // J K
+        };
+        combo_lscln_ent {
+            key-positions = <27 28>;  // L ;
+        };
+        combo_fg_tab {
+            key-positions = <22 23>;  // F G
+        };
+        combo_as_bspc {
+            key-positions = <19 20>;  // A S
+        };
+        combo_hn_equal {
+            key-positions = <24 36>;  // H N
+        };
+        combo_df_underscore {
+            key-positions = <21 22>;  // D F
+        };
+        combo_vb_space {
+            key-positions = <34 35>;  // V B
+        };
+        combo_cv_minus {
+            key-positions = <33 34>;  // C V
+        };
+        combo_zx_del {
+            key-positions = <31 32>;  // Z X
+        };
+        combo_dc_assign {
+            key-positions = <21 33>;  // D C
+        };
+        combo_gb_leader {
+            key-positions = <23 35>;  // G B
+        };
+        combo_kl_sqt {
+            key-positions = <26 27>;  // K L
+        };
+        combo_jkl_dqt {
+            key-positions = <25 26 27>;  // J K L
+        };
+        combo_kl_scln_ccs {
+            key-positions = <26 27 28>;  // K L ;
+        };
+        combo_nm_parens {
+            key-positions = <36 37>;  // N M
+        };
+        combo_m_comma_braces {
+            key-positions = <37 38>;  // M ,
+        };
+        combo_comma_dot_brackets {
+            key-positions = <38 39>;  // , .
+        };
+        combo_dot_slash_ltgt {
+            key-positions = <39 41>;  // . /
+        };
+        combo_jm_squotes {
+            key-positions = <25 37>;  // J M
+        };
+        combo_k_comma_dquotes {
+            key-positions = <26 38>;  // K ,
+        };
+        combo_qw_lgui {
+            key-positions = <7 8>;  // Q W
+        };
+        combo_we_lalt {
+            key-positions = <8 9>;  // W E
+        };
+        combo_er_lctrl {
+            key-positions = <9 10>;  // E R
+        };
+        combo_rt_lshift {
+            key-positions = <10 11>;  // R T
+        };
+        combo_yu_rshift {
+            key-positions = <12 13>;  // Y U
+        };
+        combo_ui_rctrl {
+            key-positions = <13 14>;  // U I
+        };
+        combo_io_ralt {
+            key-positions = <14 15>;  // I O
+        };
+        combo_op_rgui {
+            key-positions = <15 16>;  // O P
+        };
+        combo_return_to_base {
+            key-positions = <7 8 9>;  // Q W E
+        };
+        combo_base_to_gaming {
+            key-positions = <19 20 21>;  // A S D
+        };
+        combo_base_to_vim {
+            key-positions = <36 37 38>;  // N M ,
+        };
+        combo_vim_to_base {
+            key-positions = <36 37 38>;  // N M ,
+        };
+        combo_gaming_to_roguelike {
+            key-positions = <24 25 26>;  // H J K
+        };
+        combo_roguelike_to_gaming {
+            key-positions = <24 25 26>;  // H J K
+        };
+        combo_gaming_to_gaming2 {
+            key-positions = <12 13 14>;  // Y U I
+        };
+        combo_gaming2_to_gaming {
+            key-positions = <12 13 14>;  // Y U I
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        BASE_layer {
+            display-name = "Base";
+            bindings = <
+                ___BT_NUMROW_BASE___
+                ___BASE_L1_6___        ___BASE_R1_6___
+                ___BASE_L2_6___        ___BT_BASE_R2_6___
+                ___BT_BASE_L3_6___     ___BT_BASE_R3_6___
+                ___BT_THUMBS_BASE___
+            >;
+        };
+
+        VIM_layer {
+            display-name = "Vim";
+            bindings = <
+                ___BT_NUMROW_VIM___
+                ___VIM_L1_6___         ___VIM_R1_6___
+                ___VIM_L2_6___         ___BT_VIM_R2_6___
+                ___BT_VIM_L3_6___      ___BT_VIM_R3_6___
+                ___BT_THUMBS_VIM___
+            >;
+        };
+
+        LOWER_layer {
+            display-name = "Lower";
+            bindings = <
+                ___BT_NUMROW_LOWER___
+                ___LOWER_L1_6___       ___LOWER_R1_6___
+                ___LOWER_L2_6___       ___BT_LOWER_R2_6___
+                ___BT_LOWER_L3_6___    ___BT_LOWER_R3_6___
+                ___BT_THUMBS_LOWER___
+            >;
+        };
+
+        RAISE_layer {
+            display-name = "Raise";
+            bindings = <
+                ___BT_NUMROW_RAISE___
+                ___RAISE_L1_6___       ___RAISE_R1_6___
+                ___RAISE_L2_6___       ___BT_RAISE_R2_6___
+                ___BT_RAISE_L3_6___    ___BT_RAISE_R3_6___
+                ___BT_THUMBS_RAISE___
+            >;
+        };
+
+        FUNC_layer {
+            display-name = "Func";
+            bindings = <
+                ___BT_NUMROW_FUNC___
+                ___FUNC_L1_6___        ___FUNC_R1_6___
+                ___FUNC_L2_6___        ___BT_FUNC_R2_6___
+                ___BT_FUNC_L3_6___     ___BT_FUNC_R3_6___
+                ___BT_THUMBS_FUNC___
+            >;
+        };
+
+        ADJUST_layer {
+            display-name = "Adjust";
+            bindings = <
+                ___BT_NUMROW_ADJUST___
+                ___ADJUST_L1_6___      ___ADJUST_R1_6___
+                ___ADJUST_L2_6___      ___BT_ADJUST_R2_6___
+                ___BT_ADJUST_L3_6___   ___BT_ADJUST_R3_6___
+                ___BT_THUMBS_ADJUST___
+            >;
+        };
+
+        GAMING_layer {
+            display-name = "Gaming";
+            bindings = <
+                ___BT_NUMROW_GAMING___
+                ___GAMING_L1_6___      ___GAMING_R1_6___
+                ___GAMING_L2_6___      ___BT_GAMING_R2_6___
+                ___BT_GAMING_L3_6___   ___BT_GAMING_R3_6___
+                ___BT_THUMBS_GAMING___
+            >;
+        };
+
+        GAMING2_layer {
+            display-name = "Gaming2";
+            bindings = <
+                ___BT_NUMROW_GAMING2___
+                ___GAMING2_L1_6___     ___GAMING2_R1_6___
+                _______ _______ _______ _______ _______  _______ _______ _______ _______ _______ _______
+                ___BT_GAMING2_L3_6___  ___BT_GAMING2_R3_6___
+                ___BT_THUMBS_GAMING2___
+            >;
+        };
+
+        ROGUELIKE_layer {
+            display-name = "Roguelike";
+            bindings = <
+                ___BT_NUMROW_ROGUE___
+                ___ROGUELIKE_L1_6___   ___ROGUELIKE_R1_6___
+                ___ROGUELIKE_L2_6___   ___BT_ROGUE_R2_6___
+                ___BT_ROGUE_L3_6___    ___BT_ROGUE_R3_6___
+                ___BT_THUMBS_ROGUE___
+            >;
+        };
+
+        SYS_layer {
+            display-name = "System";
+            bindings = <
+                ___BT_NUMROW_SYS___
+                ___SYS_L1_6___         ___SYS_R1_6___
+                ___SYS_L2_6___         ___BT_SYS_R2_6___
+                ___BT_SYS_L3_6___      ___BT_SYS_R3_6___
+                ___BT_THUMBS_SYS___
+            >;
+        };
+
+        MOUSE_layer {
+            display-name = "Mouse";
+            bindings = <
+                ___BT_NUMROW_MOUSE___
+                ___MOUSE_L1_6___       ___MOUSE_R1_6___
+                ___MOUSE_L2_6___       ___BT_MOUSE_R2_6___
+                ___BT_MOUSE_L3_6___    ___BT_MOUSE_R3_6___
+                ___BT_THUMBS_MOUSE___
+            >;
+        };
+    };
+};
