@@ -76,7 +76,7 @@
         combo_jkl_dqt {
             key-positions = <31 32 33>;
         };
-        combo_kl_scln_ocsc {
+        combo_kl_scln_ccs {
             key-positions = <32 33 34>;
         };
         // testing [](){} auto double and move cursor inside, right hand initiation since

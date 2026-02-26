@@ -62,7 +62,7 @@
 //  │                        │      │            │         │                  │
 //  │  COMBO_KL_SQT          │ K+L  │ KC_QUOT    │ MED     │ BASE VIM         │
 //  │  COMBO_JKL_DQT         │ JKL  │ "          │ MED     │ BASE VIM         │
-//  │  COMBO_KL_SCLN_OCSC    │ KL;  │ : ^        │ MED     │ BASE VIM         │
+//  │  COMBO_KL_SCLN_CCS     │ KL;  │ : ^ +Shift │ MED     │ BASE VIM         │
 //  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
 //  │ AUTO-PAIR              │      │            │         │                  │
 //  │  COMBO_NM_PARENS       │ N+M  │ () + ←     │ MED     │ BASE VIM         │
@@ -72,14 +72,14 @@
 //  │  COMBO_JM_SQUOTES      │ J+M  │ '' + ←     │ MED     │ BASE VIM         │
 //  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
 //  │ ONE-SHOT MODS (GACS)   │      │            │         │                  │
-//  │  COMBO_QW_OSM_LGUI     │ Q+W  │ OSM GUI    │ FAST    │ BASE VIM         │
-//  │  COMBO_WE_OSM_LALT     │ W+E  │ OSM ALT    │ FAST    │ BASE VIM         │
-//  │  COMBO_ER_OSM_LCTL     │ E+R  │ OSM CTRL   │ FAST    │ BASE VIM         │
 //  │  COMBO_RT_OSM_LSFT     │ R+T  │ OSM SHIFT  │ FAST    │ BASE VIM         │
-//  │  COMBO_YU_OSM_RSFT     │ Y+U  │ OSM SHIFT  │ FAST    │ BASE VIM         │
-//  │  COMBO_UI_OSM_RCTL     │ U+I  │ OSM CTRL   │ FAST    │ BASE VIM         │
-//  │  COMBO_IO_OSM_RALT     │ I+O  │ OSM ALT    │ FAST    │ BASE VIM         │
-//  │  COMBO_OP_OSM_RGUI     │ O+P  │ OSM GUI    │ FAST    │ BASE VIM         │
+//  │  COMBO_YU_OSM_RSFT     │ Y+U  │ OSM SHIFT  │ FAST    │ BASE VIM GAMING  │
+//  │  COMBO_QW_OSM_LGUI     │ Q+W  │ OSM GUI    │ FAST    │ VIM (freed BASE) │
+//  │  COMBO_WE_OSM_LALT     │ W+E  │ OSM ALT    │ FAST    │ VIM (freed BASE) │
+//  │  COMBO_ER_OSM_LCTL     │ E+R  │ OSM CTRL   │ FAST    │ VIM (freed BASE) │
+//  │  COMBO_UI_OSM_RCTL     │ U+I  │ OSM CTRL   │ FAST    │ VIM GAMING       │
+//  │  COMBO_IO_OSM_RALT     │ I+O  │ OSM ALT    │ FAST    │ VIM GAMING       │
+//  │  COMBO_OP_OSM_RGUI     │ O+P  │ OSM GUI    │ FAST    │ VIM GAMING       │
 //  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
 //  │ LAYER SWITCHING        │      │            │         │                  │
 //  │  COMBO_QWE_TO_BASE     │ QWE  │ TO(BASE)   │ SLOW    │ !BASE (anywhere) │
@@ -198,10 +198,10 @@
             bindings = <&kp DQT>;
             layers = <BASE VIM>;
         };
-        combo_kl_scln_ocsc: combo_kl_scln_ocsc {
+        combo_kl_scln_ccs: combo_kl_scln_ccs {
             timeout-ms = <30>;
             key-positions = <0 1 2>;
-            bindings = <&ocsc_macro>;
+            bindings = <&colon_caret_shift>;
             layers = <BASE VIM>;
         };
 // =====================================================================================
@@ -313,7 +313,7 @@
             key-positions = <0 1>;
             bindings = <&skq LCTRL>;
             slow-release;
-            layers = <BASE VIM>;
+            layers = <VIM>;
         };
         combo_we_lalt: combo_we_lalt {
             timeout-ms = <COMBO_TERM_FAST>;
@@ -321,7 +321,7 @@
             key-positions = <0 1>;
             bindings = <&skq LALT>;
             slow-release;
-            layers = <BASE VIM>;
+            layers = <VIM>;
         };
         combo_qw_lgui: combo_qw_lgui {
             timeout-ms = <COMBO_TERM_FAST>;
@@ -329,7 +329,7 @@
             key-positions = <0 1>;
             bindings = <&skq LGUI>;
             slow-release;
-            layers = <BASE VIM>;
+            layers = <VIM>;
         };
 // =====================================================================================
         // Right hand
@@ -347,7 +347,7 @@
             key-positions = <0 1>;
             bindings = <&skq RCTRL>;
             slow-release;
-            layers = <BASE VIM GAMING>;
+            layers = <VIM GAMING>;
         };
         combo_io_ralt: combo_io_ralt {
             timeout-ms = <COMBO_TERM_FAST>;
@@ -355,7 +355,7 @@
             key-positions = <0 1>;
             bindings = <&skq RALT>;
             slow-release;
-            layers = <BASE VIM GAMING>;
+            layers = <VIM GAMING>;
         };
         combo_op_rgui: combo_op_rgui {
             timeout-ms = <COMBO_TERM_FAST>;
@@ -363,7 +363,7 @@
             key-positions = <0 1>;
             bindings = <&skq RGUI>;
             slow-release;
-            layers = <BASE VIM GAMING>;
+            layers = <VIM GAMING>;
         };
 // =====================================================================================
 // end of combos

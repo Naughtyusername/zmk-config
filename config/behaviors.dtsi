@@ -134,11 +134,11 @@ skq: sticky_key_quick_release {
             bindings = <&kp COLON &kp COLON>;
         };
 
-        // misc useful we are renaming this one day this one fucks my dyslexic brain up
-        ocsc_macro: ocsc_macro { // : ^  super handy in odin
+        // Colon-Caret-Shift: sends ": ^" then one-shot shift for pointer casing (Pointer_Name)
+        colon_caret_shift: colon_caret_shift { // : ^ + one-shot shift
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp COLON &kp SPACE &kp CARET>;
+            bindings = <&kp COLON &kp SPACE &kp CARET &sk LSHIFT>;
         };
 
         // pairing combos
