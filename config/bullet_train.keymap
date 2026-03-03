@@ -49,8 +49,8 @@
         combo_as_bspc {
             key-positions = <19 20>;  // A S
         };
-        combo_hn_equal {
-            key-positions = <24 36>;  // H N
+        combo_ui_equal {
+            key-positions = <13 14>;  // U I
         };
         combo_df_underscore {
             key-positions = <21 22>;  // D F
@@ -120,6 +120,18 @@
         };
         combo_op_rgui {
             key-positions = <15 16>;  // O P
+        };
+// =====================================================================================
+// BASE-only top row combos
+// =====================================================================================
+        combo_qw_noteq {
+            key-positions = <7 8>;  // Q W
+        };
+        combo_er_repeat {
+            key-positions = <9 10>;  // E R
+        };
+        combo_io_colon {
+            key-positions = <14 15>;  // I O
         };
         combo_return_to_base {
             key-positions = <7 8 9>;  // Q W E

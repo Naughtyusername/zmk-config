@@ -49,8 +49,8 @@
         combo_as_bspc {
             key-positions = <25 26>;
         };
-        combo_hn_equal {
-            key-positions = <30 44>;  // H + N
+        combo_ui_equal {
+            key-positions = <19 20>;  // U + I
         };
         combo_df_underscore {
             key-positions = <27 28>;
@@ -133,6 +133,18 @@
         };
         combo_op_rgui {
             key-positions = <21 22>;
+        };
+// =====================================================================================
+// BASE-only top row combos
+// =====================================================================================
+        combo_qw_noteq {
+            key-positions = <13 14>;  // Q + W
+        };
+        combo_er_repeat {
+            key-positions = <15 16>;  // E + R
+        };
+        combo_io_colon {
+            key-positions = <20 21>;  // I + O
         };
 // =====================================================================================
 // Three-finger layer switching combos

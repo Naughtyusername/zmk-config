@@ -95,6 +95,11 @@ skq: sticky_key_quick_release {
 // =====================================================================================
 // LEADER KEY BEHAVIOR
 // =====================================================================================
+        key_repeat: key_repeat {
+            compatible = "zmk,behavior-key-repeat";
+            #binding-cells = <0>;
+        };
+
         leader: leader {
             compatible = "zmk,behavior-leader-key";
             #binding-cells = <0>;
@@ -191,6 +196,11 @@ skq: sticky_key_quick_release {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp EQUAL &kp EQUAL>;  // ==
+        };
+        macro_noteq: macro_noteq {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp EXCL &kp EQUAL>;  // !=
         };
 
 // =====================================================================================
