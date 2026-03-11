@@ -375,11 +375,11 @@
 // 6-column expansion for Sofle GAMING2
 #define ___SOFLE_GAMING2_L1_6___ _______ ___SOFLE_GAMING2_L1___
 #define ___SOFLE_GAMING2_L2_6___ _______ ___SOFLE_GAMING2_L2___
-#define ___SOFLE_GAMING2_L3_6___ _______ ___SOFLE_GAMING2_L3___
+#define ___SOFLE_GAMING2_L3_6___ &kp LSHFT ___SOFLE_GAMING2_L3___
 
 #define ___SOFLE_GAMING2_R1_6___ ___SOFLE_GAMING2_R1___ _______
 #define ___SOFLE_GAMING2_R2_6___ ___SOFLE_GAMING2_R2___ _______
-#define ___SOFLE_GAMING2_R3_6___ ___SOFLE_GAMING2_R3___ _______
+#define ___SOFLE_GAMING2_R3_6___ ___SOFLE_GAMING2_R3___ &kp RSHFT
 
 /* ==========================================================================
  * 6-COLUMN EXPANSION MACROS
@@ -445,11 +445,11 @@
 // Roguelike layer with outer columns
 #define ___ROGUELIKE_L1_6___ _______ ___ROGUELIKE_L1___
 #define ___ROGUELIKE_L2_6___ _______ ___ROGUELIKE_L2___
-#define ___ROGUELIKE_L3_6___ _______ ___ROGUELIKE_L3___
+#define ___ROGUELIKE_L3_6___ &kp LSHFT ___ROGUELIKE_L3___
 
 #define ___ROGUELIKE_R1_6___ ___ROGUELIKE_R1___ _______
 #define ___ROGUELIKE_R2_6___ ___ROGUELIKE_R2___ _______
-#define ___ROGUELIKE_R3_6___ ___ROGUELIKE_R3___ _______
+#define ___ROGUELIKE_R3_6___ ___ROGUELIKE_R3___ &kp RSHFT
 
 // Sys layer with outer columns
 #define ___SYS_L1_6___ _______ ___SYS_L1___
@@ -462,12 +462,12 @@
 
 // Gaming layer with outer columns
 #define ___GAMING_L1_6___ &kp TAB ___GAMING_L1___
-#define ___GAMING_L2_6___ &kp ESC ___GAMING_L2___
-#define ___GAMING_L3_6___ _______ ___GAMING_L3___
+#define ___GAMING_L2_6___ &kp LCTRL ___GAMING_L2___
+#define ___GAMING_L3_6___ &kp LSHFT ___GAMING_L3___
 
 #define ___GAMING_R1_6___ ___GAMING_R1___ &kp BSLH
 #define ___GAMING_R2_6___ ___GAMING_R2___ &kp SQT
-#define ___GAMING_R3_6___ ___GAMING_R3___ &kp RET
+#define ___GAMING_R3_6___ ___GAMING_R3___ &kp RSHFT
 
 // Gaming2 layer with outer columns (ESC top left for boards without number row)
 #define ___GAMING2_L1_6___ &kp ESC ___GAMING2_L1___
@@ -523,17 +523,17 @@
 #define ___SOFLE_THUMBS_L_ADJUST___ _______  _______  _______  _______  _______
 #define ___SOFLE_THUMBS_R_ADJUST___ _______  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_ROGUELIKE___ _______  _______  _______  _______  _______
-#define ___SOFLE_THUMBS_R_ROGUELIKE___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_L_ROGUELIKE___ &kp LGUI &kp LCTRL &kp LALT &kp BSPC &kp SPACE
+#define ___SOFLE_THUMBS_R_ROGUELIKE___ &kp RET  &kp TAB  &kp RSHFT &kp RCTRL &to GAMING
 
 #define ___SOFLE_THUMBS_L_SYS___ _______  _______  _______  _______  _______
 #define ___SOFLE_THUMBS_R_SYS___ _______  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_GAMING___ _______  _______  _______  &kp BSPC  &kp SPACE
-#define ___SOFLE_THUMBS_R_GAMING___ &kp RET  &lt GAMING2 TAB  _______  _______  _______
+#define ___SOFLE_THUMBS_L_GAMING___ &kp LGUI &kp LCTRL &kp LALT &kp BSPC &kp SPACE
+#define ___SOFLE_THUMBS_R_GAMING___ &lt ROGUELIKE RET  &lt GAMING2 TAB  &kp RSHFT &kp RCTRL &to ROGUELIKE
 
-#define ___SOFLE_THUMBS_L_GAMING2___ _______  _______  _______  _______  _______
-#define ___SOFLE_THUMBS_R_GAMING2___ _______  _______  _______  _______  _______
+#define ___SOFLE_THUMBS_L_GAMING2___ &kp LGUI &kp LCTRL &kp LALT &kp BSPC &kp SPACE
+#define ___SOFLE_THUMBS_R_GAMING2___ &kp RET  &kp TAB  &kp RSHFT &kp RCTRL &kp RALT
 
 #define ___SOFLE_THUMBS_L_VIM___ _______  _______  _______  _______  _______
 #define ___SOFLE_THUMBS_R_VIM___ _______  _______  _______  _______  _______
