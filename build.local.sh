@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # --- Configuration ---
-ZMK_PATH="$HOME/zmk"
-CONFIG_PATH="$HOME/qmk/zmk/zmk-config.git"
+ZMK_PATH="$HOME/dev/firmware/zmk"
+CONFIG_PATH="$HOME/dev/firmware/zmk-config.git"
 BOARD="nice_nano"
 # Create a folder in Downloads named after today's date
 DATE_STR=$(date +%Y-%m-%d_%H-%M)

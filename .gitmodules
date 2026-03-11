@@ -1,3 +1,9 @@
 [submodule "zmk-modules/zmk-leader-key"]
 	path = zmk-modules/zmk-leader-key
 	url = https://github.com/urob/zmk-leader-key.git
+[submodule "zmk-modules/zmk-auto-layer"]
+	path = zmk-modules/zmk-auto-layer
+	url = https://github.com/urob/zmk-auto-layer.git
+[submodule "zmk-modules/zmk-helpers"]
+	path = zmk-modules/zmk-helpers
+	url = https://github.com/urob/zmk-helpers.git

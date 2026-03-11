@@ -2,9 +2,9 @@
 # --- Build Single Keyboard ---
 # Prompts user to select which keyboard to build (faster than building all)
 
-ZMK_PATH="$HOME/zmk"
-CONFIG_PATH="$HOME/qmk/zmk/zmk-config.git/config"
-MODULES_PATH="$HOME/qmk/zmk/zmk-config.git/zmk-modules"
+ZMK_PATH="$HOME/dev/firmware/zmk"
+CONFIG_PATH="$HOME/dev/firmware/zmk-config.git/config"
+MODULES_PATH="$HOME/dev/firmware/zmk-config.git/zmk-modules"
 EXTRA_MODULES="$MODULES_PATH/zmk-auto-layer;$MODULES_PATH/zmk-leader-key"
 BOARD="nice_nano"
 DATE_STR=$(date +%Y-%m-%d_%H-%M)
