@@ -1,0 +1,139 @@
+Bullet Train (V4N4G0N) — Keymap Reference
+==========================================
+
+51 keys · Partial numrow (6L) · Inverted-T arrows · Split spacebar
+Layout: 6 + 12x3 + 9 (numrow + alpha rows + thumb row)
+
+Position Map
+────────────
+  0     1     2     3     4     5
+  6     7     8     9    10    11      12    13    14    15    16    17
+ 18    19    20    21    22    23      24    25    26    27    28    29
+ 30    31    32    33    34    35      36    37    38    39    40    41
+       42    43    44       45    46    47       48    49    50
+
+Hold Behavior Legend
+────────────────────
+  tap·hold    ·g=LGUI  ·a=LALT  ·c=LCTRL  ·s=LSHFT  (home row mods)
+              ·L=LOWER ·R=RAISE ·F=FUNC   ·S=SYS    (layer-taps)
+  __  = transparent (inherits from active lower layer, typically BASE)
+  ××  = disabled (&none)
+  ¹   = 1-second hold timeout before layer activates
+
+Layer Switching
+───────────────
+  BASE ↔ VIM:       combo N+M+, (36+37+38)
+  BASE → GAMING:    combo A+S+D (19+20+21)
+  ANY → BASE:       combo Q+W+E (7+8+9)
+  GAMING ↔ GAMING2: combo Y+U+I (12+13+14)
+  GAMING ↔ ROGUE:   combo H+J+K (24+25+26)
+  LOWER:            hold B (35) or hold SPC thumb (45→RET·L on BASE)
+  RAISE:            hold N (36) or hold SPC thumb (45→SPC·R on BASE)
+  FUNC:             hold RET (29) or hold TAB thumb (46→TAB·F on BASE)
+  SYS:              hold Z (31) or / (41) — 1s timeout
+  ADJUST:           tri-layer (LOWER + RAISE held simultaneously)
+
+For gaming layers entered via &to: transparent resolves to BASE.
+
+════════════════════════════════════════════════════════════════════════
+
+BASE (Layer 0)
+──────────────
+  1     2     3     4     5     6
+  ESC   Q     W     E     R     T       Y     U     I     O     P    BSDEL
+  TAB   A·g   S·a   D·c   F·s   G       H     J·s   K·c   L·a   ;·g  RET·F
+  SHFT  Z·S¹  X     C     V     B·L     N·R   M     ,     .     ↑    /·S¹
+        LGUI  LCTL  LALT    SPC·R TAB·F RET·L     ←     ↓     →
+
+VIM (Layer 1) — Plain QWERTY, no home row mods
+─────────────
+  __    __    __    __    __    __
+  ESC   Q     W     E     R     T       Y     U     I     O     P     BSPC
+  TAB   A     S     D     F     G       H     J     K     L     ;     RET
+  SHFT  Z     X     C     V     B       N     M     ,     .     ↑     /
+        __    __    __      __    __    __       __    __    __
+
+  Transparent thumbs → BASE layer-taps still active.
+  Note: Outer BSPC is plain (not BS/DEL) — uses shared VIM R1 macro.
+
+LOWER (Layer 2) — Symbols (left) + Numpad (right)
+───────────────
+  __    __    __    __    __    __
+  __    \     $     |     -     [       6     7     8     9     0     \
+  __    ~     &     *     =     (       .     4     5     6     ××    __
+  SHFT  `     !     '     "     {       ,     1     2     3     ↑     __
+        __    __    __      __    __    __       __    __    __
+
+RAISE (Layer 3) — Full symbol set
+───────────────
+  __    __    __    __    __    __
+  __    \     $     |     -     [       ]     +     #     ;     ::    \
+  __    ~     &     *     =     (       )     ^     _     %     :     __
+  SHFT  `     !     '     "     {       }     @     <     >     ↑     __
+        __    __    __      __    __    __       __    __    __
+
+  Left side mirrors LOWER. Right side has remaining symbols.
+
+FUNC (Layer 4) — F-keys (left) + Navigation (right)
+──────────────
+  __    __    __    __    __    __
+  __    F9    F10   F11   F12  PrtSc   PgUp  Home  End   Ins   Del   __
+  __    F5    F6    F7    F8    ××      ←     ↓     ↑     →     ××    __
+  SHFT  F1    F2    F3    F4    ××      PgDn  ××    ××    ××    ↑     __
+        __    __    __      TAB   SPC   RET      __    __    __
+
+  Center thumbs explicit for text input while holding FUNC.
+
+ADJUST (Layer 5) — Tri-layer: LOWER + RAISE
+────────────────
+  __    __    __    __    __    __
+  __    __    __    __    __   CAPS    NumLk  __    __    __    __    __
+  __    __    __    Vol-  Vol+ MUTE     __    __    __    __    __    __
+  SHFT  __    __    Prev  Play  Next    __    __    __    __    ↑     __
+        __    __    __      __    __    __       __    __    __
+
+GAMING (Layer 6) — No HRM, all explicit
+────────────────
+  1     2     3     4     5     6
+  TAB   Q     W     E     R     T       Y     U     I     O     P     \
+  LCTL  A     S     D     F     G       H     J     K     L     ;     '
+  SHFT  Z     X     C     V     B       N     M     ,     .     ↑     /
+        LGUI  LCTL  LALT    SPC   TAB   RET      ←     ↓     →
+
+GAMING2 (Layer 7) — Numbers + F-keys overlay
+─────────────────
+  __    __    __    __    __    __
+  ESC   1     2     3     4     5       6     7     8     9     0     __
+  __    F1    F2    F3    F4    F5      F6    F7    F8    F9    F10   __
+  SHFT  F11   F12   __    __   PrtSc   __    __    __    __    ↑     __
+        LGUI  LCTL  LALT    SPC   TAB   RET      ←     ↓     →
+
+ROGUELIKE (Layer 8) — QWERTY left + Numpad right (diagonal movement)
+───────────────────
+  __    __    __    __    __    __
+  __    Q     W     E     R     T       Y     KP7   KP8   KP9   ××    __
+  __    A     S     D     F     G       KP.   KP4   KP5   KP6   ××    __
+  SHFT  Z     X     C     V     B       N     KP1   KP2   KP3   ↑     ××
+        LGUI  LCTL  LALT    SPC   TAB   RET      ←     ↓     →
+
+SYS (Layer 9) — Bluetooth + Bootloader
+─────────────
+  __    __    __    __    __    __
+  __   btCLR  bt0   bt1   bt2   bt3    __    __    __    __    __    __
+  __   BOOT  RESET  __    __    __      __    __    __   RESET BOOT  __
+  SHFT  __   togBS  __    __    __      __    __    __    __    ↑     __
+        __    __    __      __    __    __       __    __    __
+
+  togBS = toggle back to BASE.
+
+MOUSE (Layer 10) — Trackpad/mouse support
+────────────────
+  __    __    __    __    __    __
+  __    __    Back  Fwd   Mid   __      __    __    __    __    __    __
+  __    __    __    __    __    __      __    __    __    __    __    __
+  SHFT  __    SHFT  CTRL  ALT   __      __    __    __    __    ↑     __
+        __    __    __     MB1   __    MB2      __    __    __
+
+  Left hand: mouse buttons + modifier keys for modified clicks.
+  Right hand: free for trackpad/external mouse.
+  MB1=Left click, MB2=Right click, Mid=Middle, Back/Fwd=Browser nav.

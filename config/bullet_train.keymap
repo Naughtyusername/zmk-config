@@ -166,7 +166,7 @@
             display-name = "Base";
             bindings = <
                 ___BT_NUMROW_BASE___
-                ___BASE_L1_6___        ___BASE_R1_6___
+                ___BASE_L1_6___        ___BT_BASE_R1_6___
                 ___BASE_L2_6___        ___BT_BASE_R2_6___
                 ___BT_BASE_L3_6___     ___BT_BASE_R3_6___
                 ___BT_THUMBS_BASE___
@@ -244,7 +244,7 @@
             bindings = <
                 ___BT_NUMROW_GAMING2___
                 ___GAMING2_L1_6___     ___GAMING2_R1_6___
-                _______ _______ _______ _______ _______  _______ _______ _______ _______ _______ _______
+                ___GAMING2_L2_6___     ___BT_GAMING2_R2_6___
                 ___BT_GAMING2_L3_6___  ___BT_GAMING2_R3_6___
                 ___BT_THUMBS_GAMING2___
             >;

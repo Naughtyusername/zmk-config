@@ -599,7 +599,7 @@
  *   Row 1 (QWERTY): 12 keys (ESC + 5L + 5R + BSPC)
  *   Row 2 (home): 12 keys (TAB + 5L + 5R + RET)
  *   Row 3 (bottom): 12 keys (SHFT + 5L + N M , . UP /)  <- 6 on right (UP before SLASH)
- *   Row 4 (space): 9 keys (LCTRL LGUI LALT + 3 space + LEFT DOWN RIGHT)
+ *   Row 4 (space): 9 keys (LGUI LCTRL LALT + 3 space + LEFT DOWN RIGHT)
  *
  * Rows 1-2 mostly reuse existing 6-col macros. Rows 0, 3, 4 need BT-specific wrappers.
  */
@@ -617,6 +617,9 @@
 #define ___BT_NUMROW_SYS___     _______ _______ _______ _______ _______ _______
 #define ___BT_NUMROW_MOUSE___   _______ _______ _______ _______ _______ _______
 
+// --- Row 1: Right side outer column (bs_del for BT, plain BSPC for others) ---
+#define ___BT_BASE_R1_6___     ___BASE_R1___ &bs_del
+
 // --- Row 2: Right side outer column (RET for BT, not SQT like Sofle) ---
 #define ___BT_BASE_R2_6___     ___BASE_R2___  &lt FUNC RET
 #define ___BT_VIM_R2_6___      ___VIM_R2___   &kp RET
@@ -625,8 +628,8 @@
 #define ___BT_FUNC_R2_6___     ___FUNC_R2___  _______
 #define ___BT_ADJUST_R2_6___   ___ADJUST_R2___ _______
 #define ___BT_GAMING_R2_6___   ___GAMING_R2___ &kp SQT
-#define ___BT_GAMING2_R2_6___  _______ _______
-#define ___BT_ROGUE_R2_6___    _______ _______
+#define ___BT_GAMING2_R2_6___  ___GAMING2_R2___ _______
+#define ___BT_ROGUE_R2_6___    ___ROGUELIKE_R2___ _______
 #define ___BT_SYS_R2_6___      ___SYS_R2___   _______
 #define ___BT_MOUSE_R2_6___    ___MOUSE_R2___ _______
 
@@ -654,22 +657,22 @@
 #define ___BT_ADJUST_R3_6___    _______ _______ _______ _______ &kp UP _______
 #define ___BT_GAMING_R3_6___    &kp N &kp M &kp COMMA &kp DOT &kp UP &kp FSLH
 #define ___BT_GAMING2_R3_6___   _______ _______ _______ _______ &kp UP _______
-#define ___BT_ROGUE_R3_6___     &kp Y &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp UP XXX
+#define ___BT_ROGUE_R3_6___     &kp N &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp UP XXX
 #define ___BT_SYS_R3_6___       _______ _______ _______ _______ &kp UP _______
 #define ___BT_MOUSE_R3_6___     _______ _______ _______ _______ &kp UP _______
 
 // --- Row 4: Thumb cluster (9 keys: 3 left mods + 3 space + 3 nav) ---
-// Positions (matrix): LCTL(42) LGUI(43) LALT(44) | SPC1(45) SPC2(46) SPC3(47) | LEFT(48) DOWN(49) RIGHT(50)
+// Positions (matrix): LGUI(42) LCTL(43) LALT(44) | SPC1(45) SPC2(46) SPC3(47) | LEFT(48) DOWN(49) RIGHT(50)
 // For split space variants, you can define separate clusters per spacebar config.
 // For now, unified thumb cluster works with both split and full space transforms.
-#define ___BT_THUMBS_BASE___    &kp LCTRL &kp LGUI &kp LALT  &bs_del _______ &lt LOWER RET  &kp LEFT &kp DOWN &kp RIGHT
+#define ___BT_THUMBS_BASE___    &kp LGUI &kp LCTRL &kp LALT  &lt RAISE SPACE &lt FUNC TAB &lt LOWER RET  &kp LEFT &kp DOWN &kp RIGHT
 #define ___BT_THUMBS_LOWER___   _______ _______ _______  _______ _______ _______  _______ _______ _______
 #define ___BT_THUMBS_RAISE___   _______ _______ _______  _______ _______ _______  _______ _______ _______
 #define ___BT_THUMBS_FUNC___    _______ _______ _______  &kp TAB &kp SPACE &kp RET  _______ _______ _______
 #define ___BT_THUMBS_VIM___     _______ _______ _______  _______ _______ _______  _______ _______ _______
 #define ___BT_THUMBS_ADJUST___  _______ _______ _______  _______ _______ _______  _______ _______ _______
-#define ___BT_THUMBS_GAMING___  &kp LCTRL &kp LGUI &kp LALT  &kp BSPC _______ &kp RET  _______ _______ _______
-#define ___BT_THUMBS_GAMING2___ _______ _______ _______  _______ _______ _______  _______ _______ _______
-#define ___BT_THUMBS_ROGUE___   _______ _______ _______  _______ _______ _______  _______ _______ _______
+#define ___BT_THUMBS_GAMING___  &kp LGUI &kp LCTRL &kp LALT  &kp SPACE &kp TAB &kp RET  &kp LEFT &kp DOWN &kp RIGHT
+#define ___BT_THUMBS_GAMING2___ &kp LGUI &kp LCTRL &kp LALT  &kp SPACE &kp TAB &kp RET  &kp LEFT &kp DOWN &kp RIGHT
+#define ___BT_THUMBS_ROGUE___   &kp LGUI &kp LCTRL &kp LALT  &kp SPACE &kp TAB &kp RET  &kp LEFT &kp DOWN &kp RIGHT
 #define ___BT_THUMBS_SYS___     _______ _______ _______  _______ _______ _______  _______ _______ _______
 #define ___BT_THUMBS_MOUSE___   _______ _______ _______  &mkp MB1 _______ &mkp MB2  _______ _______ _______
