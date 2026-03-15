@@ -72,14 +72,14 @@
 //  │  COMBO_JM_SQUOTES      │ J+M  │ '' + ←     │ MED     │ BASE VIM         │
 //  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
 //  │ ONE-SHOT MODS (GACS)   │      │            │         │                  │
-//  │  COMBO_RT_OSM_LSFT     │ R+T  │ OSM SHIFT  │ FAST    │ BASE VIM         │
-//  │  COMBO_YU_OSM_RSFT     │ Y+U  │ OSM SHIFT  │ FAST    │ BASE VIM GAMING  │
-//  │  COMBO_QW_OSM_LGUI     │ Q+W  │ OSM GUI    │ FAST    │ VIM only         │
-//  │  COMBO_WE_OSM_LALT     │ W+E  │ OSM ALT    │ FAST    │ VIM only         │
-//  │  COMBO_ER_OSM_LCTL     │ E+R  │ OSM CTRL   │ FAST    │ VIM only         │
-//  │  COMBO_UI_OSM_RCTL     │ U+I  │ OSM CTRL   │ FAST    │ VIM GAMING       │
-//  │  COMBO_IO_OSM_RALT     │ I+O  │ OSM ALT    │ FAST    │ VIM GAMING       │
-//  │  COMBO_OP_OSM_RGUI     │ O+P  │ OSM GUI    │ FAST    │ VIM GAMING       │
+//  │  COMBO_RT_OSM_LSFT     │ R+T  │ OSM SHIFT  │ FAST    │ BASE VIM GAM G2 ROG │
+//  │  COMBO_YU_OSM_RSFT     │ Y+U  │ OSM SHIFT  │ FAST    │ BASE VIM GAM G2 ROG │
+//  │  COMBO_QW_OSM_LGUI     │ Q+W  │ OSM GUI    │ FAST    │ VIM only            │
+//  │  COMBO_WE_OSM_LALT     │ W+E  │ OSM ALT    │ FAST    │ VIM only            │
+//  │  COMBO_ER_OSM_LCTL     │ E+R  │ OSM CTRL   │ FAST    │ VIM GAM G2 ROG      │
+//  │  COMBO_UI_OSM_RCTL     │ U+I  │ OSM CTRL   │ FAST    │ VIM GAM G2 ROG      │
+//  │  COMBO_IO_OSM_RALT     │ I+O  │ OSM ALT    │ FAST    │ VIM GAM G2 ROG      │
+//  │  COMBO_OP_OSM_RGUI     │ O+P  │ OSM GUI    │ FAST    │ VIM GAM G2 ROG      │
 //  ├────────────────────────┼──────┼────────────┼─────────┼──────────────────┤
 //  │ BASE TOP ROW           │      │            │         │                  │
 //  │  COMBO_QW_NOTEQ        │ Q+W  │ !=         │ FAST    │ BASE             │
@@ -310,7 +310,7 @@
             key-positions = <0 1>;
             bindings = <&skq LSHFT>;
             slow-release;
-            layers = <BASE VIM>;
+            layers = <BASE VIM GAMING GAMING2 ROGUELIKE>;
         };
         combo_er_lctrl: combo_er_lctrl {
             timeout-ms = <COMBO_TERM_FAST>;
@@ -318,7 +318,7 @@
             key-positions = <0 1>;
             bindings = <&skq LCTRL>;
             slow-release;
-            layers = <VIM>;
+            layers = <VIM GAMING GAMING2 ROGUELIKE>;
         };
         combo_we_lalt: combo_we_lalt {
             timeout-ms = <COMBO_TERM_FAST>;
@@ -344,7 +344,7 @@
             key-positions = <0 1>;
             bindings = <&skq RSHFT>;
             slow-release;
-            layers = <BASE VIM GAMING>;
+            layers = <BASE VIM GAMING GAMING2 ROGUELIKE>;
         };
         combo_ui_rctrl: combo_ui_rctrl {
             timeout-ms = <COMBO_TERM_FAST>;
@@ -352,7 +352,7 @@
             key-positions = <0 1>;
             bindings = <&skq RCTRL>;
             slow-release;
-            layers = <VIM GAMING>;
+            layers = <VIM GAMING GAMING2 ROGUELIKE>;
         };
         combo_io_ralt: combo_io_ralt {
             timeout-ms = <COMBO_TERM_FAST>;
