@@ -523,17 +523,17 @@
 #define ___SOFLE_THUMBS_L_ADJUST___ _______  _______  _______  _______  _______
 #define ___SOFLE_THUMBS_R_ADJUST___ _______  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_ROGUELIKE___ &kp LGUI &kp LCTRL &kp LALT &kp BSPC &kp SPACE
-#define ___SOFLE_THUMBS_R_ROGUELIKE___ &kp RET  &kp TAB  &kp RSHFT &kp RCTRL &to GAMING
+#define ___SOFLE_THUMBS_L_ROGUELIKE___ &kp LGUI &kp LALT &kp LSHFT &kp BSPC &kp SPACE
+#define ___SOFLE_THUMBS_R_ROGUELIKE___ &kp RET &kp TAB &kp KP_N0 &tog ROGUELIKE &kp DEL
 
 #define ___SOFLE_THUMBS_L_SYS___ _______  _______  _______  _______  _______
 #define ___SOFLE_THUMBS_R_SYS___ _______  _______  _______  _______  _______
 
-#define ___SOFLE_THUMBS_L_GAMING___ &kp LGUI &kp LCTRL &kp LALT &kp BSPC &kp SPACE
-#define ___SOFLE_THUMBS_R_GAMING___ &lt ROGUELIKE RET  &lt GAMING2 TAB  &kp RSHFT &kp RCTRL &to ROGUELIKE
+#define ___SOFLE_THUMBS_L_GAMING___ &kp LGUI &kp LALT &kp LSHFT &kp BSPC &kp SPACE
+#define ___SOFLE_THUMBS_R_GAMING___ &kp RET &kp TAB &mo GAMING2 &tog ROGUELIKE &kp DEL
 
-#define ___SOFLE_THUMBS_L_GAMING2___ &kp LGUI &kp LCTRL &kp LALT &kp BSPC &kp SPACE
-#define ___SOFLE_THUMBS_R_GAMING2___ &kp RET  &kp TAB  &kp RSHFT &kp RCTRL &kp RALT
+#define ___SOFLE_THUMBS_L_GAMING2___ _______ _______ _______ _______ _______
+#define ___SOFLE_THUMBS_R_GAMING2___ _______ _______ _______ _______ _______
 
 #define ___SOFLE_THUMBS_L_VIM___ _______  _______  _______  _______  _______
 #define ___SOFLE_THUMBS_R_VIM___ _______  _______  _______  _______  _______
@@ -586,7 +586,7 @@
 #define ___SWEEP_THUMBS_ADJUST___      _______  _______                _______  _______
 #define ___SWEEP_THUMBS_ROGUELIKE___   _______  _______                _______  _______
 #define ___SWEEP_THUMBS_SYS___         _______  _______                _______  _______
-#define ___SWEEP_THUMBS_GAMING___      &kp BSPC  &kp SPACE           &kp RETURN  &kp TAB
+#define ___SWEEP_THUMBS_GAMING___      &kp BSPC  &kp SPACE           &kp RETURN  &mo GAMING2
 #define ___SWEEP_THUMBS_GAMING2___     _______  _______              _______  _______
 #define ___SWEEP_THUMBS_VIM___         _______  _______              _______  _______
 #define ___SWEEP_THUMBS_MOUSE___       _______  _______              _______  _______
@@ -671,8 +671,8 @@
 #define ___BT_THUMBS_FUNC___    _______ _______ _______  &kp TAB &kp SPACE &kp RET  _______ _______ _______
 #define ___BT_THUMBS_VIM___     _______ _______ _______  _______ _______ _______  _______ _______ _______
 #define ___BT_THUMBS_ADJUST___  _______ _______ _______  _______ _______ _______  _______ _______ _______
-#define ___BT_THUMBS_GAMING___  &kp LGUI &kp LCTRL &kp LALT  &kp SPACE &kp TAB &kp RET  &kp LEFT &kp DOWN &kp RIGHT
-#define ___BT_THUMBS_GAMING2___ &kp LGUI &kp LCTRL &kp LALT  &kp SPACE &kp TAB &kp RET  &kp LEFT &kp DOWN &kp RIGHT
-#define ___BT_THUMBS_ROGUE___   &kp LGUI &kp LCTRL &kp LALT  &kp SPACE &kp TAB &kp RET  &kp LEFT &kp DOWN &kp RIGHT
+#define ___BT_THUMBS_GAMING___  &kp LGUI &kp LCTRL &kp LALT  &kp SPACE &mo GAMING2 &tog ROGUELIKE  &kp LEFT &kp DOWN &kp RIGHT
+#define ___BT_THUMBS_GAMING2___ _______ _______ _______  _______ _______ _______  _______ _______ _______
+#define ___BT_THUMBS_ROGUE___   &kp LGUI &kp LCTRL &kp LALT  &kp SPACE &kp KP_N0 &tog ROGUELIKE  &kp LEFT &kp DOWN &kp RIGHT
 #define ___BT_THUMBS_SYS___     _______ _______ _______  _______ _______ _______  _______ _______ _______
 #define ___BT_THUMBS_MOUSE___   _______ _______ _______  &mkp MB1 _______ &mkp MB2  _______ _______ _______
